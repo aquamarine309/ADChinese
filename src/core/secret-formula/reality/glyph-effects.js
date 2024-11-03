@@ -33,9 +33,9 @@ export const glyphEffects = {
     bitmaskIndex: 0,
     isGenerated: true,
     glyphTypes: ["time"],
-    singleDesc: "Time Dimension power +{value}",
-    totalDesc: "Time Dimension multipliers ^{value}",
-    shortDesc: "TD power +{value}",
+    singleDesc: "时间维度指数 +{value}",
+    totalDesc: "时间维度倍率 ^{value}",
+    shortDesc: "时间维度指数 +{value}",
     effect: (level, strength) => 1.01 + Math.pow(level, 0.32) * Math.pow(strength, 0.45) / 75,
     formatEffect: x => format(x, 3, 3),
     formatSingleEffect: x => format(x - 1, 3, 3),
@@ -47,10 +47,10 @@ export const glyphEffects = {
     bitmaskIndex: 1,
     isGenerated: true,
     glyphTypes: ["time"],
-    singleDesc: "Multiply game speed by {value}",
-    totalDesc: "Game runs ×{value} faster",
-    genericDesc: "Game speed multiplier",
-    shortDesc: "Game speed ×{value}",
+    singleDesc: "游戏速度 {value}",
+    totalDesc: "游戏速度 ×{value}",
+    genericDesc: "游戏速度倍率",
+    shortDesc: "游戏速度 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("time")
       ? 1 + Math.pow(level, 0.35)
       : 1 + Math.pow(level, 0.3) * Math.pow(strength, 0.65) / 20),
@@ -65,10 +65,10 @@ export const glyphEffects = {
     bitmaskIndex: 2,
     isGenerated: true,
     glyphTypes: ["time"],
-    singleDesc: "Multiply Eternity gain by {value}",
-    totalDesc: "Eternity gain ×{value}",
-    genericDesc: "Eternity gain multiplier",
-    shortDesc: "Eternities ×{value}",
+    singleDesc: "获得 {value} 倍永恒次数",
+    totalDesc: "获得 ×{value} 倍永恒次数",
+    genericDesc: "永恒次数倍率",
+    shortDesc: "永恒次数 ×{value}",
     effect: (level, strength) => Math.pow((strength + 3) * level, 0.9) *
       Math.pow(3, GlyphAlteration.sacrificeBoost("time")),
     formatEffect: x => format(x, 2, 2),
@@ -82,17 +82,17 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["time"],
     singleDesc: () => (GlyphAlteration.isAdded("time")
-      ? "Eternity Point gain \n×{value} [and ^]{value2}"
-      : "Multiply Eternity Point gain by {value}"),
+      ? "永恒点数获取量 \n×{value} [且 ^]{value2}"
+      : "永恒点数获取量 ×{value}"),
     totalDesc: () => (GlyphAlteration.isAdded("time")
       ? "Eternity Point gain ×{value} and ^{value2}"
       : "Eternity Point gain ×{value}"),
     genericDesc: () => (GlyphAlteration.isAdded("time")
-      ? "Eternity Point gain multiplier and power"
-      : "Eternity Point gain multiplier"),
+      ? "永恒点数倍数和指数加成"
+      : "永恒点数获取量"),
     shortDesc: () => (GlyphAlteration.isAdded("time")
-      ? "EP ×{value} and ^{value2}"
-      : "EP ×{value}"),
+      ? "永恒点数 ×{value} 且 ^{value2}"
+      : "永恒点数 ×{value}"),
     effect: (level, strength) => Math.pow(level * strength, 3) * 100,
     formatEffect: x => format(x, 2, 3),
     combine: GlyphCombiner.multiply,
@@ -106,9 +106,9 @@ export const glyphEffects = {
     bitmaskIndex: 4,
     isGenerated: true,
     glyphTypes: ["dilation"],
-    singleDesc: "Multiply Dilated Time gain by {value}",
-    totalDesc: "Dilated Time gain ×{value}",
-    shortDesc: "DT ×{value}",
+    singleDesc: "获得 {value} 倍膨胀时间 ",
+    totalDesc: "获得 ×{value} 倍膨胀时间",
+    shortDesc: "膨胀时间 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("dilation")
       ? DC.D1_005.pow(level).times(15)
       : Decimal.pow(level * strength, 1.5).times(2)),
@@ -122,9 +122,9 @@ export const glyphEffects = {
     bitmaskIndex: 5,
     isGenerated: true,
     glyphTypes: ["dilation"],
-    singleDesc: "Tachyon Galaxy threshold multiplier ×{value}",
-    genericDesc: "Tachyon Galaxy cost multiplier",
-    shortDesc: "TG threshold ×{value}",
+    singleDesc: "超光速粒子星系阈值 ×{value}",
+    genericDesc: "超光速粒子星系价格倍率",
+    shortDesc: "超光速粒子星系阈值 ×{value}",
     effect: (level, strength) => 1 - Math.pow(level, 0.17) * Math.pow(strength, 0.35) / 100 -
       GlyphAlteration.sacrificeBoost("dilation") / 50,
     formatEffect: x => format(x, 3, 3),
@@ -145,17 +145,17 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["dilation"],
     singleDesc: () => (GlyphAlteration.isAdded("dilation")
-      ? "Generates {value} Time Theorems/hour \n[and multiplies Time Theorem \ngeneration by] {value2}"
-      : "Generates {value} Time Theorems per hour"),
+      ? "每小时生成 {value} 时间之理[\n且时间之理生成量] ×{value2}"
+      : "每小时生成 {value} 时间之理"),
     totalDesc: () => (GlyphAlteration.isAdded("dilation")
-      ? "Generating {value} Time Theorems/hour and Time Theorem generation ×{value2}"
-      : "Generating {value} Time Theorems per hour"),
+      ? "每小时生成 {value} 时间之理且时间之理生成量 ×{value2}"
+      : "每小时生成 {value} 时间之理"),
     genericDesc: () => (GlyphAlteration.isAdded("dilation")
-      ? "Time Theorem generation and multiplier"
-      : "Time Theorem generation"),
+      ? "时间之理生成和倍数"
+      : "时间之理生成"),
     shortDesc: () => (GlyphAlteration.isAdded("dilation")
-      ? "{value} TT/hr and TTgen ×{value2}"
-      : "{value} TT/hr"),
+      ? "{value} 时间之理/小时 且 时间之理生成量 ×{value2}"
+      : "{value} 时间之理/小时"),
     effect: (level, strength) => Math.pow(level * strength, 0.5) / 10000,
     /** @type {function(number): string} */
     formatEffect: x => format(3600 * x, 2, 2),
@@ -170,10 +170,10 @@ export const glyphEffects = {
     bitmaskIndex: 7,
     isGenerated: true,
     glyphTypes: ["dilation"],
-    singleDesc: "Antimatter Dimension power +{value} while Dilated",
-    totalDesc: "Antimatter Dimension multipliers ^{value} while Dilated",
-    genericDesc: "Antimatter Dimensions ^x while Dilated",
-    shortDesc: "Dilated AD power +{value}",
+    singleDesc: "时间膨胀时反物质维度指数 +{value}",
+    totalDesc: "时间膨胀时反物质维度倍率 ^{value}",
+    genericDesc: "时间膨胀时反物质维度 ^x",
+    shortDesc: "膨胀时反物质维度指数 +{value}",
     effect: (level, strength) => 1.1 + Math.pow(level, 0.7) * Math.pow(strength, 0.7) / 25,
     formatEffect: x => format(x, 2, 2),
     formatSingleEffect: x => format(x - 1, 2, 2),
@@ -185,10 +185,10 @@ export const glyphEffects = {
     bitmaskIndex: 8,
     isGenerated: true,
     glyphTypes: ["replication"],
-    singleDesc: "Multiply Replication speed by {value}",
-    totalDesc: "Replication speed ×{value}",
-    genericDesc: "Replication speed multiplier",
-    shortDesc: "Replication speed ×{value}",
+    singleDesc: "复制速度 {value}",
+    totalDesc: "复制速度 ×{value}",
+    genericDesc: "复制速度",
+    shortDesc: "复制速度 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("replication")
       ? DC.D1_007.pow(level).times(10)
       : Decimal.times(level, strength).times(3)),
@@ -202,9 +202,9 @@ export const glyphEffects = {
     bitmaskIndex: 9,
     isGenerated: true,
     glyphTypes: ["replication"],
-    singleDesc: "Replicanti multiplier power +{value}",
-    totalDesc: "Replicanti multiplier ^{value}",
-    shortDesc: "Replicanti mult. power +{value}",
+    singleDesc: "复制器效果指数 +{value}",
+    totalDesc: "复制器效果 ^{value}",
+    shortDesc: "复制器效果指数 +{value}",
     effect: (level, strength) => 1.1 + Math.pow(level, 0.5) * strength / 25 +
       GlyphAlteration.sacrificeBoost("replication") * 3,
     formatEffect: x => format(x, 2, 2),
@@ -220,17 +220,17 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["replication"],
     singleDesc: () => (GlyphAlteration.isAdded("replication")
-      ? `Multiply Dilated Time \n[and Replicanti speed] by \n+{value} per ${format(DC.E10000)} replicanti`
-      : `Multiply Dilated Time gain by \n+{value} per ${format(DC.E10000)} replicanti`),
+      ? `每 ${format(DC.E10000)} 复制器，\n膨胀时间获取速度 [和复制速度] +{value}`
+      : `每 ${format(DC.E10000)} 复制器，\n膨胀时间获取速度 +{value}`),
     totalDesc: () => (GlyphAlteration.isAdded("replication")
-      ? `Multiply Dilated Time and Replication speed by +{value} per ${format(DC.E10000)} replicanti`
-      : `Multiply Dilated Time gain by +{value} per ${format(DC.E10000)} replicanti`),
+      ? `每 ${format(DC.E10000)} 复制器，膨胀时间获取速度 [和复制速度] +{value}`
+      : `每 ${format(DC.E10000)} 复制器，膨胀时间获取速度 +{value}`),
     genericDesc: () => (GlyphAlteration.isAdded("replication")
-      ? "Dilated Time+Replicanti mult from replicanti"
-      : "Dilated Time gain multiplier from replicanti"),
+      ? "复制器提供的膨胀时间和复制速度加成"
+      : "复制器提供膨胀时间加成"),
     shortDesc: () => (GlyphAlteration.isAdded("replication")
-      ? `×DT and repl. by +{value} per ${format(DC.E10000)} replicanti`
-      : `×DT by +{value} per ${format(DC.E10000)} replicanti`),
+      ? `每 ${format(DC.E10000)} 复制器，膨胀时间获取速度 [和复制速度] +{value}`
+      : `每 ${format(DC.E10000)} 复制器，膨胀时间获取速度 +{value}`),
     effect: (level, strength) => 0.0003 * Math.pow(level, 0.3) * Math.pow(strength, 0.65),
     formatEffect: x => format(10000 * x, 2, 2),
     formatSingleEffect: x => format(10000 * x, 2, 2),
@@ -253,12 +253,10 @@ export const glyphEffects = {
     bitmaskIndex: 11,
     isGenerated: true,
     glyphTypes: ["replication"],
-    singleDesc: () => `Replicanti factor for Glyph level:\n ^${format(0.4, 1, 1)}
-      ➜ ^(${format(0.4, 1, 1)} + {value})`,
-    totalDesc: () => `Replicanti factor for Glyph level: ^${format(0.4, 1, 1)}
-      ➜ ^(${format(0.4, 1, 1)} + {value})`,
-    genericDesc: "Replicanti factor for Glyph level",
-    shortDesc: "Replicanti pow. for level +{value}",
+    singleDesc: () => `符文等级因子中复制器的指数：\n^${format(0.4, 1, 1)} ➜ ^(${format(0.4, 1, 1)} + {value})`,
+    totalDesc: () => `符文等级因子中复制器的指数：^${format(0.4, 1, 1)} ➜ ^(${format(0.4, 1, 1)} + {value})`,
+    genericDesc: "符文等级因子中复制器的指数",
+    shortDesc: "符文等级因子中复制器的指数 +{value}",
     effect: (level, strength) => Math.pow(Math.pow(level, 0.25) * Math.pow(strength, 0.4), 0.5) / 50,
     formatEffect: x => format(x, 3, 3),
     combine: effects => {
@@ -292,12 +290,10 @@ export const glyphEffects = {
     bitmaskIndex: 13,
     isGenerated: true,
     glyphTypes: ["infinity"],
-    singleDesc: () => `Infinity Power conversion rate: \n^${formatInt(7)}
-      ➜ ^(${formatInt(7)} + {value})`,
-    totalDesc: () => `Infinity Power conversion rate: ^${formatInt(7)}
-      ➜ ^(${formatInt(7)} + {value})`,
-    genericDesc: "Infinity Power conversion rate",
-    shortDesc: "Infinity Power conversion +{value}",
+    singleDesc: () => `无限之力加成效果：\n^${formatInt(7)} ➜ ^(${formatInt(7)} + {value})`,
+    totalDesc: () => `无限之力加成效果：^${formatInt(7)} ➜ ^(${formatInt(7)} + {value})`,
+    genericDesc: "无限之力加成效果",
+    shortDesc: "无限之力加成效果 +{value}",
     effect: (level, strength) => Math.pow(level, 0.2) * Math.pow(strength, 0.4) * 0.04,
     formatEffect: x => format(x, 2, 2),
     combine: GlyphCombiner.add,
@@ -309,17 +305,17 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["infinity"],
     singleDesc: () => (GlyphAlteration.isAdded("infinity")
-      ? "Infinity Point gain \n×{value} [and ^]{value2}"
-      : "Multiply Infinity Point gain by {value}"),
+      ? "无限点数获取量 \n×{value} [且 ^]{value2}"
+      : "无限点数获取量 {value}"),
     totalDesc: () => (GlyphAlteration.isAdded("infinity")
-      ? "Infinity Point gain ×{value} and ^{value2}"
-      : "Infinity Point gain ×{value}"),
+      ? "无限点数获取量 ×{value} 且 ^{value2}"
+      : "无限点数获取量 ×{value}"),
     genericDesc: () => (GlyphAlteration.isAdded("infinity")
-      ? "Infinity Point gain multiplier and power"
-      : "Infinity Point gain multiplier"),
+      ? "无限点数倍数和指数加成"
+      : "无限点数获取量加成"),
     shortDesc: () => (GlyphAlteration.isAdded("infinity")
-      ? "IP ×{value} and ^{value2}"
-      : "IP ×{value}"),
+      ? "无限点数 ×{value} 且 ^{value2}"
+      : "无限点数 ×{value}"),
     effect: (level, strength) => Math.pow(level * (strength + 1), 6) * 10000,
     formatEffect: x => format(x, 2, 3),
     combine: GlyphCombiner.multiply,
@@ -335,10 +331,10 @@ export const glyphEffects = {
     bitmaskIndex: 15,
     isGenerated: true,
     glyphTypes: ["infinity"],
-    singleDesc: "Multiply Infinity gain by {value}",
-    totalDesc: "Infinity gain ×{value}",
-    genericDesc: "Infinity gain multiplier",
-    shortDesc: "Infinities ×{value}",
+    singleDesc: "获得 {value} 倍无限次数",
+    totalDesc: "获得 {value} 倍无限次数",
+    genericDesc: "无限次数倍率",
+    shortDesc: "无限次数 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("infinity")
       ? DC.D1_02.pow(level)
       : Decimal.pow(level * strength, 1.5).times(2)),
@@ -425,9 +421,9 @@ export const glyphEffects = {
     bitmaskIndex: 20,
     isGenerated: true,
     glyphTypes: ["effarig"],
-    singleDesc: "Reality Machine multiplier ×{value}",
-    genericDesc: "Reality Machine multiplier",
-    shortDesc: "RM ×{value}",
+    singleDesc: "现实机器获取量 ×{value}",
+    genericDesc: "现实机器获取量",
+    shortDesc: "现实机器 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("effarig")
       ? Math.pow(level, 1.5)
       : Math.pow(level, 0.6) * strength),
@@ -441,9 +437,9 @@ export const glyphEffects = {
     bitmaskIndex: 21,
     isGenerated: true,
     glyphTypes: ["effarig"],
-    singleDesc: "Glyph Instability starting level +{value}",
-    genericDesc: "Glyph Instability delay",
-    shortDesc: "Instability delay +{value}",
+    singleDesc: "符文不稳定性的起始等级 +{value}",
+    genericDesc: "符文不稳定性推迟出现",
+    shortDesc: "符文不稳定性的起始等级 +{value}",
     effect: (level, strength) => Math.floor(10 * Math.pow(level * strength, 0.5)),
     formatEffect: x => formatInt(x),
     combine: GlyphCombiner.add,
@@ -453,10 +449,10 @@ export const glyphEffects = {
     bitmaskIndex: 22,
     isGenerated: true,
     glyphTypes: ["effarig"],
-    singleDesc: "Game speed power +{value}",
-    totalDesc: "Game speed ^{value}",
-    genericDesc: "Game speed ^x",
-    shortDesc: "Game speed power +{value}",
+    singleDesc: "游戏速度指数 +{value}",
+    totalDesc: "游戏速度 ^{value}",
+    genericDesc: "游戏速度 ^x",
+    shortDesc: "游戏速度指数 +{value}",
     effect: (level, strength) => 1 + Math.pow(level, 0.25) * Math.pow(strength, 0.4) / 75,
     formatEffect: x => format(x, 3, 3),
     formatSingleEffect: x => format(x - 1, 3, 3),
@@ -467,10 +463,10 @@ export const glyphEffects = {
     bitmaskIndex: 23,
     isGenerated: true,
     glyphTypes: ["effarig"],
-    singleDesc: "Achievement multiplier power +{value}",
-    totalDesc: "Achievement multiplier ^{value}",
-    genericDesc: "Achievement multiplier ^x",
-    shortDesc: "Achievement mult. power +{value}",
+    singleDesc: "成就加成的指数 +{value}",
+    totalDesc: "成就加成 ^{value}",
+    genericDesc: "成就加成 ^x",
+    shortDesc: "成就加成的指数 +{value}",
     effect: (level, strength) => 1 + Math.pow(level, 0.4) * Math.pow(strength, 0.6) / 60 +
       GlyphAlteration.sacrificeBoost("effarig") / 10,
     formatEffect: x => format(x, 3, 3),
@@ -485,17 +481,17 @@ export const glyphEffects = {
     isGenerated: true,
     glyphTypes: ["effarig"],
     singleDesc: () => (GlyphAlteration.isAdded("effarig")
-      ? `"Buy ${formatInt(10)}" multiplier ^{value} [and\nDimension Boost multiplier ^]{value2}`
-      : `Bonus from buying ${formatInt(10)} Dimensions ^{value}`),
+      ? `购买 ${formatInt(10)} 个维度的倍率 ^{value} [且\n维度提升倍率 ^]{value2}`
+      : `购买 ${formatInt(10)}个反物质维度的加成^{value}`),
     totalDesc: () => (GlyphAlteration.isAdded("effarig")
-      ? `Multiplier from "Buy ${formatInt(10)}" ^{value} and Dimension Boost multiplier ^{value2}`
-      : `Multiplier from "Buy ${formatInt(10)}" ^{value}`),
+      ? `购买 ${formatInt(10)} 个维度的倍率 ^{value} 且维度提升倍率 ^{value2}`
+      : `购买 ${formatInt(10)} 个反物质维度的倍率 ^{value}`),
     genericDesc: () => (GlyphAlteration.isAdded("effarig")
-      ? `"Buy ${formatInt(10)}" and Dimension Boost multipliers ^x`
-      : `"Buy ${formatInt(10)}" multiplier ^x`),
+      ? `购买 ${formatInt(10)} 个维度和维度提升倍率 ^x`
+      : `“买 ${formatInt(10)} 个”的倍率 ^x`),
     shortDesc: () => (GlyphAlteration.isAdded("effarig")
-      ? `Buy ${formatInt(10)} mult. ^{value}, Dimboost mult. ^{value2}`
-      : `Buy ${formatInt(10)} mult. ^{value}`),
+      ? `购买 ${formatInt(10)} 个维度的倍率^{value}，维度提升倍率^{value2}`
+      : `购买 ${formatInt(10)} 个维度的倍率 ^{value}`),
     effect: (level, strength) => 1 + 2 * Math.pow(level, 0.25) * Math.pow(strength, 0.4),
     formatEffect: x => format(x, 2, 2),
     combine: GlyphCombiner.multiply,
@@ -509,10 +505,10 @@ export const glyphEffects = {
     bitmaskIndex: 25,
     isGenerated: true,
     glyphTypes: ["effarig"],
-    singleDesc: "All Dimension power +{value}",
-    totalDesc: "All Dimension multipliers ^{value}",
-    genericDesc: "All Dimension multipliers ^x",
-    shortDesc: "All Dimension power +{value}",
+    singleDesc: "所有维度指数 +{value}",
+    totalDesc: "所有维度 ^{value}",
+    genericDesc: "所有维度 ^x",
+    shortDesc: "所有维度指数 +{value}",
     effect: (level, strength) => 1 + Math.pow(level, 0.25) * Math.pow(strength, 0.4) / 500,
     formatEffect: x => format(x, 3, 3),
     formatSingleEffect: x => format(x - 1, 3, 3),
@@ -536,10 +532,10 @@ export const glyphEffects = {
     isGenerated: true,
     // This gets explicitly added to time glyphs elsewhere (once unlocked)
     glyphTypes: [],
-    singleDesc: "Time Shard power +{value}",
-    totalDesc: "Time Shard gain ^{value}",
-    genericDesc: "Time Shards ^x",
-    shortDesc: "Time Shard power +{value}",
+    singleDesc: "时间碎片指数 +{value}",
+    totalDesc: "时间碎片获取 ^{value}",
+    genericDesc: "时间碎片 ^x",
+    shortDesc: "时间碎片指数 +{value}",
     effect: (level, strength) => 1 + (strength / 3.5) * Math.pow(level, 0.35) / 400,
     formatEffect: x => format(x, 3, 3),
     formatSingleEffect: x => format(x - 1, 3, 3),
@@ -551,9 +547,9 @@ export const glyphEffects = {
     bitmaskIndex: 0,
     isGenerated: false,
     glyphTypes: ["cursed"],
-    singleDesc: `All Galaxies are {value} weaker`,
-    totalDesc: "All Galaxy strength -{value}",
-    shortDesc: "Galaxy Strength -{value}",
+    singleDesc: `所有星系强度 -{value}`,
+    totalDesc: "所有星系削弱 {value}",
+    shortDesc: "星系削弱 {value}",
     // Multiplies by 0.768 per glyph
     effect: level => Math.pow(level, -0.03),
     formatEffect: x => formatPercents(1 - x, 2),
@@ -564,8 +560,8 @@ export const glyphEffects = {
     bitmaskIndex: 1,
     isGenerated: false,
     glyphTypes: ["cursed"],
-    singleDesc: "All Dimension multipliers ^{value}",
-    shortDesc: "All Dimensions ^{value}",
+    singleDesc: "所有维度倍率 ^{value}",
+    shortDesc: "所有维度 ^{value}",
     // Multiplies by 0.734 per glyph
     effect: level => Math.pow(level, -0.035),
     formatEffect: x => format(x, 3, 3),
@@ -576,9 +572,9 @@ export const glyphEffects = {
     bitmaskIndex: 2,
     isGenerated: false,
     glyphTypes: ["cursed"],
-    singleDesc: "The threshold for Tickspeed Upgrades from Time Dimensions is multiplied by ×{value}",
-    totalDesc: "The threshold for Tickspeed Upgrades from Time Dimensions is increased by ×{value}",
-    shortDesc: "TD Tickspeed threshold ×{value}",
+    singleDesc: "时间维度提供的计数频率升级阈值乘以 {value}",
+    totalDesc: "时间维度提供的计数频率升级阈值增加 {value}",
+    shortDesc: "时间维度提供的计数频率升级阈值增加 {value}",
     // Additive 3.82 per glyph
     effect: level => Math.clampMin(Math.log10(level), 1),
     formatEffect: x => format(x, 3, 3),
@@ -589,9 +585,9 @@ export const glyphEffects = {
     bitmaskIndex: 3,
     isGenerated: false,
     glyphTypes: ["cursed"],
-    singleDesc: "Divide Eternity Point gain by {value}",
-    totalDesc: "Eternity Point gain / {value}",
-    shortDesc: "EP / {value}",
+    singleDesc: "永恒点数除以 {value}",
+    totalDesc: "永恒点数除以 {value}",
+    shortDesc: "永恒点数除以 {value}",
     // Divides e666.6 per glyph
     effect: level => Decimal.pow10(-level / 10),
     formatEffect: x => format(x.reciprocal()),

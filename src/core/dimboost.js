@@ -130,26 +130,25 @@ export class DimBoost {
 
     let newUnlock = "";
     if (!allNDUnlocked && boosts < DimBoost.maxDimensionsUnlockable - 4) {
-      newUnlock = `unlock the ${boosts + 5}th Dimension`;
+      newUnlock = `解锁 第${boosts + 5}维度`;
     } else if (boosts === 4 && !NormalChallenge(10).isRunning && !EternityChallenge(3).isRunning) {
       newUnlock = "解锁维度献祭";
     }
 
-    const formattedMultText = `give a ${formatX(DimBoost.power, 2, 1)} multiplier `;
-    let dimensionRange = `to the 1st Dimension`;
-    if (boosts > 0) dimensionRange = `to Dimensions 1-${Math.min(boosts + 1, 8)}`;
-    if (boosts >= DimBoost.maxDimensionsUnlockable - 1) dimensionRange = `to all Dimensions`;
+    let formattedMultText = `为第一维度提供 ${formatX(DimBoost.power, 2, 1)} 的加成`;
+    if (boosts > 0) formattedMultText = `为第 1 到 ${Math.min(boosts + 1, 8)} 维度提供 ${formatX(DimBoost.power, 2, 1)} 的加成`;
+    if (boosts >= DimBoost.maxDimensionsUnlockable - 1) formattedMultText = `为所有维度提供 ${formatX(DimBoost.power, 2, 1)} 的加成`;
 
     let boostEffects;
     if (NormalChallenge(8).isRunning) boostEffects = newUnlock;
-    else if (newUnlock === "") boostEffects = `${formattedMultText} ${dimensionRange}`;
-    else boostEffects = `${newUnlock} and ${formattedMultText} ${dimensionRange}`;
+    else if (newUnlock === "") boostEffects = `${formattedMultText}`;
+    else boostEffects = `${newUnlock} 和 ${formattedMultText}`;
 
-    if (boostEffects === "") return "Dimension Boosts are currently useless";
+    if (boostEffects === "") return "维度提升目前无效";
     const areDimensionsKept = (Perk.antimatterNoReset.isBought || Achievement(111).canBeApplied) &&
       (!Pelle.isDoomed || PelleUpgrade.dimBoostResetsNothing.isBought);
     if (areDimensionsKept) return boostEffects[0].toUpperCase() + boostEffects.substring(1);
-    return `Reset your Dimensions to ${boostEffects}`;
+    return `重置维度， ${boostEffects}`;
   }
 
   static get purchasedBoosts() {

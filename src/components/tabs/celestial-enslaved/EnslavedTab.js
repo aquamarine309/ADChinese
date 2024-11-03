@@ -52,8 +52,8 @@ export default {
       return Enslaved.storedTimeInsideEnslaved(this.storedBlackHole);
     },
     realityTitle() {
-      if (this.isRunning) return "You are inside The Nameless Ones' Reality";
-      return "Start The Nameless Ones' Reality";
+      if (this.isRunning) return "你正处于无名氏的现实之中";
+      return "开始无名氏的现实";
     },
     runButtonClassObject() {
       return {
@@ -67,9 +67,9 @@ export default {
       return GameDatabase.celestials.descriptions[2].effects().split("\n");
     },
     realTimeButtonText() {
-      if (!this.offlineEnabled) return "Offline Progress is disabled";
-      if (this.autoStoreReal) return "Offline time stored";
-      return "Offline time used for production";
+      if (!this.offlineEnabled) return "离线进度已禁用";
+      if (this.autoStoreReal) return "离线时间存储";
+      return "使用离线时间以生产";
     },
     // Use this here since Nameless has a fairly non-standard character, and SFCs don't support using \uf0c1
     enslavedSymbol: () => Enslaved.symbol,
@@ -167,7 +167,7 @@ export default {
     },
     startRun() {
       if (this.isDoomed) return;
-      Modal.celestials.show({ name: "The Nameless Ones'", number: 2 });
+      Modal.celestials.show({ name: "无名氏", number: 2 });
     },
     hasUnlock(info) {
       return Enslaved.has(info);
@@ -206,7 +206,7 @@ export default {
       <PrimaryToggleButton
         v-model="autoRelease"
         class="o-primary-btn--subtab-option"
-        label="Pulse Black Hole:"
+        label="脉冲黑洞："
       />
     </div>
     <div class="l-enslaved-celestial-tab--inner">
@@ -220,7 +220,7 @@ export default {
               {{ realityTitle }}
             </div>
             <div v-if="completed">
-              <b>(Completed)</b>
+              <b>（已完成）</b>
             </div>
             <div
               :class="runButtonClassObject"
@@ -244,8 +244,7 @@ export default {
             >
               {{ line }}
             </div>
-            <b>Reward: Unlock Tesseracts, which let you increase Infinity Dimension caps
-              (see Infinity Dimension tab)</b>
+            <b>奖励：解锁超立方体，可提升无限维度的数量上限。（详见无限维度页面）</b>
           </div>
         </div>
       </div>
@@ -259,9 +258,7 @@ export default {
         </PrimaryButton>
         <div class="l-enslaved-top-container">
           <div class="l-enslaved-top-container__half">
-            While charging, game speed multipliers are {{ hasAutoRelease ? "decreased" : "disabled" }},
-            and the lost speed is converted into stored game time. Discharging the Black Hole allows you to skip
-            forward in time. Stored game time is also used to unlock certain upgrades.
+            黑洞充能时，{{ autoRelease ? "禁用" : "降低" }}黑洞的加速效果，失去的速度被转换为储存的游戏内时间。释放黑洞允许你跳过游戏内时间。储存的游戏内时间也用于购买某些升级。
             <button
               :class="storeGameTimeClass"
               @click="toggleStoreBlackHole"

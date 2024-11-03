@@ -234,26 +234,21 @@ export const Pelle = {
   getSpecialGlyphEffectDescription(type) {
     switch (type) {
       case "infinity":
-        return `Infinity Point gain ${player.challenge.eternity.current <= 8
-          ? formatX(Currency.infinityPoints.value.plus(1).pow(0.2), 2)
-          : formatX(DC.D1, 2)} (based on current IP)`;
+        return `获得的无限点数 ${player.challenge.eternity.current <= 8 ? formatX(Currency.infinityPoints.value.plus(1).pow(0.2), 2) : formatX(DC.D1, 2)} （基于当前无限点数）`;
       case "time":
-        return `Eternity Point gain ${formatX(Currency.eternityPoints.value.plus(1).pow(0.3), 2)}
-          (based on current EP)`;
+        return `获得的永恒点数 ${formatX(Currency.eternityPoints.value.plus(1).pow(0.3), 2)} （基于当前永恒点数）`;
       case "replication":
-        return `Replication speed ${formatX(10 ** 53 ** (PelleRifts.vacuum.percentage), 2)} \
-        (based on ${wordShift.wordCycle(PelleRifts.vacuum.name)})`;
+        return `复制速度 ${formatX(10 ** 53 ** (PelleRifts.vacuum.percentage), 2)} （基于${wordShift.wordCycle(PelleRifts.vacuum.name)})`;
       case "dilation":
-        return `Dilated Time gain ${formatX(Decimal.pow(player.dilation.totalTachyonGalaxies, 1.5).max(1), 2)}
-          (based on Tachyon Galaxies)`;
+        return `获得的膨胀时间 ${formatX(Decimal.pow(player.dilation.totalTachyonGalaxies, 1.5).max(1), 2)} （基于超光速粒子星系）`;
       case "power":
-        return `Galaxies are ${formatPercents(0.02)} stronger`;
+        return `星系增强 ${formatPercents(0.02)}`;
       case "companion":
-        return `You feel ${formatPercents(0.34)} better`;
+        return `自信心提升 ${formatPercents(0.34)}`;
       // Undefined means that there is no glyph equipped, needs to be here since this function is used in
       // both Current Glyph Effects and Glyph Tooltip
       case undefined:
-        return "No Glyph equipped!";
+        return "未装备符文！";
       default:
         return "You cannot equip this Glyph while Doomed!";
     }

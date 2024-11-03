@@ -12,11 +12,11 @@ export const normalChallenges = [
     isQuickResettable: false,
     description() {
       return PlayerProgress.eternityUnlocked()
-        ? "reach Infinity for the first time outside of a challenge."
-        : "reach Infinity for the first time.";
+        ? "首次在挑战之外达到无限。"
+        : "首次达到无限。";
     },
     name: "1st Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 1st Antimatter Dimension Autobuyer",
+    reward: "升级第一维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
@@ -24,10 +24,9 @@ export const normalChallenges = [
     legacyId: 2,
     isQuickResettable: false,
     description:
-      () => "buying Antimatter Dimensions or Tickspeed upgrades halts production of all Antimatter Dimensions. " +
-      `Production gradually returns to normal over ${formatInt(3)} minutes.`,
+      () => `购买任何东西都将会停止产出，不过会在接下来的${formatInt(3)}分钟内逐渐恢复。`,
     name: "2nd Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 2nd Antimatter Dimension Autobuyer",
+    reward: "升级第二维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
@@ -35,20 +34,18 @@ export const normalChallenges = [
     legacyId: 3,
     isQuickResettable: false,
     description:
-      `the 1st Antimatter Dimension is heavily weakened, but gets an uncapped exponentially increasing multiplier.
-        This multiplier resets after Dimension Boosts and Antimatter Galaxies.`,
+      `大幅度削弱第一反物质维度的效果，不过可以得到一个指数增长的加成。该加成会在进行维度提升或购买反物质星系后重置。`,
     name: "3rd Antimatter Dimension",
-    reward: "Upgradeable 3rd Antimatter Dimension Autobuyer",
+    reward: "升级第三维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
     id: 4,
     legacyId: 8,
     isQuickResettable: false,
-    description: "buying an Antimatter Dimension automatically erases all lower tier Antimatter Dimensions, " +
-      "like a sacrifice without the boost.",
+    description: "购买反物质维度会自动清除所有更低位面的反物质维度，类似一次不提供加成的维度献祭。",
     name: "4th Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 4th Antimatter Dimension Autobuyer",
+    reward: "升级第四维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
@@ -56,19 +53,18 @@ export const normalChallenges = [
     legacyId: 6,
     isQuickResettable: false,
     description:
-      () => `the Tickspeed purchase multiplier starts at ${formatX(1.080, 0, 3)} instead of ${formatX(1.1245, 0, 3)}.`,
+      () => `购买计数频率获得的倍率从 ${formatX(1.080, 0, 3)} 开始而不是 ${formatX(1.1245, 0, 3)}.`,
     name: "5th Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 5th Antimatter Dimension Autobuyer",
+    reward: "升级第五维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
     id: 6,
     legacyId: 10,
     isQuickResettable: false,
-    description: () => `upgrading each Antimatter Dimension costs the Antimatter Dimension ${formatInt(2)} tiers ` +
-      "below it instead of antimatter. Antimatter Dimension prices are modified.",
+    description: () => `购买反物质维度时不消耗反物质，而是按另外的价格消耗其上 ${formatInt(2)} 层的反物质维度。`,
     name: "6th Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 6th Antimatter Dimension Autobuyer",
+    reward: "升级第六维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
@@ -76,61 +72,54 @@ export const normalChallenges = [
     legacyId: 9,
     isQuickResettable: false,
     description: () =>
-      `the multiplier from buying ${formatInt(10)} Antimatter Dimensions is reduced to ${formatX(1)}. This increases by
-        ${formatX(0.2, 1, 1)} per Dimension Boost, to a maximum of ${formatX(2)}, and is unaffected by any upgrades.`,
+      `购买 ${formatInt(10)} 个反物质维度获得的加成减少至 ${formatX(1)}. 不过这一加成在每次维度提升后会增加 ${formatX(0.2, 1, 1)}，直到到达 ${formatX(2)} 的上限。`,
     name: "7th Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 7th Antimatter Dimension Autobuyer",
+    reward: "升级第七维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
     id: 8,
     legacyId: 11,
     isQuickResettable: false,
-    description: `Dimension Boosts provide no multiplier and Antimatter Galaxies cannot be bought. Dimensional
-      Sacrifice resets antimatter and all Antimatter Dimensions, but also gives a significantly stronger multiplier.`,
+    description: `维度提升不再提供倍率加成且无法购买反物质星系。维度献祭被大幅度加强，但它会重置除了计数频率之外的一切。`,
     name: "8th Antimatter Dimension Autobuyer",
-    reward: "Upgradeable 8th Antimatter Dimension Autobuyer",
+    reward: "升级第八维度自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
     id: 9,
     legacyId: 5,
     isQuickResettable: true,
-    description: () => `whenever you buy Tickspeed upgrades or ${formatInt(10)} of an Antimatter Dimension, ` +
-      "everything else of equal cost will increase to its next cost step.",
+    description: () => `购买单个计数频率升级或 ${formatInt(10)} 个反物质维度之后，价格相等的其它东西将会涨价到下一个档位。`,
     name: "Tickspeed Autobuyer",
-    reward: "Upgradeable Tickspeed Autobuyer",
+    reward: "升级计数频率自动购买间隔的能力",
     lockedAt: DC.D0,
   },
   {
     id: 10,
     legacyId: 4,
     isQuickResettable: false,
-    description: () => `there are only ${formatInt(6)} Antimatter Dimensions. Dimension Boost ` +
-      "and Antimatter Galaxy costs are modified.",
+    description: () => `只有 ${formatInt(6)} 个反物质维度，同时提高维度提升和反物质星系的价格。`,
     name: "Automated Dimension Boosts",
-    reward: "Dimension Boosts Autobuyer",
+    reward: "自动购买维度提升",
     lockedAt: DC.D16,
   },
   {
     id: 11,
     legacyId: 12,
     isQuickResettable: true,
-    description: () => `there is normal matter which rises once you have at least ${formatInt(1)} 2nd Antimatter ` +
-      "Dimension. If it exceeds your antimatter, it will Dimension Boost without giving the bonus.",
+    description: () => `从你购买第二反物质维度开始，正物质将会出现并逐渐增加。如果正物质超过了反物质，那么将会触发一次不提供加成的维度提升。`,
     name: "Automated Antimatter Galaxies",
-    reward: "Antimatter Galaxies Autobuyer",
+    reward: "自动购买反物质星系",
     lockedAt: DC.D16,
   },
   {
     id: 12,
     legacyId: 7,
     isQuickResettable: false,
-    description: () => `each Antimatter Dimension produces the Dimension ${formatInt(2)} tiers below it
-      instead of ${formatInt(1)}. Both 1st and 2nd Dimensions produce antimatter.
-      The 2nd, 4th, and 6th Dimensions are made stronger to compensate.`,
+    description: () => `每个反物质维度生产比其低 ${formatInt(2)} 层的反物质维度。第二反物质维度生产反物质。第二、第四和第六维度的产量增加。`,
     name: "Automated Big Crunches",
-    reward: "Big Crunches Autobuyer",
+    reward: "自动大坍缩",
     lockedAt: DC.D16,
   }
 ];
