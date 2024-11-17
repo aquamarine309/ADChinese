@@ -47,16 +47,16 @@ export default {
     @click="toggleActive"
   >
     <div v-if="isDoomed">
-      You cannot amplify Doomed Realities.
+      你无法扩增已被毁灭的现实。
     </div>
     <div v-else-if="canAmplify">
-      <span v-if="isActive">Will be amplified:</span>
-      <span v-else>Amplify this Reality:</span>
+      <span v-if="isActive">将被扩增：</span>
+      <span v-else>扩增本次现实：</span>
       <br>
-      All rewards ×{{ formatInt(ratio) }}
+      所有奖励 ×{{ formatInt(ratio) }}
     </div>
     <div v-else>
-      Not enough stored real time to amplify.
+      储存的现实时间不足，无法进行现实扩增。
     </div>
   </button>
   `

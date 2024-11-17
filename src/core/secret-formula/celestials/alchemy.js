@@ -3,6 +3,7 @@ import { DC } from "../../constants.js";
 export const alchemyResources = {
   // T1 resources (Non-Effarig "base" resources)
   "power": {
+    key: "power",
     id: ALCHEMY_RESOURCE.POWER,
     name: "力量",
     symbol: "Ω",
@@ -15,6 +16,7 @@ export const alchemyResources = {
     formatEffect: value => `反物质维度的加成 ${formatPow(value, 4, 4)}`
   },
   "infinity": {
+    key: "infinity",
     id: ALCHEMY_RESOURCE.INFINITY,
     name: "无限",
     symbol: "∞",
@@ -27,6 +29,7 @@ export const alchemyResources = {
     formatEffect: value => `无限维度的加成 ${formatPow(value, 4, 4)}`
   },
   "time": {
+    key: "time",
     id: ALCHEMY_RESOURCE.TIME,
     name: "时间",
     symbol: "Δ",
@@ -39,6 +42,7 @@ export const alchemyResources = {
     formatEffect: value => `时间维度的加成 ${formatPow(value, 4, 4)}`
   },
   "replication": {
+    key: "replication",
     id: ALCHEMY_RESOURCE.REPLICATION,
     name: "复制",
     symbol: "Ξ",
@@ -51,6 +55,7 @@ export const alchemyResources = {
     formatEffect: value => `复制速度增加 ${formatX(value, 2, 2)}`
   },
   "dilation": {
+    key: "dilation",
     id: ALCHEMY_RESOURCE.DILATION,
     name: "膨胀",
     symbol: "Ψ",
@@ -65,6 +70,7 @@ export const alchemyResources = {
 
   // T2 resources (combinations of pairs of T1 resources)
   "cardinality": {
+    key: "cardinality",
     id: ALCHEMY_RESOURCE.CARDINALITY,
     name: "基数",
     symbol: "α",
@@ -87,6 +93,7 @@ export const alchemyResources = {
     ]
   },
   "eternity": {
+    key: "eternity",
     id: ALCHEMY_RESOURCE.ETERNITY,
     name: "永恒",
     symbol: "τ",
@@ -109,6 +116,7 @@ export const alchemyResources = {
     ]
   },
   "dimensionality": {
+    key: "dimensionality",
     id: ALCHEMY_RESOURCE.DIMENSIONALITY,
     name: "维度",
     symbol: "ρ",
@@ -131,6 +139,7 @@ export const alchemyResources = {
     ]
   },
   "inflation": {
+    key: "inflation",
     id: ALCHEMY_RESOURCE.INFLATION,
     name: "暴胀",
     symbol: "λ",
@@ -153,6 +162,7 @@ export const alchemyResources = {
     ]
   },
   "alternation": {
+    key: "alternation",
     id: ALCHEMY_RESOURCE.ALTERNATION,
     name: "交变",
     symbol: "ω",
@@ -177,6 +187,7 @@ export const alchemyResources = {
 
   // T3 resources (Effarig and conbinations of T1/T2 with Effarig)
   "effarig": {
+    key: "effarig",
     id: ALCHEMY_RESOURCE.EFFARIG,
     name: "鹿颈长",
     symbol: "Ϙ",
@@ -189,6 +200,7 @@ export const alchemyResources = {
     formatEffect: value => `获得的遗迹碎片 ${formatX(value, 2, 2)}`
   },
   "synergism": {
+    key: "synergism",
     id: ALCHEMY_RESOURCE.SYNERGISM,
     name: "协同",
     symbol: "π",
@@ -221,6 +233,7 @@ export const alchemyResources = {
     ]
   },
   "momentum": {
+    key: "momentum",
     id: ALCHEMY_RESOURCE.MOMENTUM,
     name: "动量",
     symbol: "μ",
@@ -247,6 +260,7 @@ export const alchemyResources = {
     ]
   },
   "decoherence": {
+    key: "decoherence",
     id: ALCHEMY_RESOURCE.DECOHERENCE,
     name: "退相干",
     symbol: "ξ",
@@ -271,6 +285,7 @@ export const alchemyResources = {
 
   // T4 resources (resources which feed directly into the final resource)
   "exponential": {
+    key: "exponential",
     id: ALCHEMY_RESOURCE.EXPONENTIAL,
     name: "增幅秘术",
     symbol: "Γ",
@@ -293,6 +308,7 @@ export const alchemyResources = {
     ]
   },
   "force": {
+    key: "force",
     id: ALCHEMY_RESOURCE.FORCE,
     name: "神秘力场",
     symbol: "Φ",
@@ -315,6 +331,7 @@ export const alchemyResources = {
     ]
   },
   "uncountability": {
+    key: "uncountability",
     id: ALCHEMY_RESOURCE.UNCOUNTABILITY,
     name: "无尽奥秘",
     symbol: "Θ",
@@ -341,6 +358,7 @@ export const alchemyResources = {
     ]
   },
   "boundless": {
+    key: "boundless",
     id: ALCHEMY_RESOURCE.BOUNDLESS,
     name: "Boundless",
     symbol: "Π",
@@ -363,6 +381,7 @@ export const alchemyResources = {
     ]
   },
   "multiversal": {
+    key: "multiversal",
     id: ALCHEMY_RESOURCE.MULTIVERSAL,
     name: "诸界奥义",
     symbol: "Σ",
@@ -385,6 +404,7 @@ export const alchemyResources = {
     ]
   },
   "unpredictability": {
+    key: "unpredictability",
     id: ALCHEMY_RESOURCE.UNPREDICTABILITY,
     name: "未知预言",
     symbol: "Λ",
@@ -414,6 +434,7 @@ export const alchemyResources = {
 
   // T5 (Reality)
   "reality": {
+    key: "reality",
     id: ALCHEMY_RESOURCE.REALITY,
     name: "现实",
     symbol: "Ϟ",

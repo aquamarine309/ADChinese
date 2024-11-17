@@ -15,26 +15,26 @@ export default {
       const bestReality = player.records.bestReality;
       const laitelaDim = 8 - Laitela.difficultyTier;
       this.recordGlyphInfo = [
-        [true, Glyphs.copyForRecords(bestReality.RMSet), "Best Reality Machines gained",
-          `${format(bestReality.RM, 2, 2)} RM`],
-        [true, Glyphs.copyForRecords(bestReality.RMminSet), "Best Reality Machines per minute",
-          `${format(bestReality.RMmin, 2, 2)} RM/min`],
-        [true, Glyphs.copyForRecords(bestReality.glyphLevelSet), "Best Glyph Level",
-          `Level ${formatInt(bestReality.glyphLevel)}`],
-        [true, Glyphs.copyForRecords(bestReality.bestEPSet), "Highest Eternity Points",
-          `${format(bestReality.bestEP, 2, 2)} EP`],
-        [true, Glyphs.copyForRecords(bestReality.speedSet), "Fastest Reality (real time)",
+        [true, Glyphs.copyForRecords(bestReality.RMSet), "在一次现实中获得现实机器的最大数量",
+          `${format(bestReality.RM, 2, 2)} 现实机器`],
+        [true, Glyphs.copyForRecords(bestReality.RMminSet), "在一次现实中获得现实机器的最大速度",
+          `${format(bestReality.RMmin, 2, 2)} 现实机器/分`],
+        [true, Glyphs.copyForRecords(bestReality.glyphLevelSet), "最高符文等级",
+          `${formatInt(bestReality.glyphLevel)} 级`],
+        [true, Glyphs.copyForRecords(bestReality.bestEPSet), "最高永恒点数",
+          `${format(bestReality.bestEP, 2, 2)} 永恒点数`],
+        [true, Glyphs.copyForRecords(bestReality.speedSet), "最快现实用时（现实时间）",
           `${TimeSpan.fromMilliseconds(bestReality.realTime).toStringShort()}`],
         [player.celestials.teresa.bestRunAM.gt(1), Glyphs.copyForRecords(player.celestials.teresa.bestAMSet),
-          `Highest Antimatter in ${Teresa.possessiveName} Reality`,
-          `${format(player.celestials.teresa.bestRunAM, 2, 2)} Antimatter`],
+          `在特蕾莎的现实中，反物质数量的最大值`,
+          `${format(player.celestials.teresa.bestRunAM, 2, 2)} 反物质`],
         [Currency.imaginaryMachines.gt(0), Glyphs.copyForRecords(bestReality.iMCapSet),
-          "Highest Imaginary Machine cap",
-          `${format(MachineHandler.currentIMCap, 2, 2)} iM`],
+          "虚幻机器数量上限的最大值",
+          `${format(MachineHandler.currentIMCap, 2, 2)} 虚幻机器`],
         [Laitela.isUnlocked, Glyphs.copyForRecords(bestReality.laitelaSet),
-          `Best ${Laitela.displayName} Destabilization`,
-          `${TimeSpan.fromSeconds(player.celestials.laitela.fastestCompletion).toStringShort()},
-          ${laitelaDim}维 (${formatX(Laitela.realityReward, 2, 2)} DM)`],
+          `完成莱特拉的现实的最短用时`,
+          `${TimeSpan.fromSeconds(player.celestials.laitela.fastestCompletion).toStringShort()}，
+          ${laitelaDim} 个维度（暗物质 ${formatX(Laitela.realityReward, 2, 2)}）`],
       ];
     },
   },
@@ -48,7 +48,7 @@ export default {
         v-if="set[0]"
         class="l-glyph-set-entry"
       >
-        {{ set[2] }}:
+        {{ set[2] }}：
         <GlyphSetPreview
           v-if="set[0]"
           :key="idx"

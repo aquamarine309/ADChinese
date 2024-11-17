@@ -121,7 +121,7 @@ export const Pelle = {
   },
 
   get displayName() {
-    return Date.now() % 4000 > 500 ? "Pelle" : wordShift.randomCrossWords("Pelle");
+    return Date.now() % 4000 > 500 ? "佩勒" : wordShift.randomCrossWords("佩勒");
   },
 
   get isUnlocked() {

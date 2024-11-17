@@ -41,8 +41,8 @@ export default {
         : "Undo is only available for Glyphs equipped during this Reality";
     },
     unequipText() {
-      if (Pelle.isDoomed) return "Unequip Glyphs on Armageddon";
-      return "Unequip Glyphs on Reality";
+      if (Pelle.isDoomed) return "在末日时卸下符文";
+      return "在现实时卸下符文";
     },
     isDoomed() {
       return Pelle.isDoomed;
@@ -148,7 +148,7 @@ export default {
     clickGlyph(glyph, idx, increaseSound = false) {
       if (Glyphs.isMusicGlyph(glyph)) {
         const sound = idx + (increaseSound ? 6 : 1);
-        new Audio(`audio/note${sound}.mp3`).play();
+        new Audio(`../../../../public/audio/note${sound}.mp3`).play();
       }
     }
   },

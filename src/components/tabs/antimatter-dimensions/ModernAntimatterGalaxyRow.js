@@ -119,7 +119,7 @@ export default {
   template: `
   <div class="reset-container galaxy">
     <h4>{{ typeName }} ({{ sumText }})</h4>
-    <span>需要：{{ formatInt(requirement.amount) }} {{ dimName }} 反物质维度</span>
+    <span>需要：{{ formatInt(requirement.amount) }} {{ dimName }}反物质维度</span>
     <span v-if="hasIncreasedScaling">{{ costScalingText }}</span>
     <button
       :class="classObject"

@@ -113,7 +113,7 @@ export default {
           class="c-effarig-relic-description"
           data-v-effarig-tab
         >
-          "你将在下次现实中获得 {{ format(shardsGained, 2) }} 遗物碎片（{{ format(currentShardsRate, 2) }}/分钟）。
+          你将在下次现实中获得 {{ format(shardsGained, 2) }} 遗迹碎片（{{ format(currentShardsRate, 2) }}/分钟）。
           <span v-if="amplification !== 0">
             <br>
             Due to amplification of your current Reality,
@@ -127,7 +127,7 @@ export default {
           data-v-effarig-tab
         >
           <br>
-          更多的永恒点数会略微增加获得的遗物碎片数量。更多不同的符文效果会显著增加获得的遗物碎片数量。"
+          更多的永恒点数会略微增加获得的遗迹碎片数量。更多不同的符文效果会显著增加获得的遗迹碎片数量。
         </div>
         <EffarigUnlockButton
           v-for="(unlock, i) in shopUnlocks"

@@ -58,7 +58,7 @@ export default {
         @click="hidePresets = !hidePresets"
         data-v-automator-data-transfer-single-entry
       />
-      引用了 {{ fotmatInt(presets.length) }} 个已识别的研究预设。
+      引用了 {{ formatInt(presets.length) }} 个已识别的研究预设。
       <span v-if="!hidePresets">
         <div
           v-for="id in presets"

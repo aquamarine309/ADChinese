@@ -36,9 +36,9 @@ export default {
     headerText() {
       const timeDisplay = TimeSpan.fromSeconds(this.seconds).toString();
       if (this.nothingHappened || !this.somethingHappened) {
-        return `While you were away for ${timeDisplay}... Nothing happened.`;
+        return `当你离开时 … 什么事都没有发生。`;
       }
-      return `While you were away for ${timeDisplay}: `;
+      return `在你离开的 ${timeDisplay} 里：`;
     },
   },
   mounted() {

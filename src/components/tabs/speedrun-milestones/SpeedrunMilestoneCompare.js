@@ -51,7 +51,7 @@ export default {
       gapStr = `${this.currTime > ms ? "-" : "+"}${gapStr}`;
       return ms > 0
         ? `${timeStr}${showGap ? ` (${gapStr})` : ""}`
-        : "Not reached yet";
+        : "未完成";
     },
     timeStyle(time) {
       const isFastest = time === [this.currTime, this.refTime, this.bestTime].filter(t => t !== 0).min();
@@ -74,18 +74,19 @@ export default {
     <span
       :style="timeStyle(currTime)"
       data-v-speedrun-milestone-compare
-    >Current run: {{ timeString(currTime) }}</span>
+    >当前速通：{{ timeString(currTime) }}</span>
     <span
       v-if="refTime"
       :style="timeStyle(refTime)"
       data-v-speedrun-milestone-compare
     >
-      Run {{ runIndices[0] }}: {{ timeString(refTime, true) }}
+      
+      第 {{ runIndices[0] }} 次速通：{{ timeString(refTime, true) }}
     </span>
     <span
       :style="timeStyle(bestTime)"
       data-v-speedrun-milestone-compare
-    >Best ({{ runIndices[1] }}): {{ timeString(bestTime, true) }}</span>
+    >最佳（{{ runIndices[1] }})）：{{ timeString(bestTime, true) }}</span>
   </div>
   `
 };

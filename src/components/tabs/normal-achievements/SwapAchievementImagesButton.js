@@ -9,7 +9,7 @@ export default {
   },
   computed: {
     swapImagesButton() {
-      const symbol = this.isDoomed ? "." : ":";
+      const symbol = this.isDoomed ? "。" : "：";
       return this.isCancerImages ? "😂" : symbol;
     },
     imageSwapperStyleObject() {

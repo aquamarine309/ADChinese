@@ -15,8 +15,8 @@ export default {
     color() {
       return this.celestial === "laitela" ? `var(--color-laitela--accent)` : `var(--color-${this.celestial}--base)`;
     },
-    possessiveForm() {
-      return Celestials[this.celestial].possessiveName;
+    name() {
+      return Celestials[this.celestial].displayName;
     }
   },
   methods: {
@@ -37,7 +37,7 @@ export default {
     @click="show"
     data-v-celestial-quote-history
   >
-    {{ possessiveForm }}语录
+    {{ name }}语录
   </button>
   `
 };

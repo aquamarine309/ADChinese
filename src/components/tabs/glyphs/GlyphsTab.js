@@ -144,7 +144,7 @@ export default {
             class="o-clickable"
             data-v-glyphs-tab
           >
-            Repeat this Celestial's Reality
+            进行现实后重新进入该天神的挑战
           </label>
         </div>
 
@@ -154,11 +154,11 @@ export default {
 
         <div v-if="showInstability">
           <br>
-          Glyphs are becoming unstable.
+          符文变得不稳定。\n\n
           <br>
-          Glyph levels higher than {{ formatInt(instabilityThreshold) }} are harder to reach.
+          达到高于 {{ formatInt(instabilityThreshold) }} 级的更加困难。
           <br>
-          This effect is even stronger above level {{ formatInt(hyperInstabilityThreshold) }}.
+          在超过 {{ formatInt(hyperInstabilityThreshold) }} 级时，这种效果更为显著。
         </div>
         <SingleGlyphCustomzationPanel />
         <ExpandingControlBox
@@ -203,13 +203,13 @@ export default {
                 :class="glyphInfoClass(!sacrificeDisplayed)"
                 @click="setInfoState(false)"
               >
-                Current Glyph effects
+                当前符文效果
               </button>
               <button
                 :class="glyphInfoClass(sacrificeDisplayed)"
                 @click="setInfoState(true)"
               >
-                Glyph Sacrifice totals
+                符文献祭总述
               </button>
             </div>
             <SacrificedGlyphs v-if="sacrificeUnlocked && sacrificeDisplayed" />

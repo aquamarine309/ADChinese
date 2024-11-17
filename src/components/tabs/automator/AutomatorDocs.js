@@ -310,7 +310,7 @@ export default {
           :class="{ 'c-automator__status-text--error' : totalChars > maxTotalChars }"
           data-v-automator-docs
         >
-          Across all scripts: {{ formatInt(totalChars) }}/{{ formatInt(maxTotalChars) }}
+          所有脚本：{{ formatInt(totalChars) }}/{{ formatInt(maxTotalChars) }}
         </span>
         <AutomatorButton
           v-tooltip="fullScreenTooltip"
@@ -352,7 +352,7 @@ export default {
                   class="c-automator-docs-script-select"
                   data-v-automator-docs
                 >
-                  ▼ Current Script: {{ currentEditorScriptName }}
+                  ▼ 当前脚本：{{ currentEditorScriptName }}
                 </div>
               </template>
               <template #dropdown>

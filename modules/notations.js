@@ -201,7 +201,7 @@ export const ADNotations = (function (exports, Decimal, tslib) { 'use strict';
     });
     Object.defineProperty(Notation.prototype, "infinite", {
       get: function get() {
-        return "Infinite";
+        return "无限";
       },
       enumerable: false,
       configurable: true
@@ -590,13 +590,6 @@ export const ADNotations = (function (exports, Decimal, tslib) { 'use strict';
     Object.defineProperty(RomanNotation.prototype, "name", {
       get: function get() {
         return "Roman";
-      },
-      enumerable: false,
-      configurable: true
-    });
-    Object.defineProperty(RomanNotation.prototype, "infinite", {
-      get: function get() {
-        return "Infinitus";
       },
       enumerable: false,
       configurable: true

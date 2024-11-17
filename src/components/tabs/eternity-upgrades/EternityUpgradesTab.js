@@ -48,10 +48,9 @@ export default {
     </div>
     <EPMultiplierButton data-v-eternity-upgrades-tab />
     <div>
-      The cost for the {{ formatX(5) }} multiplier jumps at {{ format(costIncreases[0]) }},
-      {{ formatPostBreak(costIncreases[1], 2) }}, and {{ formatPostBreak(costIncreases[2]) }} Eternity Points.
+      永恒点数倍增的价格在 {{ format(costIncreases[0]) }}, {{ format(costIncreases[1], 2) }} 和 {{ formatPostBreak(costIncreases[2]) }} 永恒点数时加速增长。
       <br>
-      The cost increases super-exponentially after {{ formatPostBreak(costIncreases[3]) }} Eternity Points.
+      永恒点数超过 {{ formatPostBreak(costIncreases[3]) }} 后，价格呈超指数增长。
     </div>
   </div>
   `

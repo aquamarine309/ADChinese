@@ -2,40 +2,40 @@ export const ra = {
   pets: {
     teresa: {
       id: "teresa",
-      name: "Teresa",
+      name: "特蕾莎",
       color: "#8596ea",
-      chunkGain: "Eternity Points",
-      memoryGain: "current RM",
+      chunkGain: "永恒点数",
+      memoryGain: "当前现实机器数量",
       requiredUnlock: () => undefined,
       rawMemoryChunksPerSecond: () => 4 * Math.pow(Currency.eternityPoints.value.pLog10() / 1e4, 3),
       memoryProductionMultiplier: () => Ra.unlocks.teresaXP.effectOrDefault(1)
     },
     effarig: {
       id: "effarig",
-      name: "Effarig",
+      name: "鹿颈长",
       color: "#ea8585",
-      chunkGain: "Relic Shards gained",
-      memoryGain: "best Glyph level",
+      chunkGain: "遗迹碎片总量",
+      memoryGain: "最高符文等级",
       requiredUnlock: () => Ra.unlocks.effarigUnlock,
       rawMemoryChunksPerSecond: () => 4 * Math.pow(Effarig.shardsGained, 0.1),
       memoryProductionMultiplier: () => Ra.unlocks.effarigXP.effectOrDefault(1)
     },
     enslaved: {
       id: "enslaved",
-      name: "The Nameless Ones",
+      name: "无名氏",
       color: "#f1aa7f",
-      chunkGain: "Time Shards",
-      memoryGain: "total time played",
+      chunkGain: "时间碎片",
+      memoryGain: "总游玩时间",
       requiredUnlock: () => Ra.unlocks.enslavedUnlock,
       rawMemoryChunksPerSecond: () => 4 * Math.pow(Currency.timeShards.value.pLog10() / 3e5, 2),
       memoryProductionMultiplier: () => Ra.unlocks.enslavedXP.effectOrDefault(1)
     },
     v: {
       id: "v",
-      name: "V",
+      name: "薇",
       color: "#ead584",
-      chunkGain: "Infinity Power",
-      memoryGain: "total Memory levels",
+      chunkGain: "无限之力",
+      memoryGain: "总记忆等级",
       requiredUnlock: () => Ra.unlocks.vUnlock,
       rawMemoryChunksPerSecond: () => 4 * Math.pow(Currency.infinityPower.value.pLog10() / 1e7, 1.5),
       memoryProductionMultiplier: () => Ra.unlocks.vXP.effectOrDefault(1)
@@ -44,7 +44,7 @@ export const ra = {
   unlocks: {
     autoTP: {
       id: 0,
-      reward: "Tachyon Particles are given immediately when Time Dilation is active",
+      reward: "当时间膨胀激活时，立即给予超光速粒子",
       pet: "teresa",
       level: 1,
       displayIcon: `<span class="fas fa-atom"></span>`,
@@ -52,8 +52,7 @@ export const ra = {
     },
     chargedInfinityUpgrades: {
       id: 1,
-      reward: () => `Unlock Charged Infinity Upgrades. You get one more maximum
-        Charged Infinity Upgrade every ${formatInt(2)} levels`,
+      reward: () => `解锁无限升级充能。每 ${formatInt(2)} 级你可以获得额外充能一个无限升级。`,
       effect: () => Math.min(12, Math.floor(Ra.pets.teresa.level / 2)),
       pet: "teresa",
       level: 2,
@@ -62,7 +61,7 @@ export const ra = {
     },
     teresaXP: {
       id: 2,
-      reward: "All Memory Chunks produce more Memories based on Reality Machines",
+      reward: "所有记忆块基于现实机器生产更多记忆。",
       effect: () => 1 + Math.pow(Currency.realityMachines.value.pLog10() / 100, 0.5),
       pet: "teresa",
       level: 5,
@@ -70,7 +69,7 @@ export const ra = {
     },
     alteredGlyphs: {
       id: 3,
-      reward: "Unlock Altered Glyphs, which grant new effects to Glyphs based on Glyph Sacrifice",
+      reward: "解锁异变符文，这些符文通过符文献祭的倍数赋予符文新效果。",
       pet: "teresa",
       level: 10,
       displayIcon: `<span class="fas fa-bolt"></span>`,
@@ -78,22 +77,21 @@ export const ra = {
     },
     effarigUnlock: {
       id: 4,
-      reward: "Unlock Effarig's Memories",
+      reward: "解锁鹿颈长的记忆",
       pet: "teresa",
       level: 8,
       displayIcon: `Ϙ`
     },
     perkShopIncrease: {
       id: 5,
-      reward: "Purchase caps are raised in Teresa's Perk Point Shop",
+      reward: "提升复兴商店的上限",
       pet: "teresa",
       level: 15,
       displayIcon: `<span class="fas fa-project-diagram"></span>`
     },
     unlockDilationStartingTP: {
       id: 6,
-      reward: `In non-Celestial Realities, gain Tachyon Particles as if you reached the square root of your total
-        antimatter in Dilation. Any multipliers to TP gain are applied retroactively, even outside Dilation`,
+      reward: `如果你不在天神的现实之中，你将基于当前反物质的数量，获得超光速粒子。所有超光速粒子倍率加成立刻生效，与是否在时间膨胀之中无关。`,
       effect: () => player.records.totalAntimatter.pow(0.5),
       pet: "teresa",
       level: 25,
@@ -101,8 +99,7 @@ export const ra = {
     },
     extraGlyphChoicesAndRelicShardRarityAlwaysMax: {
       id: 7,
-      reward: () => `Get ${formatX(2)} Glyph choices and the bonus to Glyph rarity from Relic Shards
-        is always its maximum value`,
+      reward: () => `可选符文个数 ${formatX(2)}, 同时遗迹碎片的符文稀有度加成总是最大值。`,
       effect: 2,
       pet: "effarig",
       level: 1,
@@ -110,15 +107,14 @@ export const ra = {
     },
     unlockGlyphAlchemy: {
       id: 8,
-      reward: `Unlock Glyph Alchemy, which adds alchemical resources you can increase by Refining Glyphs. You unlock
-        more resources through Effarig levels. Access through a new Reality tab.`,
+      reward: `解锁符文炼金，详见新解锁的现实子标签页。你可以通过精炼符文来增加炼金资源的数量。提高鹿颈长等级能解锁更多种类的炼金资源。`,
       pet: "effarig",
       level: 2,
       displayIcon: `<span class="fas fa-vial"></span>`
     },
     effarigXP: {
       id: 9,
-      reward: "All Memory Chunks produce more Memories based on highest Glyph level",
+      reward: "所有记忆块基于最高符文等级生产更多记忆。",
       effect: () => 1 + player.records.bestReality.glyphLevel / 7000,
       pet: "effarig",
       level: 5,
@@ -126,21 +122,21 @@ export const ra = {
     },
     glyphEffectCount: {
       id: 10,
-      reward: () => `Glyphs always have ${formatInt(4)} effects, and Effarig Glyphs can now have up to ${formatInt(7)}`,
+      reward: () => `符文总是拥有至少 ${formatInt(4)} 个词条，鹿颈长符文现在可以拥有最多 ${formatInt(7)} 个词条。`,
       pet: "effarig",
       level: 10,
       displayIcon: `<span class="fas fa-braille"></span>`
     },
     enslavedUnlock: {
       id: 11,
-      reward: "Unlock Nameless's Memories",
+      reward: "解锁无名氏的记忆",
       pet: "effarig",
       level: 8,
       displayIcon: `<span class="c-ra-pet-milestones-effarig-link">\uf0c1</span>`
     },
     relicShardGlyphLevelBoost: {
       id: 12,
-      reward: "Glyph level is increased based on Relic Shards gained",
+      reward: "基于遗迹碎片增加符文等级",
       effect: () => 100 * Math.pow(Math.log10(Math.max(Effarig.shardsGained, 1)), 2),
       pet: "effarig",
       level: 15,
@@ -148,8 +144,7 @@ export const ra = {
     },
     maxGlyphRarityAndShardSacrificeBoost: {
       id: 13,
-      reward: () => `Glyphs are always generated with ${formatPercents(1)} rarity and
-        Glyph Sacrifice gain is raised to a power based on Relic Shards`,
+      reward: () => `获得符文的稀有度固定为 ${formatPercents(1)}. 符文献祭增益基于遗迹碎片获得指数加成。`,
       effect: () => 1 + Effarig.maxRarityBoost / 100,
       pet: "effarig",
       level: 25,
@@ -157,7 +152,7 @@ export const ra = {
     },
     blackHolePowerAutobuyers: {
       id: 14,
-      reward: "Unlock Black Hole power upgrade autobuyers",
+      reward: "解锁自动购买黑洞倍率升级",
       pet: "enslaved",
       level: 1,
       displayIcon: `<span class="fas fa-circle"></span>`,
@@ -165,7 +160,7 @@ export const ra = {
     },
     improvedStoredTime: {
       id: 15,
-      reward: "Stored game time is amplified and you can store more real time, increasing with Nameless levels",
+      reward: "存储的游戏时间被扩增，你可以存储更多的现实时间，随着无名氏等级的增加而提升。",
       effects: {
         gameTimeAmplification: () => Math.pow(20, Math.clampMax(Ra.pets.enslaved.level, Ra.levelCap)),
         realTimeCap: () => 1000 * 3600 * Ra.pets.enslaved.level,
@@ -177,7 +172,7 @@ export const ra = {
     },
     enslavedXP: {
       id: 16,
-      reward: "All Memory Chunks produce more Memories based on total time played",
+      reward: "所有记忆块基于总游戏时间生产更多记忆。",
       effect: () => 1 + Math.log10(player.records.totalTimePlayed) / 200,
       pet: "enslaved",
       level: 5,
@@ -185,8 +180,7 @@ export const ra = {
     },
     autoPulseTime: {
       id: 17,
-      reward: () => `Black Hole charging now only uses ${formatPercents(0.99)} of your game speed and you can
-        automatically discharge ${formatPercents(0.01)} of your stored game time every ${formatInt(5)} ticks.`,
+      reward: () => `黑洞充能现在只使用你游戏速度的 ${formatPercents(0.99)}，并且你可以每 ${formatInt(5)} 时间间隔自动释放 ${formatPercents(0.01)} 的存储游戏时间。`,
       pet: "enslaved",
       level: 10,
       displayIcon: `<span class="fas fa-expand-arrows-alt"></span>`,
@@ -194,14 +188,14 @@ export const ra = {
     },
     vUnlock: {
       id: 18,
-      reward: "Unlock V's Memories",
+      reward: "解锁薇的记忆",
       pet: "enslaved",
       level: 8,
       displayIcon: `⌬`
     },
     peakGamespeedDT: {
       id: 19,
-      reward: "Gain more Dilated Time based on peak game speed in each Reality",
+      reward: "基于本次现实中游戏速度的峰值，获得更多的膨胀时间。",
       effect: () => Math.max(Math.pow(Math.log10(player.celestials.ra.peakGamespeed) - 90, 3), 1),
       pet: "enslaved",
       level: 15,
@@ -210,8 +204,7 @@ export const ra = {
     },
     allGamespeedGlyphs: {
       id: 20,
-      reward: `All basic Glyphs gain the increased game speed effect from Time Glyphs,
-        and Time Glyphs gain an additional effect`,
+      reward: `所有基本类型的符文都获得时间符文的游戏速度词条，时间符文额外增加一个词条。`,
       pet: "enslaved",
       level: 25,
       displayIcon: `<span class="fas fa-clock"></span>`,
@@ -224,7 +217,7 @@ export const ra = {
     },
     instantECAndRealityUpgradeAutobuyers: {
       id: 21,
-      reward: "Rebuyable Reality upgrades are bought automatically and Auto-Eternity Challenges happen instantly",
+      reward: "可重复购买的现实升级现在可以自动购买，且自动永恒挑战立即完成",
       pet: "v",
       level: 1,
       displayIcon: `<span class="fas fa-sync-alt"></span>`,
@@ -232,15 +225,14 @@ export const ra = {
     },
     autoUnlockDilation: {
       id: 22,
-      reward: () => `In non-Celestial Realities, Time Dilation is unlocked automatically for free at
-        ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} Time Theorems`,
+      reward: () => `在非天神现实中，时间膨胀在${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)}时间之理自动免费解锁`,
       pet: "v",
       level: 2,
       displayIcon: `<span class="fas fa-fast-forward"></span>`
     },
     vXP: {
       id: 23,
-      reward: "All Memory Chunks produce more Memories based on total Celestial levels.",
+      reward: "所有记忆块基于总天神等级生产更多记忆。",
       effect: () => 1 + Ra.totalPetLevel / 50,
       pet: "v",
       level: 5,
@@ -248,8 +240,7 @@ export const ra = {
     },
     unlockHardV: {
       id: 24,
-      reward: () => `Unlock Hard V-Achievements and unlock a Triad Study every ${formatInt(6)} levels.
-        Triad Studies are located at the bottom of the Time Studies page`,
+      reward: () => `解锁困难的薇成就。同时，薇的等级每增加 ${formatInt(6)}, 解锁一个三体研究。三体研究在时间研究树的底部。`,
       effect: () => Math.floor(Ra.pets.v.level / 6),
       pet: "v",
       level: 6,
@@ -258,7 +249,7 @@ export const ra = {
     },
     continuousTTBoost: {
       id: 25,
-      reward: "Time Theorems boost all forms of continuous non-dimension production",
+      reward: "时间之理推动所有非维度资源生产。（包括时间之理、永恒次数、无限次数、膨胀时间、复制器、记忆和记忆块）",
       effects: {
         ttGen: () => Math.pow(10, 5 * Ra.theoremBoostFactor()),
         eternity: () => Math.pow(10, 2 * Ra.theoremBoostFactor()),
@@ -276,7 +267,7 @@ export const ra = {
     },
     achievementTTMult: {
       id: 26,
-      reward: "Achievement multiplier applies to Time Theorem generation",
+      reward: "成就倍率适用于时间之理生成。",
       effect: () => Achievements.power,
       pet: "v",
       level: 15,
@@ -285,7 +276,7 @@ export const ra = {
     },
     achievementPower: {
       id: 27,
-      reward: () => `Achievement multiplier is raised ${formatPow(1.5, 1, 1)}`,
+      reward: () => `成就倍率提升至 ${formatPow(1.5, 1, 1)}`,
       effect: 1.5,
       pet: "v",
       level: 25,

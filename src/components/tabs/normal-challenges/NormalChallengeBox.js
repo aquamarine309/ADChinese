@@ -30,14 +30,14 @@ export default {
         return this.challenge.config;
       }
       return {
-        description: `Infinity ${formatInt(this.challenge.config.lockedAt)} times to unlock.`
+        description: `大坍缩 ${formatInt(this.challenge.config.lockedAt)} 次以解锁。`
       };
     },
     name() {
-      return `C${this.challenge.id}`;
+      return `挑战${this.challenge.id}`;
     },
     overrideLabel() {
-      return this.isBroken ? "Broken" : "";
+      return this.isBroken ? "已打破" : "";
     },
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
       <DescriptionDisplay :config="descriptionDisplayConfig" />
     </template>
     <template #bottom>
-      <span :class="{ 'o-pelle-disabled': isDisabled }">Reward: {{ challenge.config.reward }}</span>
+      <span :class="{ 'o-pelle-disabled': isDisabled }">奖励：{{ challenge.config.reward }}</span>
     </template>
   </ChallengeBox>
   `

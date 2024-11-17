@@ -277,16 +277,14 @@ export default {
               :class="dischargeClass"
               @click="useStored"
             >
-              <span>Discharge Black Hole</span>
+              <span>释放黑洞</span>
               <p v-if="isRunning">
-                {{ timeDisplayShort(nerfedBlackHoleTime) }} in this Reality
+                当前现实中 {{ timeDisplayShort(nerfedBlackHoleTime) }}
               </p>
             </button>
           </div>
           <div class="l-enslaved-top-container__half">
-            Storing real time completely halts all production, setting game speed to {{ formatInt(0) }}.
-            You can use stored real time to "amplify" a Reality, simulating repeated runs of it.
-            Amplified Realities give all the rewards that normal Realities do.
+            储存现实时间时，游戏速度设置为 {{ formatInt(0) }}，完全停止所有的生产。你可以使用储存的现实时间来“扩增”一个现实，模拟其反复运行。现实扩增后，获得在这些现实中能获得的所有奖励。
             <button
               :class="[storeRealTimeClass,
                        {'l-fixed-setting': hasReachedCurrentCap}]"
@@ -297,7 +295,7 @@ export default {
                 {{ timeDisplayShort(storedReal) }}
               </div>
               <div>
-                {{ isStoringReal ? "Storing real time": "Store real time" }}
+                {{ isStoringReal ? "正在存储现实时间": "存储现实时间" }}
               </div>
             </button>
             <button
@@ -311,10 +309,10 @@ export default {
               {{ realTimeButtonText }}
             </button>
             <div>
-              Efficiency: {{ storedRealEfficiencyDesc }}
+              效率：{{ storedRealEfficiencyDesc }}
             </div>
             <div>
-              Maximum stored real time: {{ storedRealCapDesc }}
+              现实时间的最大储存量：{{ storedRealCapDesc }}
             </div>
           </div>
         </div>
@@ -330,10 +328,10 @@ export default {
           >
             {{ unlock.description() }}
             <div v-if="!hasUnlock(unlock)">
-              Costs: {{ timeDisplayShort(unlock.price) }}
+              价格：{{ timeDisplayShort(unlock.price) }}
             </div>
             <span v-if="isStoringBlackHole && !hasUnlock(unlock) && timeUntilBuy(unlock.price) > 0">
-              Time to obtain: {{ timeDisplayShort(timeUntilBuy(unlock.price)) }}
+              {{ timeDisplayShort(timeUntilBuy(unlock.price)) }} 后可购买
             </span>
           </button>
         </div>

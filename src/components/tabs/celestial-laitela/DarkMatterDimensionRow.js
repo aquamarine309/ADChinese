@@ -36,7 +36,7 @@ export default {
   },
   computed: {
     name() {
-      return `${DarkMatterDimension(this.tier).shortDisplayName} Dark Matter Dimension`;
+      return `${DarkMatterDimension(this.tier).shortDisplayName}暗物质维度`;
     },
     ascensionText() {
       return `(⯅${formatInt(this.ascension)})`;
@@ -64,33 +64,33 @@ export default {
     },
     intervalText() {
       const interval = this.hoverOverAscension ? this.intervalAfterAscension : this.interval;
-      const str = interval > 1000 ? `${format(interval / 1000, 2, 2)}s` : `${format(interval, 2, 2)}ms`;
+      const str = interval > 1000 ? `${format(interval / 1000, 2, 2)}秒` : `${format(interval, 2, 2)}毫秒`;
       const line1 = this.hoverOverAscension ? `<b>${str}</b>` : str;
 
       let line2;
-      if (this.isIntervalCapped) line2 = this.hoverOverAscension ? "On ascend ➜" : "Ascend!";
-      else line2 = `Cost: ${this.formatDMCost(this.intervalCost)} DM`;
+      if (this.isIntervalCapped) line2 = this.hoverOverAscension ? "飞升时 ➜" : "飞升！";
+      else line2 = `价格：${this.formatDMCost(this.intervalCost)} 暗物质`;
       return ` ${line1}<br>${line2}`;
     },
     darkMatterText() {
       const dm = this.powerDM.times(this.hoverOverAscension ? this.powerDMPerAscension : 1);
-      const str = `DM ${formatX(dm, 2, 2)}`;
+      const str = `暗物质 ${formatX(dm, 2, 2)}`;
       const line1 = this.hoverOverAscension ? `<b>${str}</b>` : str;
 
       const ascMult = this.powerDMPerAscension * this.interval / this.intervalAfterAscension;
       const line2 = this.hoverOverAscension
-        ? `${formatX(ascMult, 2, 2)} / sec`
-        : `Cost: ${this.formatDMCost(this.powerDMCost)} DM`;
+        ? `${formatX(ascMult, 2, 2)} / 秒`
+        : `价格：${this.formatDMCost(this.powerDMCost)} 暗物质`;
       return `${line1}<br>${line2}`;
     },
     darkEnergyText() {
       const de = this.powerDE * (this.hoverOverAscension ? POWER_DE_PER_ASCENSION : 1);
-      const str = `DE +${format(de, 2, 4)}`;
+      const str = `暗能量 +${format(de, 2, 4)}`;
       const line1 = this.hoverOverAscension ? `<b>${str}</b>` : str;
       const ascMult = POWER_DE_PER_ASCENSION * this.interval / this.intervalAfterAscension;
       const line2 = this.hoverOverAscension
-        ? `${formatX(ascMult, 2, 2)} / sec`
-        : `Cost: ${this.formatDMCost(this.powerDECost)} DM`;
+        ? `${formatX(ascMult, 2, 2)} / 秒`
+        : `价格：${this.formatDMCost(this.powerDECost)} 暗物质`;
       return `${line1}<br>${line2}`;
     },
     ascensionTooltip() {
@@ -162,8 +162,8 @@ export default {
       {{ name }}<span v-if="hasAscended"> {{ ascensionText }}</span>: {{ format(amount, 2) }}
     </div>
     <div>
-      Average gain: {{ format(productionPerSecond, 2, 2) }}/s
-      (+{{ formatPercents(percentPerSecond, 2, 2) }}/s)
+      平均增速：{{ format(productionPerSecond, 2, 2) }}/秒
+      （+{{ formatPercents(percentPerSecond, 2, 2) }}/秒）
     </div>
     <div class="c-dark-matter-dimension-buttons">
       <button
@@ -194,13 +194,13 @@ export default {
       </button>
     </div>
     <div v-if="interval > 200">
-      Tick: {{ formatInt(timer) }} ms ({{ formatPercents(timerPercent, 1) }})
+      时刻：{{ formatInt(timer) }} 毫秒（{{ formatPercents(timerPercent, 1) }}）
     </div>
     <div v-else>
-      {{ format(1000 / interval, 2, 2) }} ticks / sec
+      {{ format(1000 / interval, 2, 2) }} 时刻 / 秒
     </div>
     <div>
-      Dark Energy: {{ format(darkEnergyPerSecond, 2, 4) }}/s ({{ formatPercents(portionDE, 1) }} of total)
+      暗能量：{{ format(darkEnergyPerSecond, 2, 4) }}/秒（总量的 {{ formatPercents(portionDE, 1) }}）
     </div>
   </div>
   `

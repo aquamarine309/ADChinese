@@ -4,7 +4,7 @@ import { Quotes } from "../quotes.js";
 import { DarkMatterDimensions } from "./dark-matter-dimension.js";
 
 export const Laitela = {
-  displayName: "Lai'tela",
+  displayName: "莱特拉",
   possessiveName: "Lai'tela's",
   get celestial() {
     return player.celestials.laitela;

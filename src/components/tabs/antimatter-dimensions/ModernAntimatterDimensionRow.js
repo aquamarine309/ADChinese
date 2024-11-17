@@ -59,7 +59,7 @@ export default {
       if (!this.isUnlocked) return "已锁定";
       if (this.isCapped) return "已被无名氏粉碎";
       if (this.isContinuumActive) return "连续统：";
-      return `Buy ${formatInt(this.howManyCanBuy)}`;
+      return `购买 ${formatInt(this.howManyCanBuy)} 个`;
     },
     buttonValue() {
       if (this.isCapped) return "";

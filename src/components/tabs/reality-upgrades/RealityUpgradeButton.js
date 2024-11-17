@@ -115,11 +115,11 @@ export default {
             v-if="!isBought"
             :config="config"
             br
-            name="Reality Machine"
+            name="现实机器"
           />
         </template>
         <b v-if="automatorPoints && !isBought">
-          (+{{ formatInt(automatorPoints) }} AP)
+          (+{{ formatInt(automatorPoints) }} 自动点数)
         </b>
       </span>
     </button>
@@ -139,7 +139,7 @@ export default {
     <PrimaryToggleButton
       v-if="isRebuyable && isAutoUnlocked"
       v-model="isAutobuyerOn"
-      label="Auto:"
+      label="自动："
       class="l--spoon-btn-group__little-spoon-reality-btn o-primary-btn--reality-upgrade-toggle"
     />
   </div>

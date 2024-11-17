@@ -37,10 +37,10 @@ export default {
         singularityTime += this.extraTimeAfterSingularity;
         if (!this.isAutoEnabled) return "";
         return singularityTime > 0
-          ? `(Auto-condensing in ${TimeSpan.fromSeconds(singularityTime).toStringShort()})`
-          : "(Will immediately auto-condense)";
+          ? `（${TimeSpan.fromSeconds(singularityTime).toStringShort()} 后自动凝聚奇点）`
+          : "（将立即自动凝聚）";
       }
-      return `(Enough Dark Energy in ${TimeSpan.fromSeconds(singularityTime).toStringShort()})`;
+      return `（${TimeSpan.fromSeconds(singularityTime).toStringShort()} 后获得足够的暗能量）`;
     },
     baseSingularityTime() {
       return TimeSpan.fromSeconds(this.baseTimeToSingularity).toStringShort();
@@ -53,7 +53,7 @@ export default {
       return this.formatRate(this.singularitiesGained / totalTime);
     },
     autoSingularityRate() {
-      if (this.hasAutoSingularity && !this.isAutoEnabled) return "Auto-Singularity is OFF";
+      if (this.hasAutoSingularity && !this.isAutoEnabled) return "自动凝聚已关闭";
       const totalTime = this.baseTimeToSingularity + this.extraTimeAfterSingularity;
       return this.formatRate(this.singularitiesGained / totalTime);
     },
@@ -102,9 +102,9 @@ export default {
       Singularity.decreaseCap();
     },
     formatRate(rate) {
-      if (rate < 1 / 60) return `${format(3600 * rate, 2, 3)} per hour`;
-      if (rate < 1) return `${format(60 * rate, 2, 3)} per minute`;
-      return `${format(rate, 2, 3)} per second`;
+      if (rate < 1 / 60) return `${format(3600 * rate, 2, 3)} 每小时`;
+      if (rate < 1) return `${format(60 * rate, 2, 3)} 每分钟`;
+      return `${format(rate, 2, 3)} 每秒`;
     },
     condenseClassObject() {
       return {
@@ -158,29 +158,24 @@ export default {
           增加上限
         </button>
         <br>
-        Each step increases the required Dark Energy by {{ formatX(10) }},
-        <br>
-        but also increases gained Singularities by {{ formatX(perStepFactor) }}.
+        每提升一次上限，凝聚所需的暗能量 {{ formatX(10) }}, 通过凝聚获得的奇点数量 {{ formatX(perStepFactor) }}。
       </div>
       <div v-else>
         <br>
-        Reach {{ format(10) }} Singularities
-        <br>
-        to unlock Bulk Singularities.
+        达到 {{ format(10) }} 奇点后可以<br>一次性获得多个奇点
         <br>
       </div>
       <br>
-      Total time to <span v-if="hasAutoSingularity">(auto-)</span>condense:
-      {{ baseSingularityTime }}
+      每 {{ baseSingularityTime }} <span v-if="hasAutoSingularity">（自动）</span>凝聚：
+      
       <span v-if="hasAutoSingularity && autoSingularityFactor !== 1">
-        (+{{ additionalSingularityTime }})
+        （+{{ additionalSingularityTime }}）
       </span>
       <br>
-      <span v-if="hasAutoSingularity && autoSingularityFactor !== 1">Manual </span>
-      Singularity gain rate: {{ manualSingularityRate }}
+      奇点凝聚速度：{{ manualSingularityRate }}
       <br>
       <span v-if="hasAutoSingularity && autoSingularityFactor !== 1">
-        Automatic Singularity gain rate: {{ autoSingularityRate }}
+        自动奇点凝聚速度：{{ autoSingularityRate }}
       </span>
     </div>
   </div>

@@ -72,15 +72,15 @@ export default {
       };
     },
     pourText() {
-      return this.isPouredAmountCapped ? "Filled" : "Pour RM";
+      return this.isPouredAmountCapped ? "已填充满" : "进贡现实机器";
     },
     runDescription() {
       return GameDatabase.celestials.descriptions[0].effects();
     },
     lastMachinesString() {
       return this.lastMachines.lt(DC.E10000)
-        ? `${format(this.lastMachines, 2)} Reality Machines`
-        : `${format(this.lastMachines.dividedBy(DC.E10000), 2)} Imaginary Machines`;
+        ? `${format(this.lastMachines, 2)} 现实机器`
+        : `${format(this.lastMachines.dividedBy(DC.E10000), 2)} 虚幻机器`;
     },
     unlockInfoTooltipArrowStyle() {
       return {

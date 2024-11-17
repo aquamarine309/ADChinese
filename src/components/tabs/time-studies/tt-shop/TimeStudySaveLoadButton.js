@@ -51,8 +51,8 @@ export default {
     save() {
       this.hideContextMenu();
       this.preset.studies = GameCache.currentStudyTree.value.exportString;
-      const presetName = this.name ? `Study preset "${this.name}"` : "Study preset";
-      GameUI.notify.eternity(`${presetName} saved in slot ${this.saveslot}`);
+      const presetName = this.name ? `时间研究树以"${this.name}"的名称` : "时间研究树";
+      GameUI.notify.eternity(`${presetName}保存到槽位 ${this.saveslot}`);
     },
     load() {
       this.hideContextMenu();
@@ -64,10 +64,10 @@ export default {
         combinedTree.attemptBuyArray(combinedTree.parseStudyImport(this.preset.studies), true);
         TimeStudyTree.commitToGameState(combinedTree.purchasedStudies, false, combinedTree.startEC);
 
-        const presetName = this.name ? `Study preset "${this.name}"` : "Study preset";
-        GameUI.notify.eternity(`${presetName} loaded from slot ${this.saveslot}`);
+        const presetName = this.name ? `预设时间研究树“${this.name}` : "预设时间研究树";
+        GameUI.notify.eternity(`已从槽位 ${presetName} 加载${presetName}`);
       } else {
-        Modal.message.show("This Time Study list currently contains no Time Studies.");
+        Modal.message.show("该预设时间研究树目前没有时间研究");
       }
     },
     respecAndLoad() {
@@ -81,7 +81,7 @@ export default {
     deletePreset() {
       this.hideContextMenu();
       if (this.preset.studies) Modal.studyString.show({ id: this.saveslot - 1, deleting: true });
-      else Modal.message.show("This Time Study list currently contains no Time Studies.");
+      else Modal.message.show("该预设时间研究树目前没有时间研究");
     },
     handleExport() {
       this.hideContextMenu();
@@ -130,21 +130,21 @@ export default {
           @click="edit"
           data-v-time-study-save-load-button
         >
-          Edit
+          编辑
         </div>
         <div
           class="l-tt-save-load-btn__menu-item c-tt-save-load-btn__menu-item"
           @click="handleExport"
           data-v-time-study-save-load-button
         >
-          Export
+          导出
         </div>
         <div
           class="l-tt-save-load-btn__menu-item c-tt-save-load-btn__menu-item"
           @click="save"
           data-v-time-study-save-load-button
         >
-          Save
+          保存
         </div>
         <div
           class="l-tt-save-load-btn__menu-item"
@@ -155,7 +155,7 @@ export default {
             @click="load"
             data-v-time-study-save-load-button
           >
-            Load
+            加载
           </div>
           <div
             class="c-tt-save-load-btn__menu-item__hover-options"
@@ -169,7 +169,7 @@ export default {
               @click="respecAndLoad"
               data-v-time-study-save-load-button
             >
-              Respec and Load
+              重置并加载
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ export default {
           @click="deletePreset"
           data-v-time-study-save-load-button
         >
-          Delete
+          删除
         </div>
       </div>
     </template>

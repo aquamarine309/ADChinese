@@ -11,7 +11,7 @@ export const sidebarResources = [
   },
   {
     id: 2,
-    optionName: "Antimatter",
+    optionName: "反物质",
     isAvailable: () => true,
     value: () => Currency.antimatter.value,
     formatValue: x => format(x, 2, 1),
@@ -19,7 +19,7 @@ export const sidebarResources = [
   },
   {
     id: 3,
-    optionName: "Infinity Points",
+    optionName: "无限点数",
     isAvailable: () => PlayerProgress.infinityUnlocked(),
     value: () => Currency.infinityPoints.value.floor(),
     formatValue: x => format(x, 2),
@@ -27,7 +27,7 @@ export const sidebarResources = [
   },
   {
     id: 4,
-    optionName: "Replicanti",
+    optionName: "复制器",
     isAvailable: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked(),
     value: () => Replicanti.amount,
     formatValue: x => format(x, 2),
@@ -35,7 +35,7 @@ export const sidebarResources = [
   },
   {
     id: 5,
-    optionName: "Eternity Points",
+    optionName: "永恒点数",
     isAvailable: () => PlayerProgress.eternityUnlocked(),
     value: () => Currency.eternityPoints.value.floor(),
     formatValue: x => format(x, 2),
@@ -43,7 +43,7 @@ export const sidebarResources = [
   },
   {
     id: 6,
-    optionName: "Total TT",
+    optionName: "时间之理总量",
     isAvailable: () => PlayerProgress.eternityUnlocked(),
     value: () => player.timestudy.theorem.plus(TimeTheorems.calculateTimeStudiesCost()),
     formatValue: x => format(x, 2),
@@ -51,7 +51,7 @@ export const sidebarResources = [
   },
   {
     id: 7,
-    optionName: "Tachyon Particles",
+    optionName: "超光速粒子",
     isAvailable: () => PlayerProgress.dilationUnlocked() || PlayerProgress.realityUnlocked(),
     value: () => Currency.tachyonParticles.value,
     formatValue: x => format(x, 2),
@@ -59,7 +59,7 @@ export const sidebarResources = [
   },
   {
     id: 8,
-    optionName: "Dilated Time",
+    optionName: "膨胀时间",
     isAvailable: () => PlayerProgress.dilationUnlocked() || PlayerProgress.realityUnlocked(),
     value: () => Currency.dilatedTime.value,
     formatValue: x => format(x, 2),
@@ -67,7 +67,7 @@ export const sidebarResources = [
   },
   {
     id: 9,
-    optionName: "Reality Machines",
+    optionName: "现实机器",
     isAvailable: () => PlayerProgress.realityUnlocked(),
     value: () => Currency.realityMachines.value,
     formatValue: x => format(x, 2),
@@ -75,7 +75,7 @@ export const sidebarResources = [
   },
   {
     id: 10,
-    optionName: "Relic Shards",
+    optionName: "遗迹碎片",
     isAvailable: () => TeresaUnlocks.effarig.isUnlocked,
     value: () => new Decimal(Currency.relicShards.value),
     formatValue: x => format(x, 2),
@@ -83,7 +83,7 @@ export const sidebarResources = [
   },
   {
     id: 11,
-    optionName: "Imaginary Machines",
+    optionName: "虚幻机器",
     isAvailable: () => MachineHandler.isIMUnlocked,
     value: () => new Decimal(Currency.imaginaryMachines.value),
     formatValue: x => format(x, 2),
@@ -91,8 +91,8 @@ export const sidebarResources = [
   },
   {
     id: 12,
-    optionName: "All Machines",
-    resourceName: "Machines",
+    optionName: "全部机器",
+    resourceName: "机器",
     isAvailable: () => MachineHandler.isIMUnlocked,
     // This is a dummy value to prevent vue errors
     value: () => Currency.realityMachines.value,
@@ -101,7 +101,7 @@ export const sidebarResources = [
   },
   {
     id: 13,
-    optionName: "Dark Matter",
+    optionName: "暗物质",
     isAvailable: () => Laitela.isUnlocked,
     value: () => Currency.darkMatter,
     formatValue: x => format(x, 2),
@@ -109,7 +109,7 @@ export const sidebarResources = [
   },
   {
     id: 14,
-    optionName: "Dark Energy",
+    optionName: "暗能量",
     isAvailable: () => Laitela.isUnlocked,
     value: () => new Decimal(Currency.darkEnergy.value),
     formatValue: x => format(x, 2, 2),
@@ -117,7 +117,7 @@ export const sidebarResources = [
   },
   {
     id: 15,
-    optionName: "Singularities",
+    optionName: "奇点",
     isAvailable: () => Laitela.isUnlocked,
     value: () => new Decimal(Currency.singularities.value),
     formatValue: x => format(x, 2),
@@ -125,7 +125,7 @@ export const sidebarResources = [
   },
   {
     id: 16,
-    optionName: "Reality Shards",
+    optionName: "现实碎片",
     isAvailable: () => Pelle.isDoomed,
     value: () => Currency.realityShards,
     formatValue: x => format(x, 2),

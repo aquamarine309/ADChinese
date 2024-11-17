@@ -34,8 +34,8 @@ export default {
       this.milestoneTimes = [...player.speedrun.records];
       this.maxMilestone = this.milestoneTimes.map(i => Boolean(i)).lastIndexOf(true) + 1;
       this.startTimeStr = player.speedrun.startDate === 0
-        ? "Speedrun not started yet."
-        : `Speedrun started at ${Time.toDateTimeString(player.speedrun.startDate)}`;
+        ? "未开始速通"
+        : `速通开始于 ${Time.toDateTimeString(player.speedrun.startDate)}`;
       this.displayAll = player.speedrun.displayAllMilestones;
       this.isSpectating = GameEnd.endState > END_STATE_MARKERS.SPECTATE_GAME;
     },

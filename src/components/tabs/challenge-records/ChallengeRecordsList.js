@@ -26,8 +26,8 @@ export default {
     timeDisplayShort,
     completionString(time) {
       return time < Number.MAX_VALUE
-        ? `record time: ${timeDisplayShort(time)}`
-        : "has not yet been completed";
+        ? `时间纪录：${timeDisplayShort(time)}`
+        : "尚未完成";
     }
   },
   template: `
@@ -41,10 +41,10 @@ export default {
     </div>
     <br>
     <div v-if="completedAllChallenges">
-      Sum of {{ name }} record times: {{ timeDisplayShort(timeSum) }}
+      {{ name }}时间纪录的总和是 {{ timeDisplayShort(timeSum) }}
     </div>
     <div v-else>
-      You have not completed all {{ name }}s yet.
+      所有{{ name }}尚未完成
     </div>
   </div>
   `

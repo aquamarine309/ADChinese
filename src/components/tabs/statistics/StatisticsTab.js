@@ -55,20 +55,6 @@ export default {
     };
   },
   computed: {
-    // These are here to avoid extra spaces in-game pre-reality and to get around codefactor 120-char limits in the
-    // HTML template due to the fact that adding a linebreak also adds a space
-    infinityCountString() {
-      const num = this.infinity.count;
-      return num.gt(0)
-        ? `${this.formatDecimalAmount(num)} infinities`
-        : "no Infinities";
-    },
-    eternityCountString() {
-      const num = this.eternity.count;
-      return num.gt(0)
-        ? `${this.formatDecimalAmount(num)} eternities`
-        : "no Eternities";
-    },
     fullGameCompletions() {
       return player.records.fullGameCompletions;
     },
@@ -209,7 +195,7 @@ export default {
           <b>
             您已通关游戏 {{ formatInt(fullGameCompletions) }} 次。
             <br>
-            You have played for {{ fullTimePlayed }} across all playthroughs.
+            总计游玩了 {{ fullTimePlayed }}。
           </b>
         </div>
       </div>
@@ -243,7 +229,7 @@ export default {
         无限
       </div>
       <div>
-        You have {{ infinityCountString }}<span v-if="eternity.isUnlocked"> this Eternity</span>.
+        你的无限次数是 {{ formatDecimalAmount(infinity.count) }}。
       </div>
       <div v-if="infinity.banked.gt(0)">
         你有 {{ formatDecimalAmount(infinity.banked.floor()) }} 储存的无限次数。
@@ -261,9 +247,8 @@ export default {
         </span>
       </div>
       <div>
-        Your best Infinity Points per minute
-        <span v-if="eternity.count.gt(0)">this Eternity </span>
-        is {{ format(infinity.bestRate, 2, 2) }}.
+        <span v-if="eternity.count.gt(0)">在本次永恒中，</span>
+        你获得无限点数的最快速度是每分钟 {{ format(infinity.bestRate, 2, 2) }} 无限点数。
       </div>
       <br>
     </div>
@@ -279,30 +264,29 @@ export default {
         永恒
       </div>
       <div>
-        You have {{ eternityCountString }}<span v-if="reality.isUnlocked"> this Reality</span>.
+        你的永恒次数是 {{ formatDecimalAmount(eternity.count) }}。
       </div>
       <div v-if="infinity.projectedBanked.gt(0)">
         永恒后储存的无限次数增加 {{ formatDecimalAmount(infinity.projectedBanked.floor()) }} （ {{ formatDecimalAmount(infinity.bankRate) }} /分钟）。
       </div>
       <div v-else-if="infinity.banked.gt(0)">
-        You will gain no Banked Infinities on Eternity.
+        永恒后不能获得储存的无限次数。
       </div>
       <div v-if="eternity.hasBest">
         Your fastest Eternity was {{ eternity.best.toStringShort() }}.
       </div>
       <div v-else>
-        You have no fastest Eternity<span v-if="reality.isUnlocked"> this Reality</span>.
+        你<span v-if="reality.isUnlocked">本次现实中</span>不存在最快的永恒用时。
       </div>
       <div>
-        You have spent {{ eternity.this.toStringShort() }} in this Eternity.
+        你已在本次永恒中花费 {{ eternity.this.toStringShort() }}。
         <span v-if="reality.isUnlocked">
-          ({{ eternity.thisReal.toStringShort() }} real time)
+          （{{ eternity.thisReal.toStringShort() }} 现实时间）
         </span>
       </div>
       <div>
-        Your best Eternity Points per minute
-        <span v-if="reality.isUnlocked">this Reality </span>
-        is {{ format(eternity.bestRate, 2, 2) }}.
+        <span v-if="reality.isUnlocked">在本次现实中，</span>
+        你获得永恒点数的最快速度是每分钟 {{ format(eternity.bestRate, 2, 2) }} 永恒点数。
       </div>
       <br>
     </div>

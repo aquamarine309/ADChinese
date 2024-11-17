@@ -16,8 +16,8 @@ class RaUnlockState extends BitUpgradeState {
   get requirementText() {
     const pet = this.pet.name;
     return this.level === 1
-      ? `Unlock ${pet}`
-      : `Get ${pet} to level ${this.level}`;
+      ? `解锁 ${pet}`
+      : `将 ${pet} 的等级提升至 ${this.level}`;
   }
 
   get reward() {
@@ -226,7 +226,7 @@ const pets = mapGameDataToObject(
 );
 
 export const Ra = {
-  displayName: "Ra",
+  displayName: "太阳神",
   possessiveName: "Ra's",
   unlocks,
   pets,
@@ -264,12 +264,9 @@ export const Ra = {
     for (const pet of Ra.pets.all) {
       if (pet.memoryProductionMultiplier !== 1) boostList.push(pet.memoryGain);
     }
-    if (Achievement(168).isUnlocked) boostList.push("Achievement 168");
-    if (Ra.unlocks.continuousTTBoost.canBeApplied) boostList.push("current TT");
-
-    if (boostList.length === 1) return `${boostList[0]}`;
-    if (boostList.length === 2) return `${boostList[0]} and ${boostList[1]}`;
-    return `${boostList.slice(0, -1).join(", ")}, and ${boostList[boostList.length - 1]}`;
+    if (Achievement(168).isUnlocked) boostList.push("成就 168");
+    if (Ra.unlocks.continuousTTBoost.canBeApplied) boostList.push("当前时间之理");
+    return makeEnumeration(boostList);
   },
   // This is the exp required ON "level" in order to reach "level + 1"
   requiredMemoriesForLevel(level) {
@@ -290,7 +287,7 @@ export const Ra = {
       ? -c / b
       : (Math.sqrt(Math.pow(b, 2) - 4 * a * c) - b) / (2 * a);
     if (Number.isFinite(estimate)) {
-      return `in ${TimeSpan.fromSeconds(estimate).toStringShort()}`;
+      return `${TimeSpan.fromSeconds(estimate).toStringShort()} 后可购买`;
     }
     return "";
   },

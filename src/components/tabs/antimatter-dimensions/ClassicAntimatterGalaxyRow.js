@@ -71,7 +71,7 @@ export default {
           return `${formatInt(this.distantStart)} 个星系后星系价格大幅增长`;
         case GALAXY_TYPE.REMOTE: {
           const scalings = [
-            { type: "遥远", function: "二次幂", amount: this.distantStart },
+            { type: "遥远", function: "二次方", amount: this.distantStart },
             { type: "极远", function: "指数", amount: this.remoteStart }
           ];
           return `星系价格增速：${scalings.sort((a, b) => a.amount - b.amount)
@@ -123,8 +123,8 @@ export default {
       class="l-dim-row__prestige-text c-dim-row__label c-dim-row__label--amount l-text-wrapper"
       data-v-assic-antimatter-galaxy-row
     >
-      {{ typeName }} ({{ sumText }}):
-      requires {{ formatInt(requirement.amount) }} {{ dimName }} Dimensions
+      {{ typeName }}（{{ sumText }}）：
+      需要 {{ formatInt(requirement.amount) }} {{ dimName }}维度
       <div
         class="l-scaling-text-wrapper"
         data-v-assic-antimatter-galaxy-row

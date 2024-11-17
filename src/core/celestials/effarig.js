@@ -13,7 +13,7 @@ export const EFFARIG_STAGES = {
 };
 
 export const Effarig = {
-  displayName: "Effarig",
+  displayName: "鹿颈长",
   possessiveName: "Effarig's",
   initializeRun() {
     clearCelestialRuns();

@@ -87,29 +87,31 @@ export default {
         class="o-primary-btn--subtab-option"
         @click="maxAll"
       >
-        Max all Dark Matter Dimensions
+        最大化暗物质维度
       </PrimaryButton>
     </div>
     <div class="o-laitela-matter-amount">
-      You have
+      你拥有
       <span :style="styleObject">{{ format(darkMatter, 2) }}</span>
-      Dark Matter<span v-if="isDMCapped"> (capped)</span>.
-      <span v-if="!isDMCapped">(Average: {{ format(darkMatterGain, 2, 2) }}/s)</span>
+      暗物质<span v-if="isDMCapped"> （已达到上限）</span>。
+      <span v-if="!isDMCapped">（{{ format(darkMatterGain, 2, 2) }}/秒）</span>
     </div>
     <div class="o-laitela-matter-amount">
-      Your maximum Dark Matter ever is
-      <span :style="styleObject">{{ format(maxDarkMatter, 2) }}</span><span v-if="!isDoomed">,
-        giving {{ formatPercents(matterExtraPurchasePercentage, 2) }} more purchases from Continuum</span>.
+      <span v-if="!isDoomed">你最多获得过 <span :style="styleObject">{{ format(maxDarkMatter, 2) }}</span> 暗物质，
+        提供 {{ formatPercents(matterExtraPurchasePercentage, 2) }} 连续统加成。
+      </span>
+      <span v-else>
+        暗物质的最大数量为 <span :style="styleObject">{{ format(maxDarkMatter, 2) }}</span>。
+      </span>
     </div>
     <div class="o-laitela-matter-amount">
-      Dark Matter Dimensions are unaffected by storing real time.
+      暗物质维度不受存储现实时间的影响。
     </div>
     <h2
       v-if="!singularitiesUnlocked"
       class="c-laitela-singularity-container"
     >
-      Unlock Singularities in {{ singularityWaitTime }}.
-      ({{ format(darkEnergy, 2, 2) }}/{{ format(singularityCap, 2) }} Dark Energy)
+      {{ singularityWaitTime }} 后解锁奇点。（{{ format(darkEnergy, 2, 2) }}/{{ format(singularityCap, 2) }} 暗能量）
     </h2>
     <SingularityPane v-if="singularitiesUnlocked" />
     <LaitelaAutobuyerPane v-if="autobuyersUnlocked" />

@@ -28,8 +28,8 @@ export default {
     },
     timeDisplay() {
       return this.time
-        ? `Completed in ${TimeSpan.fromMilliseconds(this.time).toStringShort(true, true)}`
-        : "Not reached yet";
+        ? `完成于 ${TimeSpan.fromMilliseconds(this.time).toStringShort(true, true)}`
+        : "未完成";
     },
     classObject() {
       return {

@@ -69,9 +69,9 @@ class AchievementState extends GameMechanicState {
       GameCache.staticGlyphWeights.invalidate();
     }
     if (auto) {
-      GameUI.notify.reality(`Automatically unlocked: ${this.name}`);
+      GameUI.notify.reality(`自动成就：${this.name}`);
     } else {
-      GameUI.notify.success(`Achievement: ${this.name}`);
+      GameUI.notify.success(`成就：${this.name}`);
       SteamRuntime.activateAchievement(this.id);
     }
     if (player.speedrun.isActive && !player.speedrun.achievementTimes[this.id]) {

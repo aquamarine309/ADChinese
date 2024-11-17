@@ -104,7 +104,7 @@ export default {
       this.bestShardRateVal = player.records.thisReality.bestRSminVal * multiplier;
 
       const teresaReward = this.formatScalingMultiplierText(
-        "Glyph Sacrifice",
+        "符文献祭",
         Teresa.runRewardMultiplier,
         Math.max(Teresa.runRewardMultiplier, Teresa.rewardMultiplier(Currency.antimatter.value)));
       const teresaThreshold = this.formatThresholdText(

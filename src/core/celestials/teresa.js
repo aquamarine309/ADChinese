@@ -7,7 +7,7 @@ export const Teresa = {
   timePoured: 0,
   lastUnlock: "effarig",
   pouredAmountCap: 1e24,
-  displayName: "Teresa",
+  displayName: "特蕾莎",
   possessiveName: "Teresa's",
   get isUnlocked() {
     return Achievement(147).isUnlocked;

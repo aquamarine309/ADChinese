@@ -196,7 +196,7 @@ window.TimeSpan = class TimeSpan {
    */
   toString() {
     if (this.years > 1e6) {
-      return `${format(this.totalYears, 3, 0)} years`;
+      return `${format(this.totalYears, 3, 0)} 年`;
     }
     if (this.totalSeconds >= 10) {
       return this.toStringNoDecimals();

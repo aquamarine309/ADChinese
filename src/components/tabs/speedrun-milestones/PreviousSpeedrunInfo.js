@@ -34,7 +34,7 @@ export default {
       else symbol = "fa-power-off";
       return {
         icon: `fas o-icon ${symbol}`,
-        text: `${offlineFrac === 0 ? "No" : formatPercents(offlineFrac, 1)} Offline Time`,
+        text: `${offlineFrac === 0 ? "无" : formatPercents(offlineFrac, 1)}离线时间`,
       };
     },
     seedAttr() {
@@ -86,8 +86,8 @@ export default {
       :class="attr.icon"
       data-v-previous-speedrun-info
     />
-    <span>Started: {{ startDate }}</span>
-    <span>Final Time: {{ finalTime }}</span>
+    <span>起始于：{{ startDate }}</span>
+    <span>最终时间：{{ finalTime }}</span>
   </div>
   <div
     v-else
