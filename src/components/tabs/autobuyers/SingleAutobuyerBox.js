@@ -28,7 +28,7 @@ export default {
       return this.autobuyer.name;
     },
     isSacrifice() {
-      return this.name === "Dimensional Sacrifice";
+      return this.autobuyer === Autobuyer.sacrifice;
     }
   },
   methods: {
@@ -51,13 +51,13 @@ export default {
         v-if="isHiddenSacrifice"
         class="c-autobuyer-box__small-text"
       >
-        Automatic (Achievement 118)
+        即时自动进行 (成就118)
       </b>
       <span
         v-else-if="autobuyer.hasInput"
         class="c-autobuyer-box__small-text"
       >
-        Multiplier:
+        倍数：
         <AutobuyerInput
           class="c-small-autobuyer-input"
           :autobuyer="autobuyer"

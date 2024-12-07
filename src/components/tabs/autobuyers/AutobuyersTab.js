@@ -38,7 +38,7 @@ export default {
       return PlayerProgress.seenAlteredSpeed();
     },
     gameTickLength() {
-      return `${formatInt(player.options.updateRate)} ms`;
+      return `${formatInt(player.options.updateRate)} 毫秒`;
     }
   },
   methods: {

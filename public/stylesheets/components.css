@@ -2700,7 +2700,7 @@ perfectly the same. */
 .c-s12-desktop-icon__text[data-v-desktop-icons] {
   overflow: hidden;
   width: 100%;
-  font-family: "Segoe UI", Typewriter;
+  font-family: "Segoe UI", Typewriter, serif;
   font-size: var(--icon-font-size);
   font-weight: normal;
   line-height: var(--icon-line-height);
@@ -3126,7 +3126,7 @@ perfectly the same. */
 }
 
 .c-modal__title[data-v-s12-ui] {
-  font-family: "Segoe UI", Typewriter;
+  font-family: "Segoe UI", Typewriter, serif;
   color: black;
 }
 
@@ -3591,7 +3591,7 @@ p[data-v-pelle-effects-modal] {
   overflow: hidden;
   width: 100%;
   text-align: center;
-  font-family: "Segoe UI", Typewriter;
+  font-family: "Segoe UI", Typewriter, serif;
   font-size: var(--icon-font-size);
   font-weight: normal;
   line-height: var(--icon-line-height);

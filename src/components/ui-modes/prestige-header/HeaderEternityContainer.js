@@ -37,8 +37,7 @@ export default {
       data-v-header-eternity-container
     >
       你拥有
-      <span class="c-game-header__ep-amount">{{ format(eternityPoints, 2) }}</span>
-      {{ format(eternityPoints) }} 永恒点数。
+      <span class="c-game-header__ep-amount">{{ format(eternityPoints, 2) }}</span> 永恒点数。
       <span v-if="showNextEP">（下一个永恒点数需要 {{ format(nextEP, 1) }} 无限点数）</span>
     </div>
     <UnlockInfinityDimButton />

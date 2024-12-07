@@ -54,7 +54,7 @@ export default {
       class="o-primary-btn--subtab-option"
       @click="toggleAllAutobuyers()"
     >
-      {{ allAutobuyersDisabled ? "Enable" : "Disable" }} all autobuyers
+      {{ allAutobuyersDisabled ? "启用" : "禁用" }}所有自动购买器
     </PrimaryButton>
     <span v-if="isDoomed">
       <PrimaryButton
@@ -68,8 +68,8 @@ export default {
       <PrimaryToggleButton
         v-if="showContinuum"
         v-model="disableContinuum"
-        on="Enable Continuum"
-        off="Disable Continuum"
+        on="启用连续统"
+        off="禁用连续统"
         class="o-primary-btn--subtab-option"
       />
     </span>

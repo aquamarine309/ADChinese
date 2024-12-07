@@ -107,9 +107,7 @@ export default {
     v-else-if="isADBox && continuumActive"
     class="c-autobuyer-box-row"
   >
-    Continuum replaces your Antimatter Dimension and Tickspeed Autobuyers, as your production multipliers
-    <br>
-    now automatically and continuously scale based on how many purchases you would have had otherwise.
+    连续统将取代自动购买反物质维度和计数频率的功能，你将基于你的购买次数，自动获得连续的生产倍率加成。
   </span>
   `
 };

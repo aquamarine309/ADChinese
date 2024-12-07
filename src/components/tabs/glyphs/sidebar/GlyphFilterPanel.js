@@ -183,7 +183,7 @@ export default {
       const simpleData = [filter.select, filter.simple, filter.trash].join("|");
       const typeData = ALCHEMY_BASIC_GLYPH_TYPES.map(t => serializeType(filter.types[t])).join("|");
       copyToClipboard(GameSaveSerializer.encodeText(`${simpleData}|${typeData}`, "glyph filter"));
-      GameUI.notify.info("Filter settings copied to clipboard");
+      GameUI.notify.info("筛选设置已导出到剪贴板");
     },
     importFilterSettings() {
       Modal.importFilter.show();
@@ -227,7 +227,7 @@ export default {
           data-v-glyph-filter-panel
         />
       </div>
-      Current Filter Mode:
+      当前筛选模式：
       <br>
       {{ filterMode(mode) }}
       <br>
@@ -260,7 +260,7 @@ export default {
       class=" c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyphs must have at least
+      选择至少拥有
       <input
         ref="effectCount"
         type="number"
@@ -270,14 +270,14 @@ export default {
         :value="effectCount"
         @blur="setEffectCount"
       >
-      effects to be chosen. Rarer Glyphs are preferred in ties.
+      个词条的符文。词条数量相等时，优先选择稀有度更高的符文。
     </div>
     <div
       v-if="mode === modes.RARITY_THRESHOLD"
       class="l-glyph-sacrifice-options__rarity-sliders"
     >
       <span class="c-glyph-sacrifice-options__advanced">
-        Any Glyphs with rarity below these thresholds will be sacrificed.
+        所有低于以下稀有度阈值的符文将被献祭。
       </span>
       <div
         v-for="type in glyphTypes"
@@ -305,7 +305,7 @@ export default {
       class="c-glyph-sacrifice-options__advanced"
     >
       <div>
-        Glyph Type:
+        符文类型：
         <span
           v-for="type in glyphTypes"
           :key="type.id"

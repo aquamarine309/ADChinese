@@ -20,8 +20,8 @@ export default {
   computed: {
     sortModes() {
       // These are the keys for AUTO_SORT_MODE, with SCORE only added conditionally if unlocked
-      const availableSortModes = ["NONE", "LEVEL", "POWER", "EFFECT"];
-      if (this.showScoreFilter) availableSortModes.push("SCORE");
+      const availableSortModes = ["无", "等级", "强度", "词条"];
+      if (this.showScoreFilter) availableSortModes.push("分数");
       return availableSortModes;
     },
     questionMarkTooltip() {
@@ -64,30 +64,30 @@ export default {
       >
         ?
       </div>
-      Auto Glyph Arrangement:
+      自动符文排序：
     </div>
     <ButtonCycle
       v-model="autoSort"
       class="c-glyph-inventory-option"
-      text="Auto-sort Mode:"
+      text="自动排序模式："
       :labels="sortModes"
     />
     <ToggleButton
       v-model="autoCollapse"
       class="c-glyph-inventory-option"
-      label="Auto-collapse space:"
+      label="自动清除空格："
     />
     <ToggleButton
       v-if="showAutoAutoClean"
       v-model="autoAutoClean"
       class="c-glyph-inventory-option"
-      label="Auto-purge on Realities:"
+      label="现实后自动净化符文仓库："
     />
     <ToggleButton
       v-if="showAutoAutoClean"
       v-model="applyFilterToPurge"
       class="c-glyph-inventory-option"
-      label="Never Auto-purge Glyphs accepted by filter:"
+      label="符合符文筛选条件的符文不会被自动净化："
       tooltip-class="c-glyph-inventory-option__tooltip"
       :tooltip-content="keepTooltip"
     />

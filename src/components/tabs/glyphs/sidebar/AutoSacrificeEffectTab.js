@@ -58,7 +58,7 @@ export default {
       >
         ?
       </span>
-      Selected Glyphs will have at least
+      选择至少拥有
       <input
         ref="effectCount"
         type="number"
@@ -68,7 +68,7 @@ export default {
         :value="effectCount"
         @blur="setEffectCount"
       >
-      effects total, which must include <i>all</i> of the following effects:
+      个词条的符文，并且必须包括以下<i>所有</i>选定词条：
     </div>
     <div
       v-for="effect in effects"
@@ -82,7 +82,7 @@ export default {
         :style="descStyle"
       />
     </div>
-    Click to toggle individual effects on/off
+    (点击以选定或取消选定词条)
   </div>
   `
 };

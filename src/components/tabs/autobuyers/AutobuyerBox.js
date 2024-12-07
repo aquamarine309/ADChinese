@@ -81,9 +81,7 @@ export default {
       };
     },
     showEternity() {
-      return PlayerProgress.eternityUnlocked()
-        ? "this Eternity"
-        : "";
+      return PlayerProgress.eternityUnlocked();
     },
     isShowingStateInfo() {
       // Prestiging for a static amount is zero in both AUTO_CRUNCH_MODE and AUTO_ETERNITY_MODE
@@ -94,11 +92,11 @@ export default {
       switch (this.currMode) {
         case AUTO_ETERNITY_MODE.TIME:
           return this.nextTime > 0
-            ? `Will trigger in ${TimeSpan.fromSeconds(this.nextTime).toStringShort()}`
-            : "Will trigger ASAP";
+            ? `将在 ${TimeSpan.fromSeconds(this.nextTime).toStringShort()} 后触发`
+            : "即时触发";
         case AUTO_ETERNITY_MODE.X_HIGHEST:
         default:
-          return `Will trigger at ${format(this.nextValue, 2)} ${this.autobuyer.name === "Infinity" ? "IP" : "EP"}`;
+          return `将在 ${format(this.nextValue, 2)} ${this.autobuyer === Autobuyer.bigCrunch ? "无限点数" : "永恒点数"} 时触发`;
       }
     }
   },
@@ -184,7 +182,8 @@ export default {
   >
     {{ name }}
     <br>
-    Requirement: {{ format(antimatterCost) }} Total Antimatter {{ showEternity }}
+    <span v-if="showEternity">要求：本次永恒中获得反物质的总量达到 {{ format(antimatterCost) }}</span>
+    <span v-else>需要 {{ format(antimatterCost) }} 反物质</span>
   </div>
   `
 };

@@ -47,8 +47,8 @@ export default {
     replicantiChanceSetup() {
       return new ReplicantiUpgradeButtonSetup(
         ReplicantiUpgrade.chance,
-        value => `Replicate chance: ${formatPercents(value)}`,
-        cost => `+${formatPercents(0.01)} Costs: ${format(cost)} IP`
+        value => `复制概率：${formatPercents(value)}`,
+        cost => `+${formatPercents(0.01)} 价格：${format(cost)} 无限点数`
       );
     },
     replicantiIntervalSetup() {
@@ -96,24 +96,18 @@ export default {
     },
     boostText() {
       const boostList = [];
-      boostList.push(`a <span class="c-replicanti-description__accent">${formatX(this.mult, 2, 2)}</span>
-        multiplier on all Infinity Dimensions`);
+      boostList.push(`无限维度效果提升 <span class="c-replicanti-description__accent">${formatX(this.mult, 2, 2)}</span>`);
       if (this.hasTDMult) {
-        boostList.push(`a <span class="c-replicanti-description__accent">${formatX(this.multTD, 2, 2)}</span>
-          multiplier on all Time Dimensions from a Dilation Upgrade`);
+        boostList.push(`时间维度效果提升 <span class="c-replicanti-description__accent">${formatX(this.multTD, 2, 2)}</span>`);
       }
       if (this.hasDTMult) {
-        const additionalEffect = GlyphAlteration.isAdded("replication") ? "and Replicanti speed " : "";
-        boostList.push(`a <span class="c-replicanti-description__accent">${formatX(this.multDT, 2, 2)}</span>
-          multiplier to Dilated Time ${additionalEffect}from Glyphs`);
+        const additionalEffect = GlyphAlteration.isAdded("replication") ? "和复制速度" : "";
+        boostList.push(`从已装备的符文中获得 <span class="c-replicanti-description__accent">${formatX(this.multDT, 2, 2)}</span> 倍的膨胀时间${additionalEffect}`);
       }
       if (this.hasIPMult) {
-        boostList.push(`a <span class="c-replicanti-description__accent">${formatX(this.multIP)}</span>
-          multiplier to Infinity Points from Glyph Alchemy`);
+        boostList.push(`从符文炼金中获得 <span class="c-replicanti-description__accent">${formatX(this.multIP)}</span> 倍的无限点数`);
       }
-      if (boostList.length === 1) return `${boostList[0]}.`;
-      if (boostList.length === 2) return `${boostList[0]}<br> and ${boostList[1]}.`;
-      return `${boostList.slice(0, -1).join(",<br>")},<br> and ${boostList[boostList.length - 1]}.`;
+      return boostList.join("<br>");
     },
     hasMaxText: () => PlayerProgress.realityUnlocked() && !Pelle.isDoomed,
     toMaxTooltip() {
@@ -154,7 +148,7 @@ export default {
       if (this.hasRaisedCap) {
         const mult = this.replicantiCap.div(Decimal.NUMBER_MAX_VALUE);
         this.capMultText = TimeStudy(31).canBeApplied
-          ? `Base: ${formatX(mult.pow(1 / TimeStudy(31).effectValue), 2)}; after TS31: ${formatX(mult, 2)}`
+          ? `基础值：${formatX(mult.pow(1 / TimeStudy(31).effectValue), 2)}；时间研究 31 之后：${formatX(mult, 2)}`
           : formatX(mult, 2);
       }
       this.distantRG = ReplicantiUpgrade.galaxies.distantRGStart;
@@ -191,9 +185,9 @@ export default {
       class="o-primary-btn--replicanti-unlock"
       onclick="Replicanti.unlock();"
     >
-      Unlock Replicanti
+      解锁复制器
       <br>
-      Cost: {{ format(unlockCost) }} IP
+      价格：{{ format(unlockCost) }} 无限点数
     </PrimaryButton>
     <template v-else>
       <div
@@ -201,25 +195,23 @@ export default {
         class="modified-cap"
         data-v-replicanti-tab
       >
-        Your Replicanti cap has been removed due to the second {{ scrambledText }} milestone.
+        由于第二个 {{ scrambledText }} 里程碑，已移除复制器上限。
       </div>
       <div
         v-else-if="hasRaisedCap"
         class="modified-cap"
         data-v-replicanti-tab
       >
-        Completion of Effarig's Infinity is giving you the following rewards:
-        <br>
-        Your Replicanti cap without TS192 is now {{ format(replicantiCap, 2) }}
+        在没有时间研究192的情况下，你的复制器上限已提升至 {{ format(replicantiCap, 2) }}
         ({{ capMultText }})
         <br>
-        {{ formatInt(effarigInfinityBonusRG) }} extra Replicanti Galaxies
-        (Next Replicanti Galaxy at {{ format(nextEffarigRGThreshold, 2) }} cap)
+        并且由于鹿颈长的无限奖励，你获得了 { formatInt(effarigInfinityBonusRG) }} 个额外的复制器星系。（下一个复制器星系将在 {{ format(nextEffarigRGThreshold, 2) }} 出现）
+        <br>
       </div>
       <p class="c-replicanti-description">
         你拥有
         <span class="c-replicanti-description__accent">{{ format(amount, 2, 0) }}</span>
-        Replicanti, translated to
+        复制器。
         <br>
         <span v-html="boostText" />
       </p>
@@ -227,12 +219,12 @@ export default {
         v-if="hasMaxText"
         class="c-replicanti-description"
       >
-        Your maximum Replicanti reached this Reality is
+        此次现实中最大的复制器数量是
         <span
           v-tooltip="toMaxTooltip"
           class="max-accent"
           data-v-replicanti-tab
-        >{{ format(maxReplicanti, 2) }}</span>.
+        >{{ format(maxReplicanti, 2) }}</span>。
       </div>
       <br>
       <div v-if="isInEC8">

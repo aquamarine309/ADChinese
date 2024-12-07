@@ -28,13 +28,13 @@ export default {
   template: `
   <div class="o-glyph-inventory-management-group">
     <div class="l-glyph-sacrifice-options__header">
-      Sort Glyphs:
+      符文排序：
     </div>
     <button
       class="c-glyph-inventory-option"
       @click="sortByLevel"
     >
-      Sort by level
+      按等级排序
       <div class="c-glyph-inventory-option__tooltip">
         Arranges by decreasing Glyph level
       </div>
@@ -43,7 +43,7 @@ export default {
       class="c-glyph-inventory-option"
       @click="sortByPower"
     >
-      Sort by power
+      按强度排序
       <div class="c-glyph-inventory-option__tooltip">
         Arranges by decreasing level×rarity
       </div>
@@ -52,7 +52,7 @@ export default {
       class="c-glyph-inventory-option"
       @click="sortByEffect"
     >
-      Sort by effect
+      按词条排序
       <div class="c-glyph-inventory-option__tooltip">
         Groups Glyphs together based on effects
       </div>
@@ -62,7 +62,7 @@ export default {
       class="c-glyph-inventory-option"
       @click="sortByScore"
     >
-      Sort by score
+      按分数排序
       <div class="c-glyph-inventory-option__tooltip">
         Arranges by decreasing Glyph filter score
       </div>
@@ -71,7 +71,7 @@ export default {
       class="c-glyph-inventory-option"
       @click="collapseEmpty"
     >
-      Collapse empty space
+      清除空格
       <div class="c-glyph-inventory-option__tooltip">
         Moves all Glyphs to the earliest empty slots
       </div>

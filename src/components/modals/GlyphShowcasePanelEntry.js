@@ -40,8 +40,8 @@ export default {
     type() {
       return this.glyph.type;
     },
-    typeCapitalized() {
-      return this.type.capitalize();
+    name() {
+      return GLYPH_NAMES[this.type];
     },
     level() {
       return this.glyph.level;
@@ -146,7 +146,7 @@ export default {
   template: `
   <div>
     <div class="c-glyph-choice-icon">
-      <span :style="typeStyle">{{ typeCapitalized }}</span>
+      <span :style="typeStyle">{{ name }}</span>
       <div
         v-if="showLevel"
         v-html="levelText"
