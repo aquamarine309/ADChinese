@@ -61,6 +61,10 @@ class RaPetState extends GameMechanicState {
     return this.config.name;
   }
 
+  get key() {
+    return this.config.key;
+  }
+
   get chunkGain() {
     return this.config.chunkGain;
   }
@@ -135,7 +139,7 @@ class RaPetState extends GameMechanicState {
   }
 
   get hasRemembrance() {
-    return Ra.petWithRemembrance === this.name;
+    return Ra.petWithRemembrance === this.key;
   }
 
   get memoryUpgradeCurrentMult() {
@@ -349,8 +353,8 @@ export const Ra = {
   get petWithRemembrance() {
     return player.celestials.ra.petWithRemembrance;
   },
-  set petWithRemembrance(name) {
-    player.celestials.ra.petWithRemembrance = name;
+  set petWithRemembrance(key) {
+    player.celestials.ra.petWithRemembrance = key;
   },
   updateAlchemyFlow(realityRealTime) {
     const perSecond = 1000 / realityRealTime;

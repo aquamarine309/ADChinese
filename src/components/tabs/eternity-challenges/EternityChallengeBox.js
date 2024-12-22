@@ -112,7 +112,7 @@ export default {
         目标范围：{{ firstGoal }} 无限点数 - {{ lastGoal }} 无限点数
       </span>
       <span>
-        Reward:
+        奖励：
         <DescriptionDisplay
           :config="config.reward"
           :length="55"

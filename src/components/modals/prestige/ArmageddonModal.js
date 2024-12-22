@@ -21,8 +21,8 @@ export default {
     },
     message() {
       return Currency.remnants.eq(0)
-        ? `末日后将在此开启被毁灭的现实。你将在末日后获得 ${formay(this.remnantsGain, 2, 0)} 遗物，每秒生产 ${format(this.nextRealityShardGain, 2, 2)} 现实碎片。`
-        : `末日后将在此开启被毁灭的现实。你将在末日后获得 ${formay(this.remnantsGain, 2, 0)} 遗物，生产现实碎片的速度从 ${format(this.realityShardGain, 2, 2)}/秒 增加到 ${format(this.nextRealityShardGain, 2, 2)}/秒。`;
+        ? `末日后将在此开启被毁灭的现实。你将在末日后获得 ${format(this.remnantsGain, 2, 0)} 遗物，每秒生产 ${format(this.nextRealityShardGain, 2, 2)} 现实碎片。`
+        : `末日后将在此开启被毁灭的现实。你将在末日后获得 ${format(this.remnantsGain, 2, 0)} 遗物，生产现实碎片的速度从 ${format(this.realityShardGain, 2, 2)}/秒 增加到 ${format(this.nextRealityShardGain, 2, 2)}/秒。`;
     }
   },
   methods: {

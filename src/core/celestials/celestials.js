@@ -99,6 +99,8 @@ GameDatabase.celestials.descriptions = [
         case 7:
           disabledDims = "第八维度";
           break;
+        case 8:
+          break;
         default:
           throw new Error("Unexpected highest active tier of Lai'tela limitations");
       }

@@ -137,7 +137,7 @@ export default {
           </div>
         </div>
         <div class="c-ra-pet-upgrade__tooltip__footer">
-          价格：{{ quantify(requiredMemories, 2, 2) }} 记忆
+          价格：{{ format(requiredMemories, 2, 2) }} 记忆
           <span v-if="memories <= requiredMemories">{{ nextLevelEstimate }}</span>
         </div>
       </div>

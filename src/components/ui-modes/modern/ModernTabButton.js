@@ -4,10 +4,6 @@ export default {
     tab: {
       type: Object,
       required: true
-    },
-    tabPosition: {
-      type: Number,
-      required: true
     }
   },
   data() {
@@ -16,8 +12,7 @@ export default {
       isHidden: false,
       subtabVisibilities: [],
       showSubtabs: false,
-      hasNotification: false,
-      tabName: ""
+      hasNotification: false
     };
   },
   computed: {
@@ -31,6 +26,9 @@ export default {
     },
     isCurrentTab() {
       return this.tab.isOpen;
+    },
+    tabName() {
+      return this.tab.name;
     }
   },
   methods: {
@@ -40,15 +38,6 @@ export default {
       this.subtabVisibilities = this.tab.subtabs.map(x => x.isAvailable);
       this.showSubtabs = this.isAvailable && this.subtabVisibilities.length >= 1;
       this.hasNotification = this.tab.hasNotification;
-      if (this.tabPosition < Pelle.endTabNames.length) {
-        this.tabName = Pelle.transitionText(
-          this.tab.name,
-          Pelle.endTabNames[this.tabPosition],
-          Math.clamp(GameEnd.endState - (this.tab.id % 4) / 10, 0, 1)
-        );
-      } else {
-        this.tabName = this.tab.name;
-      }
     },
     isCurrentSubtab(id) {
       return player.options.lastOpenSubtab[this.tab.id] === id && Theme.currentName() !== "S9";

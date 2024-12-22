@@ -8,20 +8,19 @@ export default {
   },
   data() {
     return {
-      isShown: false
+      isShown: false,
+      name: ""
     };
   },
   computed: {
     color() {
       return this.celestial === "laitela" ? `var(--color-laitela--accent)` : `var(--color-${this.celestial}--base)`;
-    },
-    name() {
-      return Celestials[this.celestial].displayName;
     }
   },
   methods: {
     update() {
       this.isShown = Celestials[this.celestial].quotes.all.some(x => x.isUnlocked);
+      if (this.isShown) this.name = Celestials[this.celestial].displayName;
     },
     show() {
       Quote.showHistory(Celestials[this.celestial].quotes.all);

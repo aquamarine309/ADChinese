@@ -13,28 +13,21 @@ export default {
   data() {
     return {
       isAvailable: false,
-      hasNotification: false,
-      tabName: ""
+      hasNotification: false
     };
   },
   computed: {
     isCurrentTab() {
       return this.tab.isOpen && Theme.currentName() !== "S9";
+    },
+    tabName() {
+      return this.tab.name;
     }
   },
   methods: {
     update() {
       this.isAvailable = this.tab.isAvailable;
       this.hasNotification = this.tab.hasNotification;
-      if (this.tabPosition < Pelle.endTabNames.length) {
-        this.tabName = Pelle.transitionText(
-          this.tab.name,
-          Pelle.endTabNames[this.tabPosition],
-          Math.max(Math.min(GameEnd.endState - (this.tab.id) % 4 / 10, 1), 0)
-        );
-      } else {
-        this.tabName = this.tab.name;
-      }
     }
   },
   template: `

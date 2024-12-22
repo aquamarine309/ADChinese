@@ -35,7 +35,6 @@ export default {
         v-if="tabVisibilities[tabPosition]"
         :key="tab.name"
         :tab="tab"
-        :tab-position="tabPosition"
       />
     </template>
   </div>

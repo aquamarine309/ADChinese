@@ -44,7 +44,7 @@ export default {
     >
       <template v-if="isCapped">
         <br>
-        <span>（在 {{ quantify(upgrade.config.costCap) }} 无限点数时达到上限）</span>
+        <span>（在 {{ format(upgrade.config.costCap) }} 无限点数时达到上限）</span>
       </template>
     </InfinityUpgradeButton>
     <PrimaryButton

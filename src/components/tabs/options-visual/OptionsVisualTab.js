@@ -30,16 +30,16 @@ export default {
   computed: {
     sidebarDB: () => GameDatabase.sidebarResources,
     themeLabel() {
-      return `Theme: ${Themes.find(this.theme).displayName()}`;
+      return `主题：${Themes.find(this.theme).displayName()}`;
     },
     notationLabel() {
-      return `Notation: ${this.notation}`;
+      return `记数法：${this.notation}`;
     },
     sidebarLabel() {
       return `Sidebar (Modern UI): ${this.sidebarResource}`;
     },
     UILabel() {
-      return `UI: ${this.$viewModel.newUI ? "Modern" : "Classic"}`;
+      return `UI: ${this.$viewModel.newUI ? "新版" : "旧版"}`;
     }
   },
   watch: {

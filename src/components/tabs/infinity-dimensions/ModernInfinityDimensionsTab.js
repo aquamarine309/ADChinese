@@ -99,17 +99,18 @@ export default {
         无限之力。
         <br>
         <span v-if="!isEC9Running">
-          increased by
+          增加
           <span class="c-infinity-dim-description__accent">{{ formatPow(conversionRate, 2, 3) }}</span>
         </span>
         <span v-else>
-          translated
+          转化
         </span>
-        to a
+        为
+        <span v-if="!isEC9Running">反物质维度</span>
+        <span v-else>时间维度</span>
+        提供
         <span class="c-infinity-dim-description__accent">{{ formatX(dimMultiplier, 2, 1) }}</span>
-        multiplier on all
-        <span v-if="!isEC9Running">Antimatter Dimensions.</span>
-        <span v-else>Time Dimensions due to Eternity Challenge 9.</span>
+        的加成。
       </p>
     </div>
     <div

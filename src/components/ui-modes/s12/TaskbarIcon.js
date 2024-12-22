@@ -17,13 +17,15 @@ export default {
       isAvailable: true,
       isHidden: false,
       hasNotification: false,
-      tabName: "",
       S12Windows,
     };
   },
   computed: {
     isCurrentTab() {
       return this.tab.isOpen && !S12Windows.isMinimised;
+    },
+    tabName() {
+      return this.tab.name;
     }
   },
   methods: {
@@ -31,16 +33,6 @@ export default {
       this.isAvailable = this.tab.isAvailable;
       this.isHidden = this.tab.isHidden;
       this.hasNotification = this.tab.hasNotification;
-      if (this.tabPosition < Pelle.endTabNames.length) {
-        this.tabName = Pelle.transitionText(
-          this.tab.name,
-          Pelle.endTabNames[this.tabPosition],
-          Math.clamp(GameEnd.endState - (this.tab.id % 4) / 10, 0, 1)
-        );
-      } else {
-        this.tabName = this.tab.name;
-      }
-
       S12Windows.tabs.tabButtonPositions[this.tab.id] = this.getSubtabsPosition();
     },
     getSubtabsPosition() {

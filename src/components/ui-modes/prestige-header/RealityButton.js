@@ -45,7 +45,7 @@ export default {
     },
     formatGlyphLevel() {
       if (this.glyphLevel >= 10000) return `符文等级：${formatInt(this.glyphLevel)}`;
-      return `符文等级:：${formatInt(this.glyphLevel)} （下一级进度：${this.nextGlyphPercent}）`;
+      return `符文等级：${formatInt(this.glyphLevel)} （下一级进度：${this.nextGlyphPercent}）`;
     },
     showShardsRate() {
       return this.currentShardsRate;

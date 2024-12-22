@@ -19,20 +19,19 @@ export default {
   },
   computed: {
     resourceStr() {
-      const states = ["Singularity Count", "Condense Count", "Manual Time", "Auto Time"];
+      const states = ["剩余奇点数", "凝聚次数", "手动凝聚用时", "自动凝聚用时"];
       return states[this.resourceVal];
     },
     sortStr() {
-      const states = ["Singularities needed", "Current Completions", "Progress to full completion",
-        "Final Singularities", "Most Recent"];
+      const states = ["所需奇点数量", "解锁次数", "解锁进度百分比", "最终奇点数量", "最近完成"];
       return states[this.sortVal];
     },
     completedStr() {
-      const states = ["First", "Last", "Don't move"];
+      const states = ["最前", "最后", "不移动"];
       return states[this.completedVal];
     },
     orderStr() {
-      const states = ["Ascending", "Descending"];
+      const states = ["升序", "降序"];
       return states[this.orderVal];
     },
   },
@@ -103,7 +102,7 @@ export default {
   template: `
   <ModalWrapper>
     <template #header>
-      Singularity Milestones
+      奇点里程碑
     </template>
     <div
       class="c-modal__confirmation-toggle"
@@ -133,7 +132,7 @@ export default {
         class="c-singularity-milestone-modal-sort-button"
         @click="cycleButton(0)"
       >
-        To Milestone:
+        里程碑显示方式：
         <br>
         {{ resourceStr }}
       </button>
@@ -141,7 +140,7 @@ export default {
         class="c-singularity-milestone-modal-sort-button"
         @click="cycleButton(1)"
       >
-        Sort by:
+        排序方式：
         <br>
         {{ sortStr }}
       </button>
@@ -149,7 +148,7 @@ export default {
         class="c-singularity-milestone-modal-sort-button"
         @click="cycleButton(2)"
       >
-        Completed Milestones:
+        已解锁里程碑：
         <br>
         {{ completedStr }}
       </button>
@@ -157,7 +156,7 @@ export default {
         class="c-singularity-milestone-modal-sort-button"
         @click="cycleButton(3)"
       >
-        Sort Order:
+        大小顺序：
         <br>
         {{ orderStr }}
       </button>

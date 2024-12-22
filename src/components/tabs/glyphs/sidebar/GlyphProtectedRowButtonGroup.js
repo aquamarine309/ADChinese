@@ -58,8 +58,7 @@ export default {
       >
         ?
       </div>
-      保护格：
-（{{ formatInt(protectedRows) }} 行）
+      保护格：{{ formatInt(protectedRows) }} 行）
     </div>
     <button
       :class="addRowButtonClass()"

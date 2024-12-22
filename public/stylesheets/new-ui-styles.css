@@ -448,7 +448,7 @@ body.t-s12 {
 
 .btn-big-crunch {
   z-index: 1;
-  font-family: Typewriter;
+  font-family: Typewriter, serif;
   font-size: 5rem;
   color: var(--color-infinity);
   background-color: black;
@@ -703,7 +703,7 @@ body.t-s12 {
 }
 
 .o-primary-btn--id-auto {
-  width: 9rem;
+  width: 12rem;
   height: 4.4rem;
 }
 
@@ -730,7 +730,7 @@ body.t-s12 {
 }
 
 .o-primary-btn--buy-td-auto {
-  width: 9rem;
+  width: 12rem;
   height: 4.4rem;
 }
 

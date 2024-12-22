@@ -59,7 +59,7 @@ export default {
       return {
         color: (this.petWithRemembrance === "")
           ? "white"
-          : this.pets.find(pet => pet.pet.name === this.petWithRemembrance).pet.color,
+          : this.pets.find(pet => pet.pet.key === this.petWithRemembrance).pet.color,
       };
     },
     runButtonClassObject() {
@@ -71,7 +71,7 @@ export default {
       };
     },
     runDescription() {
-      return GameDatabase.celestials.descriptions[4].effects().replace(/^\w/u, c => c.toUpperCase()).split("\n");
+      return GameDatabase.celestials.descriptions[4].effects().split("\n");
     },
     memoryDescription() {
       return `Within Ra's Reality, Memory Chunks for Celestial Memories

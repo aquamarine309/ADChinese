@@ -48,16 +48,11 @@ export default {
   template: `
   <ModalWrapper>
     <template #header>
-      Reality Glyph Creation
+      创造现实符文
     </template>
     <div class="c-reality-glyph-creation">
       <div>
-        Create a level {{ formatInt(realityGlyphLevel) }} Reality Glyph.
-        Rarity will always be {{ formatPercents(1) }} and
-        level scales on your current Reality Resource amount (which is all consumed). All other Alchemy Resources will
-        be unaffected. Reality Glyphs have unique effects, some of which are only available with higher level Glyphs.
-        Reality Glyphs can also be sacrificed to increase all Memory Chunk gain. Like Effarig Glyphs,
-        you cannot equip more than one at the same time.
+        消耗所有的“现实”炼金资源，创造一个等级为 {{ formatInt(realityGlyphLevel) }} 的现实符文。该现实符文的稀有度始终为 {{ formatPercents(1) }}, 其等级基于炼金资源“现实”的数量决定。创造现实符文不会影响其它的炼金资源。现实符文具有独特的词条，有些词条只会在等级达到一定数值后出现。你可以献祭现实符文，提高所有记忆块的数量倍率。你只能装备一个现实符文，这一点和鹿颈长符文一样。
       </div>
       <div
         class="o-available-effects-container"
@@ -67,7 +62,7 @@ export default {
           class="o-available-effects"
           data-v-reality-glyph-creation-modal
         >
-          Available Effects:
+          符文词条：
         </div>
         <div
           v-for="(effect, index) in possibleEffects"
@@ -80,19 +75,19 @@ export default {
         v-if="isDoomed"
         :enabled="false"
       >
-        You cannot create Reality Glyphs while Doomed
+        你不能在毁灭的现实中创造现实符文
       </PrimaryButton>
       <PrimaryButton
         v-else-if="realityGlyphLevel !== 0"
         @click="createRealityGlyph"
       >
-        Create a Reality Glyph!
+        创造一个现实符文！
       </PrimaryButton>
       <PrimaryButton
         v-else
         :enabled="false"
       >
-        Reality Glyph level must be higher than {{ formatInt(0) }}
+        现实符文的等级必须大于 {{ formatInt(0) }}
       </PrimaryButton>
     </div>
   </ModalWrapper>

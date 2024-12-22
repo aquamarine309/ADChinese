@@ -111,14 +111,14 @@ export default {
         <PrimaryToggleButton
           v-model="hotkeys"
           class="o-primary-btn--option l-options-grid__button"
-          label="Hotkeys:"
-          on="Enabled"
-          off="Disabled"
+          label="快捷键："
+          on="启用"
+          off="禁用"
         />
         <PrimaryToggleButton
           v-model="automaticTabSwitching"
           class="o-primary-btn--option l-options-grid__button l-toggle-button"
-          label="Switch tabs on some events (e.g. entering challenges):"
+          label="自动切换标签页："
           data-v-options-gameplay-tab
         />
       </div>

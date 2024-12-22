@@ -168,10 +168,10 @@ export default {
                   {{ name }} 的记忆
                 </div>
                 <div class="c-ra-pet-upgrade__tooltip__description">
-                  Gain {{ formatPercents(0.3) }} more Memories
+                  你可以多获得 {{ formatPercents(0.3) }} 的记忆。
                 </div>
                 <div class="c-ra-pet-upgrade__tooltip__footer">
-                  价格：{{ quantify(memoryUpgradeCost, 2, 2) }} 记忆
+                  价格：{{ format(memoryUpgradeCost, 2, 2) }} 记忆
                   <span v-if="memories <= memoryUpgradeCost">
                     {{ nextMemoryUpgradeEstimate }}
                   </span>
@@ -216,7 +216,7 @@ export default {
                   你可以多获得 {{ formatPercents(0.5) }} 的记忆块。
                 </div>
                 <div class="c-ra-pet-upgrade__tooltip__footer">
-                  价格：{{ quantify("Memory", chunkUpgradeCost, 2, 2) }}
+                  价格：{{ format(chunkUpgradeCost, 2, 2) }}
                   <span v-if="memories <= chunkUpgradeCost">
                     {{ nextMemoryChunkUpgradeEstimate }}
                   </span>
@@ -251,10 +251,10 @@ export default {
       </div>
       <div v-if="!isCapped">
         <div>
-          {{ quantify(memoryChunks, 2, 2) }} 记忆块，{{ quantify(memoriesPerSecond, 2, 2) }} 记忆/秒
+          {{ format(memoryChunks, 2, 2) }} 记忆块，{{ format(memoriesPerSecond, 2, 2) }} 记忆/秒
         </div>
         <div>
-          获得 {{ quantify(memoryChunksPerSecond, 2, 2) }} 记忆块/每秒
+          获得 {{ format(memoryChunksPerSecond, 2, 2) }} 记忆块/每秒
           <span :ach-tooltip="chunkTooltip">
             <i class="fas fa-question-circle" />
           </span>

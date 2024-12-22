@@ -43,7 +43,7 @@ export default {
       return ui.view.shiftDown;
     },
     name() {
-      return `${TimeDimension(this.tier).shortDisplayName} Time Dimension`;
+      return `${TimeDimension(this.tier).shortDisplayName}时间维度`;
     },
     buttonContents() {
       if (this.showTTCost) return this.formattedTTCost;
@@ -145,7 +145,7 @@ export default {
         v-if="areAutobuyersUnlocked"
         v-model="isAutobuyerOn"
         class="o-primary-btn--buy-td-auto"
-        label="Auto:"
+        label="自动："
       />
       <PrimaryButton
         v-else
@@ -153,7 +153,7 @@ export default {
         class="o-primary-btn--buy-td-auto"
         @click="buyMaxTimeDimension"
       >
-        Buy Max
+        购买最大数量
       </PrimaryButton>
     </div>
   </div>

@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       isSmall: 0,
+      amount: ""
     };
   },
   computed: {
@@ -35,14 +36,18 @@ export default {
     },
     showPercentage() {
       return player.options.showHintText.showPercentage || ui.view.shiftDown;
-    },
-
+    }
   },
   methods: {
     update() {
       // Needs to be reactive or else rows that don't have changing values (eg. the highest dimension and any higher
       // locked ones) won't change layout when the window size changes
       this.isSmall = window.innerWidth < 1573;
+      this.amount = Pelle.transitionText(
+          this.amountText,
+          Pelle.endTabNames[this.tier - 1],
+          Math.clamp(GameEnd.endState - (this.tier % 4) / 10, 0, 1)
+        );
     },
     adjustableTextClass() {
       return {
@@ -81,7 +86,7 @@ export default {
         class="c-dim-row__large"
         data-v-generic-dimension-row-text
       >
-        {{ amountText }}
+        {{ amount }}
       </span>
       <span
         v-if="rate.neq(0) && showPercentage"

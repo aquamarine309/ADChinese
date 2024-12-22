@@ -43,9 +43,9 @@ export default {
           class="c-pelle-strike-dropdown"
           data-v-pelle-strike
         >
-          <span>Penalty: {{ strike.penalty }}</span>
+          <span>削弱：{{ strike.penalty }}</span>
           <br>
-          <span>Reward: {{ strikeReward }}</span>
+          <span>奖励：{{ strikeReward }}</span>
         </div>
       </template>
     </ExpandingControlBox>

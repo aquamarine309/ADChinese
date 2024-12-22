@@ -270,7 +270,7 @@ export default {
                 {{ timeDisplayShort(storedBlackHole) }}
               </div>
               <div>
-                {{ isStoringBlackHole ? "Charging Black Hole": "Charge Black Hole" }}
+                {{ isStoringBlackHole ? "正在充能黑洞": "充能黑洞" }}
               </div>
             </button>
             <button

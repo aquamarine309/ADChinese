@@ -43,7 +43,7 @@ export default {
       return ui.view.shiftDown;
     },
     name() {
-      return `${TimeDimension(this.tier).shortDisplayName} Time Dimension`;
+      return `${TimeDimension(this.tier).shortDisplayName}时间维度`;
     },
     buttonContents() {
       if (this.showTTCost) {
@@ -54,7 +54,7 @@ export default {
     tooltipContents() {
       if (this.showTTCost) return `${this.formattedEPCost}<br>${this.timeEstimate}`;
       if (this.isCapped) return `Nameless prevents the purchase of more than ${format(1)} Time Dimension`;
-      return `已购买 ${quantifyInt(this.bought)} 次`;
+      return `已购买 ${formatInt(this.bought)} 次`;
     },
     showRow() {
       return this.realityUnlocked || this.isUnlocked || this.requirementReached;
@@ -153,7 +153,7 @@ export default {
         v-if="areAutobuyersUnlocked"
         v-model="isAutobuyerOn"
         class="o-primary-btn--buy-td-auto"
-        label="Auto:"
+        label="自动："
       />
       <PrimaryButton
         v-else
@@ -161,7 +161,7 @@ export default {
         class="o-primary-btn--buy-td-auto"
         @click="buyMaxTimeDimension"
       >
-        Buy Max
+        购买最大数量
       </PrimaryButton>
     </div>
   </div>

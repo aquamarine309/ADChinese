@@ -22,11 +22,10 @@ export default {
     infoTooltip() {
       return this.isLaitela
         ? "The physics of this Reality do not allow Black Hole Inversion"
-        : "Black Hole must be paused to activate Inversion";
+        : "需要两个永久启动的黑洞，且它们都在暂停状态";
     },
     reqLockText() {
-      return `Inversion strength cannot be modified due to Lock for
-        "${ImaginaryUpgrade(24).name}"`;
+      return `由于“${ImaginaryUpgrade(24).name}”的锁定，反转强度不能被修改。`;
     }
   },
   methods: {
@@ -65,8 +64,8 @@ export default {
       data-v-black-hole-charging-sliders
     >
       <b>
-        Inverted Black Hole divides game speed by {{ format(negativeBHDivisor, 2, 2) }}.
-        (Currently {{ isInverted ? "active" : "inactive" }}<span
+        反转黑洞后，游戏速度变为原来的 1/{{ format(negativeBHDivisor, 2, 2) }}。
+        （ 当前{{ isInverted ? "已启动" : "冷却中" }}<span
           v-if="negativeSlider !== 0 && !isInverted"
           :ach-tooltip="infoTooltip"
         >
@@ -74,7 +73,7 @@ export default {
             class="fas fa-question-circle l-margin-left"
             data-v-black-hole-charging-sliders
           />
-        </span>)
+        </span>）
       </b>
       <SliderComponent
         v-if="!isDisabled"

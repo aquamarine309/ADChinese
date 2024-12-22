@@ -7,8 +7,6 @@ import { Quotes } from "../quotes.js";
 
 import wordShift from "../../word-shift.js";
 
-import zalgo from "./zalgo.js";
-
 
 const disabledMechanicUnlocks = {
   achievements: () => ({}),
@@ -346,10 +344,10 @@ export const Pelle = {
         str += from[idx];
       }
     }
-    return zalgo(str, Math.floor(stage ** 2 * 7));
+    return str;
   },
 
-  endTabNames: "End Is Nigh Destruction Is Imminent Help Us Good Bye Forever".split(" "),
+  endTabNames: ["预言石上", "血痕现", "星河倒悬", "月无光", "莫问何处", "寻生路", "轮回尽头", "万物殇"],
 
   quotes: Quotes.pelle,
 };

@@ -62,8 +62,8 @@ export default {
     lastOpened() {
       const ms = Date.now() - this.player.lastUpdate;
       return this.isFromFuture
-        ? `This save is from ${TimeSpan.fromMilliseconds(-ms).toString()} in the future.`
-        : `This save was last opened ${TimeSpan.fromMilliseconds(ms).toString()} ago.`;
+        ? `这个存档来自 ${TimeSpan.fromMilliseconds(-ms).toString()} 后的未来。`
+        : `这个存档上次打开的时间为 ${TimeSpan.fromMilliseconds(ms).toString()} 前。`;
     },
     offlineType() {
       // We update here in the computed method instead of elsewhere because otherwise it initializes the text
@@ -143,7 +143,7 @@ export default {
     :show-confirm="false"
   >
     <template #header>
-      Input your save
+      输入你的存档。
     </template>
     <input
       ref="input"
@@ -161,21 +161,21 @@ export default {
         <div v-if="fileName">
           File name: {{ fileName }}
         </div>
-        <div>Antimatter: {{ formatPostBreak(antimatter, 2, 1) }}</div>
+        <div>反物质：{{ formatPostBreak(antimatter, 2, 1) }}</div>
         <div v-if="progress.isInfinityUnlocked">
-          Infinities: {{ formatPostBreak(infinities, 2) }}
+          无限次数：{{ formatPostBreak(infinities, 2) }}
         </div>
         <div v-if="progress.isEternityUnlocked">
-          Eternities: {{ formatPostBreak(player.eternities, 2) }}
+          永恒次数：{{ formatPostBreak(player.eternities, 2) }}
         </div>
         <div v-if="progress.isRealityUnlocked">
-          Realities: {{ formatPostBreak(player.realities, 2) }}
+          现实次数：{{ formatPostBreak(player.realities, 2) }}
         </div>
         <div v-if="progress.hasFullCompletion">
-          Full game completions: {{ formatInt(player.records.fullGameCompletions) }}
+          通关次数：{{ formatInt(player.records.fullGameCompletions) }}
         </div>
         <div class="c-modal-import__warning">
-          (Your current save file will be overwritten!)
+          这将覆盖你当前的游戏进度！
         </div>
         <br>
         <div>
@@ -190,7 +190,7 @@ export default {
         </div>
       </template>
       <div v-else-if="hasInput">
-        Not a valid save:
+        存档无效：
         <br>
         {{ saveCheckString }}
       </div>
@@ -216,7 +216,7 @@ export default {
       class="o-primary-btn--width-medium c-modal-message__okay-btn c-modal__confirm-btn"
       @click="importSave"
     >
-      Import
+      导入
     </PrimaryButton>
   </ModalWrapperChoice>
   `

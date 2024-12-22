@@ -14,8 +14,7 @@ export default {
     return {
       isAvailable: false,
       hasNotification: false,
-      isCurrentSubtab: false,
-      tabName: ""
+      isCurrentSubtab: false
     };
   },
   computed: {
@@ -30,17 +29,15 @@ export default {
         "o-tab-btn--celestial": this.parentName === "Celestials"
       };
     },
+    tabName() {
+      return this.subtab.name;
+    }
   },
   methods: {
     update() {
       this.isAvailable = this.subtab.isAvailable;
       this.hasNotification = this.subtab.hasNotification;
       this.isCurrentSubtab = this.subtab.isOpen && Theme.currentName() !== "S9";
-      this.tabName = Pelle.transitionText(
-        this.subtab.name,
-        this.subtab.name,
-        Math.max(Math.min(GameEnd.endState - (this.subtab.id) % 4 / 10, 1), 0)
-      );
     }
   },
   template: `
