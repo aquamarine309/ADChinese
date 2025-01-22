@@ -442,8 +442,9 @@ export const normalAchievements = [
   {
     id: 71,
     name: "错误909：找不到维度",
-    description: () =>
-      `在第二反物质维度自动购买器挑战（挑战2）中，仅有 ${formatInt(1)} 个第一维度且没有其他维度、维度提升和反物质星系时达到无限。`,
+    get description() {
+      return `在第二反物质维度自动购买器挑战（挑战2）中，仅有 ${formatInt(1)} 个第一维度且没有其他维度、维度提升和反物质星系时达到无限。`
+    },
     checkRequirement: () =>
       NormalChallenge(2).isOnlyActiveChallenge &&
       AntimatterDimension(1).amount.eq(1) &&
