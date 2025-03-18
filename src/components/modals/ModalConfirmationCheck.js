@@ -1,38 +1,38 @@
 export default {
-  name: "ModalConfirmationCheck",
+  name: 'ModalConfirmationCheck',
   props: {
     option: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      setting: true
-    };
+      setting: true,
+    }
   },
   computed: {
     confirmation() {
-      return ConfirmationTypes[this.option];
+      return ConfirmationTypes[this.option]
     },
     confirmationClass() {
       return {
-        "c-modal__confirmation-toggle__checkbox": true,
-        "c-modal__confirmation-toggle__checkbox--active": !this.setting
-      };
+        'c-modal__confirmation-toggle__checkbox': true,
+        'c-modal__confirmation-toggle__checkbox--active': !this.setting,
+      }
     },
     tooltipText() {
-      return `${this.setting ? "Disable" : "Reenable"} the ${this.confirmation.name} confirmation`;
+      return `${this.setting ? '禁用' : '重新启用'}${this.confirmation.name}确认`
     },
   },
   created() {
-    this.setting = this.confirmation.option;
+    this.setting = this.confirmation.option
   },
   methods: {
     toggle() {
-      this.setting = !this.setting;
-      this.confirmation.option = this.setting;
-    }
+      this.setting = !this.setting
+      this.confirmation.option = this.setting
+    },
   },
   template: `
   <div
@@ -49,8 +49,8 @@ export default {
       </div>
     </div>
     <span class="c-modal__confirmation-toggle__text">
-      Don't show this message again
+      别再显示这条信息了
     </span>
   </div>
-  `
-};
+  `,
+}

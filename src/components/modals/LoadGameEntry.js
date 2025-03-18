@@ -1,44 +1,44 @@
-import PrimaryButton from "../PrimaryButton.js";
+import PrimaryButton from '../PrimaryButton.js'
 
 export default {
-  name: "LoadGameEntry",
+  name: 'LoadGameEntry',
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   props: {
     saveId: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
-    const save = GameStorage.saves[this.saveId];
+    const save = GameStorage.saves[this.saveId]
     return {
       antimatter: new Decimal(save ? save.antimatter || save.money : 10),
-      fileName: save ? save.options.saveFileName : ""
-    };
+      fileName: save ? save.options.saveFileName : '',
+    }
   },
   computed: {
     isSelected() {
-      return GameStorage.currentSlot === this.saveId;
-    }
+      return GameStorage.currentSlot === this.saveId
+    },
   },
   methods: {
     load() {
-      GameStorage.loadSlot(this.saveId);
+      GameStorage.loadSlot(this.saveId)
     },
     formatAntimatter(antimatter) {
-      return formatPostBreak(antimatter, 2, 1);
+      return formatPostBreak(antimatter, 2, 1)
     },
     update() {
       if (this.isSelected) {
-        this.antimatter.copyFrom(Currency.antimatter);
+        this.antimatter.copyFrom(Currency.antimatter)
       }
-    }
+    },
   },
   template: `
   <div class="l-modal-options__save-record">
-    <h3>存档 #{{ saveId + 1 }}：<span v-if="isSelected"> (selected)</span></h3>
+    <h3>存档 #{{ saveId + 1 }}：<span v-if="isSelected"> (已选择)</span></h3>
     <span v-if="fileName">文件名称：{{ fileName }}</span>
     <span>反物质：{{ formatAntimatter(antimatter) }}</span>
     <PrimaryButton
@@ -48,5 +48,5 @@ export default {
       加载
     </PrimaryButton>
   </div>
-  `
-};
+  `,
+}

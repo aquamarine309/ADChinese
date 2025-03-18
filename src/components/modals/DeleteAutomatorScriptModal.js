@@ -1,48 +1,48 @@
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
+import ModalWrapperChoice from './ModalWrapperChoice.js'
 
 export default {
-  name: "DeleteAutomatorScriptModal",
+  name: 'DeleteAutomatorScriptModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     scriptID: {
       type: [String, Number],
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     handleYesClick() {
-      const script = this.scriptID;
-      const runningScriptID = AutomatorBackend.state.topLevelScript;
+      const script = this.scriptID
+      const runningScriptID = AutomatorBackend.state.topLevelScript
 
-      AutomatorBackend.deleteScript(script);
+      AutomatorBackend.deleteScript(script)
 
-      const scriptList = Object.values(player.reality.automator.scripts).map(sc => ({
+      const scriptList = Object.values(player.reality.automator.scripts).map((sc) => ({
         id: sc.id,
         name: sc.name,
-      }));
+      }))
       if (AutomatorBackend.isOn && runningScriptID !== script) {
-        player.reality.automator.state.editorScript = runningScriptID;
+        player.reality.automator.state.editorScript = runningScriptID
       } else {
         // AutomatorBackend.deleteScript will create an empty script if necessary
-        player.reality.automator.state.editorScript = scriptList[0].id;
+        player.reality.automator.state.editorScript = scriptList[0].id
       }
-      AutomatorData.clearUndoData();
-      EventHub.dispatch(GAME_EVENT.AUTOMATOR_SAVE_CHANGED);
+      AutomatorData.clearUndoData()
+      EventHub.dispatch(GAME_EVENT.AUTOMATOR_SAVE_CHANGED)
     },
   },
   template: `
   <ModalWrapperChoice @confirm="handleYesClick">
     <template #header>
-      Delete this script
+      删除这个脚本
     </template>
     <div class="c-modal-message__text">
-      Please confirm your desire to delete this Automator script.
+      请确认你想删除脚本
     </div>
     <template #confirm-text>
-      Delete
+      删除
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

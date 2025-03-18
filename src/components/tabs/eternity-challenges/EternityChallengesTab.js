@@ -1,13 +1,13 @@
-import ChallengeGrid from "../../ChallengeGrid.js";
-import ChallengeTabHeader from "../../ChallengeTabHeader.js";
-import EternityChallengeBox from "./EternityChallengeBox.js";
+import ChallengeGrid from '../../ChallengeGrid.js'
+import ChallengeTabHeader from '../../ChallengeTabHeader.js'
+import EternityChallengeBox from './EternityChallengeBox.js'
 
 export default {
-  name: "EternityChallengesTab",
+  name: 'EternityChallengesTab',
   components: {
     ChallengeTabHeader,
     ChallengeGrid,
-    EternityChallengeBox
+    EternityChallengeBox,
   },
   data() {
     return {
@@ -20,54 +20,44 @@ export default {
       untilNextEC: TimeSpan.zero,
       untilAllEC: TimeSpan.zero,
       hasECR: false,
-    };
+    }
   },
   computed: {
     challenges() {
-      return EternityChallenges.all;
+      return EternityChallenges.all
     },
     upgradeLockNameText() {
-      return RealityUpgrade(12).isLockingMechanics
-        ? RealityUpgrade(12).name
-        : ImaginaryUpgrade(15).name;
+      return RealityUpgrade(12).isLockingMechanics ? RealityUpgrade(12).name : ImaginaryUpgrade(15).name
     },
     nextECText() {
-      return this.untilNextEC.totalMilliseconds === 0 && !this.autoEC
-        ? "Immediately upon unpausing"
-        : `${this.untilNextEC} (real time)`;
+      return this.untilNextEC.totalMilliseconds === 0 && !this.autoEC ? 'Immediately upon unpausing' : `${this.untilNextEC} (real time)`
     },
     allECText() {
-      return this.untilAllEC.totalMilliseconds === 0 && !this.autoEC
-        ? "Immediately upon unpausing"
-        : `After ${this.untilAllEC} (real time)`;
-    }
+      return this.untilAllEC.totalMilliseconds === 0 && !this.autoEC ? 'Immediately upon unpausing' : `After ${this.untilAllEC} (real time)`
+    },
   },
   methods: {
     update() {
-      this.showAllChallenges = player.options.showAllChallenges;
-      this.unlockedCount = EternityChallenges.all
-        .filter(this.isChallengeVisible)
-        .length;
-      this.isAutoECVisible = Perk.autocompleteEC1.canBeApplied;
-      this.autoEC = player.reality.autoEC;
-      const shouldPreventEC7 = TimeDimension(1).amount.gt(0);
-      this.hasUpgradeLock = RealityUpgrade(12).isLockingMechanics ||
-        (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7 &&
-          !Array.range(1, 6).some(ec => !EternityChallenge(ec).isFullyCompleted));
-      const remainingCompletions = EternityChallenges.remainingCompletions;
-      this.remainingECTiers = remainingCompletions;
+      this.showAllChallenges = player.options.showAllChallenges
+      this.unlockedCount = EternityChallenges.all.filter(this.isChallengeVisible).length
+      this.isAutoECVisible = Perk.autocompleteEC1.canBeApplied
+      this.autoEC = player.reality.autoEC
+      const shouldPreventEC7 = TimeDimension(1).amount.gt(0)
+      this.hasUpgradeLock =
+        RealityUpgrade(12).isLockingMechanics || (ImaginaryUpgrade(15).isLockingMechanics && shouldPreventEC7 && !Array.range(1, 6).some((ec) => !EternityChallenge(ec).isFullyCompleted))
+      const remainingCompletions = EternityChallenges.remainingCompletions
+      this.remainingECTiers = remainingCompletions
       if (remainingCompletions !== 0) {
-        const autoECInterval = EternityChallenges.autoComplete.interval;
-        const untilNextEC = Math.max(autoECInterval - player.reality.lastAutoEC, 0);
-        this.untilNextEC.setFrom(untilNextEC);
-        this.untilAllEC.setFrom(untilNextEC + (autoECInterval * (remainingCompletions - 1)));
+        const autoECInterval = EternityChallenges.autoComplete.interval
+        const untilNextEC = Math.max(autoECInterval - player.reality.lastAutoEC, 0)
+        this.untilNextEC.setFrom(untilNextEC)
+        this.untilAllEC.setFrom(untilNextEC + autoECInterval * (remainingCompletions - 1))
       }
-      this.hasECR = Perk.studyECRequirement.isBought;
+      this.hasECR = Perk.studyECRequirement.isBought
     },
     isChallengeVisible(challenge) {
-      return challenge.completions > 0 || challenge.isUnlocked || challenge.hasUnlocked ||
-        (this.showAllChallenges && PlayerProgress.realityUnlocked());
-    }
+      return challenge.completions > 0 || challenge.isUnlocked || challenge.hasUnlocked || (this.showAllChallenges && PlayerProgress.realityUnlocked())
+    },
   },
   template: `
   <div class="l-challenges-tab">
@@ -98,19 +88,19 @@ export default {
       </div>
     </div>
     <div>
-      Complete Eternity Challenges again for a bigger reward, maximum of {{ formatInt(5) }} times.<br>
-      The rewards are applied permanently with no need to have the respective Eternity Challenge Time Study purchased.
+      再次完成永恒挑战以获得更大的奖励，最多不超过 {{ formatInt(5) }} 次。<br/> 奖励永久有效，无需购买对应的时间研究。
     </div>
-    <div v-if="!hasECR">
-      When you respec out of an unlocked Eternity Challenge, you don't need to redo the secondary requirement<br>
-      in order to unlock it again until you complete it; only the Time Theorems are required.
+<div v-if="!hasECR">
+      当你重置已解锁的永恒挑战时，无需重新完成次要条件<br>
+      即可再次解锁，直至完成该挑战；仅需时间定理即可。
     </div>
     <div v-if="unlockedCount !== 12">
-      You have seen {{ formatInt(unlockedCount) }} out of {{ formatInt(12) }} Eternity Challenges.
+      已查看{{ formatInt(unlockedCount) }}个，共{{ formatInt(12) }}个永恒挑战。
     </div>
     <div v-else>
-      You have seen all {{ formatInt(12) }} Eternity Challenges.
+      已查看全部{{ formatInt(12) }}个永恒挑战。
     </div>
+    <br/>
     <ChallengeGrid
       v-slot="{ challenge }"
       :challenges="challenges"
@@ -119,5 +109,5 @@ export default {
       <EternityChallengeBox :challenge="challenge" />
     </ChallengeGrid>
   </div>
-  `
-};
+  `,
+}

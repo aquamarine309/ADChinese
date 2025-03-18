@@ -1,11 +1,11 @@
-import { Laitela } from "../../../core/globals.js";
+import { Laitela } from '../../../core/globals.js'
 
-import SliderComponent from "../../SliderComponent.js";
+import SliderComponent from '../../SliderComponent.js'
 
 export default {
-  name: "BlackHoleChargingSliders",
+  name: 'BlackHoleChargingSliders',
   components: {
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
@@ -16,44 +16,39 @@ export default {
       negativeBHDivisor: 1,
       maxNegativeBlackHole: 300,
       isDisabled: false,
-    };
+    }
   },
   computed: {
     infoTooltip() {
-      return this.isLaitela
-        ? "The physics of this Reality do not allow Black Hole Inversion"
-        : "需要两个永久启动的黑洞，且它们都在暂停状态";
+      return this.isLaitela ? 'The physics of this Reality do not allow Black Hole Inversion' : '需要两个永久启动的黑洞，且它们都在暂停状态'
     },
     reqLockText() {
-      return `由于“${ImaginaryUpgrade(24).name}”的锁定，反转强度不能被修改。`;
-    }
+      return `由于“${ImaginaryUpgrade(24).name}”的锁定，反转强度不能被修改。`
+    },
   },
   methods: {
     update() {
-      this.isNegativeBHUnlocked = V.isFlipped && BlackHoles.arePermanent;
-      this.isInverted = BlackHoles.areNegative;
-      this.isLaitela = Laitela.isRunning;
-      this.negativeSlider = -Math.log10(player.blackHoleNegative);
-      this.negativeBHDivisor = Math.pow(10, this.negativeSlider);
-      const maxInversion = player.requirementChecks.reality.slowestBH <= 1e-300;
-      this.isDisabled = ImaginaryUpgrade(24).isLockingMechanics && Ra.isRunning && maxInversion;
+      this.isNegativeBHUnlocked = V.isFlipped && BlackHoles.arePermanent
+      this.isInverted = BlackHoles.areNegative
+      this.isLaitela = Laitela.isRunning
+      this.negativeSlider = -Math.log10(player.blackHoleNegative)
+      this.negativeBHDivisor = Math.pow(10, this.negativeSlider)
+      const maxInversion = player.requirementChecks.reality.slowestBH <= 1e-300
+      this.isDisabled = ImaginaryUpgrade(24).isLockingMechanics && Ra.isRunning && maxInversion
     },
     adjustSliderNegative(value) {
-      this.negativeSlider = value;
-      player.blackHoleNegative = Math.pow(10, -this.negativeSlider);
-      player.requirementChecks.reality.slowestBH = Math.max(
-        player.requirementChecks.reality.slowestBH,
-        player.blackHoleNegative
-      );
+      this.negativeSlider = value
+      player.blackHoleNegative = Math.pow(10, -this.negativeSlider)
+      player.requirementChecks.reality.slowestBH = Math.max(player.requirementChecks.reality.slowestBH, player.blackHoleNegative)
     },
     sliderProps(negative) {
       return {
         min: 0,
         max: negative ? this.maxNegativeBlackHole : 990,
         interval: 1,
-        width: "55rem",
-        tooltip: false
-      };
+        width: '55rem',
+        tooltip: false,
+      }
     },
   },
   template: `
@@ -90,9 +85,9 @@ export default {
         {{ reqLockText }}
       </div>
       <br>
-      Inverting the Black Hole only affects its own speedup, no other upgrades or effects, although
-      it will also indirectly affect the Effarig Game speed power effect.
+      反转黑洞只会影响其自身的速度提升，不会影响其他升级或效果。
+      但它也会间接影响鹿颈长现实中的游戏速度指数效果。
     </div>
   </div>
-  `
-};
+  `,
+}

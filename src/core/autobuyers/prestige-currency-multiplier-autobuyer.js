@@ -1,42 +1,42 @@
-import { AutobuyerState } from "./autobuyer.js";
+import { AutobuyerState } from './autobuyer.js'
 
 export class IPMultAutobuyerState extends AutobuyerState {
   get data() {
-    return player.auto.ipMultBuyer;
+    return player.auto.ipMultBuyer
   }
 
   get name() {
-    return `Infinity Point Multiplier`;
+    return `无限点数倍增`
   }
 
   get isUnlocked() {
-    return EternityMilestone.autobuyerIPMult.isReached && !Pelle.isDoomed;
+    return EternityMilestone.autobuyerIPMult.isReached && !Pelle.isDoomed
   }
 
   get hasUnlimitedBulk() {
-    return true;
+    return true
   }
 
   tick() {
-    InfinityUpgrade.ipMult.buyMax();
+    InfinityUpgrade.ipMult.buyMax()
   }
 }
 
 export class EPMultAutobuyerState extends AutobuyerState {
   get data() {
-    return player.auto.epMultBuyer;
+    return player.auto.epMultBuyer
   }
 
   get name() {
-    return `Eternity Point Multiplier`;
+    return `永恒点数乘数`
   }
 
   get isUnlocked() {
-    return RealityUpgrade(13).isBought && !Pelle.isDoomed;
+    return RealityUpgrade(13).isBought && !Pelle.isDoomed
   }
 
   get hasUnlimitedBulk() {
-    return true;
+    return true
   }
 
   tick() {
@@ -44,8 +44,8 @@ export class EPMultAutobuyerState extends AutobuyerState {
     // call this from the TD autobuyers in order to make sure this is executed before TDs are purchased. Simply
     // reordering the autobuyer call order is undesirable because much of the codebase relies on autobuyers being
     // grouped as they are, and many other autobuyers in the 5xEP group must execute *after* dimensions
-    if (!this.isActive) return;
-    applyEU2();
-    EternityUpgrade.epMult.buyMax(true);
+    if (!this.isActive) return
+    applyEU2()
+    EternityUpgrade.epMult.buyMax(true)
   }
 }

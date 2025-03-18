@@ -1,33 +1,33 @@
-import ImaginaryUpgradeButton from "./ImaginaryUpgradeButton.js";
+import ImaginaryUpgradeButton from './ImaginaryUpgradeButton.js'
 
 export default {
-  name: "ImaginaryUpgradesTab",
+  name: 'ImaginaryUpgradesTab',
   components: {
-    ImaginaryUpgradeButton
+    ImaginaryUpgradeButton,
   },
   data() {
     return {
       baseRMCap: new Decimal(),
       capRM: new Decimal(),
       scaleTime: 0,
-      capStr: "",
-    };
+      capStr: '',
+    }
   },
   computed: {
     upgrades: () => ImaginaryUpgrades.all,
-    lockTooltip: () => `Requirement locks only prevent manual and automated actions. Any related upgrades
-      will not be disabled and may still cause requirements to be failed.`,
+    lockTooltip: () => `需求锁定只能防止手动和自动操作。任何相关的升级不会被禁用，仍有可能导致需求失败。
+`,
   },
   methods: {
     update() {
-      this.baseRMCap.copyFrom(MachineHandler.baseRMCap);
-      this.capRM.copyFrom(MachineHandler.hardcapRM);
-      this.scaleTime = MachineHandler.scaleTimeForIM;
-      this.capStr = formatMachines(MachineHandler.hardcapRM, MachineHandler.currentIMCap);
+      this.baseRMCap.copyFrom(MachineHandler.baseRMCap)
+      this.capRM.copyFrom(MachineHandler.hardcapRM)
+      this.scaleTime = MachineHandler.scaleTimeForIM
+      this.capStr = formatMachines(MachineHandler.hardcapRM, MachineHandler.currentIMCap)
     },
     id(row, column) {
-      return (row - 1) * 5 + column - 1;
-    }
+      return (row - 1) * 5 + column - 1
+    },
   },
   template: `
   <div class="l-reality-upgrade-grid">
@@ -69,5 +69,5 @@ export default {
       />
     </div>
   </div>
-  `
-};
+  `,
+}

@@ -1,11 +1,11 @@
-import InfinityDimensionRow from "./ModernInfinityDimensionRow.js";
-import PrimaryButton from "../../PrimaryButton.js";
+import InfinityDimensionRow from './ModernInfinityDimensionRow.js'
+import PrimaryButton from '../../PrimaryButton.js'
 
 export default {
-  name: "ModernInfinityDimensionsTab",
+  name: 'ModernInfinityDimensionsTab',
   components: {
     PrimaryButton,
-    InfinityDimensionRow
+    InfinityDimensionRow,
   },
   data() {
     return {
@@ -28,51 +28,51 @@ export default {
       extraTesseracts: 0,
       creditsClosed: false,
       showLockedDimCostNote: true,
-    };
+    }
   },
   computed: {
     tesseractCountString() {
-      const extra = this.extraTesseracts > 0 ? ` + ${format(this.extraTesseracts, 2, 2)}` : "";
-      return `${formatInt(this.boughtTesseracts)}${extra}`;
+      const extra = this.extraTesseracts > 0 ? ` + ${format(this.extraTesseracts, 2, 2)}` : ''
+      return `${formatInt(this.boughtTesseracts)}${extra}`
     },
   },
   methods: {
     update() {
-      this.showLockedDimCostNote = !InfinityDimension(8).isUnlocked;
-      this.isEC9Running = EternityChallenge(9).isRunning;
-      this.infinityPower.copyFrom(Currency.infinityPower);
-      this.conversionRate = InfinityDimensions.powerConversionRate;
+      this.showLockedDimCostNote = !InfinityDimension(8).isUnlocked
+      this.isEC9Running = EternityChallenge(9).isRunning
+      this.infinityPower.copyFrom(Currency.infinityPower)
+      this.conversionRate = InfinityDimensions.powerConversionRate
       if (this.isEC9Running) {
-        this.dimMultiplier.copyFrom(Decimal.pow(Math.max(this.infinityPower.log2(), 1), 4).max(1));
+        this.dimMultiplier.copyFrom(Decimal.pow(Math.max(this.infinityPower.log2(), 1), 4).max(1))
       } else {
-        this.dimMultiplier.copyFrom(this.infinityPower.pow(this.conversionRate).max(1));
+        this.dimMultiplier.copyFrom(this.infinityPower.pow(this.conversionRate).max(1))
       }
-      this.powerPerSecond.copyFrom(InfinityDimension(1).productionPerSecond);
-      this.isEC7Running = EternityChallenge(7).isRunning;
-      this.isEC8Running = EternityChallenge(8).isRunning;
+      this.powerPerSecond.copyFrom(InfinityDimension(1).productionPerSecond)
+      this.isEC7Running = EternityChallenge(7).isRunning
+      this.isEC8Running = EternityChallenge(8).isRunning
       if (this.isEC8Running) {
-        this.EC8PurchasesLeft = player.eterc8ids;
+        this.EC8PurchasesLeft = player.eterc8ids
       }
-      this.isEnslavedRunning = Enslaved.isRunning;
-      this.isAnyAutobuyerUnlocked = Autobuyer.infinityDimension(1).isUnlocked;
-      this.nextDimCapIncrease = Tesseracts.nextTesseractIncrease;
-      this.tesseractCost.copyFrom(Tesseracts.nextCost);
-      this.totalDimCap = InfinityDimensions.totalDimCap;
-      this.canBuyTesseract = Tesseracts.canBuyTesseract;
-      this.enslavedCompleted = Enslaved.isCompleted;
-      this.boughtTesseracts = Tesseracts.bought;
-      this.extraTesseracts = Tesseracts.extra;
-      this.creditsClosed = GameEnd.creditsEverClosed;
+      this.isEnslavedRunning = Enslaved.isRunning
+      this.isAnyAutobuyerUnlocked = Autobuyer.infinityDimension(1).isUnlocked
+      this.nextDimCapIncrease = Tesseracts.nextTesseractIncrease
+      this.tesseractCost.copyFrom(Tesseracts.nextCost)
+      this.totalDimCap = InfinityDimensions.totalDimCap
+      this.canBuyTesseract = Tesseracts.canBuyTesseract
+      this.enslavedCompleted = Enslaved.isCompleted
+      this.boughtTesseracts = Tesseracts.bought
+      this.extraTesseracts = Tesseracts.extra
+      this.creditsClosed = GameEnd.creditsEverClosed
     },
     maxAll() {
-      InfinityDimensions.buyMax();
+      InfinityDimensions.buyMax()
     },
     toggleAllAutobuyers() {
-      toggleAllInfDims();
+      toggleAllInfDims()
     },
     buyTesseract() {
-      Tesseracts.buyTesseract();
-    }
+      Tesseracts.buyTesseract()
+    },
   },
   template: `
   <div class="l-infinity-dim-tab">
@@ -89,7 +89,7 @@ export default {
         class="o-primary-btn--subtab-option"
         @click="toggleAllAutobuyers"
       >
-        自动购买器切换状态
+        自动购买器状态切换
       </PrimaryButton>
     </div>
     <div>
@@ -154,8 +154,8 @@ export default {
       />
     </div>
     <div v-if="showLockedDimCostNote">
-      Hold shift to see the Infinity Point cost for locked Infinity Dimensions.
+      按住shift查看解锁新无限维度所需的无限点数
     </div>
   </div>
-  `
-};
+  `,
+}

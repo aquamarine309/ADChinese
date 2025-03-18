@@ -1,23 +1,23 @@
-import CostDisplay from "../../CostDisplay.js";
-import DescriptionDisplay from "../../DescriptionDisplay.js";
-import EffectDisplay from "../../EffectDisplay.js";
-import HintText from "../../HintText.js";
-import PrimaryToggleButton from "../../PrimaryToggleButton.js";
+import CostDisplay from '../../CostDisplay.js'
+import DescriptionDisplay from '../../DescriptionDisplay.js'
+import EffectDisplay from '../../EffectDisplay.js'
+import HintText from '../../HintText.js'
+import PrimaryToggleButton from '../../PrimaryToggleButton.js'
 
 export default {
-  name: "ImaginaryUpgradeButton",
+  name: 'ImaginaryUpgradeButton',
   components: {
     PrimaryToggleButton,
     DescriptionDisplay,
     EffectDisplay,
     CostDisplay,
-    HintText
+    HintText,
   },
   props: {
     upgrade: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -28,63 +28,63 @@ export default {
       isPossible: false,
       isAutoUnlocked: false,
       isAutobuyerOn: false,
-      etaText: "",
+      etaText: '',
       canBeLocked: false,
       hasRequirementLock: false,
-    };
+    }
   },
   computed: {
     config() {
-      return this.upgrade.config;
+      return this.upgrade.config
     },
     classObject() {
       return {
-        "c-reality-upgrade-btn--useless": this.upgrade.pelleDisabled,
-        "c-reality-upgrade-btn--bought": this.isBought && !this.upgrade.pelleDisabled,
-        "c-reality-upgrade-btn--unavailable": !this.isBought && !this.canBeBought && this.isAvailableForPurchase,
-        "c-reality-upgrade-btn--possible": !this.isAvailableForPurchase && this.isPossible,
-        "c-reality-upgrade-btn--locked": !this.isAvailableForPurchase && !this.isPossible,
-      };
+        'c-reality-upgrade-btn--useless': this.upgrade.pelleDisabled,
+        'c-reality-upgrade-btn--bought': this.isBought && !this.upgrade.pelleDisabled,
+        'c-reality-upgrade-btn--unavailable': !this.isBought && !this.canBeBought && this.isAvailableForPurchase,
+        'c-reality-upgrade-btn--possible': !this.isAvailableForPurchase && this.isPossible,
+        'c-reality-upgrade-btn--locked': !this.isAvailableForPurchase && !this.isPossible,
+      }
     },
     requirementConfig() {
       return {
-        description: this.config.requirement
-      };
+        description: this.config.requirement,
+      }
     },
     canLock() {
-      return this.config.canLock && !(this.isAvailableForPurchase || this.isBought);
+      return this.config.canLock && !(this.isAvailableForPurchase || this.isBought)
     },
     isDoomed: () => Pelle.isDoomed,
   },
   watch: {
     isAutobuyerOn(newValue) {
-      Autobuyer.imaginaryUpgrade(this.upgrade.id).isActive = newValue;
-    }
+      Autobuyer.imaginaryUpgrade(this.upgrade.id).isActive = newValue
+    },
   },
   methods: {
     update() {
-      const upgrade = this.upgrade;
-      this.isAvailableForPurchase = upgrade.isAvailableForPurchase;
-      this.canBeBought = upgrade.canBeBought;
-      this.isRebuyable = upgrade.isRebuyable;
-      this.isBought = !upgrade.isRebuyable && upgrade.isBought;
-      this.isPossible = upgrade.isPossible;
-      this.isAutoUnlocked = ImaginaryUpgrade(20).canBeApplied;
-      this.canBeLocked = upgrade.config.canLock && !this.isAvailableForPurchase;
-      this.hasRequirementLock = upgrade.hasPlayerLock;
-      if (this.isRebuyable) this.isAutobuyerOn = Autobuyer.imaginaryUpgrade(upgrade.id).isActive;
-      this.etaText = this.getETAText();
+      const upgrade = this.upgrade
+      this.isAvailableForPurchase = upgrade.isAvailableForPurchase
+      this.canBeBought = upgrade.canBeBought
+      this.isRebuyable = upgrade.isRebuyable
+      this.isBought = !upgrade.isRebuyable && upgrade.isBought
+      this.isPossible = upgrade.isPossible
+      this.isAutoUnlocked = ImaginaryUpgrade(20).canBeApplied
+      this.canBeLocked = upgrade.config.canLock && !this.isAvailableForPurchase
+      this.hasRequirementLock = upgrade.hasPlayerLock
+      if (this.isRebuyable) this.isAutobuyerOn = Autobuyer.imaginaryUpgrade(upgrade.id).isActive
+      this.etaText = this.getETAText()
     },
     getETAText() {
-      if (this.canBeBought || !this.isAvailableForPurchase || this.isBought || Pelle.isDoomed) return "";
-      const time = MachineHandler.estimateIMTimer(this.upgrade.cost);
-      if (isFinite(time)) return TimeSpan.fromSeconds(time).toString();
-      return "Never affordable";
+      if (this.canBeBought || !this.isAvailableForPurchase || this.isBought || Pelle.isDoomed) return ''
+      const time = MachineHandler.estimateIMTimer(this.upgrade.cost)
+      if (isFinite(time)) return TimeSpan.fromSeconds(time).toString()
+      return '永远无法购买'
     },
     toggleLock(upgrade) {
-      if (this.isRebuyable) return;
-      upgrade.toggleMechanicLock();
-    }
+      if (this.isRebuyable) return
+      upgrade.toggleMechanicLock()
+    },
   },
   template: `
   <div
@@ -147,5 +147,5 @@ export default {
       class="l--spoon-btn-group__little-spoon-reality-btn o-primary-btn--reality-upgrade-toggle"
     />
   </div>
-  `
-};
+  `,
+}

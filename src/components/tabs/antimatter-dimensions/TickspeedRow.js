@@ -1,5 +1,5 @@
 export default {
-  name: "TickspeedRow",
+  name: 'TickspeedRow',
   data() {
     return {
       purchasedTickspeed: 0,
@@ -16,60 +16,61 @@ export default {
       hasTutorial: false,
       hasRealityButton: false,
       isEC9: false,
-    };
+    }
   },
   computed: {
     classObject() {
       return {
-        "l-tickspeed-container": true,
-        "l-tickspeed-container--hidden": !this.isVisible
-      };
+        'l-tickspeed-container': true,
+        'l-tickspeed-container--hidden': !this.isVisible,
+      }
     },
     multiplierDisplay() {
-      if (InfinityChallenge(3).isRunning) return `所有反物质维度获得乘
-        ${formatX(1.05 + this.galaxyCount * 0.005, 3, 3)} 加成`;
-      const tickmult = this.mult;
-      return `${formatX(tickmult.reciprocal(), 2, 3)} faster / upgrade.`;
+      if (InfinityChallenge(3).isRunning)
+        return `所有反物质维度获得乘
+        ${formatX(1.05 + this.galaxyCount * 0.005, 3, 3)} 加成`
+      const tickmult = this.mult
+      return `计数频率增加 ${formatX(tickmult.reciprocal(), 2, 3)}  / 单次升级`
     },
     tickspeedDisplay() {
-      return `计数频率：${format(this.tickspeed, 2, 3)} / 秒`;
+      return `计数频率：${format(this.tickspeed, 2, 3)} / 秒`
     },
     continuumString() {
-      return formatFloat(this.continuumValue, 2);
+      return formatFloat(this.continuumValue, 2)
     },
     upgradeCount() {
-      const purchased = this.purchasedTickspeed;
-      if (!this.freeTickspeed) return `已购买 ${formatInt(purchased)} 个`;
-      if (purchased === 0 || this.isContinuumActive) return `${formatInt(this.freeTickspeed)} 个免费升级`;
-      return `购买的 ${formatInt(purchased)} 个 + 免费的 ${formatInt(this.freeTickspeed)} 个`;
-    }
+      const purchased = this.purchasedTickspeed
+      if (!this.freeTickspeed) return `已购买 ${formatInt(purchased)} 个`
+      if (purchased === 0 || this.isContinuumActive) return `${formatInt(this.freeTickspeed)} 个免费升级`
+      return `购买的 ${formatInt(purchased)} 个 + 免费的 ${formatInt(this.freeTickspeed)} 个`
+    },
   },
   methods: {
     update() {
-      this.hasRealityButton = PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought;
-      this.purchasedTickspeed = player.totalTickBought;
-      this.freeTickspeed = FreeTickspeed.amount;
-      this.isEC9 = EternityChallenge(9).isRunning;
-      this.isVisible = Tickspeed.isUnlocked || this.isEC9;
-      if (!this.isVisible) return;
-      this.mult.copyFrom(Tickspeed.multiplier);
-      this.cost.copyFrom(Tickspeed.cost);
-      this.isAffordable = Tickspeed.isAvailableForPurchase && Tickspeed.isAffordable;
-      this.tickspeed.copyFrom(Tickspeed.perSecond);
-      this.gameSpeedMult = getGameSpeedupForDisplay();
-      this.galaxyCount = player.galaxies;
-      this.isContinuumActive = Laitela.continuumActive;
-      if (this.isContinuumActive) this.continuumValue = Tickspeed.continuumValue;
-      this.hasTutorial = Tutorial.isActive(TUTORIAL_STATE.TICKSPEED);
+      this.hasRealityButton = PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought
+      this.purchasedTickspeed = player.totalTickBought
+      this.freeTickspeed = FreeTickspeed.amount
+      this.isEC9 = EternityChallenge(9).isRunning
+      this.isVisible = Tickspeed.isUnlocked || this.isEC9
+      if (!this.isVisible) return
+      this.mult.copyFrom(Tickspeed.multiplier)
+      this.cost.copyFrom(Tickspeed.cost)
+      this.isAffordable = Tickspeed.isAvailableForPurchase && Tickspeed.isAffordable
+      this.tickspeed.copyFrom(Tickspeed.perSecond)
+      this.gameSpeedMult = getGameSpeedupForDisplay()
+      this.galaxyCount = player.galaxies
+      this.isContinuumActive = Laitela.continuumActive
+      if (this.isContinuumActive) this.continuumValue = Tickspeed.continuumValue
+      this.hasTutorial = Tutorial.isActive(TUTORIAL_STATE.TICKSPEED)
     },
     buttonClass() {
       return {
-        "o-primary-btn": true,
-        "tickspeed-btn": true,
-        "o-primary-btn--disabled": !this.isAffordable && !this.isContinuumActive,
-        "o-non-clickable o-continuum": this.isContinuumActive,
-        "tutorial--glow": this.isAffordable && this.hasTutorial
-      };
+        'o-primary-btn': true,
+        'tickspeed-btn': true,
+        'o-primary-btn--disabled': !this.isAffordable && !this.isContinuumActive,
+        'o-non-clickable o-continuum': this.isContinuumActive,
+        'tutorial--glow': this.isAffordable && this.hasTutorial,
+      }
     },
   },
   template: `
@@ -119,5 +120,5 @@ export default {
       {{ tickspeedDisplay }} | {{ multiplierDisplay }}
     </div>
   </div>
-  `
-};
+  `,
+}

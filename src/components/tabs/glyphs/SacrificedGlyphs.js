@@ -1,11 +1,11 @@
-import { DC } from "../../../core/constants.js";
+import { DC } from '../../../core/constants.js'
 
-import TypeSacrifice from "./TypeSacrifice.js";
+import TypeSacrifice from './TypeSacrifice.js'
 
 export default {
-  name: "SacrificedGlyphs",
+  name: 'SacrificedGlyphs',
   components: {
-    TypeSacrifice
+    TypeSacrifice,
   },
   data() {
     return {
@@ -16,93 +16,93 @@ export default {
       maxSacrifice: 0,
       teresaMult: 0,
       lastMachinesTeresa: new Decimal(0),
-    };
+    }
   },
   computed: {
-    types: () => GLYPH_TYPES.filter(type => type !== "cursed" && type !== "companion"),
+    types: () => GLYPH_TYPES.filter((type) => type !== 'cursed' && type !== 'companion'),
     lastMachines() {
-      return this.lastMachinesTeresa.lt(DC.E10000)
-        ? `${format(this.lastMachinesTeresa, 2)} 现实机器`
-        : `${format(this.lastMachinesTeresa.dividedBy(DC.E10000), 2)} 虚幻机器`;
+      return this.lastMachinesTeresa.lt(DC.E10000) ? `${format(this.lastMachinesTeresa, 2)} 现实机器` : `${format(this.lastMachinesTeresa.dividedBy(DC.E10000), 2)} 虚幻机器`
     },
     dropDownIconClass() {
-      return this.hideAlteration ? "far fa-plus-square" : "far fa-minus-square";
+      return this.hideAlteration ? 'far fa-plus-square' : 'far fa-minus-square'
     },
     isDoomed() {
-      return Pelle.isDoomed;
+      return Pelle.isDoomed
     },
     addThreshold() {
-      return GlyphAlteration.additionThreshold;
+      return GlyphAlteration.additionThreshold
     },
     empowerThreshold() {
-      return GlyphAlteration.empowermentThreshold;
+      return GlyphAlteration.empowermentThreshold
     },
     boostThreshold() {
-      return GlyphAlteration.boostingThreshold;
+      return GlyphAlteration.boostingThreshold
     },
     cosmeticTypes: () => CosmeticGlyphTypes,
     addStyle() {
-      return { color: GlyphAlteration.baseAdditionColor() };
+      return { color: GlyphAlteration.baseAdditionColor() }
     },
     empowerStyle() {
-      return { color: GlyphAlteration.baseEmpowermentColor() };
+      return { color: GlyphAlteration.baseEmpowermentColor() }
     },
     boostStyle() {
-      return { color: GlyphAlteration.baseBoostColor() };
+      return { color: GlyphAlteration.baseBoostColor() }
     },
     hasSeenRealityGlyph() {
-      return player.reality.glyphs.createdRealityGlyph;
-    }
+      return player.reality.glyphs.createdRealityGlyph
+    },
   },
   created() {
     this.on$(GAME_EVENT.GLYPH_VISUAL_CHANGE, () => {
-      this.$recompute("cosmeticTypes");
-    });
+      this.$recompute('cosmeticTypes')
+    })
   },
   methods: {
     update() {
-      this.anySacrifices = GameCache.logTotalGlyphSacrifice !== 0;
-      this.hasAlteration = Ra.unlocks.alteredGlyphs.canBeApplied;
-      this.hideAlteration = player.options.hideAlterationEffects;
-      this.maxSacrifice = GlyphSacrificeHandler.maxSacrificeForEffects;
-      this.teresaMult = Teresa.runRewardMultiplier;
-      this.lastMachinesTeresa.copyFrom(player.celestials.teresa.lastRepeatedMachines);
+      this.anySacrifices = GameCache.logTotalGlyphSacrifice !== 0
+      this.hasAlteration = Ra.unlocks.alteredGlyphs.canBeApplied
+      this.hideAlteration = player.options.hideAlterationEffects
+      this.maxSacrifice = GlyphSacrificeHandler.maxSacrificeForEffects
+      this.teresaMult = Teresa.runRewardMultiplier
+      this.lastMachinesTeresa.copyFrom(player.celestials.teresa.lastRepeatedMachines)
     },
     dragover(event) {
-      if (Pelle.isDoomed) return;
-      if (!event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) return;
-      event.preventDefault();
-      this.hasDragover = true;
+      if (Pelle.isDoomed) return
+      if (!event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) return
+      event.preventDefault()
+      this.hasDragover = true
     },
     dragleave(event) {
       if (
         this.isDoomed ||
         !event.relatedTarget ||
         !event.relatedTarget.classList ||
-        event.relatedTarget.classList.contains("c-current-glyph-effects") ||
-        event.relatedTarget.classList.contains("c-sacrificed-glyphs__header") ||
-        event.relatedTarget.classList.contains("l-sacrificed-glyphs__type") ||
-        event.relatedTarget.classList.contains("l-sacrificed-glyphs__type-symbol") ||
-        event.relatedTarget.classList.contains("l-sacrificed-glyphs__type-amount") ||
-        event.relatedTarget.classList.contains("c-sacrificed-glyphs__type-new-amount") ||
-        event.relatedTarget.classList.length === 0) return;
-      this.hasDragover = false;
+        event.relatedTarget.classList.contains('c-current-glyph-effects') ||
+        event.relatedTarget.classList.contains('c-sacrificed-glyphs__header') ||
+        event.relatedTarget.classList.contains('l-sacrificed-glyphs__type') ||
+        event.relatedTarget.classList.contains('l-sacrificed-glyphs__type-symbol') ||
+        event.relatedTarget.classList.contains('l-sacrificed-glyphs__type-amount') ||
+        event.relatedTarget.classList.contains('c-sacrificed-glyphs__type-new-amount') ||
+        event.relatedTarget.classList.length === 0
+      )
+        return
+      this.hasDragover = false
     },
     drop(event) {
-      if (this.isDoomed || !event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) return;
-      const id = parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10);
-      if (isNaN(id)) return;
-      const glyph = Glyphs.findById(id);
-      if (!glyph) return;
-      GlyphSacrificeHandler.sacrificeGlyph(glyph, true);
-      this.hasDragover = false;
+      if (this.isDoomed || !event.dataTransfer.types.includes(GLYPH_MIME_TYPE)) return
+      const id = parseInt(event.dataTransfer.getData(GLYPH_MIME_TYPE), 10)
+      if (isNaN(id)) return
+      const glyph = Glyphs.findById(id)
+      if (!glyph) return
+      GlyphSacrificeHandler.sacrificeGlyph(glyph, true)
+      this.hasDragover = false
     },
     toggleAlteration() {
-      player.options.hideAlterationEffects = !player.options.hideAlterationEffects;
+      player.options.hideAlterationEffects = !player.options.hideAlterationEffects
     },
     glyphSymbol(type) {
-      return this.cosmeticTypes[type].currentSymbol.symbol;
-    }
+      return this.cosmeticTypes[type].currentSymbol.symbol
+    },
   },
   template: `
   <div
@@ -120,7 +120,7 @@ export default {
         
       </span>
       <span v-else>
-        <div>Drag Glyphs here or shift-click to Sacrifice.</div>
+        <div>拖拽符文到此或按住Shift键点击进行献祭</div>
         <div>确认提示可在设置或按住Ctrl键禁用</div>
       </span>
     </div>
@@ -148,7 +148,7 @@ export default {
           <span :style="boostStyle">{{ format(boostThreshold) }} - 基于符文献祭，提供额外加成</span>
         </b>
         <br><br>
-        All effects from Glyph Sacrifice can no longer be increased once they reach {{ format(maxSacrifice) }}.
+        符文献祭值到达{{ format(maxSacrifice) }}后无法进行献祭。
       </div>
     </div>
     <br>
@@ -157,10 +157,10 @@ export default {
     </div>
     <div v-if="anySacrifices && !isDoomed">
       <div v-if="teresaMult > 1">
-        Glyph sacrifice values are multiplied by {{ formatX(teresaMult, 2, 2) }};
-        Teresa was last done at {{ lastMachines }}.
+       符文献祭值乘数为： {{ formatX(teresaMult, 2, 2) }};
+        上次特蕾莎中的现实机器数值为： {{ lastMachines }}.
         <span v-if="hasSeenRealityGlyph">
-          Reality Glyphs are unaffected by this multiplier and have no altered effects.
+          现实符文不受乘数和异变影响
         </span>
       </div>
       <template v-for="type in types">
@@ -175,11 +175,11 @@ export default {
       v-else-if="isDoomed"
       class="pelle-current-glyph-effects"
     >
-      All boosts from Glyph Sacrifice are disabled while Doomed, including changes to effects due to Altered Glyphs.
+      在被毁灭的现实中，禁用符文献祭和异变符文的效果。
     </div>
     <div v-else>
       你还没有献祭任何符文！
     </div>
   </div>
-  `
-};
+  `,
+}

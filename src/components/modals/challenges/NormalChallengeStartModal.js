@@ -1,51 +1,50 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "NormalChallengeStartModal",
+  name: 'NormalChallengeStartModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     id: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     challenge() {
-      return NormalChallenge(this.id);
+      return NormalChallenge(this.id)
     },
     challengeIsCompleted() {
-      return this.challenge.isCompleted;
+      return this.challenge.isCompleted
     },
     message() {
-      return `You will Big Crunch (if possible) and start a new Infinity within the Challenge with all the
-        Challenge-specific restrictions and modifiers active.
-        To complete the Challenge${this.challengeIsCompleted ? "" : " and gain its reward"},
-        you must reach Infinity again.
-        You do not start with any Dimension Boosts or Galaxies, regardless of upgrades.`;
+      return `你将进行大坍缩（如果可能），并在挑战中开始一次新的无限，同时激活所有挑战特定的限制和修改。
+        要完成挑战${this.challengeIsCompleted ? '' : '并获得奖励'}，
+        你必须再次达到无限。
+        无论拥有何种升级，你都不会以任何维度提升或星系开始。`
     },
     entranceLabel() {
-      return `You are about to enter Challenge ${this.id}`;
+      return `你即将进入挑战 ${this.id}`
     },
     reward() {
-      return `The reward for completing this challenge is: ${this.challenge._config.reward}`;
+      return `完成此挑战的奖励是：${this.challenge._config.reward}`
     },
     condition() {
-      let conditionOfChallenge = this.challenge._config.description;
-      if (typeof conditionOfChallenge === "function") {
-        conditionOfChallenge = conditionOfChallenge();
+      let conditionOfChallenge = this.challenge._config.description
+      if (typeof conditionOfChallenge === 'function') {
+        conditionOfChallenge = conditionOfChallenge()
       }
-      return `Inside this Challenge, ${conditionOfChallenge}`;
-    }
+      return `在此挑战中，${conditionOfChallenge}`
+    },
   },
   created() {
-    this.on$(GAME_EVENT.ETERNITY_RESET_AFTER, this.emitClose);
-    this.on$(GAME_EVENT.REALITY_RESET_AFTER, this.emitClose);
+    this.on$(GAME_EVENT.ETERNITY_RESET_AFTER, this.emitClose)
+    this.on$(GAME_EVENT.REALITY_RESET_AFTER, this.emitClose)
   },
   methods: {
     handleYesClick() {
-      this.challenge.start();
+      this.challenge.start()
     },
   },
   template: `
@@ -69,8 +68,8 @@ export default {
       {{ reward }}
     </div>
     <template #confirm-text>
-      Begin
+      开始
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

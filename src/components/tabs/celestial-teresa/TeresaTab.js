@@ -1,17 +1,17 @@
-import { DC } from "../../../core/constants.js";
+import { DC } from '../../../core/constants.js'
 
-import CelestialQuoteHistory from "../../CelestialQuoteHistory.js";
-import CustomizeableTooltip from "../../CustomizeableTooltip.js";
-import GlyphSetPreview from "../../GlyphSetPreview.js";
-import PerkShopUpgradeButton from "./PerkShopUpgradeButton.js";
+import CelestialQuoteHistory from '../../CelestialQuoteHistory.js'
+import CustomizeableTooltip from '../../CustomizeableTooltip.js'
+import GlyphSetPreview from '../../GlyphSetPreview.js'
+import PerkShopUpgradeButton from './PerkShopUpgradeButton.js'
 
 export default {
-  name: "TeresaTab",
+  name: 'TeresaTab',
   components: {
     GlyphSetPreview,
     PerkShopUpgradeButton,
     CelestialQuoteHistory,
-    CustomizeableTooltip
+    CustomizeableTooltip,
   },
   data() {
     return {
@@ -20,8 +20,8 @@ export default {
       pouredAmount: 0,
       isPouredAmountCapped: false,
       rm: new Decimal(0),
-      percentage: "",
-      possibleFillPercentage: "",
+      percentage: '',
+      possibleFillPercentage: '',
       rmMult: 0,
       bestAM: new Decimal(0),
       bestAMSet: [],
@@ -34,108 +34,99 @@ export default {
       raisedPerkShop: false,
       isRunning: false,
       canUnlockNextPour: false,
-    };
+    }
   },
   computed: {
     unlockInfos: () => TeresaUnlocks.all,
     pouredAmountCap: () => Teresa.pouredAmountCap,
     showRunReward() {
-      return this.bestAM.gt(1);
+      return this.bestAM.gt(1)
     },
     upgrades() {
-      const upgrades = [
-        PerkShopUpgrade.glyphLevel,
-        PerkShopUpgrade.rmMult,
-        PerkShopUpgrade.bulkDilation,
-        PerkShopUpgrade.autoSpeed,
-        PerkShopUpgrade.musicGlyph,
-      ];
-      if (this.raisedPerkShop) upgrades.push(PerkShopUpgrade.fillMusicGlyph);
-      return upgrades;
+      const upgrades = [PerkShopUpgrade.glyphLevel, PerkShopUpgrade.rmMult, PerkShopUpgrade.bulkDilation, PerkShopUpgrade.autoSpeed, PerkShopUpgrade.musicGlyph]
+      if (this.raisedPerkShop) upgrades.push(PerkShopUpgrade.fillMusicGlyph)
+      return upgrades
     },
     runButtonClassObject() {
       return {
-        "c-teresa-run-button__icon": true,
-        "c-teresa-run-button__icon--running": this.isRunning,
-        "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
-      };
+        'c-teresa-run-button__icon': true,
+        'c-teresa-run-button__icon--running': this.isRunning,
+        'c-celestial-run-button--clickable': !this.isDoomed,
+        'o-pelle-disabled-pointer': this.isDoomed,
+      }
     },
     pourButtonClassObject() {
       return {
-        "o-teresa-shop-button": true,
-        "c-teresa-pour": true,
-        "o-teresa-shop-button--available": !this.isPouredAmountCapped,
-        "o-teresa-shop-button--capped": this.isPouredAmountCapped,
-        "c-teresa-pour--unlock-available": this.canUnlockNextPour,
-        "c-disabled-pour": this.isPouredAmountCapped
-      };
+        'o-teresa-shop-button': true,
+        'c-teresa-pour': true,
+        'o-teresa-shop-button--available': !this.isPouredAmountCapped,
+        'o-teresa-shop-button--capped': this.isPouredAmountCapped,
+        'c-teresa-pour--unlock-available': this.canUnlockNextPour,
+        'c-disabled-pour': this.isPouredAmountCapped,
+      }
     },
     pourText() {
-      return this.isPouredAmountCapped ? "已填充满" : "进贡现实机器";
+      return this.isPouredAmountCapped ? '已填充满' : '进贡现实机器'
     },
     runDescription() {
-      return GameDatabase.celestials.descriptions[0].effects();
+      return GameDatabase.celestials.descriptions[0].effects()
     },
     lastMachinesString() {
-      return this.lastMachines.lt(DC.E10000)
-        ? `${format(this.lastMachines, 2)} 现实机器`
-        : `${format(this.lastMachines.dividedBy(DC.E10000), 2)} 虚幻机器`;
+      return this.lastMachines.lt(DC.E10000) ? `${format(this.lastMachines, 2)} 现实机器` : `${format(this.lastMachines.dividedBy(DC.E10000), 2)} 虚幻机器`
     },
     unlockInfoTooltipArrowStyle() {
       return {
-        borderRight: "0.5rem solid var(--color-teresa--base)"
-      };
+        borderRight: '0.5rem solid var(--color-teresa--base)',
+      }
     },
     isDoomed: () => Pelle.isDoomed,
   },
   methods: {
     update() {
-      const now = new Date().getTime();
+      const now = new Date().getTime()
       if (this.pour) {
-        const diff = (now - this.time) / 1000;
-        Teresa.pourRM(diff);
+        const diff = (now - this.time) / 1000
+        Teresa.pourRM(diff)
       } else {
-        Teresa.timePoured = 0;
+        Teresa.timePoured = 0
       }
-      this.time = now;
-      this.pouredAmount = player.celestials.teresa.pouredAmount;
-      this.isPouredAmountCapped = this.pouredAmount === this.pouredAmountCap;
-      this.percentage = `${(Teresa.fill * 100).toFixed(2)}%`;
-      this.possibleFillPercentage = `${(Teresa.possibleFill * 100).toFixed(2)}%`;
-      this.rmMult = Teresa.rmMultiplier;
-      this.hasReality = TeresaUnlocks.run.isUnlocked;
-      this.hasEPGen = TeresaUnlocks.epGen.isUnlocked;
-      this.hasPerkShop = TeresaUnlocks.shop.isUnlocked;
-      this.raisedPerkShop = Ra.unlocks.perkShopIncrease.canBeApplied;
-      this.bestAM.copyFrom(player.celestials.teresa.bestRunAM);
-      this.bestAMSet = Glyphs.copyForRecords(player.celestials.teresa.bestAMSet);
-      this.lastMachines.copyFrom(player.celestials.teresa.lastRepeatedMachines);
-      this.runReward = Teresa.runRewardMultiplier;
-      this.perkPoints = Currency.perkPoints.value;
-      this.rm.copyFrom(Currency.realityMachines);
-      this.isRunning = Teresa.isRunning;
-      this.canUnlockNextPour = TeresaUnlocks.all
-        .filter(unlock => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0;
+      this.time = now
+      this.pouredAmount = player.celestials.teresa.pouredAmount
+      this.isPouredAmountCapped = this.pouredAmount === this.pouredAmountCap
+      this.percentage = `${(Teresa.fill * 100).toFixed(2)}%`
+      this.possibleFillPercentage = `${(Teresa.possibleFill * 100).toFixed(2)}%`
+      this.rmMult = Teresa.rmMultiplier
+      this.hasReality = TeresaUnlocks.run.isUnlocked
+      this.hasEPGen = TeresaUnlocks.epGen.isUnlocked
+      this.hasPerkShop = TeresaUnlocks.shop.isUnlocked
+      this.raisedPerkShop = Ra.unlocks.perkShopIncrease.canBeApplied
+      this.bestAM.copyFrom(player.celestials.teresa.bestRunAM)
+      this.bestAMSet = Glyphs.copyForRecords(player.celestials.teresa.bestAMSet)
+      this.lastMachines.copyFrom(player.celestials.teresa.lastRepeatedMachines)
+      this.runReward = Teresa.runRewardMultiplier
+      this.perkPoints = Currency.perkPoints.value
+      this.rm.copyFrom(Currency.realityMachines)
+      this.isRunning = Teresa.isRunning
+      this.canUnlockNextPour = TeresaUnlocks.all.filter((unlock) => this.rm.plus(this.pouredAmount).gte(unlock.price) && !unlock.isUnlocked).length > 0
     },
     startRun() {
-      if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Teresa's", number: 0 });
+      if (this.isDoomed) return
+      Modal.celestials.show({ name: '特蕾莎的', number: 0 })
     },
     unlockDescriptionHeight(unlockInfo) {
-      const maxPrice = TeresaUnlocks[Teresa.lastUnlock].price;
-      const pos = Math.log1p(unlockInfo.price) / Math.log1p(maxPrice);
-      return `calc(${(100 * pos).toFixed(2)}% - 0.1rem)`;
+      const maxPrice = TeresaUnlocks[Teresa.lastUnlock].price
+      const pos = Math.log1p(unlockInfo.price) / Math.log1p(maxPrice)
+      return `calc(${(100 * pos).toFixed(2)}% - 0.1rem)`
     },
     hasUnlock(unlockInfo) {
-      return unlockInfo.isUnlocked;
+      return unlockInfo.isUnlocked
     },
     unlockInfoTooltipClass(unlockInfo) {
       return {
-        "c-teresa-unlock-description": true,
-        "c-teresa-unlock-description--unlocked": this.hasUnlock(unlockInfo)
-      };
-    }
+        'c-teresa-unlock-description': true,
+        'c-teresa-unlock-description--unlocked': this.hasUnlock(unlockInfo),
+      }
+    },
   },
   template: `
   <div class="l-teresa-celestial-tab">
@@ -161,7 +152,7 @@ export default {
           {{ runDescription }}
           <br><br>
           <div>
-            This Reality can be repeated for a stronger reward based on the antimatter gained within it.
+            基于在其中获取的反物质数量，这个现实可以被重复击败以获取更强的奖励
             <br><br>
             <span v-if="showRunReward">
               
@@ -256,7 +247,7 @@ export default {
           :key="upgrade.id"
           :upgrade="upgrade"
         />
-        You can now modify the appearance of your Glyphs to look like Music Glyphs.
+        现在您可以修改符文的外观，使其看起来像音乐符文。
       </div>
       <div
         v-else
@@ -264,5 +255,5 @@ export default {
       />
     </div>
   </div>
-  `
-};
+  `,
+}

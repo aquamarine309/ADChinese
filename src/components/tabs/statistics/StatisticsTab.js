@@ -1,10 +1,10 @@
-import { MatterScale } from "./matter-scale.js";
-import PrimaryButton from "../../PrimaryButton.js";
+import { MatterScale } from './matter-scale.js'
+import PrimaryButton from '../../PrimaryButton.js'
 
 export default {
-  name: "StatisticsTab",
+  name: 'StatisticsTab',
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -52,103 +52,100 @@ export default {
       lastMatterTime: 0,
       paperclips: 0,
       fullTimePlayed: 0,
-    };
+    }
   },
   computed: {
     fullGameCompletions() {
-      return player.records.fullGameCompletions;
+      return player.records.fullGameCompletions
     },
     startDate() {
-      return Time.toDateTimeString(player.records.gameCreatedTime);
+      return Time.toDateTimeString(player.records.gameCreatedTime)
     },
     saveAge() {
-      return TimeSpan.fromMilliseconds(this.timeSinceCreation);
+      return TimeSpan.fromMilliseconds(this.timeSinceCreation)
     },
   },
   methods: {
     update() {
-      const records = player.records;
-      this.totalAntimatter.copyFrom(records.totalAntimatter);
-      this.realTimePlayed.setFrom(records.realTimePlayed);
-      this.fullTimePlayed = TimeSpan.fromMilliseconds(records.previousRunRealTime + records.realTimePlayed);
-      this.uniqueNews = NewsHandler.uniqueTickersSeen;
-      this.totalNews = player.news.totalSeen;
-      this.secretAchievementCount = SecretAchievements.all.filter(a => a.isUnlocked).length;
-      this.timeSinceCreation = Date.now() - player.records.gameCreatedTime;
+      const records = player.records
+      this.totalAntimatter.copyFrom(records.totalAntimatter)
+      this.realTimePlayed.setFrom(records.realTimePlayed)
+      this.fullTimePlayed = TimeSpan.fromMilliseconds(records.previousRunRealTime + records.realTimePlayed)
+      this.uniqueNews = NewsHandler.uniqueTickersSeen
+      this.totalNews = player.news.totalSeen
+      this.secretAchievementCount = SecretAchievements.all.filter((a) => a.isUnlocked).length
+      this.timeSinceCreation = Date.now() - player.records.gameCreatedTime
 
-      const progress = PlayerProgress.current;
-      const isInfinityUnlocked = progress.isInfinityUnlocked;
-      const infinity = this.infinity;
-      const bestInfinity = records.bestInfinity;
-      infinity.isUnlocked = isInfinityUnlocked;
+      const progress = PlayerProgress.current
+      const isInfinityUnlocked = progress.isInfinityUnlocked
+      const infinity = this.infinity
+      const bestInfinity = records.bestInfinity
+      infinity.isUnlocked = isInfinityUnlocked
       if (isInfinityUnlocked) {
-        infinity.count.copyFrom(Currency.infinities);
-        infinity.banked.copyFrom(Currency.infinitiesBanked);
-        infinity.projectedBanked = new Decimal(0).plusEffectsOf(
-          Achievement(131).effects.bankedInfinitiesGain,
-          TimeStudy(191)
-        );
-        infinity.bankRate = infinity.projectedBanked.div(Math.clampMin(33, records.thisEternity.time)).times(60000);
-        infinity.hasBest = bestInfinity.time < 999999999999;
-        infinity.best.setFrom(bestInfinity.time);
-        infinity.this.setFrom(records.thisInfinity.time);
-        infinity.bestRate.copyFrom(bestInfinity.bestIPminEternity);
+        infinity.count.copyFrom(Currency.infinities)
+        infinity.banked.copyFrom(Currency.infinitiesBanked)
+        infinity.projectedBanked = new Decimal(0).plusEffectsOf(Achievement(131).effects.bankedInfinitiesGain, TimeStudy(191))
+        infinity.bankRate = infinity.projectedBanked.div(Math.clampMin(33, records.thisEternity.time)).times(60000)
+        infinity.hasBest = bestInfinity.time < 999999999999
+        infinity.best.setFrom(bestInfinity.time)
+        infinity.this.setFrom(records.thisInfinity.time)
+        infinity.bestRate.copyFrom(bestInfinity.bestIPminEternity)
       }
 
-      const isEternityUnlocked = progress.isEternityUnlocked;
-      const eternity = this.eternity;
-      const bestEternity = records.bestEternity;
-      eternity.isUnlocked = isEternityUnlocked;
+      const isEternityUnlocked = progress.isEternityUnlocked
+      const eternity = this.eternity
+      const bestEternity = records.bestEternity
+      eternity.isUnlocked = isEternityUnlocked
       if (isEternityUnlocked) {
-        eternity.count.copyFrom(Currency.eternities);
-        eternity.hasBest = bestEternity.time < 999999999999;
-        eternity.best.setFrom(bestEternity.time);
-        eternity.this.setFrom(records.thisEternity.time);
-        eternity.bestRate.copyFrom(bestEternity.bestEPminReality);
+        eternity.count.copyFrom(Currency.eternities)
+        eternity.hasBest = bestEternity.time < 999999999999
+        eternity.best.setFrom(bestEternity.time)
+        eternity.this.setFrom(records.thisEternity.time)
+        eternity.bestRate.copyFrom(bestEternity.bestEPminReality)
       }
 
-      const isRealityUnlocked = progress.isRealityUnlocked;
-      const reality = this.reality;
-      const bestReality = records.bestReality;
-      reality.isUnlocked = isRealityUnlocked;
+      const isRealityUnlocked = progress.isRealityUnlocked
+      const reality = this.reality
+      const bestReality = records.bestReality
+      reality.isUnlocked = isRealityUnlocked
 
       if (isRealityUnlocked) {
-        reality.count = Math.floor(Currency.realities.value);
-        reality.best.setFrom(bestReality.time);
-        reality.bestReal.setFrom(bestReality.realTime);
-        reality.this.setFrom(records.thisReality.time);
-        reality.totalTimePlayed.setFrom(records.totalTimePlayed);
+        reality.count = Math.floor(Currency.realities.value)
+        reality.best.setFrom(bestReality.time)
+        reality.bestReal.setFrom(bestReality.realTime)
+        reality.this.setFrom(records.thisReality.time)
+        reality.totalTimePlayed.setFrom(records.totalTimePlayed)
         // Real time tracking is only a thing once reality is unlocked:
-        infinity.thisReal.setFrom(records.thisInfinity.realTime);
-        infinity.bankRate = infinity.projectedBanked.div(Math.clampMin(33, records.thisEternity.realTime)).times(60000);
-        eternity.thisReal.setFrom(records.thisEternity.realTime);
-        reality.thisReal.setFrom(records.thisReality.realTime);
-        reality.bestRate.copyFrom(bestReality.RMmin);
-        reality.bestRarity = Math.max(strengthToRarity(bestReality.glyphStrength), 0);
+        infinity.thisReal.setFrom(records.thisInfinity.realTime)
+        infinity.bankRate = infinity.projectedBanked.div(Math.clampMin(33, records.thisEternity.realTime)).times(60000)
+        eternity.thisReal.setFrom(records.thisEternity.realTime)
+        reality.thisReal.setFrom(records.thisReality.realTime)
+        reality.bestRate.copyFrom(bestReality.RMmin)
+        reality.bestRarity = Math.max(strengthToRarity(bestReality.glyphStrength), 0)
       }
-      this.updateMatterScale();
+      this.updateMatterScale()
 
-      this.isDoomed = Pelle.isDoomed;
-      this.realTimeDoomed.setFrom(player.records.realTimeDoomed);
-      this.paperclips = player.news.specialTickerData.paperclips;
+      this.isDoomed = Pelle.isDoomed
+      this.realTimeDoomed.setFrom(player.records.realTimeDoomed)
+      this.paperclips = player.news.specialTickerData.paperclips
     },
     formatDecimalAmount(value) {
-      return value.gt(1e9) ? format(value, 3) : formatInt(Math.floor(value.toNumber()));
+      return value.gt(1e9) ? format(value, 3) : formatInt(Math.floor(value.toNumber()))
     },
     // Only updates once per second to reduce jitter
     updateMatterScale() {
       if (Date.now() - this.lastMatterTime > 1000) {
-        this.matterScale = MatterScale.estimate(Currency.antimatter.value);
-        this.lastMatterTime = Date.now();
+        this.matterScale = MatterScale.estimate(Currency.antimatter.value)
+        this.lastMatterTime = Date.now()
       }
     },
     realityClassObject() {
       return {
-        "c-stats-tab-title": true,
-        "c-stats-tab-reality": !this.isDoomed,
-        "c-stats-tab-doomed": this.isDoomed,
-      };
-    }
+        'c-stats-tab-title': true,
+        'c-stats-tab-reality': !this.isDoomed,
+        'c-stats-tab-doomed': this.isDoomed,
+      }
+    },
   },
   template: `
   <div
@@ -157,7 +154,7 @@ export default {
   >
     <div>
       <PrimaryButton onclick="Modal.catchup.show(0)">
-        View Content Summary
+        显示内容概览
       </PrimaryButton>
       <div
         class="c-stats-tab-title c-stats-tab-general"
@@ -188,7 +185,7 @@ export default {
           你已解锁 {{ formatInt(secretAchievementCount) }} 个隐藏成就。
         </div>
         <div v-if="paperclips">
-          你拥有 {{ formatInt(paperclips) }} 个无用回形针
+          你拥有 {{ formatInt(paperclips) }} 个没用的回形针
         </div>
         <div v-if="fullGameCompletions">
           <br>
@@ -273,7 +270,7 @@ export default {
         永恒后不能获得储存的无限次数。
       </div>
       <div v-if="eternity.hasBest">
-        Your fastest Eternity was {{ eternity.best.toStringShort() }}.
+         你最快的一次永恒花了 {{ eternity.best.toStringShort() }}.
       </div>
       <div v-else>
         你<span v-if="reality.isUnlocked">本次现实中</span>不存在最快的永恒用时。
@@ -325,5 +322,5 @@ export default {
       <br>
     </div>
   </div>
-  `
-};
+  `,
+}

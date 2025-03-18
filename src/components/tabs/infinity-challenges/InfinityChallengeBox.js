@@ -1,42 +1,42 @@
-import ChallengeBox from "../../ChallengeBox.js";
-import DescriptionDisplay from "../../DescriptionDisplay.js";
-import EffectDisplay from "../../EffectDisplay.js";
+import ChallengeBox from '../../ChallengeBox.js'
+import DescriptionDisplay from '../../DescriptionDisplay.js'
+import EffectDisplay from '../../EffectDisplay.js'
 
 export default {
-  name: "InfinityChallengeBox",
+  name: 'InfinityChallengeBox',
   components: {
     ChallengeBox,
     DescriptionDisplay,
-    EffectDisplay
+    EffectDisplay,
   },
   props: {
     challenge: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
       isUnlocked: false,
       isRunning: false,
-      isCompleted: false
-    };
+      isCompleted: false,
+    }
   },
   computed: {
     config() {
-      return this.challenge.config;
+      return this.challenge.config
     },
     name() {
-      return `无限挑战${this.challenge.id}`;
-    }
+      return `无限挑战${this.challenge.id}`
+    },
   },
   methods: {
     update() {
-      const challenge = this.challenge;
-      this.isUnlocked = challenge.isUnlocked;
-      this.isRunning = challenge.isRunning;
-      this.isCompleted = challenge.isCompleted;
-    }
+      const challenge = this.challenge
+      this.isUnlocked = challenge.isUnlocked
+      this.isRunning = challenge.isRunning
+      this.isCompleted = challenge.isCompleted
+    },
   },
   template: `
   <ChallengeBox
@@ -48,11 +48,11 @@ export default {
     @start="challenge.requestStart()"
   >
     <template #top>
-      <DescriptionDisplay :config="config" />
-      <EffectDisplay
-        v-if="isRunning"
-        :config="config"
-      />
+    <DescriptionDisplay :config="config" />
+    <EffectDisplay
+    v-if="isRunning"
+    :config="config"
+    />
     </template>
     <template #bottom>
       <div class="l-challenge-box__bottom--infinity">
@@ -68,5 +68,5 @@ export default {
       </div>
     </template>
   </ChallengeBox>
-  `
-};
+  `,
+}

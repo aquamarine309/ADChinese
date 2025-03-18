@@ -1,13 +1,13 @@
-import PrimaryToggleButton from "../../../PrimaryToggleButton.js";
-import TimeStudySaveLoadButton from "./TimeStudySaveLoadButton.js";
-import TimeTheoremBuyButton from "./TimeTheoremBuyButton.js";
+import PrimaryToggleButton from '../../../PrimaryToggleButton.js'
+import TimeStudySaveLoadButton from './TimeStudySaveLoadButton.js'
+import TimeTheoremBuyButton from './TimeTheoremBuyButton.js'
 
 export default {
-  name: "TimeTheoremShop",
+  name: 'TimeTheoremShop',
   components: {
     PrimaryToggleButton,
     TimeTheoremBuyButton,
-    TimeStudySaveLoadButton
+    TimeStudySaveLoadButton,
   },
   data() {
     return {
@@ -21,120 +21,127 @@ export default {
       budget: {
         am: new Decimal(0),
         ip: new Decimal(0),
-        ep: new Decimal(0)
+        ep: new Decimal(0),
       },
       costs: {
         am: new Decimal(0),
         ip: new Decimal(0),
-        ep: new Decimal(0)
+        ep: new Decimal(0),
       },
       showST: false,
       STamount: 0,
       hasTTGen: false,
       showTTGen: false,
       invertTTgenDisplay: false,
-    };
+    }
   },
   computed: {
     minimized() {
-      return this.minimizeAvailable && this.shopMinimized;
+      return this.minimizeAvailable && this.shopMinimized
     },
     formatTimeTheoremType() {
       if (this.theoremAmount.gte(1e6)) {
-        return format;
+        return format
       }
-      if (!(Teresa.isRunning || Enslaved.isRunning) &&
-        getAdjustedGlyphEffect("dilationTTgen") > 0 && !DilationUpgrade.ttGenerator.isBought) {
-        return formatFloat;
+      if (!(Teresa.isRunning || Enslaved.isRunning) && getAdjustedGlyphEffect('dilationTTgen') > 0 && !DilationUpgrade.ttGenerator.isBought) {
+        return formatFloat
       }
-      return formatInt;
+      return formatInt
     },
     TTgenRateText() {
       if (this.theoremGeneration.lt(1 / 3600)) {
-        return `你每 ${TimeSpan.fromSeconds(
-          this.theoremGeneration.reciprocal().toNumber()).toStringShort(false)} 获得一个时间之理。`;
+        return `你每 ${TimeSpan.fromSeconds(this.theoremGeneration.reciprocal().toNumber()).toStringShort(false)} 获得一个时间之理。`
       }
       if (this.theoremGeneration.lt(0.1)) {
-        return `你每小时获得 ${format(this.theoremGeneration.times(3600), 2, 2)} 时间之理。`;
+        return `你每小时获得 ${format(this.theoremGeneration.times(3600), 2, 2)} 时间之理。`
       }
-      return `你每秒获得 ${format(this.theoremGeneration, 2, 2)} 时间之理。`;
+      return `你每秒获得 ${format(this.theoremGeneration, 2, 2)} 时间之理。`
     },
     totalTimeTheoremText() {
-      return `你拥有 ${this.formatTimeTheoremType(this.totalTimeTheorems, 2, 2)} 时间之理。`;
+      return `你拥有 ${this.formatTimeTheoremType(this.totalTimeTheorems, 2, 2)} 时间之理。`
     },
     minimizeArrowStyle() {
       return {
-        transform: this.minimized ? "rotate(-180deg)" : "",
-        transition: "all 0.25s ease-out"
-      };
+        transform: this.minimized ? 'rotate(-180deg)' : '',
+        transition: 'all 0.25s ease-out',
+      }
     },
     saveLoadText() {
-      return this.$viewModel.shiftDown ? "Save:" : "Load:";
+      return this.$viewModel.shiftDown ? '保存:' : '加载:'
     },
+
     shopBottomRowHeightStyle() {
-      return {
-        height: this.hasTTAutobuyer ? "6.7rem" : "4.4rem",
-      };
-    }
+      /*************  ✨ Codeium Command ⭐  *************/
+      /**
+       * Computes the style for the bottom row height of the shop.
+       *
+       * @returns {Object} An object containing the height property. If the time theorem
+       * autobuyer is owned, the height is set to "6.7rem", otherwise it is "4.4rem".
+       */
+
+      /******  bc414a9f-1a42-4694-8064-07096382fb9e  *******/ return {
+        height: this.hasTTAutobuyer ? '6.7rem' : '4.4rem',
+      }
+    },
   },
   watch: {
     isAutobuyerOn(newValue) {
-      Autobuyer.timeTheorem.isActive = newValue;
+      Autobuyer.timeTheorem.isActive = newValue
     },
     invertTTgenDisplay(newValue) {
-      player.options.invertTTgenDisplay = newValue;
+      player.options.invertTTgenDisplay = newValue
     },
   },
   methods: {
     minimize() {
-      player.timestudy.shopMinimized = !player.timestudy.shopMinimized;
+      player.timestudy.shopMinimized = !player.timestudy.shopMinimized
     },
     formatAM(am) {
-      return `${format(am)} 反物质`;
+      return `${format(am)} AM`
     },
     buyWithAM() {
-      TimeTheorems.buyOne(false, "am");
+      TimeTheorems.buyOne(false, 'am')
     },
     formatIP(ip) {
-      return `${format(ip)} 无限点数`;
+      return `${format(ip)} IP`
     },
     buyWithIP() {
-      TimeTheorems.buyOne(false, "ip");
+      TimeTheorems.buyOne(false, 'ip')
     },
     formatEP(ep) {
-      return `${format(ep, 2, 0)} 永恒点数`;
+      return `${format(ep, 2, 0)} EP`
     },
     buyWithEP() {
-      TimeTheorems.buyOne(false, "ep");
+      TimeTheorems.buyOne(false, 'ep')
     },
     buyMaxTheorems() {
-      TimeTheorems.buyMax(false);
+      TimeTheorems.buyMax(false)
     },
     update() {
-      this.theoremAmount.copyFrom(Currency.timeTheorems);
-      this.theoremGeneration.copyFrom(getTTPerSecond().times(getGameSpeedupForDisplay()));
-      this.totalTimeTheorems.copyFrom(Currency.timeTheorems.max);
-      this.shopMinimized = player.timestudy.shopMinimized;
-      this.hasTTAutobuyer = Autobuyer.timeTheorem.isUnlocked;
-      this.isAutobuyerOn = Autobuyer.timeTheorem.isActive;
-      this.minimizeAvailable = DilationUpgrade.ttGenerator.isBought || this.hasTTAutobuyer;
-      const budget = this.budget;
-      budget.am.copyFrom(TimeTheoremPurchaseType.am.currency);
-      budget.ip.copyFrom(TimeTheoremPurchaseType.ip.currency);
-      budget.ep.copyFrom(TimeTheoremPurchaseType.ep.currency);
-      const costs = this.costs;
-      costs.am.copyFrom(TimeTheoremPurchaseType.am.cost);
-      costs.ip.copyFrom(TimeTheoremPurchaseType.ip.cost);
-      costs.ep.copyFrom(TimeTheoremPurchaseType.ep.cost);
-      this.showST = V.spaceTheorems > 0 && !Pelle.isDoomed;
-      this.STamount = V.availableST;
-      this.hasTTGen = this.theoremGeneration.gt(0);
-      this.showTTGen = this.hasTTGen && (ui.view.shiftDown === this.invertTTgenDisplay);
-      this.invertTTgenDisplay = player.options.invertTTgenDisplay;
+      this.theoremAmount.copyFrom(Currency.timeTheorems)
+      this.theoremGeneration.copyFrom(getTTPerSecond().times(getGameSpeedupForDisplay()))
+      this.totalTimeTheorems.copyFrom(Currency.timeTheorems.max)
+      this.shopMinimized = player.timestudy.shopMinimized
+      this.hasTTAutobuyer = Autobuyer.timeTheorem.isUnlocked
+      this.isAutobuyerOn = Autobuyer.timeTheorem.isActive
+      this.minimizeAvailable = DilationUpgrade.ttGenerator.isBought || this.hasTTAutobuyer
+      const budget = this.budget
+      budget.am.copyFrom(TimeTheoremPurchaseType.am.currency)
+      budget.ip.copyFrom(TimeTheoremPurchaseType.ip.currency)
+      budget.ep.copyFrom(TimeTheoremPurchaseType.ep.currency)
+      const costs = this.costs
+      costs.am.copyFrom(TimeTheoremPurchaseType.am.cost)
+      costs.ip.copyFrom(TimeTheoremPurchaseType.ip.cost)
+      costs.ep.copyFrom(TimeTheoremPurchaseType.ep.cost)
+      this.showST = V.spaceTheorems > 0 && !Pelle.isDoomed
+      this.STamount = V.availableST
+      this.hasTTGen = this.theoremGeneration.gt(0)
+      this.showTTGen = this.hasTTGen && ui.view.shiftDown === this.invertTTgenDisplay
+      this.invertTTgenDisplay = player.options.invertTTgenDisplay
     },
     toggleTTgen() {
-      this.invertTTgenDisplay = !this.invertTTgenDisplay;
-    }
+      this.invertTTgenDisplay = !this.invertTTgenDisplay
+    },
   },
   template: `
   <div
@@ -283,5 +290,5 @@ export default {
       >▼</span>
     </button>
   </div>
-  `
-};
+  `,
+}

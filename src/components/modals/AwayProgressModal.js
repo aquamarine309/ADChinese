@@ -1,8 +1,8 @@
-import AwayProgressEntry from "./AwayProgressEntry.js";
-import ModalWrapper from "./ModalWrapper.js";
+import AwayProgressEntry from './AwayProgressEntry.js'
+import ModalWrapper from './ModalWrapper.js'
 
 export default {
-  name: "AwayProgressModal",
+  name: 'AwayProgressModal',
   components: {
     AwayProgressEntry,
     ModalWrapper,
@@ -24,28 +24,28 @@ export default {
   data() {
     return {
       somethingHappened: false,
-    };
+    }
   },
   computed: {
     nothingHappened() {
-      return Theme.current().name === "S9";
+      return Theme.current().name === 'S9'
     },
     offlineStats() {
-      return AwayProgressTypes.appearsInAwayModal;
+      return AwayProgressTypes.appearsInAwayModal
     },
     headerText() {
-      const timeDisplay = TimeSpan.fromSeconds(this.seconds).toString();
+      const timeDisplay = TimeSpan.fromSeconds(this.seconds / debugOptions.getGlobalSpeedFactor()).toString()
       if (this.nothingHappened || !this.somethingHappened) {
-        return `当你离开时 … 什么事都没有发生。`;
+        return `当你离开时 … 什么事都没有发生。`
       }
-      return `在你离开的 ${timeDisplay} 里：`;
+      return `在你离开的 ${timeDisplay} 里：`
     },
   },
   mounted() {
     this.$nextTick(() => {
       // After all the children have been loaded, check if somethingHappened - if not, give them the achievement!
-      if (this.nothingHappened || !this.somethingHappened) SecretAchievement(36).unlock();
-    });
+      if (this.nothingHappened || !this.somethingHappened) SecretAchievement(36).unlock()
+    })
   },
   template: `
   <ModalWrapper class="c-modal-away-progress">
@@ -66,7 +66,7 @@ export default {
         @something-happened="somethingHappened = true"
       />
     </div>
-    <span v-if="!nothingHappened && somethingHappened">Note: Click an entry to hide it in the future.</span>
+    <span v-if="!nothingHappened && somethingHappened">注：单击条目可在未来隐藏该条目。</span>
   </ModalWrapper>
-  `
-};
+  `,
+}

@@ -1,22 +1,22 @@
-import CostDisplay from "../../CostDisplay.js";
-import CustomizeableTooltip from "../../CustomizeableTooltip.js";
-import DescriptionDisplay from "../../DescriptionDisplay.js";
+import CostDisplay from '../../CostDisplay.js'
+import CustomizeableTooltip from '../../CustomizeableTooltip.js'
+import DescriptionDisplay from '../../DescriptionDisplay.js'
 
 export default {
-  name: "PelleUpgrade",
+  name: 'PelleUpgrade',
   components: {
     DescriptionDisplay,
     CostDisplay,
-    CustomizeableTooltip
+    CustomizeableTooltip,
   },
   props: {
     upgrade: {
       type: Object,
-      required: true
+      required: true,
     },
     faded: {
       type: Boolean,
-      required: false
+      required: false,
     },
     galaxyGenerator: {
       type: Boolean,
@@ -38,68 +38,57 @@ export default {
       hovering: false,
       hasRemnants: false,
       galaxyCap: 0,
-      notAffordable: false
-    };
+      notAffordable: false,
+    }
   },
   computed: {
     config() {
-      return this.upgrade.config;
+      return this.upgrade.config
     },
     effectText() {
-      if (!this.config.formatEffect) return false;
-      const prefix = this.isCapped ? "已达到上限：" : "当前：";
-      const formattedEffect = x => this.config.formatEffect(this.config.effect(x));
-      const value = formattedEffect(this.purchases);
-      const next = (!this.isCapped && this.hovering)
-        ? formattedEffect(this.purchases + 1)
-        : undefined;
-      return { prefix, value, next };
+      if (!this.config.formatEffect) return false
+      const prefix = this.isCapped ? '已达到上限：' : '当前：'
+      const formattedEffect = (x) => this.config.formatEffect(this.config.effect(x))
+      const value = formattedEffect(this.purchases)
+      const next = !this.isCapped && this.hovering ? formattedEffect(this.purchases + 1) : undefined
+      return { prefix, value, next }
     },
     timeEstimate() {
-      if (!this.hasTimeEstimate || !this.hasRemnants) return null;
-      if (this.notAffordable) return "Never affordable due to Generated Galaxy cap";
-      return this.currentTimeEstimate;
+      if (!this.hasTimeEstimate || !this.hasRemnants) return null
+      if (this.notAffordable) return '由于星系生成上限永远无法购买'
+      return this.currentTimeEstimate
     },
     hasTimeEstimate() {
-      return !(this.canBuy ||
-        this.isBought ||
-        this.isCapped ||
-        (this.galaxyGenerator && this.config.currencyLabel !== "星系")
-      );
+      return !(this.canBuy || this.isBought || this.isCapped || (this.galaxyGenerator && this.config.currencyLabel !== '星系'))
     },
     shouldEstimateImprovement() {
-      return this.showImprovedEstimate && this.hasTimeEstimate;
+      return this.showImprovedEstimate && this.hasTimeEstimate
     },
     estimateImprovement() {
-      if (!this.shouldEstimateImprovement) return "";
-      if (!Pelle.canArmageddon) return `${this.currentTimeEstimate}`;
+      if (!this.shouldEstimateImprovement) return ''
+      if (!Pelle.canArmageddon) return `${this.currentTimeEstimate}`
       // If the improved value is still "> 1 year" then we only show it once
-      if (this.projectedTimeEstimate.startsWith(">")) return this.projectedTimeEstimate;
-      return `${this.currentTimeEstimate} ➜ ${this.projectedTimeEstimate}`;
+      if (this.projectedTimeEstimate.startsWith('>')) return this.projectedTimeEstimate
+      return `${this.currentTimeEstimate} ➜ ${this.projectedTimeEstimate}`
     },
   },
   methods: {
     update() {
-      this.canBuy = this.upgrade.canBeBought && !this.faded;
-      this.isBought = this.upgrade.isBought;
-      this.isCapped = this.upgrade.isCapped;
-      this.purchases = player.celestials.pelle.rebuyables[this.upgrade.config.id];
-      this.currentTimeEstimate = TimeSpan
-        .fromSeconds(this.secondsUntilCost(this.galaxyGenerator ? GalaxyGenerator.gainPerSecond
-          : Pelle.realityShardGainPerSecond).toNumber())
-        .toTimeEstimate();
-      this.projectedTimeEstimate = TimeSpan
-        .fromSeconds(this.secondsUntilCost(Pelle.nextRealityShardGain).toNumber())
-        .toTimeEstimate();
-      this.hasRemnants = Pelle.cel.remnants > 0;
-      this.galaxyCap = GalaxyGenerator.generationCap;
-      const genDB = GameDatabase.celestials.pelle.galaxyGeneratorUpgrades;
-      this.notAffordable = (this.config === genDB.additive || this.config === genDB.multiplicative) &&
-        (Decimal.gt(this.upgrade.cost, this.galaxyCap - GalaxyGenerator.generatedGalaxies + player.galaxies));
+      this.canBuy = this.upgrade.canBeBought && !this.faded
+      this.isBought = this.upgrade.isBought
+      this.isCapped = this.upgrade.isCapped
+      this.purchases = player.celestials.pelle.rebuyables[this.upgrade.config.id]
+      this.currentTimeEstimate = TimeSpan.fromSeconds(this.secondsUntilCost(this.galaxyGenerator ? GalaxyGenerator.gainPerSecond : Pelle.realityShardGainPerSecond).toNumber()).toTimeEstimate()
+      this.projectedTimeEstimate = TimeSpan.fromSeconds(this.secondsUntilCost(Pelle.nextRealityShardGain).toNumber()).toTimeEstimate()
+      this.hasRemnants = Pelle.cel.remnants > 0
+      this.galaxyCap = GalaxyGenerator.generationCap
+      const genDB = GameDatabase.celestials.pelle.galaxyGeneratorUpgrades
+      this.notAffordable =
+        (this.config === genDB.additive || this.config === genDB.multiplicative) && Decimal.gt(this.upgrade.cost, this.galaxyCap - GalaxyGenerator.generatedGalaxies + player.galaxies)
     },
     secondsUntilCost(rate) {
-      const value = this.galaxyGenerator ? player.galaxies + GalaxyGenerator.galaxies : Currency.realityShards.value;
-      return Decimal.sub(this.upgrade.cost, value).div(rate);
+      const value = this.galaxyGenerator ? player.galaxies + GalaxyGenerator.galaxies : Currency.realityShards.value
+      return Decimal.sub(this.upgrade.cost, value).div(rate)
     },
   },
   template: `
@@ -167,5 +156,5 @@ export default {
       data-v-pelle-upgrade
     />
   </button>
-  `
-};
+  `,
+}

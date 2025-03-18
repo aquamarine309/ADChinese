@@ -1,5 +1,5 @@
 export default {
-  name: "RealityAmplifyButton",
+  name: 'RealityAmplifyButton',
   data: () => ({
     isDoomed: false,
     isVisible: false,
@@ -10,34 +10,34 @@ export default {
   }),
   computed: {
     tooltip() {
-      if (this.isDoomed) return "You cannot amplify a Doomed Reality";
-      if (this.isDisabled) return "You cannot amplify Celestial Realities";
+      if (this.isDoomed) return '你无法扩增被毁灭的现实'
+      if (this.isDisabled) return '你无法扩增天神的现实'
       if (!this.canAmplify) {
-        return "Store more real time or complete the Reality faster to amplify";
+        return '存储更多现实时间或更快完成现实来进行扩增'
       }
-      return null;
+      return null
     },
     buttonClass() {
       return {
-        "l-reality-amplify-button": true,
-        "l-reality-amplify-button--clickable": !this.isDoomed && this.canAmplify,
-        "o-enslaved-mechanic-button--storing-time": this.isActive,
-      };
-    }
+        'l-reality-amplify-button': true,
+        'l-reality-amplify-button--clickable': !this.isDoomed && this.canAmplify,
+        'o-enslaved-mechanic-button--storing-time': this.isActive,
+      }
+    },
   },
   methods: {
     update() {
-      this.isDoomed = Pelle.isDoomed;
-      this.isVisible = Enslaved.isUnlocked;
-      this.isDisabled = isInCelestialReality();
-      this.isActive = Enslaved.boostReality;
-      this.ratio = Enslaved.realityBoostRatio;
-      this.canAmplify = Enslaved.canAmplify;
+      this.isDoomed = Pelle.isDoomed
+      this.isVisible = Enslaved.isUnlocked
+      this.isDisabled = isInCelestialReality()
+      this.isActive = Enslaved.boostReality
+      this.ratio = Enslaved.realityBoostRatio
+      this.canAmplify = Enslaved.canAmplify
     },
     toggleActive() {
-      if (!this.canAmplify) return;
-      Enslaved.boostReality = !Enslaved.boostReality;
-    }
+      if (!this.canAmplify) return
+      Enslaved.boostReality = !Enslaved.boostReality
+    },
   },
   template: `
   <button
@@ -59,5 +59,5 @@ export default {
       储存的现实时间不足，无法进行现实扩增。
     </div>
   </button>
-  `
-};
+  `,
+}

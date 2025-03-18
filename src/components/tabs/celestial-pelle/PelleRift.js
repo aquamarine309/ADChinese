@@ -1,18 +1,18 @@
-import wordShift from "../../../core/word-shift.js";
+import wordShift from '../../../core/word-shift.js'
 
-import PelleRiftBar from "./PelleRiftBar.js";
-import PelleStrike from "./PelleStrike.js";
+import PelleRiftBar from './PelleRiftBar.js'
+import PelleStrike from './PelleStrike.js'
 
 export default {
-  name: "PelleRift",
+  name: 'PelleRift',
   components: {
     PelleStrike,
-    PelleRiftBar
+    PelleRiftBar,
   },
   props: {
     strike: {
       type: Object,
-      required: true
+      required: true,
     },
   },
   data() {
@@ -23,52 +23,50 @@ export default {
       totalFill: new Decimal(),
       resource: new Decimal(),
       hasEffectiveFill: false,
-      effects: []
-    };
+      effects: [],
+    }
   },
   computed: {
     rift() {
-      return this.strike.rift;
+      return this.strike.rift
     },
     // We treat the 3rd rift slightly differently because it drains the 2nd rift, meaning it needs the word cycle
     // and a bit of additional UI info
     specialRift() {
-      return this.rift.id === 3;
+      return this.rift.id === 3
     },
     infoTooltip() {
-      return `The Replicanti requirement for the 2nd Rift is based on the total amount you have ever filled, including
-        any amount drained to fill this Rift.`;
-    }
+      return `第二裂隙的复制器要求基于您曾经填充的总量，包括
+        为填充此裂隙而消耗的任何数量。`
+    },
   },
   methods: {
     update() {
-      this.hasStrike = this.strike.hasStrike;
-      if (!this.hasStrike) return;
-      const rift = this.rift;
-      this.effects = this.rift.effects;
-      this.isActive = rift.isActive;
-      this.isMaxed = rift.isMaxed || Pelle.hasGalaxyGenerator;
-      this.setValue("totalFill", rift.totalFill);
-      this.setValue("resource", rift.fillCurrency.value);
-      this.hasEffectiveFill = rift.key === "decay" && PelleRifts.chaos.milestones[0].canBeApplied;
+      this.hasStrike = this.strike.hasStrike
+      if (!this.hasStrike) return
+      const rift = this.rift
+      this.effects = this.rift.effects
+      this.isActive = rift.isActive
+      this.isMaxed = rift.isMaxed || Pelle.hasGalaxyGenerator
+      this.setValue('totalFill', rift.totalFill)
+      this.setValue('resource', rift.fillCurrency.value)
+      this.hasEffectiveFill = rift.key === 'decay' && PelleRifts.chaos.milestones[0].canBeApplied
     },
     // One rift has a number and the others are all Decimals; this reduces boilerplate for setting multiple values
     setValue(key, value) {
-      if (typeof value === "number") this[key] = value;
-      else this[key].copyFrom(value);
+      if (typeof value === 'number') this[key] = value
+      else this[key].copyFrom(value)
     },
     // One-off formatting function; needs to format large Decimals and a small number assumed to be a percentage
     formatRift(value) {
-      return typeof value === "number" ? `${formatInt(100 * value)}%` : format(value, 2);
+      return typeof value === 'number' ? `${formatInt(100 * value)}%` : format(value, 2)
     },
     riftName() {
-      return wordShift.wordCycle(this.rift.name, true);
+      return wordShift.wordCycle(this.rift.name, true)
     },
     drainResource() {
-      return this.specialRift
-        ? wordShift.wordCycle(this.rift.drainResource)
-        : this.rift.drainResource;
-    }
+      return this.specialRift ? wordShift.wordCycle(this.rift.drainResource) : this.rift.drainResource
+    },
   },
   template: `
   <div
@@ -161,5 +159,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

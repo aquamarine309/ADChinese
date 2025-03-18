@@ -1,66 +1,64 @@
-import ModalCloseButton from "./ModalCloseButton.js";
+import ModalCloseButton from './ModalCloseButton.js'
 
 export default {
-  name: "H2PModal",
+  name: 'H2PModal',
   components: {
     ModalCloseButton,
   },
   data() {
     return {
       tabId: 0,
-      searchValue: "",
-    };
+      searchValue: '',
+    }
   },
   computed: {
     activeTab: {
       get() {
-        return GameDatabase.h2p.tabs[this.tabId];
+        return GameDatabase.h2p.tabs[this.tabId]
       },
       set(tab) {
-        this.tabId = tab.id;
-      }
+        this.tabId = tab.id
+      },
     },
     matchingTabs() {
-      return GameDatabase.h2p.search(this.searchValue).filter(searchObj => searchObj.tab.isUnlocked());
+      return GameDatabase.h2p.search(this.searchValue).filter((searchObj) => searchObj.tab.isUnlocked())
     },
     topThreshold() {
-      return Math.min(this.matchingTabs[Math.min(this.matchingTabs.length - 1, 4)].relevance + 0.01, 0.5);
-    }
+      return Math.min(this.matchingTabs[Math.min(this.matchingTabs.length - 1, 4)].relevance + 0.01, 0.5)
+    },
   },
   created() {
-    const unlockedTabs = GameDatabase.h2p.tabs.filter(tab => tab.isUnlocked());
-    const tab = this.$viewModel.tab;
-    const subtab = `${tab}/${this.$viewModel.subtab}`;
-    const matchedEntry = unlockedTabs.find(h2pTab => h2pTab.tab === subtab || h2pTab.tab === tab);
-    this.activeTab = ui.view.h2pForcedTab || matchedEntry || unlockedTabs[0];
-    ui.view.h2pForcedTab = undefined;
+    const unlockedTabs = GameDatabase.h2p.tabs.filter((tab) => tab.isUnlocked())
+    const tab = this.$viewModel.tab
+    const subtab = `${tab}/${this.$viewModel.subtab}`
+    const matchedEntry = unlockedTabs.find((h2pTab) => h2pTab.tab === subtab || h2pTab.tab === tab)
+    this.activeTab = ui.view.h2pForcedTab || matchedEntry || unlockedTabs[0]
+    ui.view.h2pForcedTab = undefined
     // Force-show the H2P info initally regardless of tab while the tooltip for the H2P button is still active
-    if (Tutorial.emphasizeH2P()) this.activeTab = GameDatabase.h2p.tabs[0];
+    if (Tutorial.emphasizeH2P()) this.activeTab = GameDatabase.h2p.tabs[0]
   },
   mounted() {
-    this.$refs.input.select();
+    this.$refs.input.select()
   },
   methods: {
     setActiveTab(tab) {
-      this.activeTab = tab;
-      document.getElementById("h2p-body").scrollTop = 0;
+      this.activeTab = tab
+      document.getElementById('h2p-body').scrollTop = 0
     },
     isFirstIrrelevant(idx) {
-      const matches = this.matchingTabs;
-      const searchObjThis = matches[idx];
-      const searchObjOther = matches[idx - 1];
+      const matches = this.matchingTabs
+      const searchObjThis = matches[idx]
+      const searchObjOther = matches[idx - 1]
 
-      return idx > 0 &&
-        searchObjThis.relevance >= this.topThreshold &&
-        searchObjOther.relevance < this.topThreshold;
-    }
+      return idx > 0 && searchObjThis.relevance >= this.topThreshold && searchObjOther.relevance < this.topThreshold
+    },
   },
   template: `
   <div class="l-h2p-modal">
     <ModalCloseButton @click="emitClose" />
     <div class="l-h2p-header">
       <div class="c-h2p-title">
-        How To Play
+        如何游玩
       </div>
     </div>
     <div class="l-h2p-container">
@@ -68,7 +66,7 @@ export default {
         <input
           ref="input"
           v-model="searchValue"
-          placeholder="Type to search..."
+          placeholder="打字搜索..."
           class="c-h2p-search-bar"
           @keyup.esc="emitClose"
         >
@@ -101,5 +99,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

@@ -1,27 +1,27 @@
-import OfflineSpeedupButton from "../OfflineSpeedupButton.js";
+import OfflineSpeedupButton from '../OfflineSpeedupButton.js'
 
 export default {
-  name: "ModalProgressBar",
+  name: 'ModalProgressBar',
   components: {
     OfflineSpeedupButton,
   },
   computed: {
     progress() {
-      return this.$viewModel.modal.progressBar;
+      return this.$viewModel.modal.progressBar
     },
     foregroundStyle() {
       return {
-        width: `${this.progress.current / this.progress.max * 100}%`,
-      };
+        width: `${(this.progress.current / this.progress.max) * 100}%`,
+      }
     },
     remainingTime() {
-      const timeSinceStart = Date.now() - this.progress.startTime;
-      const ms = timeSinceStart * (this.progress.max - this.progress.current) / this.progress.current;
-      return TimeSpan.fromMilliseconds(ms).toStringShort();
+      const timeSinceStart = Date.now() - this.progress.startTime
+      const ms = (timeSinceStart * (this.progress.max - this.progress.current)) / this.progress.current
+      return TimeSpan.fromMilliseconds(ms).toStringShort()
     },
     buttons() {
-      return this.progress.buttons || [];
-    }
+      return this.progress.buttons || []
+    },
   },
   template: `
   <div
@@ -50,10 +50,10 @@ export default {
           data-v-modal-progress-bar
         >
           <div>
-            {{ progress.progressName }}: {{ formatInt(progress.current) }}/{{ formatInt(progress.max) }}
+            {{ progress.progressName == 'Ticks'?'离线时间':progress.progressName }}: {{ formatInt(progress.current) }}/{{ formatInt(progress.max) }}
           </div>
           <div>
-            Remaining: {{ remainingTime }}
+            剩余: {{ remainingTime }}
           </div>
           <div
             class="modal-progress-bar__hbox"
@@ -85,5 +85,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

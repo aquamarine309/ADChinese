@@ -1,5 +1,5 @@
 export default {
-  name: "StudyTreeInfo",
+  name: 'StudyTreeInfo',
   props: {
     headerText: {
       type: String,
@@ -30,7 +30,7 @@ export default {
       v-if="treeStatus.secondPaths"
       class="l-modal-import-tree__tree-info-line"
     >
-      游玩风格路径：{{ treeStatus.secondPaths }}
+      策略路径：{{ treeStatus.secondPaths }}
     </div>
     <div
       v-if="treeStatus.ec > 0"
@@ -39,5 +39,5 @@ export default {
       永恒挑战：{{ treeStatus.ec }} {{ treeStatus.startEC ? "（自动开始）" : "" }}
     </div>
   </div>
-  `
-};
+  `,
+}

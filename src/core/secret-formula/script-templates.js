@@ -1,199 +1,168 @@
-import { AutobuyerInputFunctions } from "../../components/tabs/autobuyers/AutobuyerInput.js";
+import { AutobuyerInputFunctions } from '../../components/tabs/autobuyers/AutobuyerInput.js'
 
 export const automatorTemplates = {
   /**
-    * List of possible data types to dynamically generate in script templates, assumed to be only string or boolean
-    * {
-    *  @property {String} name              String to be used as a key for entries in this object
-    *  @property {String[]} boolDisplay     Strings to be displayed for true/false states for boolean inputs. If
-    *   undefined, assumed to be a non-boolean input
-    *  @property {Function} isValidString   A function used to test if an input string is formatted properly or not
-    *  @property {Function} map             A function to be used to map the inputs to their actual values
-    *   which are stored in the param object. If undefined, assumed to be no mapping
-    * }
-    */
+   * 动态生成脚本模板中可能的数据类型列表，假设仅为字符串或布尔值
+   * {
+   *  @property {String} name              用作此对象中条目的键的字符串
+   *  @property {String[]} boolDisplay     用于布尔输入的真/假状态的显示字符串。如果未定义，则假定为非布尔输入
+   *  @property {Function} isValidString    用于测试输入字符串是否格式正确的函数
+   *  @property {Function} map             用于将输入映射到其实际值的函数，实际值存储在 param 对象中。如果未定义，则假定为无映射
+   * }
+   */
   paramTypes: [
     {
-      name: "tree",
-      isValidString: str => {
-        const validImport = TimeStudyTree.isValidImportString(str);
-        const preset = str.match(/^(NAME (.{1,4})|ID (\d))$/u);
-        const validPreset = preset ? (
-          player.timestudy.presets.some(p => p.name === preset[2]) ||
-          (Number(preset[3]) > 0 && Number(preset[3]) < 7)
-        ) : false;
-        return validImport || validPreset;
+      name: 'tree',
+      isValidString: (str) => {
+        const validImport = TimeStudyTree.isValidImportString(str)
+        const preset = str.match(/^(NAME (.{1,4})|ID (\d))$/u)
+        const validPreset = preset ? player.timestudy.presets.some((p) => p.name === preset[2]) || (Number(preset[3]) > 0 && Number(preset[3]) < 7) : false
+        return validImport || validPreset
       },
     },
     {
-      name: "integer",
-      isValidString: str => AutobuyerInputFunctions.int.tryParse(str),
-      map: x => Math.round(parseInt(x, 10)),
+      name: 'integer',
+      isValidString: (str) => AutobuyerInputFunctions.int.tryParse(str),
+      map: (x) => Math.round(parseInt(x, 10)),
     },
     {
-      name: "decimal",
-      isValidString: str => AutobuyerInputFunctions.decimal.tryParse(str),
-      map: x => AutobuyerInputFunctions.decimal.tryParse(x),
+      name: 'decimal',
+      isValidString: (str) => AutobuyerInputFunctions.decimal.tryParse(str),
+      map: (x) => AutobuyerInputFunctions.decimal.tryParse(x),
     },
     {
-      name: "boolean",
-      boolDisplay: [true, false],
+      name: 'boolean',
+      boolDisplay: [true, false], // 布尔值显示为 "true" 和 "false"
     },
     {
-      name: "nowait",
-      boolDisplay: ["Continue onward", "Keep buying Studies"],
+      name: 'nowait',
+      boolDisplay: ['继续前进', '继续购买研究'], // 布尔值显示为 "继续前进" 和 "继续购买研究"
     },
     {
-      name: "mode",
-      boolDisplay: ["X times highest", "Seconds since last"],
-      map: x => (x ? "mult" : "time"),
+      name: 'mode',
+      boolDisplay: ['最高值的 X 倍', '自上次以来的秒数'], // 布尔值显示为 "最高值的 X 倍" 和 "自上次以来的秒数"
+      map: (x) => (x ? 'mult' : 'time'),
     },
   ],
   /**
-    * List automator script templates, primarily used here for formatting the player UI prompts appropriately
-    * so that all of the required fields show up in the proper input formats. Actual script formatting requires
-    * additionally writing a method to be called in the constructor of the ScriptTemplate class
-    * {
-    *  @property {String} name          Name of script template, also used as a key within the constructor for
-    *   ScriptTemplate objects
-    *  @property {String} description   Text description of what the template does when used in the automator
-    *  @property {Object[]} inputs      Fields of the param object which need to be filled for the template to
-    *   have all the information it needs. Contains the name of the field, the type (drawn from paramTypes above),
-    *   and a prompt to be shown in the UI end
-    *  @property {Function} warnings    Function which checks the current game state and potentially provides
-    *   warnings based on some possibly common cases which may lead to undesired behavior
-    * }
-    */
+   * 自动脚本模板列表，主要用于在此处格式化玩家 UI 提示，以便所有必填字段以正确的输入格式显示。实际的脚本格式化还需要在 ScriptTemplate 类的构造函数中编写一个方法
+   * {
+   *  @property {String} name          脚本模板的名称，也用作 ScriptTemplate 对象构造函数中的键
+   *  @property {String} description   描述模板在自动脚本中使用时执行的操作的文本
+   *  @property {Object[]} inputs      需要填充的 param 对象的字段，以便模板拥有所需的所有信息。包含字段名称、类型（从上面的 paramTypes 中提取）和 UI 中显示的提示
+   *  @property {Function} warnings    检查当前游戏状态并可能根据某些常见情况提供警告的函数，这些情况可能导致意外行为
+   * }
+   */
   scripts: [
     {
-      name: "Climb EP",
-      description: `This script performs repeated Eternities, attempting to re-purchase a Time Study Tree every
-        Eternity. Autobuyer settings must be supplied for the Infinity and Eternity Autobuyers. The script will
-        repeat until a final Eternity Point value is reached.`,
+      name: '刷永恒点数',
+      description: `此脚本执行重复的永恒，尝试在每次永恒后重新购买时间研究树。必须为无限和永恒自动购买器提供设置。脚本将重复，直到达到最终永恒点值。`,
       inputs: [
-        { name: "treeStudies", type: "tree", prompt: "Or directly enter your time studies" },
-        { name: "treeNowait", type: "nowait", prompt: "Missing Study behavior" },
-        { name: "finalEP", type: "decimal", prompt: "Target EP" },
-        { name: "autoInfMode", type: "mode", prompt: "Infinity Autobuyer Mode" },
-        { name: "autoInfValue", type: "decimal", prompt: "Infinity Autobuyer Threshold" },
-        { name: "autoEterMode", type: "mode", prompt: "Eternity Autobuyer Mode" },
-        { name: "autoEterValue", type: "decimal", prompt: "Eternity Autobuyer Threshold" },
+        { name: 'treeStudies', type: 'tree', prompt: '或直接输入您的时间研究' },
+        { name: 'treeNowait', type: 'nowait', prompt: '缺失研究时的行为' },
+        { name: 'finalEP', type: 'decimal', prompt: '目标永恒点' },
+        { name: 'autoInfMode', type: 'mode', prompt: '无限自动购买器模式' },
+        { name: 'autoInfValue', type: 'decimal', prompt: '无限自动购买器阈值' },
+        { name: 'autoEterMode', type: 'mode', prompt: '永恒自动购买器模式' },
+        { name: 'autoEterValue', type: 'decimal', prompt: '永恒自动购买器阈值' },
       ],
       warnings: () => {
-        const list = [];
+        const list = []
         if (!RealityUpgrade(10).isBought) {
-          list.push(`This script will be unable to properly set Autobuyer modes without at least ${formatInt(100)}
-            Eternities. Consider getting Reality Upgrade "${RealityUpgrade(10).name}" before using this at the start
-            of a Reality.`);
+          list.push(`此脚本将无法正确设置自动购买器模式，除非您至少有 ${formatInt(100)} 次永恒。考虑在现实的开始时获取现实升级 "${RealityUpgrade(10).name}"。`)
         }
         // Telemechanical Process (TD/5xEP autobuyers)
         if (!RealityUpgrade(13).isBought) {
-          list.push(`This template may perform poorly without Reality Upgrade "${RealityUpgrade(13).name}"`);
+          list.push(`此模板在没有现实升级 "${RealityUpgrade(13).name}" 的情况下可能表现不佳`)
         }
         if (!Perk.ttBuySingle.isBought) {
-          list.push(`This template may perform poorly without Perk "${Perk.ttBuySingle.label}" unless you can generate
-            Time Theorems without purchsing them`);
+          list.push(`此模板在没有技能 "${Perk.ttBuySingle.label}" 的情况下可能表现不佳，除非您可以在不购买时间定理的情况下生成它们`)
         }
-        return list;
+        return list
       },
     },
     {
-      name: "Grind Eternities",
-      description: `This script performs repeated fast Eternities after buying a specified Time Study Tree.
-        Auto-Infinity will be set to "Times Highest" with a specified number of crunches and Auto-Eternity will
-        trigger as soon as possible. The script will repeat until a final Eternity count is reached.`,
+      name: '刷永恒次数',
+      description: `此脚本在购买指定的时间研究树后执行重复的快速永恒。自动无限将设置为“最高值的 X 倍”，并指定每次永恒的崩溃次数，自动永恒将尽快触发。脚本将重复，直到达到最终永恒计数。`,
       inputs: [
-        { name: "treeStudies", type: "tree", prompt: "Or directly enter your time studies" },
-        { name: "treeNowait", type: "nowait", prompt: "Missing Study behavior" },
-        { name: "crunchesPerEternity", type: "integer", prompt: "Crunches per Eternity" },
-        { name: "eternities", type: "decimal", prompt: "Target Eternity Count" },
+        { name: 'treeStudies', type: 'tree', prompt: '或直接输入您的时间研究' },
+        { name: 'treeNowait', type: 'nowait', prompt: '缺失研究时的行为' },
+        { name: 'crunchesPerEternity', type: 'integer', prompt: '每次永恒的崩溃次数' },
+        { name: 'eternities', type: 'decimal', prompt: '目标永恒计数' },
       ],
       warnings: () => {
-        const list = [];
+        const list = []
         // Eternal flow (eternity generation)
         if (RealityUpgrade(14).isBought) {
-          list.push(`You probably do not need to use this due to Reality Upgrade "${RealityUpgrade(14).name}"`);
+          list.push(`您可能不需要使用此模板，因为您已经拥有现实升级 "${RealityUpgrade(14).name}"`)
         }
-        return list;
+        return list
       },
     },
     {
-      name: "Grind Infinities",
-      description: `This script buys a specified Time Study Tree and then configures your Autobuyers for gaining
-        Infinities. It will repeat until a final Infinity count is reached; the count can be for Banked Infinities,
-        in which case it will get all Infinities before performing a single Eternity.`,
+      name: '刷无限次数',
+      description: `此脚本购买指定的时间研究树，然后为获得无限配置您的自动购买器。它将重复，直到达到最终无限计数；计数可以是银行无限，在这种情况下，它将获取所有无限，然后执行一次永恒。`,
       inputs: [
-        { name: "treeStudies", type: "tree", prompt: "Or directly enter your time studies" },
-        { name: "treeNowait", type: "nowait", prompt: "Missing Study behavior" },
-        { name: "infinities", type: "decimal", prompt: "Target Infinity Count" },
-        { name: "isBanked", type: "boolean", prompt: "Use Banked for Target?" },
+        { name: 'treeStudies', type: 'tree', prompt: '或直接输入您的时间研究' },
+        { name: 'treeNowait', type: 'nowait', prompt: '缺失研究时的行为' },
+        { name: 'infinities', type: 'decimal', prompt: '目标无限计数' },
+        { name: 'isBanked', type: 'boolean', prompt: '使用银行作为目标？' },
       ],
       warnings: () => {
-        const list = [];
+        const list = []
         if (!Perk.achievementGroup5.isBought) {
-          list.push(`You will not start this Reality with Achievement "${Achievement(131).name}" - grinding
-            Infinities may be less useful than expected since they cannot be Banked until later`);
+          list.push(`您在此现实中不会从成就 "${Achievement(131).name}" 开始 - 由于无法在稍后存入银行，刷无限可能不如预期有用`)
         }
         // Boundless flow (infinity generation)
         if (RealityUpgrade(11).isBought) {
-          list.push(`You probably do not need to use this due to Reality Upgrade "${RealityUpgrade(11).name}"`);
+          list.push(`您可能不需要使用此模板，因为您已经拥有现实升级 "${RealityUpgrade(11).name}"`)
         }
-        return list;
+        return list
       },
     },
     {
-      name: "Complete Eternity Challenge",
-      description: `This script buys a specified Time Study Tree and then unlocks a specified Eternity Challenge.
-        Then it will set your Infinity Autobuyer to your specified settings and enter the Eternity Challenge.
-        Finally, it will wait until at least the desired number of completions before triggering an Eternity to
-        complete the Challenge.`,
+      name: '完成永恒挑战',
+      description: `此脚本购买指定的时间研究树，然后解锁指定的永恒挑战。然后，它将根据您的指定设置配置您的无限自动购买器并进入永恒挑战。最后，它将等待直到至少达到所需的完成次数，然后触发永恒以完成挑战。`,
       inputs: [
-        { name: "treeStudies", type: "tree", prompt: "Or directly enter your time studies" },
-        { name: "treeNowait", type: "nowait", prompt: "Missing Study behavior" },
-        { name: "ec", type: "integer", prompt: "Eternity Challenge ID" },
-        { name: "completions", type: "integer", prompt: "Target Completion Count" },
-        { name: "autoInfMode", type: "mode", prompt: "Infinity Autobuyer Mode" },
-        { name: "autoInfValue", type: "decimal", prompt: "Infinity Autobuyer Threshold" },
+        { name: 'treeStudies', type: 'tree', prompt: '或直接输入您的时间研究' },
+        { name: 'treeNowait', type: 'nowait', prompt: '缺失研究时的行为' },
+        { name: 'ec', type: 'integer', prompt: '永恒挑战 ID' },
+        { name: 'completions', type: 'integer', prompt: '目标完成次数' },
+        { name: 'autoInfMode', type: 'mode', prompt: '无限自动购买器模式' },
+        { name: 'autoInfValue', type: 'decimal', prompt: '无限自动购买器阈值' },
       ],
       warnings: () => {
-        const list = [];
+        const list = []
         if (!Perk.studyECRequirement.isBought) {
-          list.push(`Eternity Challenges may not be reliably unlockable due to secondary resource requirements, consider
-            unlocking Perk "${Perk.studyECRequirement.label}" before using this template`);
+          list.push(`由于次要资源要求，永恒挑战可能无法可靠解锁，考虑在使用此模板之前解锁技能 "${Perk.studyECRequirement.label}"`)
         }
         if (!Perk.studyECBulk.isBought) {
-          list.push(`Using this template without bulk completions of Eternity Challenges may lead to long scripts which
-            are slower and difficult to modify. If you use this template, consider returning to simplify your scripts
-            after unlocking Perk "${Perk.studyECBulk.label}"`);
+          list.push(`在没有批量完成永恒挑战的情况下使用此模板可能会导致脚本过长，速度较慢且难以修改。如果您使用此模板，考虑在解锁技能 "${Perk.studyECBulk.label}" 后返回以简化您的脚本`)
         }
-        return list;
+        return list
       },
     },
     {
-      name: "Unlock Dilation",
-      description: `This script performs repeated Eternities, attempting to re-purchase a Time Study Tree every
-        Eternity. Settings must be supplied for the Eternity Autobuyer; your Infinity Autobuyer will be
-        turned off. The script loops until you have the total Time Theorem requirement to unlock Dilation, and then
-        it will unlock Dilation once it does.`,
+      name: '解锁膨胀',
+      description: `此脚本执行重复的永恒，尝试在每次永恒后重新购买时间研究树。必须为永恒自动购买器提供设置；您的无限自动购买器将被关闭。脚本将循环，直到您拥有解锁延展所需的总时间定理，然后它将解锁延展。`,
       inputs: [
-        { name: "treeStudies", type: "tree", prompt: "Or directly enter your time studies" },
-        { name: "treeNowait", type: "nowait", prompt: "Missing Study behavior" },
-        { name: "finalEP", type: "decimal", prompt: "Target EP" },
-        { name: "autoEterMode", type: "mode", prompt: "Eternity Autobuyer Mode" },
-        { name: "autoEterValue", type: "decimal", prompt: "Eternity Autobuyer Threshold" },
+        { name: 'treeStudies', type: 'tree', prompt: '或直接输入您的时间研究' },
+        { name: 'treeNowait', type: 'nowait', prompt: '缺失研究时的行为' },
+        { name: 'finalEP', type: 'decimal', prompt: '目标永恒点' },
+        { name: 'autoEterMode', type: 'mode', prompt: '永恒自动购买器模式' },
+        { name: 'autoEterValue', type: 'decimal', prompt: '永恒自动购买器阈值' },
       ],
       warnings: () => {
-        const list = [];
+        const list = []
         // Telemechanical Process (TD/5xEP autobuyers)
         if (!RealityUpgrade(13).isBought) {
-          list.push(`This template may perform poorly without Reality Upgrade "${RealityUpgrade(13).name}"`);
+          list.push(`此模板在没有现实升级 "${RealityUpgrade(13).name}" 的情况下可能表现不佳`)
         }
         if (!Perk.ttBuySingle.isBought) {
-          list.push(`This template may perform poorly without Perk "${Perk.ttBuySingle.label}" unless you can generate
-            Time Theorems without purchsing them`);
+          list.push(`此模板在没有技能 "${Perk.ttBuySingle.label}" 的情况下可能表现不佳，除非您可以在不购买时间定理的情况下生成它们`)
         }
-        return list;
+        return list
       },
     },
-  ]
-};
+  ],
+}

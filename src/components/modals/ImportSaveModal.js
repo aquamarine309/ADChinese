@@ -1,140 +1,138 @@
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
-import PrimaryButton from "../PrimaryButton.js";
+import ModalWrapperChoice from './ModalWrapperChoice.js'
+import PrimaryButton from '../PrimaryButton.js'
 
 const OFFLINE_PROGRESS_TYPE = {
   IMPORTED: 0,
   LOCAL: 1,
   IGNORED: 2,
-};
+}
 
 export default {
-  name: "ImportSaveModal",
+  name: 'ImportSaveModal',
   components: {
     ModalWrapperChoice,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
-      input: "",
+      input: '',
       offlineImport: OFFLINE_PROGRESS_TYPE.IMPORTED,
-    };
+    }
   },
   computed: {
     saveCheckString() {
-      const save = GameSaveSerializer.deserialize(this.input);
-      const rawString = GameStorage.checkPlayerObject(save);
+      const save = GameSaveSerializer.deserialize(this.input)
+      const rawString = GameStorage.checkPlayerObject(save)
       // Keep the length bounded; we don't want the modal to be too big for the screen for particularly bad errors
-      return rawString.length > 300 ? `${rawString.slice(0, 297)}...` : rawString;
+      return rawString.length > 300 ? `${rawString.slice(0, 297)}...` : rawString
     },
     player() {
-      return this.saveCheckString === "" ? GameSaveSerializer.deserialize(this.input) : undefined;
+      return this.saveCheckString === '' ? GameSaveSerializer.deserialize(this.input) : undefined
     },
     progress() {
-      return PlayerProgress.of(this.player);
+      return PlayerProgress.of(this.player)
     },
     fileName() {
-      return this.player.options.saveFileName;
+      return this.player.options.saveFileName
     },
     antimatter() {
-      return this.player.antimatter || this.player.money;
+      return this.player.antimatter || this.player.money
     },
     infinities() {
       // Infinity count data is stored in either player.infinitied or player.infinities based on if the save is before
       // or after the reality update, and this explicit check is needed as it runs before any migration code.
-      const infinityData = this.player.infinitied ? this.player.infinitied : this.player.infinities;
-      return new Decimal(infinityData);
+      const infinityData = this.player.infinitied ? this.player.infinitied : this.player.infinities
+      return new Decimal(infinityData)
     },
     hasInput() {
-      return this.input !== "";
+      return this.input !== ''
     },
     inputIsValid() {
-      return this.inputIsValidSave || this.inputIsSecret;
+      return this.inputIsValidSave || this.inputIsSecret
     },
     inputIsValidSave() {
-      return this.player !== undefined;
+      return this.player !== undefined
     },
     inputIsSecret() {
-      return isSecretImport(this.input) || Theme.isSecretTheme(this.input);
+      return isSecretImport(this.input) || Theme.isSecretTheme(this.input)
     },
     isFromFuture() {
-      return this.player.lastUpdate > Date.now();
+      return this.player.lastUpdate > Date.now()
     },
     lastOpened() {
-      const ms = Date.now() - this.player.lastUpdate;
-      return this.isFromFuture
-        ? `这个存档来自 ${TimeSpan.fromMilliseconds(-ms).toString()} 后的未来。`
-        : `这个存档上次打开的时间为 ${TimeSpan.fromMilliseconds(ms).toString()} 前。`;
+      const ms = Date.now() - this.player.lastUpdate
+      return this.isFromFuture ? `这个存档来自 ${TimeSpan.fromMilliseconds(-ms).toString()} 后的未来。` : `这个存档上次打开的时间为 ${TimeSpan.fromMilliseconds(ms).toString()} 前。`
     },
     offlineType() {
       // We update here in the computed method instead of elsewhere because otherwise it initializes the text
       // to a wrong or undefined setting
-      this.updateOfflineSettings();
+      this.updateOfflineSettings()
 
       switch (this.offlineImport) {
         case OFFLINE_PROGRESS_TYPE.IMPORTED:
-          return "Using imported save settings";
+          return 'Using imported save settings'
         case OFFLINE_PROGRESS_TYPE.LOCAL:
-          return "Using existing save settings";
+          return 'Using existing save settings'
         case OFFLINE_PROGRESS_TYPE.IGNORED:
-          return "Will not simulate offline time";
+          return 'Will not simulate offline time'
         default:
-          throw new Error("Unrecognized offline progress setting for importing");
+          throw new Error('Unrecognized offline progress setting for importing')
       }
     },
     offlineDetails() {
       if (this.offlineImport === OFFLINE_PROGRESS_TYPE.IGNORED) {
-        return `Save will be imported without offline progress.`;
+        return `Save will be imported without offline progress.`
       }
-      if (!GameStorage.offlineEnabled) return "This setting will not apply any offline progress after importing.";
-      if (this.isFromFuture) return "Offline progress cannot be simulated due to an inconsistent system clock time.";
+      if (!GameStorage.offlineEnabled) return 'This setting will not apply any offline progress after importing.'
+      if (this.isFromFuture) return 'Offline progress cannot be simulated due to an inconsistent system clock time.'
 
-      const durationInMs = Date.now() - this.player.lastUpdate;
-      const ticks = GameStorage.maxOfflineTicks(durationInMs);
-      return `After importing, will simulate ${formatInt(ticks)} ticks of duration
-        ${TimeSpan.fromMilliseconds(durationInMs / ticks).toStringShort()} each.`;
+      const durationInMs = Date.now() - this.player.lastUpdate
+      const ticks = GameStorage.maxOfflineTicks(durationInMs)
+      return `导入后，会模拟${formatInt(ticks)} 刻并需要
+        ${TimeSpan.fromMilliseconds(durationInMs / ticks).toStringShort()} 时间`
     },
     willLoseCosmetics() {
-      const currSets = player.reality.glyphs.cosmetics.unlockedFromNG;
-      const importedSets = this.player.reality?.glyphs.cosmetics?.unlockedFromNG ?? [];
-      return currSets.filter(set => !importedSets.includes(set)).length > 0;
+      const currSets = player.reality.glyphs.cosmetics.unlockedFromNG
+      const importedSets = this.player.reality?.glyphs.cosmetics?.unlockedFromNG ?? []
+      return currSets.filter((set) => !importedSets.includes(set)).length > 0
     },
     willLoseSpeedrun() {
-      return player.speedrun.isUnlocked && !this.player.speedrun?.isUnlocked;
-    }
+      return player.speedrun.isUnlocked && !this.player.speedrun?.isUnlocked
+    },
   },
   mounted() {
-    this.$refs.input.select();
+    this.$refs.input.select()
   },
   destroyed() {
     // Explicitly setting this to undefined after closing forces the game to fall-back to the stored settings within
     // the player object if this modal is closed - ie. it makes sure actions in the modal don't persist
-    GameStorage.offlineEnabled = undefined;
-    GameStorage.offlineTicks = undefined;
+    GameStorage.offlineEnabled = undefined
+    GameStorage.offlineTicks = undefined
   },
   methods: {
     changeOfflineSetting() {
-      this.offlineImport = (this.offlineImport + 1) % 3;
+      this.offlineImport = (this.offlineImport + 1) % 3
     },
     updateOfflineSettings() {
       switch (this.offlineImport) {
         case OFFLINE_PROGRESS_TYPE.IMPORTED:
           // These are default values from a new save, used if importing from pre-reality where these props don't exist
-          GameStorage.offlineEnabled = this.player.options.offlineProgress ?? true;
-          GameStorage.offlineTicks = this.player.options.offlineTicks ?? 1e5;
-          break;
+          GameStorage.offlineEnabled = this.player.options.offlineProgress ?? true
+          GameStorage.offlineTicks = this.player.options.offlineTicks ?? 1e5
+          break
         case OFFLINE_PROGRESS_TYPE.LOCAL:
-          GameStorage.offlineEnabled = player.options.offlineProgress;
-          GameStorage.offlineTicks = player.options.offlineTicks;
-          break;
+          GameStorage.offlineEnabled = player.options.offlineProgress
+          GameStorage.offlineTicks = player.options.offlineTicks
+          break
         case OFFLINE_PROGRESS_TYPE.IGNORED:
-          GameStorage.offlineEnabled = false;
-          break;
+          GameStorage.offlineEnabled = false
+          break
       }
     },
     importSave() {
-      if (!this.inputIsValid) return;
-      this.emitClose();
-      GameStorage.import(this.input);
+      if (!this.inputIsValid) return
+      this.emitClose()
+      GameStorage.import(this.input)
     },
   },
   template: `
@@ -219,5 +217,5 @@ export default {
       导入
     </PrimaryButton>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

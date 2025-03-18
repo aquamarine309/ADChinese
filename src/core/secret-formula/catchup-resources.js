@@ -1,370 +1,306 @@
-import { DC } from "../constants.js";
+import { DC } from '../constants.js'
 
 export const catchupResources = [
   {
-    name: "Antimatter Dimensions",
+    name: '反物质维度',
     id: 0,
     requiredStage: PROGRESS_STAGE.PRE_INFINITY,
-    description: `Every Antimatter Dimension continuously produces Dimensions of the next tier down. The lowest
-      Antimatter Dimension produces antimatter.`
+    description: `每个反物质维度会持续生产下一级的维度。最低级的反物质维度会生产反物质。`,
   },
   {
-    name: "Tickspeed Upgrades",
+    name: '计数频率升级',
     id: 1,
-    openH2pEntry: "Tickspeed",
+    openH2pEntry: '计数频率',
     requiredStage: PROGRESS_STAGE.PRE_INFINITY,
-    description: `Tickspeed Upgrades make Antimatter Dimensions produce other Antimatter Dimensions or antimatter
-      as if time were passing faster.`
+    description: `计数频率升级使反物质维度生产其他反物质维度或反物质的速度加快，仿佛时间流逝得更快。`,
   },
   {
-    name: "Autobuyers",
+    name: '自动购买器',
     id: 2,
     requiredStage: PROGRESS_STAGE.PRE_INFINITY,
-    description: `Autobuyers are a built-in feature to the game which purchases upgrades for your Antimatter
-      Dimensions automatically when you can afford them.`
+    description: `自动购买器是游戏内置的功能，当您能够负担时，它会自动为您的反物质维度购买升级。`,
   },
   {
-    name: "Dimension Boosts",
+    name: '维度提升',
     id: 3,
     requiredStage: PROGRESS_STAGE.PRE_INFINITY,
-    description: `Dimension Boosts are gained by resetting all your Antimatter Dimensions and tickspeed after
-      reaching a certain amount of the highest available Antimatter Dimension. They provide a multiplier to your
-      Antimatter Dimensions.`
+    description: `维度提升通过重置所有反物质维度和计数频率获得，前提是达到最高级反物质维度的特定数量。它们为您的反物质维度提供乘数加成。`,
   },
   {
-    name: "Antimatter Galaxies",
+    name: '反物质星系',
     id: 4,
     requiredStage: PROGRESS_STAGE.PRE_INFINITY,
-    description: `Antimatter Galaxies are gained by resetting your Antimatter Dimensions and Dimension Boosts. They
-      improve the effectiveness of your Tickspeed Upgrades in a compounding way.`
+    description: `反物质星系通过重置您的反物质维度和维度提升获得。它们以复合的方式提高计数频率升级的效果。`,
   },
   {
-    name: "Infinity",
+    name: '无限',
     id: 5,
     requiredStage: PROGRESS_STAGE.EARLY_INFINITY,
-    description: () => `Infinity is the first main reset layer. Reaching ${format(Number.MAX_VALUE, 2)} antimatter
-      allows you to reset everything up to this point in exchange for unlocking new content and resources.`
+    description: () => `无限是第一个主要的重置层。达到 ${format(Number.MAX_VALUE, 2)} 反物质后，您可以重置到目前为止的所有内容，以解锁新的内容和资源。`,
   },
   {
-    name: "Infinity Points",
+    name: '无限点数',
     id: 6,
-    openH2pEntry: "Infinity",
+    openH2pEntry: '无限',
     requiredStage: PROGRESS_STAGE.EARLY_INFINITY,
-    description: `Infinity Points are the primary resource after completing your first Infinity. They can be spent on
-      features which persist through Infinity resets.`
+    description: `无限点数是完成第一次无限后的主要资源。它们可以用于购买在无限重置后仍然保留的功能。`,
   },
   {
-    name: "Normal Challenges",
+    name: '普通挑战',
     id: 7,
-    openH2pEntry: "Normal Challenges",
+    openH2pEntry: '普通挑战',
     requiredStage: PROGRESS_STAGE.EARLY_INFINITY,
-    description: () => `Challenges require you to reach ${format(Number.MAX_VALUE, 2)} antimatter under more difficult
-      conditions. Completing challenges allows you to upgrade your Autobuyers.`
+    description: () => `挑战要求您在更困难的条件下达到 ${format(Number.MAX_VALUE, 2)} 反物质。完成挑战可以让您升级自动购买器。`,
   },
   {
-    name: "Break Infinity",
+    name: '突破无限',
     id: 8,
     requiredStage: PROGRESS_STAGE.BREAK_INFINITY,
-    description: () => `Upgrading your Big Crunch Autobuyer to the maximum allows you to surpass
-      ${format(Number.MAX_VALUE, 2)} antimatter, giving increasing amounts of Infinity Points with more antimatter.`
+    description: () => `将大坍缩自动购买器升级到最大值后，您可以超越 ${format(Number.MAX_VALUE, 2)} 反物质，获得更多的无限点数。`,
   },
   {
-    name: "Infinity Dimensions",
+    name: '无限维度',
     id: 9,
     requiredStage: PROGRESS_STAGE.BREAK_INFINITY,
-    description: `Infinity Dimensions Produce in a cascading fashion like Antimatter Dimensions. The lowest tier of
-      Infinity Dimension produces Infinity Power, which applies a large multiplier to all Antimatter Dimensions.`
+    description: `无限维度以级联的方式生产，类似于反物质维度。最低级的无限维度生产无限能量，为所有反物质维度提供巨大的乘数加成。`,
   },
   {
-    name: "Infinity Challenges",
+    name: '无限挑战',
     id: 10,
     requiredStage: PROGRESS_STAGE.BREAK_INFINITY,
-    description: () => `Infinity Challenges are new challenges with an antimatter goal above
-      ${format(Number.MAX_VALUE, 2)}. Completing them rewards upgrades and production boosts.`
+    description: () => `无限挑战是新的挑战，其反物质目标高于 ${format(Number.MAX_VALUE, 2)}。完成它们会奖励升级和生产加成。`,
   },
   {
-    name: "Replicanti",
+    name: '复制器',
     id: 11,
     requiredStage: PROGRESS_STAGE.REPLICANTI,
-    description: () => `Replicanti is a resource which produces itself over time, giving a multiplier to all
-      Infinity Dimensions. At ${format(Number.MAX_VALUE, 2)} Replicanti, they can be reset to ${formatInt(1)} for an
-      additional Galaxy which does not increase the cost of Antimatter Galaxies. They also reset after every Infinity.`
+    description: () =>
+      `复制器是一种随时间自我生产的资源，为所有无限维度提供乘数加成。在达到 ${format(Number.MAX_VALUE, 2)} 复制器后，它们可以重置为 ${formatInt(
+        1
+      )}，以获得一个额外的星系，且不会增加反物质星系的成本。它们也会在每次无限后重置。`,
   },
   {
-    name: "Eternity",
+    name: '永恒',
     id: 12,
     requiredStage: PROGRESS_STAGE.EARLY_ETERNITY,
-    description: () => `Eternity is the second main reset layer. Reaching ${format(Number.MAX_VALUE, 2)} Infinity Points
-      allows you to reset everything up to this point for access to new content and resources.`
+    description: () => `永恒是第二个主要的重置层。达到 ${format(Number.MAX_VALUE, 2)} 无限点数后，您可以重置到目前为止的所有内容，以解锁新的内容和资源。`,
   },
   {
-    name: "Eternity Points",
+    name: '永恒点数',
     id: 13,
-    openH2pEntry: "Eternity",
+    openH2pEntry: '永恒',
     requiredStage: PROGRESS_STAGE.EARLY_ETERNITY,
-    description: `Eternity Points are the primary resource after completing your first Eternity, and scale based on your
-      Infinity Points at the time you complete the Eternity.`
+    description: `永恒点数是完成第一次永恒后的主要资源，其数量基于您完成永恒时的无限点数。`,
   },
   {
-    name: "Time Studies",
+    name: '时间研究',
     id: 14,
     requiredStage: PROGRESS_STAGE.EARLY_ETERNITY,
-    description: `Time Studies are a set of upgrades akin to a skill tree, and can be freely re-allocated after every
-      Eternity with no resource loss. Some sections of the tree have restrictions which forbid you from choosing
-      particular studies simultaneously.`
+    description: `时间研究是一系列类似于技能树的升级，每次永恒后可以自由重新分配，且不会损失资源。某些部分的研究有限制，禁止您同时选择特定的研究。`,
   },
   {
-    name: "Eternity Milestones",
+    name: '永恒里程碑',
     id: 15,
     requiredStage: PROGRESS_STAGE.EARLY_ETERNITY,
-    description: `Eternity Milestones are forms of built-in automation and convenience which are unlocked simply by
-      completing more Eternities. Unlocking them does not require spending any resources.`
+    description: `永恒里程碑是内置的自动化和便利功能，只需完成更多的永恒即可解锁。解锁它们不需要花费任何资源。`,
   },
   {
-    name: "Time Dimensions",
+    name: '时间维度',
     id: 16,
     requiredStage: PROGRESS_STAGE.EARLY_ETERNITY,
-    description: `Time Dimensions also produce each other in a cascading manner, with the lowest tier producing Time
-      Shards. Time Shards give you additional Tickspeed Upgrades which do not increase the cost of the Tickspeed
-      Upgrades purchased with antimatter.`
+    description: `时间维度也以级联的方式相互生产，最低级的时间维度生产时间碎片。时间碎片为您提供额外的计数频率升级，且不会增加用反物质购买的计数频率升级的成本。`,
   },
   {
-    name: "Eternity Challenges",
+    name: '永恒挑战',
     id: 17,
     requiredStage: PROGRESS_STAGE.ETERNITY_CHALLENGES,
-    description: `Eternity Challenges are modified Eternities with an Infinity Point goal which must be reached for
-      completion. They can be completed up to five times, getting more difficult each repetition in exchange for
-      increasingly powerful rewards.`
+    description: `永恒挑战是修改后的永恒，必须达到无限点数目标才能完成。它们最多可以完成五次，每次重复都会变得更难，但会获得更强大的奖励。`,
   },
   {
-    name: "Time Dilation",
+    name: '时间膨胀',
     id: 18,
     requiredStage: PROGRESS_STAGE.EARLY_DILATION,
-    description: () => `Time Dilation is a modified Eternity where tickspeed and all Dimension multipliers are
-      severely reduced. Completing Dilated Eternities gives Tachyon Particles.`
+    description: () => `时间膨胀是修改后的永恒，其中计数频率和所有维度的乘数都大幅降低。完成膨胀的永恒会获得超光速粒子。`,
   },
   {
-    name: "Tachyon Particles",
+    name: '超光速粒子',
     id: 19,
-    openH2pEntry: "Time Dilation",
+    openH2pEntry: '时间膨胀',
     requiredStage: PROGRESS_STAGE.EARLY_DILATION,
-    description: () => `Tachyon Particles are a resource which cannot be farmed and require you to get a higher amount
-      of antimatter in a Dilated Eternity in order to increase your amount. Tachyon Particles produce Dilated Time.`
+    description: () => `超光速粒子是一种无法被大量获取的资源，您需要在膨胀的永恒中获得更高的反物质数量才能增加其数量。超光速粒子会产生膨胀时间。`,
   },
   {
-    name: "Reality",
+    name: '现实',
     id: 20,
     requiredStage: PROGRESS_STAGE.EARLY_REALITY,
-    description: () => `Reality is the third and final main reset layer. Reaching ${format(DC.E4000)} Eternity Points
-      gives you the option to reset everything up to this point in exchange for unlocking new content and gaining
-      access to new resources.`
+    description: () => `现实是第三个也是最后一个主要的重置层。达到 ${format(DC.E4000)} 永恒点数后，您可以选择重置到目前为止的所有内容，以解锁新的内容并获得新的资源。`,
   },
   {
-    name: "Reality Machines",
+    name: '现实机器',
     id: 21,
-    openH2pEntry: "Reality",
+    openH2pEntry: '现实',
     requiredStage: PROGRESS_STAGE.EARLY_REALITY,
-    description: `Reality Machines are the primary resource after completing your first Reality. They are given based
-      on Eternity Points at the time of completing a Reality.`
+    description: `现实机器是完成第一次现实后的主要资源。它们的数量基于您完成现实时的永恒点数。`,
   },
   {
-    name: "Perks",
+    name: '复兴',
     id: 22,
     requiredStage: PROGRESS_STAGE.EARLY_REALITY,
-    description: `Perks are unlockable features similar to Eternity Milestones which primarily focus on convenience and
-      automation. They are purchased using Perk Points, which are gained after every Reality.`
+    description: `复兴是可解锁的功能，类似于永恒里程碑，主要关注便利性和自动化。它们使用复兴点数购买，特权点数在每次现实后获得。`,
   },
   {
-    name: "Glyphs",
+    name: '符文',
     id: 23,
     requiredStage: PROGRESS_STAGE.EARLY_REALITY,
-    description: `Glyphs are equippable upgrades which can only be unequipped between Realities. Every Reality you are
-      allowed to choose one of multiple new random Glyphs to receive; the average quality of your available choices
-      is determined by how high some of your resources reached in that Reality.`
+    description: `符文是可装备的升级，只能在现实之间卸下。每次现实，您都可以从多个新的随机符文中选择一个；可用选择的平均质量取决于您在现实中的某些资源的最高值。`,
   },
   {
-    name: "Automator",
+    name: '自动机',
     id: 24,
-    openH2pEntry: "Automator Overview",
+    openH2pEntry: '自动机概述',
     requiredStage: PROGRESS_STAGE.EARLY_REALITY,
-    description: `The Automator is a built-in feature that uses a scripting language that allows you to eventually
-      finish Realities completely hands-off with enough upgrades and perks.`
+    description: `自动机是一个内置功能，使用脚本语言，最终可以让您在拥有足够升级和复兴点的情况下完全无需手动操作完成现实。`,
   },
   {
-    name: "Black Hole",
+    name: '黑洞',
     id: 25,
     requiredStage: PROGRESS_STAGE.EARLY_REALITY,
-    description: `The Black Hole runs the entire game faster in a periodic cycle. This affects everything in the game up
-      to this point and will give similar results to leaving the game open for an equivalent amount of time.`
+    description: `黑洞以周期性循环的方式加快整个游戏的速度。这会影响游戏中到目前为止的所有内容，并会产生类似于将游戏保持开启相同时间的效果。`,
   },
   {
-    name: "Teresa",
+    name: '特蕾莎',
     id: 26,
     requiredStage: PROGRESS_STAGE.TERESA,
-    description: `Teresa is the first Celestial, who has a more difficult Reality which gives a massive boost to Glyph
-      Sacrifice depending upon completion. They unlock upgrades which focus on testing and automating Realities more
-      easily.`
+    description: `特蕾莎是第一个天神，祂的现实更加困难，但会根据完成情况为符文献祭提供巨大的加成。祂解锁了专注于测试和更轻松自动化现实的升级。`,
   },
   {
-    name: "Effarig",
+    name: '鹿颈长',
     id: 27,
     requiredStage: PROGRESS_STAGE.EFFARIG,
-    description: `Effarig is the second Celestial, whose Reality limits your Glyphs and has scaling nerfs but gives
-      rewards for each new reset layer reached. They unlock upgrades which focus on automatically selecting and
-      filtering the large number of Glyphs you are receiving, purchased with a new resource called Relic Shards.`
+    description: `鹿颈长是第二个天神，祂的现实限制了您的符文，并具有逐步削弱的效果，但会根据达到的新重置层提供奖励。祂解锁了专注于自动选择和过滤大量符文的升级，这些升级使用一种名为遗物碎片的新资源购买。`,
   },
   {
-    name: "The Nameless Ones",
+    name: '无名氏',
     id: 28,
-    openH2pEntry: "Nameless Ones",
+    openH2pEntry: '无名氏',
     requiredStage: PROGRESS_STAGE.ENSLAVED,
-    description: `The Nameless Ones are the third Celestial, whose Reality is extremely punishing with a long list of
-      nerfs, but unlocks Tesseracts for those who can figure out how to prevail. They also modify your Black Hole to
-      allow it to store time.`
+    description: `无名氏是第三个天神，他的现实极其严酷，有一长串削弱效果，但为那些能够找到获胜方法的人解锁了超立方体。他还修改了您的黑洞，使其能够存储时间。`,
   },
   {
-    name: "Stored Time",
+    name: '存储时间',
     id: 29,
-    openH2pEntry: "Nameless Ones",
+    openH2pEntry: '无名氏',
     requiredStage: PROGRESS_STAGE.ENSLAVED,
-    description: `Your Black Hole has the ability to store time in two ways. Charging it allows you to hold on to
-      sped-up time and release it later as a single skip-forward burst. Storing real time lets you use actual time
-      to simulate Realities (giving you the resources of that Reality but multiplied), or as a stand-in for
-      offline progress.`
+    description: `您的黑洞有两种存储时间的方式。充能可以让您保留加速的时间，并在稍后一次性释放。存储现实时间可以让您使用现实时间来扩增现实（为您提供该现实的资源，但乘以倍数），或作为离线进度的替代。`,
   },
   {
-    name: "Tesseracts",
+    name: '超立方体',
     id: 30,
     requiredStage: PROGRESS_STAGE.ENSLAVED,
-    description: `Infinity Dimensions cannot be purchased indefinitely and all but the 8th have a hard limit for how
-      many times they can be purchased. Each Tesseract permanently increases this limit by a large amount.`
+    description: `无限维度无法无限购买，除了第8个维度外，所有维度都有购买次数的硬性限制。每个超立方体都会永久增加这个限制。`,
   },
   {
-    name: "V",
+    name: '薇',
     id: 31,
     requiredStage: PROGRESS_STAGE.V,
-    description: `V is the fourth Celestial, with a modified Reality which is similar to Teresa's Reality but only gives
-      rewards by reaching certain milestones of resources within. They give a new resource called Space Theorems, which
-      allow you to purchase additional Time Studies without path restrictions.`
+    description: `薇是第四个天神，祂的现实与特蕾莎的现实类似，但只有在达到某些资源里程碑时才会提供奖励。祂提供了一种名为空间定理的新资源，允许您购买额外的无路径限制的时间研究。`,
   },
   {
-    name: "Ra",
+    name: '太阳神',
     id: 32,
     requiredStage: PROGRESS_STAGE.RA,
-    description: `Ra is the fifth Celestial, with a modified Reality which produces a resource called Memory Chunks
-      based on your resource totals within. They focus highly on taking older upgrades and themes from the previous
-      four Celestials and improving upon them, as well as filling out some final gaps in automation and convenience.`
+    description: `太阳神是第五个天神，祂的现实根据您的资源总量生产一种名为记忆碎片的资源。祂高度专注于改进前四个天神的旧升级和主题，并填补自动化和便利性方面的最后空白。`,
   },
   {
-    name: "Memories",
+    name: '记忆',
     id: 33,
-    openH2pEntry: "Ra",
+    openH2pEntry: '太阳神',
     requiredStage: PROGRESS_STAGE.RA,
-    description: `Ra has the previous four Celestials under their control, producing Memories over time based on Memory
-      Chunk count. These Memories are used to level up the previous Celestials, providing upgrades when certain levels
-      are reached.`
+    description: `太阳神控制着前四个天神，根据记忆碎片数量随时间生产记忆。这些记忆用于提升前四个天神的等级，达到某些等级时会提供升级。`,
   },
   {
-    name: "Charged Infinity Upgrades",
+    name: '充能无限升级',
     id: 34,
-    openH2pEntry: "Ra",
+    openH2pEntry: '太阳神',
     requiredStage: PROGRESS_STAGE.RA,
-    description: `Teresa's Memories allow you to charge your Infinity Upgrades, maintaining a similar effect but
-      strengthening them significantly. Which upgrades are charged can only be changed between Realities.`
+    description: `特蕾莎的记忆允许您为无限升级充能，保持类似的效果但显著增强它们。哪些升级被充能只能在现实之间更改。`,
   },
   {
-    name: "Glyph Alchemy",
+    name: '符文炼金术',
     id: 35,
     requiredStage: PROGRESS_STAGE.RA,
-    description: `Effarig's Memories unlock Glyph Alchemy, which gives many minor boosts using a modified version of
-      Glyph Sacrifice. The resources gained from giving up Glyphs in this way must be combined together in reactions
-      in order to fully upgrade their effects.`
+    description: `鹿颈长的记忆解锁了符文炼金术，它使用符文献祭的修改版本提供许多小加成。通过这种方式放弃符文获得的资源必须通过反应组合在一起，才能完全升级其效果。`,
   },
   {
-    name: "Amplified Black Hole",
+    name: '强化黑洞',
     id: 36,
-    openH2pEntry: "Ra",
+    openH2pEntry: '太阳神',
     requiredStage: PROGRESS_STAGE.RA,
-    description: `Nameless's Memories amplify charging so that the amount of game time stored is larger than the actual
-      game time elapsed. Discharging can now also be done repeatedly and automatically.`
+    description: `无名氏的记忆增强了充能效果，使得存储的游戏时间比实际经过的游戏时间更多。现在还可以重复且自动地释放充能。`,
   },
   {
-    name: "Harder V",
+    name: '更难的薇',
     id: 37,
-    openH2pEntry: "Ra",
+    openH2pEntry: '太阳神',
     requiredStage: PROGRESS_STAGE.RA,
-    description: `V's Memories unlocks a modified version of V's original Reality with even harder goals and a new set
-      of Time Studies called Triad Studies.`
+    description: `薇的记忆解锁了薇的原版现实的修改版本，目标更加困难，并提供了一组名为三位一体的新时间研究。`,
   },
   {
-    name: "Imaginary Machines",
+    name: '虚幻机器',
     id: 38,
     requiredStage: PROGRESS_STAGE.IMAGINARY_MACHINES,
-    description: () => `Imaginary Machines are a new resource unlocked when reaching ${format(DC.E1000)} Reality
-      Machines. They are produced passively up to a cap determined by how many Reality Machines you would have gotten
-      in your farthest Reality ever.`
+    description: () => `虚幻机器是一种新资源，在达到 ${format(DC.E1000)} 现实机器时解锁。它们被动生产，上限取决于您在迄今为止最远的现实中会获得多少现实机器。`,
   },
   {
-    name: "Lai'tela",
+    name: '莱特拉',
     id: 39,
     requiredStage: PROGRESS_STAGE.LAITELA,
-    description: `Lai'tela is the sixth Celestial, whose Reality has a modified completion condition and gives a
-      scaling reward based on how quickly you can reach it. They unlock new features largely related to a resource
-      called Dark Matter.`
+    description: `莱特拉是第六个天神，祂的现实有一个修改后的完成条件，并根据您达到它的速度提供缩放奖励。祂解锁了主要与一种名为暗物质资源相关的新功能。`,
   },
   {
-    name: "Continuum",
+    name: '连续体',
     id: 40,
     requiredStage: PROGRESS_STAGE.LAITELA,
-    description: `Continuum is a modified type of production which allows your Antimatter Dimensions to produce as if
-      they could purchase fractional amounts of upgrades, without actually purchasing them.`
+    description: `连续体是一种修改后的生产方式，允许您的反物质维度以购买升级的小数部分的方式进行生产，而无需实际购买它们。`,
   },
   {
-    name: "Dark Matter Dimensions",
+    name: '暗物质维度',
     id: 41,
-    openH2pEntry: "Lai'tela",
+    openH2pEntry: '莱特拉',
     requiredStage: PROGRESS_STAGE.LAITELA,
-    description: `Dark Matter Dimensions are cascading production which operate on a tick-based system instead of
-      continuously. The lowest tier produces Dark Matter and all tiers produce Dark Energy.`
+    description: `暗物质维度是以刻为基础的级联生产方式，而不是持续生产。最低级的暗物质维度生产暗物质，所有层级都生产暗能量。`,
   },
   {
-    name: "Dimension Reset Mechanics",
+    name: '维度重置机制',
     id: 42,
-    openH2pEntry: "Lai'tela",
+    openH2pEntry: '莱特拉',
     requiredStage: PROGRESS_STAGE.LAITELA,
-    description: `Dark Matter Dimensions can be reset in two ways. Annihilation resets all your Dimensions in exchange
-      for a permanent multiplier to all Dark Matter Dimensions. Ascension increases production but resets the interval
-      of a single Dimension.`
+    description: `暗物质维度可以通过两种方式重置。湮灭会重置所有维度，以换取所有暗物质维度的永久乘数加成。升华会增加生产，但会重置单个维度的间隔。`,
   },
   {
-    name: "Singularities",
+    name: '奇点',
     id: 43,
     requiredStage: PROGRESS_STAGE.LAITELA,
-    description: `Dark Energy can be used to produce Singularities, which give boosts based on their total amount.
-      When producing Singularities, any extra Dark Energy above the condensing threshold is wasted.`
+    description: `暗能量可用于生产奇点，奇点根据其总量提供加成。在生产奇点时，任何超过凝聚阈值的额外暗能量都会被浪费。`,
   },
   {
-    name: "Pelle",
+    name: '佩勒',
     id: 44,
     requiredStage: PROGRESS_STAGE.PELLE,
-    description: `Pelle is the seventh and final Celestial, who permanently Dooms your game, throwing you into a very
-      difficult modified Reality which you cannot escape.`
+    description: `佩勒是第七个也是最后一个天神，祂会永久毁灭您的游戏，将您投入一个非常困难的修改后的现实中，您无法逃脱。`,
   },
   {
-    name: "Armageddon",
+    name: '末日',
     id: 45,
-    openH2pEntry: "Pelle",
+    openH2pEntry: '佩勒',
     requiredStage: PROGRESS_STAGE.PELLE,
-    description: `Armageddon is a Pelle-specific reset which you can perform at any time. This resets your progress to
-      the beginning of the Doomed Reality, but gives Remnants which produce Reality Shards.`
+    description: `末日是佩勒特有的重置，您可以随时执行。这会重置您的进度到毁灭现实的开始，但会提供遗物，遗物会生产现实碎片。`,
   },
   {
-    name: "Pelle Strikes and Rifts",
+    name: '佩勒冲击与裂隙',
     id: 46,
-    openH2pEntry: "Pelle Strikes",
+    openH2pEntry: '佩勒冲击',
     requiredStage: PROGRESS_STAGE.PELLE,
-    description: `Upon reaching certain progress milestones within Pelle, a Strike may occur which permanently applies
-      another nerf to the Doomed Reality. Accompanying every Strike is a Rift, which is a mechanic which lets you drain
-      a different resource in exchange for a boost. These are permanent and remain unlocked after Armageddon.`
+    description: `在佩勒中达到某些进度里程碑时，可能会发生冲击，这会为毁灭现实永久施加另一个削弱效果。每次冲击都会伴随一个裂隙，这是一种允许您消耗不同资源以换取加成的机制。这些是永久性的，并在末日之后保持解锁。`,
   },
-];
+]

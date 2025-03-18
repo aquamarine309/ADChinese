@@ -1,15 +1,15 @@
-import BlackHoleChargingSliders from "../../tabs/black-hole/BlackHoleChargingSliders.js";
-import CelestialQuoteHistory from "../../CelestialQuoteHistory.js";
-import PrimaryButton from "../../PrimaryButton.js";
-import PrimaryToggleButton from "../../PrimaryToggleButton.js";
+import BlackHoleChargingSliders from '../../tabs/black-hole/BlackHoleChargingSliders.js'
+import CelestialQuoteHistory from '../../CelestialQuoteHistory.js'
+import PrimaryButton from '../../PrimaryButton.js'
+import PrimaryToggleButton from '../../PrimaryToggleButton.js'
 
 export default {
-  name: "EnslavedTab",
+  name: 'EnslavedTab',
   components: {
     CelestialQuoteHistory,
     PrimaryButton,
     PrimaryToggleButton,
-    BlackHoleChargingSliders
+    BlackHoleChargingSliders,
   },
   data: () => ({
     isStoringBlackHole: false,
@@ -27,7 +27,7 @@ export default {
     autoReleaseSpeed: 0,
     unlocks: [],
     buyableUnlocks: [],
-    quote: "",
+    quote: '',
     currentSpeedUp: 0,
     hintsUnlocked: false,
     canModifyGameTimeStorage: false,
@@ -40,161 +40,161 @@ export default {
   }),
   computed: {
     storedRealEfficiencyDesc() {
-      return formatPercents(this.storedRealEffiency);
+      return formatPercents(this.storedRealEffiency)
     },
     storedRealCapDesc() {
-      return timeDisplayShort(this.storedRealCap);
+      return timeDisplayShort(this.storedRealCap)
     },
     unlocksInfo() {
-      return ENSLAVED_UNLOCKS;
+      return ENSLAVED_UNLOCKS
     },
     nerfedBlackHoleTime() {
-      return Enslaved.storedTimeInsideEnslaved(this.storedBlackHole);
+      return Enslaved.storedTimeInsideEnslaved(this.storedBlackHole)
     },
     realityTitle() {
-      if (this.isRunning) return "你正处于无名氏的现实之中";
-      return "开始无名氏的现实";
+      if (this.isRunning) return '你正处于无名氏的现实之中'
+      return '开始无名氏的现实'
     },
     runButtonClassObject() {
       return {
-        "c-enslaved-run-button__icon": true,
-        "c-enslaved-run-button__icon--running": this.isRunning,
-        "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
-      };
+        'c-enslaved-run-button__icon': true,
+        'c-enslaved-run-button__icon--running': this.isRunning,
+        'c-celestial-run-button--clickable': !this.isDoomed,
+        'o-pelle-disabled-pointer': this.isDoomed,
+      }
     },
     runDescription() {
-      return GameDatabase.celestials.descriptions[2].effects().split("\n");
+      return GameDatabase.celestials.descriptions[2].effects().split('\n')
     },
     realTimeButtonText() {
-      if (!this.offlineEnabled) return "离线进度已禁用";
-      if (this.autoStoreReal) return "离线时间存储";
-      return "使用离线时间以生产";
+      if (!this.offlineEnabled) return '离线进度已禁用'
+      if (this.autoStoreReal) return '离线时间存储'
+      return '使用离线时间以生产'
     },
     // Use this here since Nameless has a fairly non-standard character, and SFCs don't support using \uf0c1
     enslavedSymbol: () => Enslaved.symbol,
     isDoomed: () => Pelle.isDoomed,
     storeGameTimeClass() {
       return {
-        "o-enslaved-mechanic-button": true,
-        "o-enslaved-mechanic-button--clickable": this.canModifyGameTimeStorage,
-        "o-enslaved-mechanic-button--storing-time": this.isStoringBlackHole,
-        "l-fixed-setting": !this.canModifyGameTimeStorage,
-        "o-pelle-disabled": this.isDoomed
-      };
+        'o-enslaved-mechanic-button': true,
+        'o-enslaved-mechanic-button--clickable': this.canModifyGameTimeStorage,
+        'o-enslaved-mechanic-button--storing-time': this.isStoringBlackHole,
+        'l-fixed-setting': !this.canModifyGameTimeStorage,
+        'o-pelle-disabled': this.isDoomed,
+      }
     },
     storeRealTimeClass() {
       return {
-        "o-enslaved-mechanic-button": true,
-        "o-enslaved-mechanic-button--clickable": !this.isDoomed,
-        "o-enslaved-mechanic-button--storing-time": this.isStoringReal,
-        "l-fixed-setting": !this.canChangeStoreRealTime,
-        "o-pelle-disabled": this.isDoomed
-      };
+        'o-enslaved-mechanic-button': true,
+        'o-enslaved-mechanic-button--clickable': !this.isDoomed,
+        'o-enslaved-mechanic-button--storing-time': this.isStoringReal,
+        'l-fixed-setting': !this.canChangeStoreRealTime,
+        'o-pelle-disabled': this.isDoomed,
+      }
     },
     dischargeClass() {
       return {
-        "o-enslaved-mechanic-button": true,
-        "o-enslaved-mechanic-button--clickable": !this.isDoomed,
-        "l-fixed-setting": !this.canDischarge || this.hasNoCharge,
-        "o-pelle-disabled": this.isDoomed
-      };
+        'o-enslaved-mechanic-button': true,
+        'o-enslaved-mechanic-button--clickable': !this.isDoomed,
+        'l-fixed-setting': !this.canDischarge || this.hasNoCharge,
+        'o-pelle-disabled': this.isDoomed,
+      }
     },
     doomedDisabledClass() {
-      return { "o-pelle-disabled": this.isDoomed };
+      return { 'o-pelle-disabled': this.isDoomed }
     },
     mechanicButtonClass() {
       return {
-        "o-enslaved-mechanic-button": true,
-        "o-enslaved-mechanic-button--clickable": !this.isDoomed
-      };
-    }
+        'o-enslaved-mechanic-button': true,
+        'o-enslaved-mechanic-button--clickable': !this.isDoomed,
+      }
+    },
   },
   watch: {
     autoRelease(newValue) {
-      player.celestials.enslaved.isAutoReleasing = newValue;
-    }
+      player.celestials.enslaved.isAutoReleasing = newValue
+    },
   },
   methods: {
     update() {
-      this.isStoringBlackHole = Enslaved.isStoringGameTime;
-      this.storedBlackHole = player.celestials.enslaved.stored;
-      this.isStoringReal = Enslaved.isStoringRealTime;
-      this.autoStoreReal = player.celestials.enslaved.autoStoreReal;
-      this.offlineEnabled = player.options.offlineProgress;
-      this.hasAutoRelease = Ra.unlocks.autoPulseTime.canBeApplied;
-      this.isRunning = Enslaved.isRunning;
-      this.completed = Enslaved.isCompleted && !this.isDoomed;
-      this.storedReal = player.celestials.enslaved.storedReal;
-      this.storedRealEffiency = Enslaved.storedRealTimeEfficiency;
-      this.storedRealCap = Enslaved.storedRealTimeCap;
-      this.unlocks = Array.from(player.celestials.enslaved.unlocks);
-      this.buyableUnlocks = Object.values(ENSLAVED_UNLOCKS).map(x => Enslaved.canBuy(x));
-      this.quote = Enslaved.quote;
-      this.autoRelease = player.celestials.enslaved.isAutoReleasing;
-      this.autoReleaseSpeed = Enslaved.isAutoReleasing ? Enslaved.autoReleaseSpeed : 0;
-      this.currentSpeedUp = Enslaved.currentBlackHoleStoreAmountPerMs;
-      this.hintsUnlocked = EnslavedProgress.hintsUnlocked.hasProgress;
-      this.canModifyGameTimeStorage = Enslaved.canModifyGameTimeStorage;
-      this.canChangeStoreTime = Enslaved.canModifyGameTimeStorage;
-      this.canChangeStoreRealTime = Enslaved.canModifyRealTimeStorage;
-      this.canDischarge = Enslaved.canRelease(false);
-      this.canAutoRelease = Enslaved.canRelease(true);
-      this.hasNoCharge = player.celestials.enslaved.stored === 0;
-      this.hasReachedCurrentCap = this.storedReal === this.storedRealCap;
+      this.isStoringBlackHole = Enslaved.isStoringGameTime
+      this.storedBlackHole = player.celestials.enslaved.stored
+      this.isStoringReal = Enslaved.isStoringRealTime
+      this.autoStoreReal = player.celestials.enslaved.autoStoreReal
+      this.offlineEnabled = player.options.offlineProgress
+      this.hasAutoRelease = Ra.unlocks.autoPulseTime.canBeApplied
+      this.isRunning = Enslaved.isRunning
+      this.completed = Enslaved.isCompleted && !this.isDoomed
+      this.storedReal = player.celestials.enslaved.storedReal
+      this.storedRealEffiency = Enslaved.storedRealTimeEfficiency
+      this.storedRealCap = Enslaved.storedRealTimeCap
+      this.unlocks = Array.from(player.celestials.enslaved.unlocks)
+      this.buyableUnlocks = Object.values(ENSLAVED_UNLOCKS).map((x) => Enslaved.canBuy(x))
+      this.quote = Enslaved.quote
+      this.autoRelease = player.celestials.enslaved.isAutoReleasing
+      this.autoReleaseSpeed = Enslaved.isAutoReleasing ? Enslaved.autoReleaseSpeed : 0
+      this.currentSpeedUp = Enslaved.currentBlackHoleStoreAmountPerMs
+      this.hintsUnlocked = EnslavedProgress.hintsUnlocked.hasProgress
+      this.canModifyGameTimeStorage = Enslaved.canModifyGameTimeStorage
+      this.canChangeStoreTime = Enslaved.canModifyGameTimeStorage
+      this.canChangeStoreRealTime = Enslaved.canModifyRealTimeStorage
+      this.canDischarge = Enslaved.canRelease(false)
+      this.canAutoRelease = Enslaved.canRelease(true)
+      this.hasNoCharge = player.celestials.enslaved.stored === 0
+      this.hasReachedCurrentCap = this.storedReal === this.storedRealCap
     },
     toggleStoreBlackHole() {
-      Enslaved.toggleStoreBlackHole();
+      Enslaved.toggleStoreBlackHole()
     },
     toggleStoreReal() {
-      Enslaved.toggleStoreReal();
+      Enslaved.toggleStoreReal()
     },
     toggleAutoStoreReal() {
-      if (!this.offlineEnabled) return;
-      Enslaved.toggleAutoStoreReal();
+      if (!this.offlineEnabled) return
+      Enslaved.toggleAutoStoreReal()
     },
     useStored() {
-      Enslaved.useStoredTime(false);
+      Enslaved.useStoredTime(false)
     },
     timeDisplayShort(ms) {
-      return timeDisplayShort(ms);
+      return timeDisplayShort(ms)
     },
     timeUntilBuy(price) {
-      return Math.max((price - this.storedBlackHole) / this.currentSpeedUp, 0);
+      return Math.max((price - this.storedBlackHole) / this.currentSpeedUp, 0)
     },
     buyUnlock(info) {
-      Enslaved.buyUnlock(info);
+      Enslaved.buyUnlock(info)
     },
     startRun() {
-      if (this.isDoomed) return;
-      Modal.celestials.show({ name: "无名氏", number: 2 });
+      if (this.isDoomed) return
+      Modal.celestials.show({ name: '无名氏', number: 2 })
     },
     hasUnlock(info) {
-      return Enslaved.has(info);
+      return Enslaved.has(info)
     },
     canBuyUnlock(info) {
       // This (rather than just using Enslaved.canBuy(info) and removing this.buyableUnlocks)
       // is needed for proper reactivity of button styles (e.g., if you get a level 5000 glyph
       // while on the Nameless tab).
-      return this.buyableUnlocks[info.id];
+      return this.buyableUnlocks[info.id]
     },
     unlockClassObject(info) {
       return {
-        "o-enslaved-shop-button--bought": this.hasUnlock(info),
-        "o-enslaved-shop-button--available": this.canBuyUnlock(info)
-      };
+        'o-enslaved-shop-button--bought': this.hasUnlock(info),
+        'o-enslaved-shop-button--available': this.canBuyUnlock(info),
+      }
     },
     glitchStyle(x) {
-      const xScale = 15 / 27;
-      const yScale = 5;
-      const dx = (x - 13) * xScale + (Math.random() * 2 - 1) * 0.85;
-      const dy = (Math.random() * 2 - 1) * yScale;
-      const height = (Math.pow(Math.random(), 1.5) + 0.25) * 3 * yScale;
+      const xScale = 15 / 27
+      const yScale = 5
+      const dx = (x - 13) * xScale + (Math.random() * 2 - 1) * 0.85
+      const dy = (Math.random() * 2 - 1) * yScale
+      const height = (Math.pow(Math.random(), 1.5) + 0.25) * 3 * yScale
       return {
         transform: `translate(${dx}rem, ${dy}rem)`,
         height: `${height}rem`,
-      };
-    }
+      }
+    },
   },
   template: `
   <div class="l-enslaved-celestial-tab">
@@ -254,7 +254,7 @@ export default {
           class="o-primary-btn"
           onclick="Modal.enslavedHints.show()"
         >
-          Examine the Reality more closely...
+          更仔细地检视这个现实...
         </PrimaryButton>
         <div class="l-enslaved-top-container">
           <div class="l-enslaved-top-container__half">
@@ -338,5 +338,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

@@ -1,8 +1,8 @@
-import ModalOptionsToggleButton from "../../ModalOptionsToggleButton.js";
-import ModalWrapperOptions from "./ModalWrapperOptions.js";
+import ModalOptionsToggleButton from '../../ModalOptionsToggleButton.js'
+import ModalWrapperOptions from './ModalWrapperOptions.js'
 
 export default {
-  name: "InfoDisplayOptionsModal",
+  name: 'InfoDisplayOptionsModal',
   components: {
     ModalOptionsToggleButton,
     ModalWrapperOptions,
@@ -23,112 +23,112 @@ export default {
       realityUpgrades: false,
       perks: false,
       alchemy: false,
-    };
+    }
   },
   computed: {
     fullCompletion() {
-      return player.records.fullGameCompletions > 0;
-    }
+      return player.records.fullGameCompletions > 0
+    },
   },
   watch: {
     showPercentage(newValue) {
-      player.options.showHintText.showPercentage = newValue;
+      player.options.showHintText.showPercentage = newValue
     },
     achievements(newValue) {
-      player.options.showHintText.achievements = newValue;
+      player.options.showHintText.achievements = newValue
     },
     achievementUnlockStates(newValue) {
-      player.options.showHintText.achievementUnlockStates = newValue;
+      player.options.showHintText.achievementUnlockStates = newValue
     },
     challenges(newValue) {
-      player.options.showHintText.challenges = newValue;
+      player.options.showHintText.challenges = newValue
     },
     studies(newValue) {
-      player.options.showHintText.studies = newValue;
+      player.options.showHintText.studies = newValue
     },
     glyphEffectDots(newValue) {
-      player.options.showHintText.glyphEffectDots = newValue;
+      player.options.showHintText.glyphEffectDots = newValue
     },
     realityUpgrades(newValue) {
-      player.options.showHintText.realityUpgrades = newValue;
+      player.options.showHintText.realityUpgrades = newValue
     },
     perks(newValue) {
-      player.options.showHintText.perks = newValue;
+      player.options.showHintText.perks = newValue
     },
     alchemy(newValue) {
-      player.options.showHintText.alchemy = newValue;
+      player.options.showHintText.alchemy = newValue
     },
   },
   methods: {
     update() {
-      const progress = PlayerProgress.current;
-      this.infinityUnlocked = this.fullCompletion || progress.isInfinityUnlocked;
-      this.eternityUnlocked = this.fullCompletion || progress.isEternityUnlocked;
-      this.realityUnlocked = this.fullCompletion || progress.isRealityUnlocked;
-      this.alchemyUnlocked = this.fullCompletion || Ra.unlocks.effarigUnlock.canBeApplied;
+      const progress = PlayerProgress.current
+      this.infinityUnlocked = this.fullCompletion || progress.isInfinityUnlocked
+      this.eternityUnlocked = this.fullCompletion || progress.isEternityUnlocked
+      this.realityUnlocked = this.fullCompletion || progress.isRealityUnlocked
+      this.alchemyUnlocked = this.fullCompletion || Ra.unlocks.effarigUnlock.canBeApplied
 
-      const options = player.options.showHintText;
-      this.showPercentage = options.showPercentage;
-      this.achievements = options.achievements;
-      this.achievementUnlockStates = options.achievementUnlockStates;
-      this.challenges = options.challenges;
-      this.studies = options.studies;
-      this.glyphEffectDots = options.glyphEffectDots;
-      this.realityUpgrades = options.realityUpgrades;
-      this.perks = options.perks;
-      this.alchemy = options.alchemy;
-    }
+      const options = player.options.showHintText
+      this.showPercentage = options.showPercentage
+      this.achievements = options.achievements
+      this.achievementUnlockStates = options.achievementUnlockStates
+      this.challenges = options.challenges
+      this.studies = options.studies
+      this.glyphEffectDots = options.glyphEffectDots
+      this.realityUpgrades = options.realityUpgrades
+      this.perks = options.perks
+      this.alchemy = options.alchemy
+    },
   },
   template: `
-  <ModalWrapperOptions class="c-modal-options__large">
+<ModalWrapperOptions class="c-modal-options__large">
     <template #header>
-      Info Display Options
+      信息显示选项
     </template>
     <div class="c-modal-options__button-container">
       <ModalOptionsToggleButton
         v-model="showPercentage"
-        text="Show % gain:"
+        text="显示增益百分比："
       />
       <ModalOptionsToggleButton
         v-model="achievements"
-        text="Achievement IDs:"
+        text="成就ID："
       />
       <ModalOptionsToggleButton
         v-model="achievementUnlockStates"
-        text="Achievement unlock state indicators:"
+        text="成就解锁状态指示器："
       />
       <ModalOptionsToggleButton
         v-if="infinityUnlocked"
         v-model="challenges"
-        text="Challenge IDs:"
+        text="挑战ID："
       />
       <ModalOptionsToggleButton
         v-if="eternityUnlocked"
         v-model="studies"
-        text="Time Study IDs:"
+        text="时间研究ID："
       />
       <ModalOptionsToggleButton
         v-if="realityUnlocked"
         v-model="glyphEffectDots"
-        text="Glyph effect dots:"
+        text="符文效果点数："
       />
       <ModalOptionsToggleButton
         v-if="realityUnlocked"
         v-model="realityUpgrades"
-        text="Reality Upgrade names:"
+        text="现实升级名称："
       />
       <ModalOptionsToggleButton
         v-if="realityUnlocked"
         v-model="perks"
-        text="Perk IDs:"
+        text="特权ID："
       />
       <ModalOptionsToggleButton
         v-if="alchemyUnlocked"
         v-model="alchemy"
-        text="Alchemy resource amounts:"
+        text="炼金资源数量："
       />
     </div>
-    Note: All types of additional info above will always display when holding shift.
+    注意：以上所有类型的附加信息将在按住 shift 时始终显示。
   </ModalWrapperOptions>
-  `
-};
+  `,
+}

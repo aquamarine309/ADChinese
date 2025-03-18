@@ -1,58 +1,57 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "EternityChallengeStartModal",
+  name: 'EternityChallengeStartModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     id: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     challenge() {
-      return EternityChallenge(this.id);
+      return EternityChallenge(this.id)
     },
     challengeIsCompleted() {
-      return this.challenge.isFullyCompleted;
+      return this.challenge.isFullyCompleted
     },
     message() {
-      return `You will Eternity (if possible) and start a new Eternity within the Challenge, with all the
-        Challenge-specific restrictions and modifiers active.
-        To complete the Challenge${this.challengeIsCompleted ? "" : " and gain its reward"},
-        you must reach the Challenge goal of
-        ${format(this.challenge.currentGoal)} Infinity Points. You can complete Eternity Challenges up to
-        ${formatInt(5)} times, with increasing goals and bonuses.`;
+      return `你将进行一次永恒（如果可能）并进入挑战限定永恒，激活挑战相关的限制和加成。
+        为了完成挑战${this.challengeIsCompleted ? '' : ' 并获取奖励'},
+        你必须达到挑战目标
+        ${format(this.challenge.currentGoal)}无限点数。你最多能完成挑战
+        ${formatInt(5)}次，每次目标和奖励都会增加。`
     },
     entranceLabel() {
-      return `You are about to enter Eternity Challenge ${this.id}`;
+      return `你正要进入永恒挑战${this.id}`
     },
     reward() {
-      let rewardDescription = this.challenge._config.reward.description;
-      if (typeof rewardDescription === "function") {
-        rewardDescription = rewardDescription();
+      let rewardDescription = this.challenge._config.reward.description
+      if (typeof rewardDescription === 'function') {
+        rewardDescription = rewardDescription()
       }
-      return `The reward for completing this challenge is: ${rewardDescription}`;
+      return `完成挑战的奖励是：${rewardDescription}`
     },
     condition() {
-      let conditionOfChallenge = this.challenge._config.description;
-      if (typeof conditionOfChallenge === "function") {
-        conditionOfChallenge = conditionOfChallenge();
+      let conditionOfChallenge = this.challenge._config.description
+      if (typeof conditionOfChallenge === 'function') {
+        conditionOfChallenge = conditionOfChallenge()
       }
-      return `Inside this Eternity Challenge, ${conditionOfChallenge}`;
-    }
+      return `在挑战内部，${conditionOfChallenge}`
+    },
   },
   created() {
-    this.on$(GAME_EVENT.ETERNITY_RESET_AFTER, this.emitClose);
-    this.on$(GAME_EVENT.REALITY_RESET_AFTER, this.emitClose);
+    this.on$(GAME_EVENT.ETERNITY_RESET_AFTER, this.emitClose)
+    this.on$(GAME_EVENT.REALITY_RESET_AFTER, this.emitClose)
   },
   methods: {
     handleYesClick() {
-      this.challenge.start(true);
-      EventHub.ui.offAll(this);
-    }
+      this.challenge.start(true)
+      EventHub.ui.offAll(this)
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -75,8 +74,8 @@ export default {
       {{ reward }}
     </div>
     <template #confirm-text>
-      Begin
+      开始
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

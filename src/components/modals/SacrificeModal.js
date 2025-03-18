@@ -1,39 +1,37 @@
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
+import ModalWrapperChoice from './ModalWrapperChoice.js'
 
 export default {
-  name: "SacrificeModal",
+  name: 'SacrificeModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
       currentMultiplier: new Decimal(),
       nextMultiplier: new Decimal(),
-    };
+    }
   },
   computed: {
     message() {
       if (Achievement(118).isUnlocked && !Pelle.isDoomed) {
-        return `Dimensional Sacrifice will give you a boost to the 8th Antimatter Dimension based on the amount of
-          1st Antimatter Dimensions you had at the time of Sacrificing.`;
+        return `维度献祭将根据你献祭时的第 1 反物质维度数量，提升第 8 反物质维度的效果。`
       }
-      return `Dimensional Sacrifice will remove all of your 1st through 7th Antimatter Dimensions
-        (with the cost and multiplier unchanged), for a boost to the 8th Antimatter Dimension based on the total
-        amount of 1st Antimatter Dimensions sacrificed. It will take time to regain production.`;
+      return `维度献祭将移除你所有的第 1 到第 7 反物质维度（成本和倍率保持不变），
+        并根据献祭的第 1 反物质维度总量提升第 8 反物质维度的效果。恢复生产需要时间。`
     },
     multiplierText() {
-      return `Multiplier is currently ${formatX(this.currentMultiplier, 2, 2)} and will increase to
-        ${formatX(this.nextMultiplier, 2, 2)} on Dimensional Sacrifice.`;
+      return `当前倍率为 ${formatX(this.currentMultiplier, 2, 2)}，献祭后将增加至
+        ${formatX(this.nextMultiplier, 2, 2)}。`
     },
   },
   methods: {
     update() {
-      this.currentMultiplier.copyFrom(Sacrifice.totalBoost);
-      this.nextMultiplier.copyFrom(Sacrifice.nextBoost.times(Sacrifice.totalBoost));
+      this.currentMultiplier.copyFrom(Sacrifice.totalBoost)
+      this.nextMultiplier.copyFrom(Sacrifice.nextBoost.times(Sacrifice.totalBoost))
     },
     handleYesClick() {
-      sacrificeReset();
-    }
+      sacrificeReset()
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -41,7 +39,7 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      Dimensional Sacrifice
+      维度献祭
     </template>
     <div class="c-modal-message__text">
       {{ message }}
@@ -52,5 +50,5 @@ export default {
       <br>
     </div>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

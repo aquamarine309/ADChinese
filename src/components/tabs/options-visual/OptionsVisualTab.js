@@ -1,14 +1,14 @@
-import ExpandingControlBox from "../../ExpandingControlBox.js";
-import OpenModalHotkeysButton from "../../OpenModalHotkeysButton.js";
-import OptionsButton from "../../OptionsButton.js";
-import PrimaryToggleButton from "../../PrimaryToggleButton.js";
-import SelectNotationDropdown from "./SelectNotationDropdown.js";
-import SelectThemeDropdown from "./SelectThemeDropdown.js";
-import SelectSidebarDropdown from "./SelectSidebarDropdown.js";
-import UpdateRateSlider from "./UpdateRateSlider.js";
+import ExpandingControlBox from '../../ExpandingControlBox.js'
+import OpenModalHotkeysButton from '../../OpenModalHotkeysButton.js'
+import OptionsButton from '../../OptionsButton.js'
+import PrimaryToggleButton from '../../PrimaryToggleButton.js'
+import SelectNotationDropdown from './SelectNotationDropdown.js'
+import SelectThemeDropdown from './SelectThemeDropdown.js'
+import SelectSidebarDropdown from './SelectSidebarDropdown.js'
+import UpdateRateSlider from './UpdateRateSlider.js'
 
 export default {
-  name: "OptionsVisualTab",
+  name: 'OptionsVisualTab',
   components: {
     UpdateRateSlider,
     PrimaryToggleButton,
@@ -17,45 +17,43 @@ export default {
     OpenModalHotkeysButton,
     SelectThemeDropdown,
     SelectNotationDropdown,
-    SelectSidebarDropdown
+    SelectSidebarDropdown,
   },
   data() {
     return {
-      theme: "",
-      notation: "",
-      sidebarResource: "",
+      theme: '',
+      notation: '',
+      sidebarResource: '',
       headerTextColored: true,
-    };
+    }
   },
   computed: {
     sidebarDB: () => GameDatabase.sidebarResources,
     themeLabel() {
-      return `主题：${Themes.find(this.theme).displayName()}`;
+      return `主题：${Themes.find(this.theme).displayName()}`
     },
     notationLabel() {
-      return `记数法：${this.notation}`;
+      return `记数法：${this.notation}`
     },
     sidebarLabel() {
-      return `Sidebar (Modern UI): ${this.sidebarResource}`;
+      return `边注栏 (现代 UI): ${this.sidebarResource}`
     },
     UILabel() {
-      return `UI: ${this.$viewModel.newUI ? "新版" : "旧版"}`;
-    }
+      return `UI: ${this.$viewModel.newUI ? '新版' : '旧版'}`
+    },
   },
   watch: {
     headerTextColored(newValue) {
-      player.options.headerTextColored = newValue;
+      player.options.headerTextColored = newValue
     },
   },
   methods: {
     update() {
-      const options = player.options;
-      this.theme = Theme.currentName();
-      this.notation = options.notation;
-      this.sidebarResource = player.options.sidebarResourceID === 0
-        ? "最新资源"
-        : this.sidebarDB.find(e => e.id === player.options.sidebarResourceID).optionName;
-      this.headerTextColored = options.headerTextColored;
+      const options = player.options
+      this.theme = Theme.currentName()
+      this.notation = options.notation
+      this.sidebarResource = player.options.sidebarResourceID === 0 ? '最新资源' : this.sidebarDB.find((e) => e.id === player.options.sidebarResourceID).optionName
+      this.headerTextColored = options.headerTextColored
     },
   },
   template: `
@@ -148,5 +146,5 @@ export default {
       <OpenModalHotkeysButton />
     </div>
   </div>
-  `
-};
+  `,
+}

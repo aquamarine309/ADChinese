@@ -1,126 +1,124 @@
-import { hasCompilationErrors } from "../../core/automator/index.js";
+import { hasCompilationErrors } from '../../core/automator/index.js'
 
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
+import ModalWrapperChoice from './ModalWrapperChoice.js'
 
 export default {
-  name: "ImportAutomatorDataModal",
+  name: 'ImportAutomatorDataModal',
   components: {
     ModalWrapperChoice,
   },
   data() {
     return {
-      input: "",
+      input: '',
       isValid: false,
       hasExtraData: false,
-      scriptName: "",
+      scriptName: '',
       lineCount: 0,
-      scriptContent: "",
+      scriptContent: '',
       hasErrors: false,
       importedPresets: [],
       importedConstants: [],
       ignorePresets: false,
       ignoreConstants: false,
-    };
+    }
   },
   computed: {
     hasPresets() {
-      return (this.importedPresets?.length ?? 0) !== 0;
+      return (this.importedPresets?.length ?? 0) !== 0
     },
     hasConstants() {
-      return (this.importedConstants?.length ?? 0) !== 0;
+      return (this.importedConstants?.length ?? 0) !== 0
     },
     isImportingExtraData() {
       // These two checks differ because we suppress the preset import warning when importing into an empty
       // slot, but we use this prop for information on importing rather than overwriting
-      const hasNewConstants = this.willOverwriteConstant || this.constantCountAfterImport > this.currentConstants;
-      const isImportingPresets = this.importedPresets ? !this.ignorePresets : false;
-      const isImportingConstants = this.importedConstants
-        ? !this.ignoreConstants && hasNewConstants
-        : false;
-      return this.isValid && this.hasExtraData && (isImportingPresets || isImportingConstants);
+      const hasNewConstants = this.willOverwriteConstant || this.constantCountAfterImport > this.currentConstants
+      const isImportingPresets = this.importedPresets ? !this.ignorePresets : false
+      const isImportingConstants = this.importedConstants ? !this.ignoreConstants && hasNewConstants : false
+      return this.isValid && this.hasExtraData && (isImportingPresets || isImportingConstants)
     },
     currentPresets: () => player.timestudy.presets,
     currentConstants: () => Object.keys(player.reality.automator.constants),
     maxConstantCount() {
-      return AutomatorData.MAX_ALLOWED_CONSTANT_COUNT;
+      return AutomatorData.MAX_ALLOWED_CONSTANT_COUNT
     },
     // Number of studies with different contents which will be overwritten
     overwrittenPresetCount() {
-      let mismatchedPresets = 0;
+      let mismatchedPresets = 0
       for (const toImport of this.importedPresets) {
-        const existingPreset = this.currentPresets[toImport.id];
-        const isEmpty = existingPreset.name === "" && existingPreset.studies === "";
+        const existingPreset = this.currentPresets[toImport.id]
+        const isEmpty = existingPreset.name === '' && existingPreset.studies === ''
         if (!isEmpty && (existingPreset.name !== toImport.name || existingPreset.studies !== toImport.studies)) {
-          mismatchedPresets++;
+          mismatchedPresets++
         }
       }
-      return mismatchedPresets;
+      return mismatchedPresets
     },
     willOverwriteConstant() {
-      if (!this.hasExtraData) return false;
-      const all = new Set();
-      for (const constant of this.currentConstants) all.add(constant);
+      if (!this.hasExtraData) return false
+      const all = new Set()
+      for (const constant of this.currentConstants) all.add(constant)
       for (const constant of this.importedConstants) {
-        if (all.has(constant.key) && player.reality.automator.constants[constant.key] !== constant.value) return true;
+        if (all.has(constant.key) && player.reality.automator.constants[constant.key] !== constant.value) return true
       }
-      return false;
+      return false
     },
     constantCountAfterImport() {
-      if (!this.hasExtraData) return this.currentConstants.length;
-      const all = new Set();
-      for (const constant of this.currentConstants) all.add(constant);
-      for (const constant of this.importedConstants) all.add(constant.key);
-      return all.size;
+      if (!this.hasExtraData) return this.currentConstants.length
+      const all = new Set()
+      for (const constant of this.currentConstants) all.add(constant)
+      for (const constant of this.importedConstants) all.add(constant.key)
+      return all.size
     },
     extraConstants() {
-      return this.constantCountAfterImport - this.maxConstantCount;
+      return this.constantCountAfterImport - this.maxConstantCount
     },
     presetButtonText() {
-      return this.ignorePresets ? "Will Ignore Presets" : "Will Import Presets";
+      return this.ignorePresets ? '将忽略预设' : '将导入预设'
     },
     constantButtonText() {
-      return this.ignoreConstants ? "Will Ignore Constants" : "Will Import Constants";
-    }
+      return this.ignoreConstants ? '将忽略常量' : '将导入常量'
+    },
   },
   mounted() {
-    this.$refs.input.select();
+    this.$refs.input.select()
   },
   methods: {
     update() {
       // We need to sequentially parse full data and then single script data in order to handle both in the same modal.
       // Parsing order doesn't matter due to the fact that export formatting means it's only ever one or the other.
-      let parsed = AutomatorBackend.parseFullScriptData(this.input);
-      if (parsed) this.hasExtraData = true;
+      let parsed = AutomatorBackend.parseFullScriptData(this.input)
+      if (parsed) this.hasExtraData = true
       else {
-        parsed = AutomatorBackend.parseScriptContents(this.input);
-        this.hasExtraData = false;
+        parsed = AutomatorBackend.parseScriptContents(this.input)
+        this.hasExtraData = false
       }
       if (!parsed) {
-        this.isValid = false;
-        return;
+        this.isValid = false
+        return
       }
 
       // Some of these may be undefined for single script importing (ie. no additional data attached) or for scripts
       // with errors. These cases are checked elsewhere
-      this.scriptName = parsed.name;
-      this.scriptContent = parsed.content;
-      this.importedPresets = parsed.presets;
-      this.importedConstants = parsed.constants;
-      this.lineCount = this.scriptContent.split("\n").length;
-      this.hasErrors = hasCompilationErrors(this.scriptContent);
-      this.isValid = true;
+      this.scriptName = parsed.name
+      this.scriptContent = parsed.content
+      this.importedPresets = parsed.presets
+      this.importedConstants = parsed.constants
+      this.lineCount = this.scriptContent.split('\n').length
+      this.hasErrors = hasCompilationErrors(this.scriptContent)
+      this.isValid = true
     },
     importSave() {
-      if (!this.isValid) return;
+      if (!this.isValid) return
       if (this.hasExtraData) {
         AutomatorBackend.importFullScriptData(this.input, {
           presets: this.ignorePresets,
-          constants: this.ignoreConstants
-        });
+          constants: this.ignoreConstants,
+        })
       } else {
-        AutomatorBackend.importScriptContents(this.input);
+        AutomatorBackend.importScriptContents(this.input)
       }
-      this.emitClose();
+      this.emitClose()
     },
   },
   template: `
@@ -130,10 +128,10 @@ export default {
     @confirm="importSave"
   >
     <template #header>
-      Import Automator Script Data
+      导入自动机脚本数据
     </template>
-    This will create a new Automator script at the end of your list.
-    <span v-if="isImportingExtraData">This will also import additional data related to the script.</span>
+    这会在你的列表末尾创建一个新的脚本
+    <span v-if="isImportingExtraData">这会同时导入脚本携带的额外数据</span>
     <input
       ref="input"
       v-model="input"
@@ -143,12 +141,12 @@ export default {
       @keyup.esc="emitClose"
     >
     <div v-if="isValid">
-      Script name: {{ scriptName }}
+      脚本名称: {{ scriptName }}
       <br>
-      Line count: {{ lineCount }}
+      行数: {{ lineCount }}
       <div v-if="hasPresets">
         <br>
-        Study Presets:
+        研究预设:
         <span
           v-for="(preset, id) in importedPresets"
           :key="id"
@@ -163,8 +161,7 @@ export default {
           class="l-has-errors"
           data-v-import-automator-data-modal
         >
-          {{ formatInt(overwrittenPresetCount) }} of your existing presets
-          will be overwritten by imported presets!
+          {{ formatInt(overwrittenPresetCount) }} 个已存在的预设将被复写！
         </div>
         <br>
         <button
@@ -223,5 +220,5 @@ export default {
       导入
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

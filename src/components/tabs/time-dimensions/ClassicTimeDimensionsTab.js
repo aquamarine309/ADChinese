@@ -1,11 +1,11 @@
-import PrimaryButton from "../../PrimaryButton.js";
-import TimeDimensionRow from "./ClassicTimeDimensionRow.js";
+import PrimaryButton from '../../PrimaryButton.js'
+import TimeDimensionRow from './ClassicTimeDimensionRow.js'
 
 export default {
-  name: "ClassicTimeDimensionsTab",
+  name: 'ClassicTimeDimensionsTab',
   components: {
     PrimaryButton,
-    TimeDimensionRow
+    TimeDimensionRow,
   },
   data() {
     return {
@@ -15,33 +15,33 @@ export default {
       timeShards: new Decimal(0),
       upgradeThreshold: new Decimal(0),
       shardsPerSecond: new Decimal(0),
-      incomeType: "",
+      incomeType: '',
       areAutobuyersUnlocked: false,
       showLockedDimCostNote: true,
-    };
+    }
   },
   computed: {
     costIncreases: () => TimeDimension(1).costIncreaseThresholds,
   },
   methods: {
     update() {
-      this.showLockedDimCostNote = !TimeDimension(8).isUnlocked && player.realities >= 1;
-      this.totalUpgrades = player.totalTickGained;
-      this.multPerTickspeed = FreeTickspeed.multToNext;
-      this.tickspeedSoftcap = FreeTickspeed.softcap;
-      this.timeShards.copyFrom(Currency.timeShards);
-      this.upgradeThreshold.copyFrom(FreeTickspeed.fromShards(Currency.timeShards.value).nextShards);
-      this.shardsPerSecond.copyFrom(TimeDimension(1).productionPerRealSecond);
-      this.incomeType = EternityChallenge(7).isRunning ? "Eighth Infinity Dimensions" : "Time Shards";
-      this.areAutobuyersUnlocked = Autobuyer.timeDimension(1).isUnlocked;
+      this.showLockedDimCostNote = !TimeDimension(8).isUnlocked && player.realities >= 1
+      this.totalUpgrades = player.totalTickGained
+      this.multPerTickspeed = FreeTickspeed.multToNext
+      this.tickspeedSoftcap = FreeTickspeed.softcap
+      this.timeShards.copyFrom(Currency.timeShards)
+      this.upgradeThreshold.copyFrom(FreeTickspeed.fromShards(Currency.timeShards.value).nextShards)
+      this.shardsPerSecond.copyFrom(TimeDimension(1).productionPerRealSecond)
+      this.incomeType = EternityChallenge(7).isRunning ? 'Eighth Infinity Dimensions' : 'Time Shards'
+      this.areAutobuyersUnlocked = Autobuyer.timeDimension(1).isUnlocked
     },
     maxAll() {
-      tryUnlockTimeDimensions();
-      maxAllTimeDimensions();
+      tryUnlockTimeDimensions()
+      maxAllTimeDimensions()
     },
     toggleAllAutobuyers() {
-      toggleAllTimeDims();
-    }
+      toggleAllTimeDims()
+    },
   },
   template: `
   <div class="l-time-dim-tab l-centered-vertical-tab">
@@ -61,24 +61,19 @@ export default {
       </PrimaryButton>
     </div>
     <div>
-      <p>
-        You have gained
-        <span class="c-time-dim-description__accent">{{ formatInt(totalUpgrades) }}</span> Tickspeed upgrades from
-        <span class="c-time-dim-description__accent">{{ format(timeShards, 2, 1) }}</span> Time Shards.
-      </p>
-      <p>
-        Next Tickspeed upgrade at
-        <span class="c-time-dim-description__accent">{{ format(upgradeThreshold, 2, 1) }}</span>, increasing by
-        <span class="c-time-dim-description__accent">{{ formatX(multPerTickspeed, 2, 2) }}</span> per
-        Tickspeed upgrade gained.
+      <p> 你已从 
+        <span class="c-time-dim-description__accent">{{ format(timeShards, 2, 1) }}</span> 个时间碎片中获得了 
+        <span class="c-time-dim-description__accent">{{ formatInt(totalUpgrades) }}</span> 次计数频率升级。 
+      </p> 
+      <p> 下一次计数频率升级将在 <span class="c-time-dim-description__accent">{{ format(upgradeThreshold, 2, 1) }}</span> 
+      时解锁，每获得一次计数频率升级，该数值将以 <span class="c-time-dim-description__accent">{{ formatX(multPerTickspeed, 2, 2) }}</span> 的倍率增长。 
       </p>
     </div>
     <div>
-      The amount each additional upgrade requires will start
-      increasing above {{ formatInt(tickspeedSoftcap) }} Tickspeed upgrades.
+      每次升级需要的时间碎片会在 {{ formatInt(tickspeedSoftcap) }} 次计数频率升级后开始增加.
     </div>
     <div>
-      You are getting {{ format(shardsPerSecond, 2, 0) }} {{ incomeType }} per second.
+      你每秒钟获得 {{ format(shardsPerSecond, 2, 0) }} {{ incomeType }} 时间碎片.
     </div>
     <div class="l-dimensions-container">
       <TimeDimensionRow
@@ -100,6 +95,5 @@ export default {
       Any 8th Time Dimensions purchased above {{ format(1e8) }} will not further increase the multiplier.
     </div>
   </div>
-  `
-
-};
+  `,
+}

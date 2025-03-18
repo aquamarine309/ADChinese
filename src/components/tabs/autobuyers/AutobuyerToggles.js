@@ -1,11 +1,11 @@
-import PrimaryButton from "../../PrimaryButton.js";
-import PrimaryToggleButton from "../../PrimaryToggleButton.js";
+import PrimaryButton from '../../PrimaryButton.js'
+import PrimaryToggleButton from '../../PrimaryToggleButton.js'
 
 export default {
-  name: "AutobuyerToggles",
+  name: 'AutobuyerToggles',
   components: {
     PrimaryButton,
-    PrimaryToggleButton
+    PrimaryToggleButton,
   },
   data() {
     return {
@@ -13,41 +13,41 @@ export default {
       autobuyersOn: false,
       showContinuum: false,
       disableContinuum: false,
-      allAutobuyersDisabled: false
-    };
+      allAutobuyersDisabled: false,
+    }
   },
   watch: {
     autobuyersOn(newValue) {
-      player.auto.autobuyersOn = newValue;
+      player.auto.autobuyersOn = newValue
     },
     disableContinuum(newValue) {
       if (ImaginaryUpgrade(21).isLockingMechanics && !newValue) {
-        ImaginaryUpgrade(21).tryShowWarningModal();
-        return;
+        ImaginaryUpgrade(21).tryShowWarningModal()
+        return
       }
-      Laitela.setContinuum(!newValue);
-    }
+      Laitela.setContinuum(!newValue)
+    },
   },
   methods: {
     update() {
-      this.isDoomed = Pelle.isDoomed;
-      this.autobuyersOn = player.auto.autobuyersOn;
-      this.showContinuum = Laitela.isUnlocked;
-      this.disableContinuum = player.auto.disableContinuum;
-      this.allAutobuyersDisabled = Autobuyers.unlocked.every(autobuyer => !autobuyer.isActive);
+      this.isDoomed = Pelle.isDoomed
+      this.autobuyersOn = player.auto.autobuyersOn
+      this.showContinuum = Laitela.isUnlocked
+      this.disableContinuum = player.auto.disableContinuum
+      this.allAutobuyersDisabled = Autobuyers.unlocked.every((autobuyer) => !autobuyer.isActive)
     },
     toggleAllAutobuyers() {
       for (const autobuyer of Autobuyers.unlocked) {
-        autobuyer.isActive = this.allAutobuyersDisabled;
+        autobuyer.isActive = this.allAutobuyersDisabled
       }
-    }
+    },
   },
   template: `
   <div class="c-subtab-option-container">
     <PrimaryToggleButton
       v-model="autobuyersOn"
-      on="Pause autobuyers"
-      off="Resume autobuyers"
+      on="暂停自动购买器"
+      off="恢复自动购买器"
       class="o-primary-btn--subtab-option"
     />
     <PrimaryButton
@@ -61,7 +61,7 @@ export default {
         v-if="showContinuum"
         class="o-primary-btn--subtab-option"
       >
-        Continuum is disabled
+        连续统已禁用
       </PrimaryButton>
     </span>
     <span v-else>
@@ -74,5 +74,5 @@ export default {
       />
     </span>
   </div>
-  `
-};
+  `,
+}
