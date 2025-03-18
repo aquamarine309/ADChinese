@@ -852,7 +852,7 @@ export const AutomatorBackend = {
   },
 
   _createDefaultScript() {
-    const defaultScript = AutomatorScript.create("New Script");
+    const defaultScript = AutomatorScript.create("新脚本");
     this._scripts = [defaultScript];
     this.state.topLevelScript = defaultScript.id;
     return defaultScript.id;
@@ -896,12 +896,12 @@ export const AutomatorBackend = {
     // Make sure the new script has a unique name
     const scriptNames = AutomatorBackend._scripts.map(s => s.name);
     let newScript;
-    if (scriptNames.includes("New Script")) {
+    if (scriptNames.includes("新脚本")) {
       let newIndex = 2;
-      while (scriptNames.includes(`New Script (${newIndex})`)) newIndex++;
-      newScript = AutomatorScript.create(`New Script (${newIndex})`);
+      while (scriptNames.includes(`新脚本 (${newIndex})`)) newIndex++;
+      newScript = AutomatorScript.create(`新脚本 (${newIndex})`);
     } else {
-      newScript = AutomatorScript.create("New Script");
+      newScript = AutomatorScript.create("新脚本");
     }
 
     this._scripts.push(newScript);

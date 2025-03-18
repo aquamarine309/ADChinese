@@ -1,24 +1,24 @@
-import ConfirmationOptionsEntry from "./ConfirmationOptionsEntry.js";
-import ModalWrapperOptions from "./ModalWrapperOptions.js";
+import ConfirmationOptionsEntry from './ConfirmationOptionsEntry.js'
+import ModalWrapperOptions from './ModalWrapperOptions.js'
 
 export default {
-  name: "ConfirmationOptionsModal",
+  name: 'ConfirmationOptionsModal',
   components: {
     ModalWrapperOptions,
     ConfirmationOptionsEntry,
   },
   computed: {
     count() {
-      return ConfirmationTypes.index.length;
+      return ConfirmationTypes.index.length
     },
     noConfirmations() {
-      return ConfirmationTypes.index.every(x => !x.isUnlocked());
-    }
+      return ConfirmationTypes.index.every((x) => !x.isUnlocked())
+    },
   },
   template: `
   <ModalWrapperOptions class="c-modal-options__large">
     <template #header>
-      Confirmation Options
+      确认选项
     </template>
     <div class="c-modal-options__button-container">
       <span v-if="noConfirmations">
@@ -32,5 +32,5 @@ export default {
       />
     </div>
   </ModalWrapperOptions>
-  `
-};
+  `,
+}

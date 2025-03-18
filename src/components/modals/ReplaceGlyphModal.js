@@ -42,9 +42,9 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      You are about to replace a Glyph
+      你正要替换符文
     </template>
-    Replacing a Glyph will restart this {{ resetTerm }}.
+    替换符文会重启本次 {{ resetTerm }}.
   </ModalWrapperChoice>
   `
 };

@@ -1,30 +1,30 @@
-import GlyphSetPreview from "../GlyphSetPreview.js";
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
+import GlyphSetPreview from '../GlyphSetPreview.js'
+import ModalWrapperChoice from './ModalWrapperChoice.js'
 
 export default {
-  name: "GlyphSetSaveDeleteModal",
+  name: 'GlyphSetSaveDeleteModal',
   components: {
     ModalWrapperChoice,
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   props: {
     glyphSetId: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      glyphSet: []
-    };
+      glyphSet: [],
+    }
   },
   methods: {
     update() {
-      this.glyphSet = Glyphs.copyForRecords(player.reality.glyphs.sets[this.glyphSetId].glyphs);
+      this.glyphSet = Glyphs.copyForRecords(player.reality.glyphs.sets[this.glyphSetId].glyphs)
     },
     handleYesClick() {
-      player.reality.glyphs.sets[this.glyphSetId].glyphs = [];
-      EventHub.dispatch(GAME_EVENT.GLYPH_SET_SAVE_CHANGE);
+      player.reality.glyphs.sets[this.glyphSetId].glyphs = []
+      EventHub.dispatch(GAME_EVENT.GLYPH_SET_SAVE_CHANGE)
     },
   },
   template: `
@@ -33,19 +33,19 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      Delete this Glyph Set
+      删除符文预设
     </template>
     <div class="c-modal-message__text">
-      Please confirm your desire to delete this Glyph Set:
+      请确认你想删除这个符文预设：
       <GlyphSetPreview
         :is-in-modal="true"
         :glyphs="glyphSet"
       />
-      This will not affect your actual Glyphs, only the saved preset.
+      这不影响你实际的符文，只影响预设。
     </div>
     <template #confirm-text>
-      Delete
+      删除
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

@@ -1,11 +1,11 @@
-import InformationModalButton from "./InformationModalButton.js";
-import ModalCloseButton from "./ModalCloseButton.js";
+import InformationModalButton from './InformationModalButton.js'
+import ModalCloseButton from './ModalCloseButton.js'
 
 export default {
-  name: "InformationModal",
+  name: 'InformationModal',
   components: {
     ModalCloseButton,
-    InformationModalButton
+    InformationModalButton,
   },
   template: `
   <div
@@ -21,19 +21,18 @@ export default {
         class="c-h2p-title"
         data-v-information-modal
       >
-        About the game
+        关于本游戏
       </div>
     </div>
     <div
       class="c-info-body"
       data-v-information-modal
     >
-      Antimatter Dimensions is an Idle Incremental game created by Finnish developer Hevipelle. Originating as a solo
-      project in 2016, it was expanded upon by a large team of developers and testers from then on.
+    《反物质维度》是芬兰开发者 Hevipelle 制作的一款闲置增量游戏。该游戏于 2016
+      年立项，之后由一个由开发人员和测试人员组成的大型团队进行了扩展。
       <br>
       <br>
-      The game has unfolding gameplay and multiple prestige layers. The "How to Play" button contains useful
-      information about progressing.
+      游戏的玩法层层展开，并有多个声望层。“如何游玩” 按钮包含了有关游戏进展的有用信息。
     </div>
     <div
       class="l-socials"
@@ -76,5 +75,5 @@ export default {
       />
     </div>
   </div>
-  `
-};
+  `,
+}

@@ -1,10 +1,10 @@
-import { GameProgress, ProgressChecker } from "../../../core/storage/progress-checker.js";
+import { GameProgress, ProgressChecker } from '../../../core/storage/progress-checker.js'
 
-import CatchupGroup from "./CatchupGroup.js";
-import PrimaryButton from "../../PrimaryButton.js";
+import CatchupGroup from './CatchupGroup.js'
+import PrimaryButton from '../../PrimaryButton.js'
 
 export default {
-  name: "CatchupModal",
+  name: 'CatchupModal',
   components: {
     CatchupGroup,
     PrimaryButton,
@@ -12,39 +12,36 @@ export default {
   props: {
     diff: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     progressStage: () => ProgressChecker.getProgressStage(player).id,
     suggestedResource() {
-      return GameProgress(this.progressStage).suggestedResource;
+      return GameProgress(this.progressStage).suggestedResource
     },
     timeString() {
       // If diff is zero, that means we opened it up via the button and don't need the text for last opening
-      if (!this.diff) return null;
-      return `It has been ${TimeSpan.fromMilliseconds(this.diff).toString()} since you last loaded up the game.`;
+      if (!this.diff) return null
+      return `It has been ${TimeSpan.fromMilliseconds(this.diff).toString()} since you last loaded up the game.`
     },
     titleText() {
-      return this.diff ? "Content Catch-up" : "Content Summary";
-    }
+      return this.diff ? '内容小结' : '内容概览'
+    },
   },
   methods: {
     stageName(stage) {
-      return GameProgress(stage).name;
-    }
+      return GameProgress(stage).name
+    },
   },
   template: `
-  <div class="c-modal-away-progress">
+<div class="c-modal-away-progress">
     <div class="c-modal-away-progress__header">
       {{ titleText }}
     </div>
     <div>
       {{ timeString }}
-      If you need a refresher, here is a quick summary of all the content you have unlocked so far from the beginning of
-      the game, separated into different stages of progression. These are only very brief descriptions; you can check
-      the related How To Play entries by clicking the contents title or <i class="fas fa-question-circle" /> icons
-      to view more detailed information.
+      如果您需要回顾，以下是您从游戏开始至今解锁的所有内容的快速摘要，按不同的进展阶段分类。这些只是非常简短的描述；您可以点击内容标题或 <i class="fas fa-question-circle" /> 图标查看相关“如何游玩”条目，以获取更详细的信息。
     </div>
     <div
       class="l-catchup-group-container"
@@ -62,7 +59,7 @@ export default {
       class="c-suggestion-text"
       data-v-catchup-modal
     >
-      Based on your current progression, it will probably be useful to try to increase your {{ suggestedResource }}.
+      根据您当前的进展，尝试提升您的 {{ suggestedResource }} 可能会很有帮助。
     </span>
     <div
       class="l-confirm-padding"
@@ -71,9 +68,9 @@ export default {
       <PrimaryButton
         @click="emitClose"
       >
-        Confirm
+        确认
       </PrimaryButton>
     </div>
   </div>
-  `
-};
+  `,
+}

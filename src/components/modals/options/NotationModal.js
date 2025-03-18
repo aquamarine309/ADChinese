@@ -1,81 +1,78 @@
-import { ADNotations } from "../../../../modules/notations.js";
+import { ADNotations } from '../../../../modules/notations.js'
 
-import ModalWrapper from "../ModalWrapper.js";
-import SliderComponent from "../../SliderComponent.js";
+import ModalWrapper from '../ModalWrapper.js'
+import SliderComponent from '../../SliderComponent.js'
 
 export default {
-  name: "NotationModal",
+  name: 'NotationModal',
   components: {
     ModalWrapper,
-    SliderComponent
+    SliderComponent,
   },
   data() {
     return {
       commaDigits: 0,
       notationDigits: 0,
-    };
+    }
   },
   computed: {
     sampleNums() {
-      const largestExponent = "123456789012345";
-      const numbers = [];
-      for (let digits = 4; digits < 16; digits++) numbers.push(Decimal.pow10(largestExponent.substring(0, digits)));
-      return numbers;
+      const largestExponent = '123456789012345'
+      const numbers = []
+      for (let digits = 4; digits < 16; digits++) numbers.push(Decimal.pow10(largestExponent.substring(0, digits)))
+      return numbers
     },
     sliderProps() {
       return {
         min: 3,
         max: 15,
         interval: 1,
-        width: "100%",
-        tooltip: false
-      };
+        width: '100%',
+        tooltip: false,
+      }
     },
   },
   watch: {
     commaDigits(newValue) {
-      player.options.notationDigits.comma = newValue;
-      ADNotations.Settings.exponentCommas.min = 10 ** newValue;
+      player.options.notationDigits.comma = newValue
+      ADNotations.Settings.exponentCommas.min = 10 ** newValue
     },
     notationDigits(newValue) {
-      player.options.notationDigits.notation = newValue;
-      ADNotations.Settings.exponentCommas.max = 10 ** newValue;
+      player.options.notationDigits.notation = newValue
+      ADNotations.Settings.exponentCommas.max = 10 ** newValue
     },
   },
   // This puts the sliders in the right spots on initialization
   created() {
-    const options = player.options.notationDigits;
-    this.commaDigits = options.comma;
-    this.notationDigits = options.notation;
+    const options = player.options.notationDigits
+    this.commaDigits = options.comma
+    this.notationDigits = options.notation
   },
   methods: {
     update() {
-      const options = player.options.notationDigits;
-      this.commaDigits = options.comma;
-      this.notationDigits = options.notation;
+      const options = player.options.notationDigits
+      this.commaDigits = options.comma
+      this.notationDigits = options.notation
     },
 
     // These need a bit of extra logic to ensure that the notation threshold is always >= the comma threshold
     adjustSliderComma(value) {
-      this.commaDigits = value;
-      player.options.notationDigits.comma = value;
-      if (value > this.notationDigits) this.adjustSliderNotation(value);
+      this.commaDigits = value
+      player.options.notationDigits.comma = value
+      if (value > this.notationDigits) this.adjustSliderNotation(value)
     },
     adjustSliderNotation(value) {
-      this.notationDigits = value;
-      player.options.notationDigits.notation = value;
-      if (value < this.commaDigits) this.adjustSliderComma(value);
-    }
+      this.notationDigits = value
+      player.options.notationDigits.notation = value
+      if (value < this.commaDigits) this.adjustSliderComma(value)
+    },
   },
   template: `
-  <ModalWrapper>
+ <ModalWrapper>
     <template #header>
-      Exponent Notation Settings
+      指数表示法设置
     </template>
-    You can adjust what your numbers look like when very large. With small values, the exponent will
-    be directly displayed with no additional formatting. Larger values will have commas inserted into the exponent
-    for clarity, and the largest values will apply notation formatting to the exponent in order to shorten it. You can
-    adjust the two thresholds between these regions below:
+    您可以调整大数字的显示方式。对于较小的值，指数将直接显示，不进行额外格式化。较大的值会在指数中插入逗号以提高可读性，而最大的值会对指数应用表示法格式化以缩短其长度。您可以在下方调整这两个区域之间的阈值：
     <br>
     <br>
     <div
@@ -85,7 +82,7 @@ export default {
       <b
         class="o-digit-text"
         data-v-notation-modal
-      >Minimum for commas in exponent: {{ formatInt(commaDigits) }} digits</b>
+      >指数中插入逗号的最小位数：{{ formatInt(commaDigits) }} 位</b>
       <SliderComponent
         class="o-primary-btn--slider__slider o-slider"
         v-bind="sliderProps"
@@ -101,7 +98,7 @@ export default {
       <b
         class="o-digit-text"
         data-v-notation-modal
-      >Minimum for notation in exponent: {{ formatInt(notationDigits) }} digits</b>
+      >指数中应用表示法的最小位数：{{ formatInt(notationDigits) }} 位</b>
       <SliderComponent
         class="o-primary-btn--slider__slider o-slider"
         v-bind="sliderProps"
@@ -111,7 +108,7 @@ export default {
       />
     </div>
     <br>
-    Sample numbers for exponent formatting:
+    指数格式化的示例数字：
     <div
       class="c-sample-numbers"
       data-v-notation-modal
@@ -126,10 +123,7 @@ export default {
       </span>
     </div>
     <br>
-    Note: The interface is generally optimized for Scientific notation with settings of {{ formatInt(5) }}
-    and {{ formatInt(9) }} digits. Some text may look odd or overflow out of boxes if you
-    differ significantly from these values. Additionally, these settings might not cause any visual changes
-    when using certain notations.
+    注意：界面通常针对科学计数法进行了优化，推荐设置为 {{ formatInt(5) }} 和 {{ formatInt(9) }} 位。如果您与这些值差异较大，某些文本可能会显示异常或溢出框外。此外，使用某些表示法时，这些设置可能不会引起任何视觉变化。
   </ModalWrapper>
-  `
-};
+  `,
+}

@@ -1,28 +1,30 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "ResetRealityModal",
+  name: 'ResetRealityModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
       isDoomed: false,
       canReality: false,
-    };
+    }
   },
   computed: {
-    resetTerm() { return this.isDoomed ? "Armageddon" : "Reality"; },
+    resetTerm() {
+      return this.isDoomed ? '末日' : '现实'
+    },
   },
   methods: {
     update() {
-      this.isDoomed = Pelle.isDoomed;
-      this.canReality = isRealityAvailable();
+      this.isDoomed = Pelle.isDoomed
+      this.canReality = isRealityAvailable()
     },
     handleYesClick() {
-      beginProcessReality(getRealityProps(true));
-      EventHub.ui.offAll(this);
-    }
+      beginProcessReality(getRealityProps(true))
+      EventHub.ui.offAll(this)
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -30,31 +32,31 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      You are about to reset your {{ resetTerm }}
+      你即将重置你的{{ resetTerm }}
     </template>
     <div
       class="c-modal-message__text"
       data-v-reset-reality-modal
     >
-      This will reset you to the start of your {{ resetTerm }},
-      giving you no rewards from your progress in your current {{ resetTerm }}.
+      这将使你重置到{{ resetTerm }}的起点，
+      你将不会从当前{{ resetTerm }}的进度中获得任何奖励。
       <br>
       <br>
-      Are you sure you want to do this?
+      你确定要这样做吗？
       <div
         v-if="canReality"
         class="c-has-rewards"
         data-v-reset-reality-modal
       >
         <br>
-        You can currently complete a Reality for all its normal rewards, which you will not receive if you
-        Reset here. To get rewards, use the "Make a new Reality" button.
+        你目前可以完成一次现实以获取所有正常奖励，但如果你在此处重置，将不会获得这些奖励。
+        要获取奖励，请使用“创建新现实”按钮。
       </div>
       <br>
     </div>
     <template #confirm-text>
-      Reset
+      重置
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

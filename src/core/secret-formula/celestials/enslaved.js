@@ -1,57 +1,53 @@
 export const enslaved = {
-  // These entries will be unlocked in no particular order
+  // 这些条目将无序解锁
   progress: {
     hintsUnlocked: {
       id: 0,
-      hint: "The Nameless Ones want to help, but the help takes a while.",
-      condition: () => `Spent more than ${formatInt(5)} real-time hours inside the Reality without completing it;
-        time outside the Reality counts for ${formatPercents(0.4)} as much. The timer starts once the
-        Reality is unlocked, but accumulates continuously.`,
+      hint: '无名氏想要提供帮助，但帮助需要一些时间。',
+      condition: () => `在未完成现实的情况下，在现实内花费了超过 ${formatInt(5)} 个现实时间小时；
+        现实外的时间按 ${formatPercents(0.4)} 的比例计算。计时器在现实解锁后开始，但会持续累积。`,
     },
     ec1: {
       id: 1,
-      hint: "That's odd, the Automatic Eternity Challenge perk seems to be having some trouble working properly.",
-      condition: () => `Gained more than ${formatInt(5)} completions of Eternity Challenge 1 at once`,
+      hint: '奇怪的是，自动永恒挑战功能似乎有些问题。',
+      condition: () => `一次性获得了超过 ${formatInt(5)} 次永恒挑战 1 的完成次数`,
     },
     feelEternity: {
       id: 2,
-      hint: "Infinity seems to be more broken than usual in this Reality, but is that even fixable?",
-      condition: "Tried to Fix Infinity, but instead found and clicked the FEEL ETERNITY button",
+      hint: '在这个现实中，无限似乎比往常更加破碎，但这真的可以修复吗？',
+      condition: '尝试修复无限，但反而找到并点击了“感受永恒”按钮',
     },
     ec6: {
       id: 3,
-      hint: `Some Challenges are harder, but also boost something in exchange. I wonder if there's a Challenge
-        that's just strictly better than normal here.`,
-      condition: () => `Entered Eternity Challenge 6 again after completing it ${formatInt(5)} times in order
-        to use its cheaper Replicanti Galaxies`,
+      hint: `某些挑战更难，但也会带来一些增益。我怀疑这里是否有一个挑战比普通挑战更有利。`,
+      condition: () => `在完成永恒挑战 6 ${formatInt(5)} 次后再次进入，以利用其更便宜的复制星系`,
     },
     c10: {
       id: 4,
-      hint: "Is there a way to get Antimatter Galaxies without 8th Antimatter Dimensions?",
-      condition: "Used Challenge 10 to get more than one Antimatter Galaxy with 6th Antimatter Dimensions",
+      hint: '有没有办法在没有第 8 反物质维度的情况下获得反物质星系？',
+      condition: '使用挑战 10 在没有第 8 反物质维度的情况下获得了超过一个反物质星系',
     },
     secretStudy: {
       id: 5,
-      hint: "Time Study 12? What's that?",
-      condition: () => `Clicked the secret Time Study and gained an extra ${formatInt(100)} Time Theorems`,
+      hint: '时间研究 12？那是什么？',
+      condition: () => `点击了隐藏的时间研究，并额外获得了 ${formatInt(100)} 个时间定理`,
     },
     storedTime: {
       id: 6,
-      hint: "It seems like certain parts of this Reality erode away if you wait long enough.",
-      condition: "Discharged to have more than a year of game time this Reality",
+      hint: '似乎这个现实的某些部分如果等待足够长时间，就会逐渐消失。',
+      condition: '释放了超过一年的游戏时间（在这个现实中）',
     },
     challengeCombo: {
       id: 7,
-      hint: "Could I possibly use one Challenge to get around a restriction in another Challenge?",
-      condition: "Entered Challenge 10 while already inside of Eternity Challenge 6",
+      hint: '我是否可以使用一个挑战来绕过另一个挑战的限制？',
+      condition: '在已经进入永恒挑战 6 的情况下进入了挑战 10',
     },
   },
-  // These get unlocked sequentially
+  // 这些条目按顺序解锁
   glyphHints: [
-    "Infinity and Dilation Glyphs seem confined too tightly to be useful at all.",
-    "Power and Time Glyphs are particularly strong here.",
-    `Effarig Glyphs are only useful with the right effects, but you can complete the Reality without one.
-      A Replication Glyph is very helpful, but it's not strictly necessary or quite as strong
-      as Power and Time.`
-  ]
-};
+    '无限和膨胀符文似乎被限制得太紧，几乎无法使用。',
+    '力量和时间符文在这里特别强大。',
+    `鹿颈长符文只有在具有合适效果时才有用，但即使没有它也可以完成现实。
+     复制符文非常有帮助，但它并非绝对必要，也不像力量和时间符文那样强大。`,
+  ],
+}

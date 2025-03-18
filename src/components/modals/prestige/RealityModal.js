@@ -1,9 +1,9 @@
-import GlyphComponent from "../../GlyphComponent.js";
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
-import PrimaryButton from "../../PrimaryButton.js";
+import GlyphComponent from '../../GlyphComponent.js'
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
+import PrimaryButton from '../../PrimaryButton.js'
 
 export default {
-  name: "RealityModal",
+  name: 'RealityModal',
   components: {
     PrimaryButton,
     ModalWrapperChoice,
@@ -26,108 +26,105 @@ export default {
       shardsGained: 0,
       effarigUnlocked: false,
       willAutoPurge: false,
-    };
+    }
   },
   computed: {
     firstRealityText() {
-      return `Reality will reset everything except Challenge records and anything under the General header on the
-        Statistics tab. The first ${formatInt(13)} rows of Achievements are also reset,
-        but you will automatically get one Achievement back every
-        ${timeDisplayNoDecimals(30 * 60000)}. You will also gain Reality Machines based on your Eternity Points, a
-        Glyph with a level based on your Eternity Points, Replicanti, and Dilated Time, a Perk Point to spend
-        on quality of life upgrades, and unlock various upgrades.`;
+      return `现实重置将重置除挑战记录和统计选项卡中“通用”标题下的内容外的所有内容。
+        前 ${formatInt(13)} 行成就也会被重置，但你每 ${timeDisplayNoDecimals(30 * 60000)} 会自动恢复一个成就。
+        你还将根据永恒点数获得现实机器，一个等级基于你的永恒点数、复制体和膨胀时间的符文，
+        一个可用于生活质量升级的增益点数，并解锁各种升级。`
     },
     canSacrifice() {
-      return RealityUpgrade(19).isEffectActive;
+      return RealityUpgrade(19).isEffectActive
     },
     warnText() {
       if (!this.hasChoice) {
-        return `You currently only have a single option for new Glyphs every
-          Reality. You can unlock the ability to choose from multiple Glyphs by canceling out of this modal and
-          purchasing the START Perk.`;
+        return `你目前每次现实只能获得一个符文选项。你可以通过取消此弹窗并购买“起始”增益
+          来解锁从多个符文中选择的能力。`
       }
 
       if (this.hasFilter && this.selectedGlyph === undefined) {
-        return `If you do not choose a Glyph, one will be automatically selected using your Glyph filter.`;
+        return `如果你不选择一个符文，系统将根据你的符文过滤器自动选择一个。`
       }
-      return this.selectedGlyph === undefined
-        ? `You must select a Glyph in order to continue.`
-        : null;
+      return this.selectedGlyph === undefined ? `你必须选择一个符文才能继续。` : null
     },
     gained() {
-      const gainedResources = [];
-      gainedResources.push(`${formatInt(this.simRealities)} 现实次数`);
-      gainedResources.push(`${formatInt(this.simRealities)} 个复兴点数`);
-      gainedResources.push(`${format(this.realityMachines, 2)} 个现实机器`);
+      const gainedResources = []
+      gainedResources.push(`${formatInt(this.simRealities)} 现实次数`)
+      gainedResources.push(`${formatInt(this.simRealities)} 个复兴点数`)
+      gainedResources.push(`${format(this.realityMachines, 2)} 个现实机器`)
       if (this.effarigUnlocked) {
-        gainedResources.push(`${format(this.shardsGained, 2)} 个遗迹碎片`);
+        gainedResources.push(`${format(this.shardsGained, 2)} 个遗迹碎片`)
       }
-      return `你将获得 ${makeEnumeration(gainedResources)}`;
+      return `你将获得 ${makeEnumeration(gainedResources)}`
     },
     levelStats() {
-      // Bit annoying to read due to needing >, <, and =, with = needing a different format.
+      // 由于需要 >、< 和 =，且 = 需要不同的格式，阅读起来有点麻烦。
       return `现实时获得一个等级为 ${formatInt(this.level)} 的符文，它的等级
-        ${this.level === this.bestLevel ? "与你最高等级的符文相同" : `比你最高等级的符文${this.level > this.bestLevel ? "高" : "低"}
-        ${formatInt(this.levelDifference)}`}。`;
+        ${
+          this.level === this.bestLevel
+            ? '与你最高等级的符文相同'
+            : `比你最高等级的符文${this.level > this.bestLevel ? '高' : '低'}
+        ${formatInt(this.levelDifference)}`
+        }。`
     },
     confirmationToDisable() {
-      return ConfirmationTypes.glyphSelection.isUnlocked() ? "glyphSelection" : undefined;
+      return ConfirmationTypes.glyphSelection.isUnlocked() ? '符文选择' : undefined
     },
     canConfirm() {
-      return this.firstReality || this.selectedGlyph !== undefined || this.hasFilter;
-    }
+      return this.firstReality || this.selectedGlyph !== undefined || this.hasFilter
+    },
   },
   created() {
-    this.getGlyphs();
-    GlyphSelection.realityProps = getRealityProps(false, false);
+    this.getGlyphs()
+    GlyphSelection.realityProps = getRealityProps(false, false)
   },
   methods: {
     update() {
-      this.firstReality = player.realities === 0;
-      this.hasChoice = Perk.firstPerk.isEffectActive;
-      this.effarigUnlocked = TeresaUnlocks.effarig.canBeApplied;
-      this.hasFilter = EffarigUnlock.glyphFilter.isUnlocked;
-      this.level = gainedGlyphLevel().actualLevel;
-      this.simRealities = 1 + simulatedRealityCount(false);
-      this.hasSpace = GameCache.glyphInventorySpace.value >= this.simRealities;
-      const simRMGained = MachineHandler.gainedRealityMachines.times(this.simRealities);
-      this.realityMachines.copyFrom(simRMGained.clampMax(MachineHandler.distanceToRMCap));
-      this.shardsGained = Effarig.shardsGained * (simulatedRealityCount(false) + 1);
-      this.willAutoPurge = player.reality.autoAutoClean;
-      if (this.firstReality) return;
+      this.firstReality = player.realities === 0
+      this.hasChoice = Perk.firstPerk.isEffectActive
+      this.effarigUnlocked = TeresaUnlocks.effarig.canBeApplied
+      this.hasFilter = EffarigUnlock.glyphFilter.isUnlocked
+      this.level = gainedGlyphLevel().actualLevel
+      this.simRealities = 1 + simulatedRealityCount(false)
+      this.hasSpace = GameCache.glyphInventorySpace.value >= this.simRealities
+      const simRMGained = MachineHandler.gainedRealityMachines.times(this.simRealities)
+      this.realityMachines.copyFrom(simRMGained.clampMax(MachineHandler.distanceToRMCap))
+      this.shardsGained = Effarig.shardsGained * (simulatedRealityCount(false) + 1)
+      this.willAutoPurge = player.reality.autoAutoClean
+      if (this.firstReality) return
       for (let i = 0; i < this.glyphs.length; ++i) {
-        const currentGlyph = this.glyphs[i];
-        const newGlyph = GlyphSelection.glyphList(
-          GlyphSelection.choiceCount, gainedGlyphLevel(), { isChoosingGlyph: false }
-        )[i];
-        if (currentGlyph.level === newGlyph.level) continue;
-        currentGlyph.level = newGlyph.level;
-        currentGlyph.effects = newGlyph.effects;
+        const currentGlyph = this.glyphs[i]
+        const newGlyph = GlyphSelection.glyphList(GlyphSelection.choiceCount, gainedGlyphLevel(), { isChoosingGlyph: false })[i]
+        if (currentGlyph.level === newGlyph.level) continue
+        currentGlyph.level = newGlyph.level
+        currentGlyph.effects = newGlyph.effects
       }
-      this.bestLevel = player.records.bestReality.glyphLevel;
-      this.levelDifference = Math.abs(this.bestLevel - this.level);
+      this.bestLevel = player.records.bestReality.glyphLevel
+      this.levelDifference = Math.abs(this.bestLevel - this.level)
     },
     glyphClass(index) {
       return {
-        "l-modal-glyph-selection__glyph": true,
-        "l-modal-glyph-selection__glyph--selected": this.selectedGlyph === index,
-      };
+        'l-modal-glyph-selection__glyph': true,
+        'l-modal-glyph-selection__glyph--selected': this.selectedGlyph === index,
+      }
     },
     getGlyphs() {
-      this.canRefresh = true;
-      this.glyphs = GlyphSelection.upcomingGlyphs;
+      this.canRefresh = true
+      this.glyphs = GlyphSelection.upcomingGlyphs
     },
     select(index) {
-      this.selectedGlyph = index;
+      this.selectedGlyph = index
     },
     confirmModal(sacrifice) {
-      if (!this.canConfirm) return;
+      if (!this.canConfirm) return
       if (sacrifice) {
         // Sac isn't passed through confirm so we have to close it manually
-        this.emitClose();
+        this.emitClose()
       }
-      startManualReality(sacrifice, this.selectedGlyph);
-    }
+      startManualReality(sacrifice, this.selectedGlyph)
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -137,7 +134,7 @@ export default {
     data-v-reality-modal
   >
     <template #header>
-      你将要进行一次现实
+      你正要进行一次现实
     </template>
     <div
       v-if="firstReality"
@@ -201,8 +198,7 @@ export default {
     </div>
     <div v-if="confirmationToDisable">
       <br>
-      You can force this modal to appear (even if disabled) by Shift-clicking the Reality button.
-    </div>
+      你可以通过按住shift点击现实按钮来强制此模态框出现（即使你关闭了它）
     <template
       v-if="canSacrifice && canConfirm"
       #extra-buttons
@@ -216,5 +212,5 @@ export default {
       </PrimaryButton>
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

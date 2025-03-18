@@ -1,9 +1,9 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "ExitChallengeModal",
+  name: 'ExitChallengeModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     challengeName: {
@@ -21,21 +21,21 @@ export default {
     exitFn: {
       type: Function,
       required: true,
-    }
+    },
   },
   computed: {
     isCelestial() {
-      return this.challengeName.match("Reality");
+      return this.challengeName.match('Reality')
     },
     isRestarting() {
-      return this.isCelestial ? player.options.retryCelestial : player.options.retryChallenge;
-    }
+      return this.isCelestial ? player.options.retryCelestial : player.options.retryChallenge
+    },
   },
   methods: {
     handleYesClick() {
-      this.exitFn();
-      EventHub.ui.offAll(this);
-    }
+      this.exitFn()
+      EventHub.ui.offAll(this)
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -43,23 +43,23 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      You are about to {{ isRestarting ? "restart" : "exit" }} {{ challengeName }}
+      你正要{{ isRestarting ? "重启" : "退出" }} {{ challengeName }}
     </template>
 
     <div class="c-modal-message__text">
       <span v-if="isRestarting">
-        You will immediately re-enter {{ challengeName }} again after confirming this modal.
+        你会立即重新进入{{ challengeName }} 在确认模态框之后。
       </span>
       <span v-else>
-        This will place you back into a regular {{ normalName }} without any restrictions.
+        这会让你回到 {{ normalName }} 而没有任何限制。
       </span>
       <span v-if="hasHigherLayers">
-        Other effects coming from higher-layer restrictions will still continue to apply.
+        来自更高层级的限制效果依然继续适用。
       </span>
     </div>
     <template #confirm-text>
-      {{ isRestarting ? "Restart" : "Exit" }}
+      {{ isRestarting ? "重启" : "退出" }}
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

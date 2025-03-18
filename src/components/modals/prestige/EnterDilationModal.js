@@ -1,42 +1,40 @@
-import FullScreenAnimationHandler from "../../../core/full-screen-animation-handler.js";
+import FullScreenAnimationHandler from '../../../core/full-screen-animation-handler.js'
 
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "EnterDilationModal",
+  name: 'EnterDilationModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   computed: {
     message() {
-      return `Dilating time will start a new Eternity, and all Dimension multiplier's exponents and
-        tickspeed multiplier's exponent will be reduced to ${formatPow(0.75, 2, 2)}. If you can Eternity while Dilated,
-        your Tachyon Particles will be increased to a value based on your highest antimatter and any Tachyon Particle
-        multipliers you have.`;
+      return `时间膨胀将开始一次新的永恒，所有维度乘数的指数和
+        时间速度乘数的指数将减少至 ${formatPow(0.75, 2, 2)}。如果你在膨胀期间完成永恒，
+        你的超光速粒子将基于你的最高反物质值和任何超光速粒子乘数增加。`
     },
     entranceLabel() {
-      return `You are about to enter Dilation`;
+      return `你即将进入时间膨胀`
     },
     EPSinceLabel() {
       if (player.dilation.lastEP.eq(-1)) {
-        return "This is your first Dilation";
+        return '这是你的第一次时间膨胀'
       }
       if (!isInCelestialReality() && Ra.unlocks.unlockDilationStartingTP.canBeApplied) {
-        return `You already have the maximum feasible amount of Tachyon Particles you can attain due to
-          Teresa's Level ${formatInt(25)} reward.`;
+        return `由于特蕾莎的第 ${formatInt(25)} 级奖励，你已经获得了可达到的最大超光速粒子数量。`
       }
-      return `You last completed Dilation at ${format(player.dilation.lastEP, 2, 2)} Eternity Points.`;
-    }
+      return `你上次完成时间膨胀时的永恒点数为 ${format(player.dilation.lastEP, 2, 2)}。`
+    },
   },
   methods: {
     handleYesClick() {
-      if (player.dilation.active) return;
+      if (player.dilation.active) return
       if (player.options.animations.dilation && !FullScreenAnimationHandler.isDisplaying) {
-        // Strike trigger happens within the delayed dilation callback in this function
-        animateAndDilate();
+        // 在延迟膨胀回调中触发 Strike
+        animateAndDilate()
       } else {
-        startDilatedEternity();
-        if (Pelle.isDoomed) PelleStrikes.dilation.trigger();
+        startDilatedEternity()
+        if (Pelle.isDoomed) PelleStrikes.dilation.trigger()
       }
     },
   },
@@ -55,8 +53,8 @@ export default {
       {{ message }}
     </div>
     <template #confirm-text>
-      Enter
+      进入
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

@@ -1,16 +1,16 @@
-import AwayProgressOptionsEntry from "./AwayProgressOptionsEntry.js";
-import ModalWrapperOptions from "./ModalWrapperOptions.js";
+import AwayProgressOptionsEntry from './AwayProgressOptionsEntry.js'
+import ModalWrapperOptions from './ModalWrapperOptions.js'
 
 export default {
-  name: "AwayProgressOptionsModal",
+  name: 'AwayProgressOptionsModal',
   components: {
     AwayProgressOptionsEntry,
     ModalWrapperOptions,
   },
   computed: {
     all() {
-      return AwayProgressTypes.showOption;
-    }
+      return AwayProgressTypes.showOption
+    },
   },
   template: `
   <ModalWrapperOptions
@@ -18,7 +18,7 @@ export default {
     data-v-modal-wrapper-options
   >
     <template #header>
-      Away Progress Options
+      离线资源选项
     </template>
     <div class="c-modal-options__button-container">
       <AwayProgressOptionsEntry
@@ -27,7 +27,7 @@ export default {
         :name="name"
       />
     </div>
-    Note: Selected resources will only show if they've increased.
+    注意：所选资源只有在增加时才会显示。
   </ModalWrapperOptions>
-  `
-};
+  `,
+}

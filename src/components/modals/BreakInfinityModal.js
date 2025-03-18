@@ -1,25 +1,23 @@
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
+import ModalWrapperChoice from './ModalWrapperChoice.js'
 
 export default {
-  name: "BreakInfinityModal",
+  name: 'BreakInfinityModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   computed: {
     message() {
-      const infinity = formatPostBreak(Number.MAX_VALUE, 2);
-      return `Breaking Infinity will allow you to gain antimatter past ${infinity}${PlayerProgress.eternityUnlocked()
-        ? "." : `, and allow you to read numbers past ${infinity}.`}
-        Dimensions and Tickspeed Upgrades will scale in cost faster after ${infinity} antimatter.
-        You will gain additional Infinity Points on Big Crunch based on antimatter produced over ${infinity}.\
-        ${EternityMilestone.keepAutobuyers.isReached ? "" : `\nIt will also unlock Break Infinity Upgrades and max\
-        all Normal Challenge Autobuyers.`}`.split("\n");
+      const infinity = formatPostBreak(Number.MAX_VALUE, 2)
+      return `打破无限将允许你获得超过 ${infinity} 的反物质${PlayerProgress.eternityUnlocked() ? '。' : `，并允许你读取超过 ${infinity} 的数字。`}
+        在超过 ${infinity} 反物质后，维度和技术频率升级的成本将增长得更快。
+        你将基于超过 ${infinity} 的反物质产量获得额外的无限点数。\
+        ${EternityMilestone.keepAutobuyers.isReached ? '' : `\n它还将解锁打破无限升级，并最大化所有普通挑战的自动购买器。`}`.split('\n')
     },
   },
   methods: {
     handleYesClick() {
-      breakInfinity();
-    }
+      breakInfinity()
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -27,7 +25,7 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      你正在打破无限
+      你正要打破无限
     </template>
     <div class="c-modal-message__text">
       <span
@@ -41,5 +39,5 @@ export default {
       打破
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

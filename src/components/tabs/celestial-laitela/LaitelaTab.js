@@ -1,14 +1,14 @@
-import AnnihilationButton from "./AnnihilationButton.js";
-import CelestialQuoteHistory from "../../CelestialQuoteHistory.js";
-import DarkMatterDimensionGroup from "./DarkMatterDimensionGroup.js";
-import LaitelaAutobuyerPane from "./LaitelaAutobuyerPane.js";
-import LaitelaRunButton from "./LaitelaRunButton.js";
-import PrimaryButton from "../../PrimaryButton.js";
-import SingularityMilestonePane from "./SingularityMilestonePane.js";
-import SingularityPane from "./SingularityPane.js";
+import AnnihilationButton from './AnnihilationButton.js'
+import CelestialQuoteHistory from '../../CelestialQuoteHistory.js'
+import DarkMatterDimensionGroup from './DarkMatterDimensionGroup.js'
+import LaitelaAutobuyerPane from './LaitelaAutobuyerPane.js'
+import LaitelaRunButton from './LaitelaRunButton.js'
+import PrimaryButton from '../../PrimaryButton.js'
+import SingularityMilestonePane from './SingularityMilestonePane.js'
+import SingularityPane from './SingularityPane.js'
 
 export default {
-  name: "LaitelaTab",
+  name: 'LaitelaTab',
   components: {
     LaitelaRunButton,
     SingularityPane,
@@ -17,7 +17,7 @@ export default {
     AnnihilationButton,
     LaitelaAutobuyerPane,
     CelestialQuoteHistory,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -33,44 +33,44 @@ export default {
       singularitiesUnlocked: false,
       singularityCap: 0,
       singularityWaitTime: 0,
-      showAnnihilation: false
-    };
+      showAnnihilation: false,
+    }
   },
   computed: {
     styleObject() {
       return {
-        color: this.isDMCapped ? "var(--color-bad)" : "",
-      };
+        color: this.isDMCapped ? 'var(--color-bad)' : '',
+      }
     },
   },
   methods: {
     update() {
-      this.isDoomed = Pelle.isDoomed;
-      this.darkMatter.copyFrom(Currency.darkMatter);
-      this.isDMCapped = this.darkMatter.eq(Number.MAX_VALUE);
-      this.maxDarkMatter.copyFrom(Currency.darkMatter.max);
-      this.darkEnergy = player.celestials.laitela.darkEnergy;
-      this.matterExtraPurchasePercentage = Laitela.matterExtraPurchaseFactor - 1;
-      this.autobuyersUnlocked = SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
+      this.isDoomed = Pelle.isDoomed
+      this.darkMatter.copyFrom(Currency.darkMatter)
+      this.isDMCapped = this.darkMatter.eq(Number.MAX_VALUE)
+      this.maxDarkMatter.copyFrom(Currency.darkMatter.max)
+      this.darkEnergy = player.celestials.laitela.darkEnergy
+      this.matterExtraPurchasePercentage = Laitela.matterExtraPurchaseFactor - 1
+      this.autobuyersUnlocked =
+        SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
         SingularityMilestone.darkDimensionAutobuyers.canBeApplied ||
         SingularityMilestone.autoCondense.canBeApplied ||
-        Laitela.darkMatterMult > 1;
-      this.singularityPanelVisible = Currency.singularities.gt(0);
-      this.singularitiesUnlocked = Singularity.capIsReached || this.singularityPanelVisible;
-      this.singularityCap = Singularity.cap;
-      this.singularityWaitTime = TimeSpan.fromSeconds((this.singularityCap - this.darkEnergy) /
-        Currency.darkEnergy.productionPerSecond).toStringShort();
-      this.showAnnihilation = Laitela.annihilationUnlocked;
+        Laitela.darkMatterMult > 1
+      this.singularityPanelVisible = Currency.singularities.gt(0)
+      this.singularitiesUnlocked = Singularity.capIsReached || this.singularityPanelVisible
+      this.singularityCap = Singularity.cap
+      this.singularityWaitTime = TimeSpan.fromSeconds((this.singularityCap - this.darkEnergy) / Currency.darkEnergy.productionPerSecond).toStringShort()
+      this.showAnnihilation = Laitela.annihilationUnlocked
 
-      const d1 = DarkMatterDimension(1);
-      this.darkMatterGain = d1.amount.times(d1.powerDM).divide(d1.interval).times(1000);
+      const d1 = DarkMatterDimension(1)
+      this.darkMatterGain = d1.amount.times(d1.powerDM).divide(d1.interval).times(1000)
     },
     maxAll() {
-      Laitela.maxAllDMDimensions(4);
+      Laitela.maxAllDMDimensions(4)
     },
     showLaitelaHowTo() {
-      ui.view.h2pForcedTab = GameDatabase.h2p.tabs.filter(tab => tab.name === "Lai'tela")[0];
-      Modal.h2p.show();
+      ui.view.h2pForcedTab = GameDatabase.h2p.tabs.filter((tab) => tab.name === "Lai'tela")[0]
+      Modal.h2p.show()
     },
   },
   template: `
@@ -81,7 +81,7 @@ export default {
         class="o-primary-btn--subtab-option"
         @click="showLaitelaHowTo()"
       >
-        Click for Lai'tela info
+        点击查看莱特拉介绍
       </PrimaryButton>
       <PrimaryButton
         class="o-primary-btn--subtab-option"
@@ -124,5 +124,5 @@ export default {
       <SingularityMilestonePane v-if="singularityPanelVisible" />
     </div>
   </div>
-  `
-};
+  `,
+}

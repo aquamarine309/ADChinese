@@ -1,9 +1,9 @@
-import PrimaryButton from "../../PrimaryButton.js";
+import PrimaryButton from '../../PrimaryButton.js'
 
 export default {
-  name: "ClassicAntimatterDimensionsTabHeader",
+  name: 'ClassicAntimatterDimensionsTabHeader',
   components: {
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -11,30 +11,30 @@ export default {
       isSacrificeAffordable: false,
       currentSacrifice: new Decimal(0),
       sacrificeBoost: new Decimal(0),
-      disabledCondition: "",
-    };
+      disabledCondition: '',
+    }
   },
   computed: {
     sacrificeTooltip() {
-      return `Boosts 8th Antimatter Dimension by ${formatX(this.sacrificeBoost, 2, 2)}`;
+      return `Boosts 8th Antimatter Dimension by ${formatX(this.sacrificeBoost, 2, 2)}`
     },
   },
   methods: {
     update() {
-      const isSacrificeUnlocked = Sacrifice.isVisible;
-      this.isSacrificeUnlocked = isSacrificeUnlocked;
-      if (!isSacrificeUnlocked) return;
-      this.isSacrificeAffordable = Sacrifice.canSacrifice;
-      this.currentSacrifice.copyFrom(Sacrifice.totalBoost);
-      this.sacrificeBoost.copyFrom(Sacrifice.nextBoost);
-      this.disabledCondition = Sacrifice.disabledCondition;
+      const isSacrificeUnlocked = Sacrifice.isVisible
+      this.isSacrificeUnlocked = isSacrificeUnlocked
+      if (!isSacrificeUnlocked) return
+      this.isSacrificeAffordable = Sacrifice.canSacrifice
+      this.currentSacrifice.copyFrom(Sacrifice.totalBoost)
+      this.sacrificeBoost.copyFrom(Sacrifice.nextBoost)
+      this.disabledCondition = Sacrifice.disabledCondition
     },
     sacrifice() {
-      sacrificeBtnClick();
+      sacrificeBtnClick()
     },
     maxAll() {
-      maxAll();
-    }
+      maxAll()
+    },
   },
   template: `
   <div class="l-antimatter-dim-tab__header">
@@ -56,8 +56,8 @@ export default {
       class="o-primary-btn--buy-max"
       @click="maxAll"
     >
-      购买最大数量（M）
+      购买最大数量
     </PrimaryButton>
   </div>
-  `
-};
+  `,
+}

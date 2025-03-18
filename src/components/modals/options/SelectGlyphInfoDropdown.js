@@ -8,34 +8,32 @@ export const GlyphInfo = {
     CURRENT_REFINE: 5,
     MAX_REFINE: 6,
   },
-  labels: ["None", "Level", "Rarity", "Sacrifice Value", "Glyph Filter Score",
-    "Current Refinement Value", "Maximum Refinement Value"]
-};
-
+  labels: ['无', '等级', '稀有度', '献祭值', '符文筛选评分', '当前精炼值', '最大精炼值'],
+}
 
 export default {
-  name: "SelectGlyphInfoDropdown",
+  name: 'SelectGlyphInfoDropdown',
   computed: {
     availableTypes() {
-      const typeEnum = GlyphInfo.types;
-      const options = [typeEnum.NONE, typeEnum.LEVEL, typeEnum.RARITY];
-      if (GlyphSacrificeHandler.canSacrifice) options.push(typeEnum.SAC_VALUE);
-      if (EffarigUnlock.glyphFilter.isUnlocked) options.push(typeEnum.FILTER_SCORE);
+      const typeEnum = GlyphInfo.types
+      const options = [typeEnum.NONE, typeEnum.LEVEL, typeEnum.RARITY]
+      if (GlyphSacrificeHandler.canSacrifice) options.push(typeEnum.SAC_VALUE)
+      if (EffarigUnlock.glyphFilter.isUnlocked) options.push(typeEnum.FILTER_SCORE)
       if (Ra.unlocks.unlockGlyphAlchemy.canBeApplied) {
-        options.push(typeEnum.CURRENT_REFINE);
-        options.push(typeEnum.MAX_REFINE);
+        options.push(typeEnum.CURRENT_REFINE)
+        options.push(typeEnum.MAX_REFINE)
       }
-      return options;
-    }
+      return options
+    },
   },
   methods: {
     setType(type) {
-      player.options.showHintText.glyphInfoType = type;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.showHintText.glyphInfoType = type
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     getType(type) {
-      return GlyphInfo.labels[type];
-    }
+      return GlyphInfo.labels[type]
+    },
   },
   template: `
   <div class="l-select-theme">
@@ -50,5 +48,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

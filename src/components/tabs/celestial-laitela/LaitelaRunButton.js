@@ -1,9 +1,9 @@
-import GlyphSetPreview from "../../GlyphSetPreview.js";
+import GlyphSetPreview from '../../GlyphSetPreview.js'
 
 export default {
-  name: "LaitelaRunButton",
+  name: 'LaitelaRunButton',
   components: {
-    GlyphSetPreview
+    GlyphSetPreview,
   },
   data() {
     return {
@@ -14,48 +14,48 @@ export default {
       singularitiesUnlocked: false,
       bestSet: [],
       tierNotCompleted: true,
-    };
+    }
   },
   computed: {
     completionTime() {
-      if (this.tierNotCompleted) return "Not completed at this tier";
-      return `最佳完成时间：${TimeSpan.fromSeconds(this.realityTime).toStringShort()}`;
+      if (this.tierNotCompleted) return '未完成此层级'
+      return `最佳完成时间：${TimeSpan.fromSeconds(this.realityTime).toStringShort()}`
     },
     runEffects() {
-      return GameDatabase.celestials.descriptions[5].effects().split("\n");
+      return GameDatabase.celestials.descriptions[5].effects().split('\n')
     },
     runDescription() {
-      return GameDatabase.celestials.descriptions[5].description();
+      return GameDatabase.celestials.descriptions[5].description()
     },
     isDoomed: () => Pelle.isDoomed,
   },
   methods: {
     update() {
-      this.realityTime = player.celestials.laitela.fastestCompletion;
-      this.maxDimTier = Laitela.maxAllowedDimension;
-      this.realityReward = Laitela.realityReward;
-      this.isRunning = Laitela.isRunning;
-      this.singularitiesUnlocked = Currency.singularities.gt(0);
-      this.bestSet = Glyphs.copyForRecords(player.records.bestReality.laitelaSet);
-      this.tierNotCompleted = this.realityTime === 3600 || (this.realityTime === 300 && this.maxDimTier < 8);
+      this.realityTime = player.celestials.laitela.fastestCompletion
+      this.maxDimTier = Laitela.maxAllowedDimension
+      this.realityReward = Laitela.realityReward
+      this.isRunning = Laitela.isRunning
+      this.singularitiesUnlocked = Currency.singularities.gt(0)
+      this.bestSet = Glyphs.copyForRecords(player.records.bestReality.laitelaSet)
+      this.tierNotCompleted = this.realityTime === 3600 || (this.realityTime === 300 && this.maxDimTier < 8)
     },
     startRun() {
-      if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Lai'tela's", number: 5 });
+      if (this.isDoomed) return
+      Modal.celestials.show({ name: '莱特拉的', number: 5 })
     },
     classObject() {
       return {
-        "o-laitela-run-button": true,
-        "o-laitela-run-button--large": !this.singularitiesUnlocked
-      };
+        'o-laitela-run-button': true,
+        'o-laitela-run-button--large': !this.singularitiesUnlocked,
+      }
     },
     runButtonClassObject() {
       return {
-        "o-laitela-run-button__icon": true,
-        "o-laitela-run-button__icon--running": this.isRunning,
-        "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
-      };
+        'o-laitela-run-button__icon': true,
+        'o-laitela-run-button__icon--running': this.isRunning,
+        'c-celestial-run-button--clickable': !this.isDoomed,
+        'o-pelle-disabled-pointer': this.isDoomed,
+      }
     },
   },
   template: `
@@ -106,5 +106,5 @@ export default {
     <br>
     <div>{{ runDescription }}</div>
   </button>
-  `
-};
+  `,
+}

@@ -1,12 +1,12 @@
-import SelectGlyphInfoDropdown, { GlyphInfo } from "../SelectGlyphInfoDropdown.js";
+import SelectGlyphInfoDropdown, { GlyphInfo } from '../SelectGlyphInfoDropdown.js'
 
-import ExpandingControlBox from "../../../ExpandingControlBox.js";
-import GlyphCustomization from "./GlyphCustomization.js";
-import ModalOptionsToggleButton from "../../../ModalOptionsToggleButton.js";
-import ModalWrapperOptions from "../ModalWrapperOptions.js";
+import ExpandingControlBox from '../../../ExpandingControlBox.js'
+import GlyphCustomization from './GlyphCustomization.js'
+import ModalOptionsToggleButton from '../../../ModalOptionsToggleButton.js'
+import ModalWrapperOptions from '../ModalWrapperOptions.js'
 
 export default {
-  name: "GlyphDisplayOptionsModal",
+  name: 'GlyphDisplayOptionsModal',
   components: {
     ExpandingControlBox,
     ModalOptionsToggleButton,
@@ -25,86 +25,86 @@ export default {
       glyphBorders: false,
       highContrastRarity: false,
       swapGlyphColors: false,
-    };
+    }
   },
   computed: {
     infoLabel() {
-      return GlyphInfo.labels[this.glyphInfoType];
+      return GlyphInfo.labels[this.glyphInfoType]
     },
     glyphBGStr() {
       switch (this.glyphBG) {
         case GLYPH_BG_SETTING.AUTO:
-          return "Auto";
+          return 'Auto'
         case GLYPH_BG_SETTING.LIGHT:
-          return "Light";
+          return 'Light'
         case GLYPH_BG_SETTING.DARK:
-          return "Dark";
+          return 'Dark'
         default:
-          throw new Error("Unrecognized Glyph BG setting");
+          throw new Error('Unrecognized Glyph BG setting')
       }
-    }
+    },
   },
   watch: {
     newGlyphs(newValue) {
-      player.options.showNewGlyphIcon = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.showNewGlyphIcon = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     showUnequippedGlyphIcon(newValue) {
-      player.options.showUnequippedGlyphIcon = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.showUnequippedGlyphIcon = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     glyphEffectDots(newValue) {
-      player.options.showHintText.glyphEffectDots = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.showHintText.glyphEffectDots = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     showGlyphInfoByDefault(newValue) {
-      player.options.showHintText.showGlyphInfoByDefault = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.showHintText.showGlyphInfoByDefault = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     glyphBorders(newValue) {
-      player.options.glyphBorders = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.glyphBorders = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     highContrastRarity(newValue) {
-      player.options.highContrastRarity = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.highContrastRarity = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
     swapGlyphColors(newValue) {
-      player.options.swapGlyphColors = newValue;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.swapGlyphColors = newValue
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
   },
   methods: {
     update() {
-      const options = player.options;
-      this.newGlyphs = options.showNewGlyphIcon;
-      this.showUnequippedGlyphIcon = options.showUnequippedGlyphIcon;
-      this.glyphEffectDots = options.showHintText.glyphEffectDots;
-      this.glyphBG = player.options.glyphBG;
-      this.glyphInfoType = options.showHintText.glyphInfoType;
-      this.showGlyphInfoByDefault = options.showHintText.showGlyphInfoByDefault;
-      this.glyphBorders = options.glyphBorders;
-      this.highContrastRarity = options.highContrastRarity;
-      this.swapGlyphColors = options.swapGlyphColors;
+      const options = player.options
+      this.newGlyphs = options.showNewGlyphIcon
+      this.showUnequippedGlyphIcon = options.showUnequippedGlyphIcon
+      this.glyphEffectDots = options.showHintText.glyphEffectDots
+      this.glyphBG = player.options.glyphBG
+      this.glyphInfoType = options.showHintText.glyphInfoType
+      this.showGlyphInfoByDefault = options.showHintText.showGlyphInfoByDefault
+      this.glyphBorders = options.glyphBorders
+      this.highContrastRarity = options.highContrastRarity
+      this.swapGlyphColors = options.swapGlyphColors
     },
     noEffectStyle() {
-      if (this.glyphInfoType !== 0) return null;
+      if (this.glyphInfoType !== 0) return null
       return {
-        "background-color": "var(--color-disabled)",
-      };
+        'background-color': 'var(--color-disabled)',
+      }
     },
     cycleBG() {
-      player.options.glyphBG = (player.options.glyphBG + 1) % Object.keys(GLYPH_BG_SETTING).length;
-      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE);
+      player.options.glyphBG = (player.options.glyphBG + 1) % Object.keys(GLYPH_BG_SETTING).length
+      EventHub.dispatch(GAME_EVENT.GLYPH_VISUAL_CHANGE)
     },
   },
   template: `
-  <ModalWrapperOptions
+ <ModalWrapperOptions
     class="c-modal-options__glyph"
     data-v-glyph-display-options-modal
   >
     <template #header>
-      Glyph Display Options
+      符文显示选项
     </template>
     <div
       class="c-glyph-visual-options c-modal--short"
@@ -116,39 +116,39 @@ export default {
       >
         <ModalOptionsToggleButton
           v-model="newGlyphs"
-          text="New Glyph identifier:"
+          text="新符文标识："
         />
         <ModalOptionsToggleButton
           v-model="showUnequippedGlyphIcon"
-          text="Unequipped Glyph identifier:"
+          text="未装备符文标识："
         />
         <ModalOptionsToggleButton
           v-model="glyphEffectDots"
-          text="Always show Glyph effect dots:"
+          text="始终显示符文效果点："
         />
         <ModalOptionsToggleButton
           v-model="glyphBorders"
-          text="Fancy Glyph borders:"
+          text="精美符文边框："
         />
         <button
           class="o-primary-btn o-primary-btn--modal-option"
           @click="cycleBG()"
           data-v-glyph-display-options-modal
         >
-          Glyph BG color: {{ glyphBGStr }}
+          符文背景颜色：{{ glyphBGStr }}
         </button>
         <ModalOptionsToggleButton
           v-model="showGlyphInfoByDefault"
           :style="noEffectStyle()"
-          text="Always show Glyph Info:"
+          text="始终显示符文信息："
         />
         <ModalOptionsToggleButton
           v-model="highContrastRarity"
-          text="High-contrast rarity colors:"
+          text="高对比稀有度颜色："
         />
         <ModalOptionsToggleButton
           v-model="swapGlyphColors"
-          text="Swap border and symbol colors:"
+          text="交换边框和符号颜色："
         />
         <ExpandingControlBox
           class="o-primary-btn c-dropdown-btn"
@@ -159,7 +159,7 @@ export default {
               class="c-dropdown-header"
               data-v-glyph-display-options-modal
             >
-              ▼ Additional Glyph Info: ▼
+              ▼ 附加符文信息：▼
               <br>
               {{ infoLabel }}
             </div>
@@ -172,5 +172,5 @@ export default {
       <GlyphCustomization />
     </div>
   </ModalWrapperOptions>
-  `
-};
+  `,
+}

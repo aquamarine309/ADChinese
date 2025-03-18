@@ -1,9 +1,9 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "ArmageddonModal",
+  name: 'ArmageddonModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
@@ -12,29 +12,33 @@ export default {
       realityShardGain: new Decimal(0),
       nextRealityShardGain: new Decimal(0),
       canArmageddon: false,
-    };
+    }
   },
   computed: {
     topLabel() {
-      if (!this.isDoomed) return `你将要毁灭现实`;
-      return `你将进行末日重置`;
+      if (!this.isDoomed) return `你正要毁灭现实`
+      return `你将进行末日重置`
     },
     message() {
       return Currency.remnants.eq(0)
         ? `末日后将在此开启被毁灭的现实。你将在末日后获得 ${format(this.remnantsGain, 2, 0)} 遗物，每秒生产 ${format(this.nextRealityShardGain, 2, 2)} 现实碎片。`
-        : `末日后将在此开启被毁灭的现实。你将在末日后获得 ${format(this.remnantsGain, 2, 0)} 遗物，生产现实碎片的速度从 ${format(this.realityShardGain, 2, 2)}/秒 增加到 ${format(this.nextRealityShardGain, 2, 2)}/秒。`;
-    }
+        : `末日后将在此开启被毁灭的现实。你将在末日后获得 ${format(this.remnantsGain, 2, 0)} 遗物，生产现实碎片的速度从 ${format(this.realityShardGain, 2, 2)}/秒 增加到 ${format(
+            this.nextRealityShardGain,
+            2,
+            2
+          )}/秒。`
+    },
   },
   methods: {
     update() {
-      this.isDoomed = Pelle.isDoomed;
-      this.remnantsGain = Pelle.remnantsGain;
-      this.realityShardGain.copyFrom(Pelle.realityShardGainPerSecond);
-      this.nextRealityShardGain.copyFrom(Pelle.nextRealityShardGain);
-      this.canArmageddon = Pelle.canArmageddon;
+      this.isDoomed = Pelle.isDoomed
+      this.remnantsGain = Pelle.remnantsGain
+      this.realityShardGain.copyFrom(Pelle.realityShardGainPerSecond)
+      this.nextRealityShardGain.copyFrom(Pelle.nextRealityShardGain)
+      this.canArmageddon = Pelle.canArmageddon
     },
     handleYesClick() {
-      Pelle.initializeRun();
+      Pelle.initializeRun()
     },
   },
   template: `
@@ -61,5 +65,5 @@ export default {
       {{ message }}
     </div>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

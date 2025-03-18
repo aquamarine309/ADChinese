@@ -1,67 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Antimatter Dimensions</title>
-  <link rel="icon" type="image/png" href="./public/icon.png">
-  <meta name="Antimatter Dimensions" content="A game about huge numbers and watching them go up." >
-  <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/fontawesome/css/all.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/codemirror.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/show-hint.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/lint.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/panda-syntax.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/liquibyte.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/vue-sfc-classes.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/ad-slider-component.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/glyphs.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/styles.css?3">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/automator.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/time-studies.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/tooltips.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/vis-network.css">
-  <link rel="stylesheet" type="text/css" href="./public/stylesheets/components.css">
-</head>
+  <head>
+    <script type="text/javascript">
+      let isDebugEnabled = false
+      //PS. 不知道为什么调试进普通薇的现实会卡住
+      const debugOptions = {
+        //全局速度因子x1000000000
+        getGlobalSpeedFactor: () => {
+          if (!isDebugEnabled) return 1
+          const globalSpeedFactor = 1000000000
+          return globalSpeedFactor
+          return Pelle.isDoomed ? Math.sqrt(globalSpeedFactor) : globalSpeedFactor
+        },
+        //NA138解锁NA108
+        getUnlockNA108: () => {
+          if (!isDebugEnabled) return false
+          return true
+        },
+        //永恒次数x20
+        getEternityCountMultiplier: () => {
+          if (!isDebugEnabled) return 1
+          return 20
+        },
+        //现实次数和复兴点乘数x10000
+        getRealityPerkCountMultiplier: () => {
+          if (!isDebugEnabled) return 1
+          return 10000
+        },
+        //额外现实扩增+25次
+        getAdditionalRealityAmplify: () => {
+          if (!isDebugEnabled) return 0
+          return 25
+        },
+        //佩勒符文等级上限指数x5
+        getPelleMaxGlyphLevelExponent: () => {
+          if (!isDebugEnabled) return 1
+          return 5
+        },
+        //调整现实升级'无尽造物'价格为负数-1e20
+        getRMNegativePriceFlag: () => {
+          if (!isDebugEnabled) return false
+          return true
+        },
+        //4个额外符文槽位
+        getAdditionalGlyphSlotCount: () => {
+          if (!isDebugEnabled) return 0
+          return 4
+        },
+        //调整现实升级'永恒测度'对符文等级的加成指数为100000
+        getRealityPerkGlyphLevelExponent: () => {
+          if (!isDebugEnabled) return 1
+          return 100000
+        },
+        //调整现实升级'奇珍差异'对符文稀有度的效果为x1000
+        getGlyphRarityMultiplier: () => {
+          if (!isDebugEnabled) return 1
+          return 1000
+        },
+      }
+    </script>
+    <meta charset="utf-8" />
+    <title>Antimatter Dimensions</title>
+    <link rel="icon" type="image/png" href="./public/icon.png" />
+    <meta name="Antimatter Dimensions" content="A game about huge numbers and watching them go up." />
+    <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/fontawesome/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/show-hint.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/lint.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/panda-syntax.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/liquibyte.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/vue-sfc-classes.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/ad-slider-component.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/glyphs.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/styles.css?3" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/automator.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/time-studies.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/tooltips.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/vis-network.css" />
+    <link rel="stylesheet" type="text/css" href="./public/stylesheets/components.css" />
+  </head>
 
-<body>
-  <div id="browser-warning">
-    Your browser is not supported.
-    <br>
-    Please update to a newer browser.
-  </div>
-  <div id="loading"></div>
-  <div id="ui"></div>
-  <div id="background-animations">
-    <div class="videocontainer videocontainer--background">
-      <video autoplay muted loop id="stars">
-        <source src="./public/images/stars-bg.webm" type="video/webm">
+  <body>
+    <div id="browser-warning">
+      Your browser is not supported.
+      <br />
+      Please update to a newer browser.
+    </div>
+    <div id="loading"></div>
+    <div id="ui"></div>
+    <div id="background-animations">
+      <div class="videocontainer videocontainer--background">
+        <video autoplay muted loop id="stars">
+          <source src="./public/images/stars-bg.webm" type="video/webm" />
+        </video>
+      </div>
+      <div id="snow" style="display: none"></div>
+    </div>
+    <div class="videocontainer">
+      <video preload muted id="realityanimbg" style="opacity: 0; display: none">
+        <source src="./public/images/realityanimbg.webm" type="video/webm" />
       </video>
     </div>
-    <div id="snow" style="display: none;"></div>
-  </div>
-  <div class="videocontainer">
-    <video preload muted id="realityanimbg" style="opacity: 0; display: none;">
-      <source src="./public/images/realityanimbg.webm" type="video/webm">
-    </video>
-  </div>
-  <div id="performance-stats" class="c-performance-stats" style="display: none;"></div>
-  <script src="./src/main.js" type="module"></script>
-</body>
-<script>
-  // We use an IE only document variable to check here to force it to show the browser warning.
-  // For some reason, IE really does *not* want to cooperate, even when you have a file as a <script> that you load
-  // in the body.
-  // Other browsers will be checked whenever window.onload is ran.
-  if (document.documentMode) {
-    document.getElementById("loading").style.display = "none";
-    document.getElementById("browser-warning").style.display = "flex";
-  }
-  
-  window.errorMessages = [];
-  window.addEventListener("error", function(e) {
-    const errorMessage = `${e.message}\n(at: ${e.filename}:${e.lineno}:${e.colno})`;
-    console.warn(errorMessage);
-    window.errorMessages.push(errorMessage);
-  });
-</script>
+    <div id="performance-stats" class="c-performance-stats" style="display: none"></div>
+    <script src="./src/main.js" type="module"></script>
+  </body>
+  <script>
+    // We use an IE only document variable to check here to force it to show the browser warning.
+    // For some reason, IE really does *not* want to cooperate, even when you have a file as a <script> that you load
+    // in the body.
+    // Other browsers will be checked whenever window.onload is ran.
+    if (document.documentMode) {
+      document.getElementById('loading').style.display = 'none'
+      document.getElementById('browser-warning').style.display = 'flex'
+    }
+
+    window.errorMessages = []
+    window.addEventListener('error', function (e) {
+      const errorMessage = `${e.message}\n(at: ${e.filename}:${e.lineno}:${e.colno})`
+      console.warn(errorMessage)
+      window.errorMessages.push(errorMessage)
+    })
+  </script>
 </html>

@@ -1,8 +1,8 @@
-import EnterCelestialsRaPet from "./EnterCelestialsRaPet.js";
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import EnterCelestialsRaPet from './EnterCelestialsRaPet.js'
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "EnterCelestialsModal",
+  name: 'EnterCelestialsModal',
   components: {
     ModalWrapperChoice,
     EnterCelestialsRaPet,
@@ -14,8 +14,8 @@ export default {
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -23,72 +23,79 @@ export default {
       teresaBestAM: new Decimal(),
       teresaRunMult: 0,
       effarigDone: false,
-      effarigLayer: "",
+      effarigLayer: '',
       enslavedDone: false,
-      laitelaTime: "",
-    };
+      laitelaTime: '',
+    }
   },
   computed: {
     effects() {
-      return GameDatabase.celestials.descriptions[this.number].effects().split("\n");
+      return GameDatabase.celestials.descriptions[this.number].effects().split('\n')
     },
     description() {
-      const description = GameDatabase.celestials.descriptions[this.number].description;
-      return description ? description() : "";
+      const description = GameDatabase.celestials.descriptions[this.number].description
+      return description ? description() : ''
     },
     topLabel() {
-      return `${this.name} Reality`;
+      return `${this.name}现实`
     },
     message() {
-      return `Perform a Reality reset and enter ${this.name} Reality, in which:`;
+      return `执行现实重置并进入${this.name}现实，其中：`
     },
     extraLine() {
       switch (this.number) {
         case 0:
           return this.teresaBestAM.eq(1)
-            ? `You have not unlocked the reward for Teresa's Reality yet. Unlocking the reward requires
-              purchasing the Reality study and completing the Reality for the first time.`
-            : `Your highest Teresa completion was for ${format(this.teresaBestAM, 2, 2)} antimatter,
-              gaining you a ${formatX(this.teresaRunMult, 2)} multiplier to Glyph Sacrifice power.`;
-        case 1: return this.effarigDone
-          ? "Effarig is completed!"
-          : `You are currently on the ${this.effarigLayer} Layer.`;
-        case 2: return this.enslavedDone
-          ? "Have... we... not helped enough..."
-          : "We... can help... Let us... help...";
-        case 3: return "";
-        case 4: return `Within Ra's Reality, some resources will generate Memory Chunks
-          for Celestial Memories based on their amounts:`;
-        case 5: return this.laitelaFastest >= 300
-          ? "You have not completed Lai'tela at this tier."
-          : `Your fastest completion on this tier is ${this.laitelaTime}.`;
-        case 6: return "";
-        default: throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`);
+            ? `你尚未解锁特蕾莎的现实的奖励。解锁奖励需要购买现实研究并首次完成现实。`
+            : `你特蕾莎的现实的最高完成记录为 ${format(this.teresaBestAM, 2, 2)} 反物质，
+              为你带来了 ${formatX(this.teresaRunMult, 2)} 倍的符文献祭力量加成。`
+        case 1:
+          return this.effarigDone ? '鹿颈长已完成！' : `你当前位于${this.effarigLayer}层。`
+        case 2:
+          return this.enslavedDone ? '我们... 还不够... 帮上忙...' : '我们... 可以帮忙... 让我们... 帮忙...'
+        case 3:
+          return ''
+        case 4:
+          return `在的现实内，某些资源将根据其数量生成用于天体记忆的记忆碎片：`
+        case 5:
+          return this.laitelaFastest >= 300 ? "你尚未在当前层级完成 Lai'tela。" : `你在当前层级的最快完成时间为 ${this.laitelaTime}。`
+        case 6:
+          return ''
+        default:
+          throw new Error(`尝试在天体模态确认中启动未知的天体。`)
       }
-    }
+    },
   },
   methods: {
     update() {
-      this.teresaBestAM.copyFrom(player.celestials.teresa.bestRunAM);
-      this.teresaRunMult = Teresa.runRewardMultiplier;
-      const effarigStage = Effarig.currentStage;
-      this.effarigDone = effarigStage === EFFARIG_STAGES.COMPLETED;
-      this.effarigLayer = [null, "Infinity", "Eternity", "Reality"][effarigStage];
-      this.enslavedDone = Enslaved.isCompleted;
-      this.laitelaFastest = player.celestials.laitela.fastestCompletion;
-      this.laitelaTime = TimeSpan.fromSeconds(this.laitelaFastest).toStringShort();
+      this.teresaBestAM.copyFrom(player.celestials.teresa.bestRunAM)
+      this.teresaRunMult = Teresa.runRewardMultiplier
+      const effarigStage = Effarig.currentStage
+      this.effarigDone = effarigStage === EFFARIG_STAGES.COMPLETED
+      this.effarigLayer = [null, 'Infinity', 'Eternity', 'Reality'][effarigStage]
+      this.enslavedDone = Enslaved.isCompleted
+      this.laitelaFastest = player.celestials.laitela.fastestCompletion
+      this.laitelaTime = TimeSpan.fromSeconds(this.laitelaFastest).toStringShort()
     },
     handleYesClick() {
-      beginProcessReality(getRealityProps(true));
+      beginProcessReality(getRealityProps(true))
       switch (this.number) {
-        case 0: return Teresa.initializeRun();
-        case 1: return Effarig.initializeRun();
-        case 2: return Enslaved.initializeRun();
-        case 3: return V.initializeRun();
-        case 4: return Ra.initializeRun();
-        case 5: return Laitela.initializeRun();
-        case 6: throw new Error(`Attempted to start Pelle through EnterCelestialsModal instead of ArmageddonModal`);
-        default: throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`);
+        case 0:
+          return Teresa.initializeRun()
+        case 1:
+          return Effarig.initializeRun()
+        case 2:
+          return Enslaved.initializeRun()
+        case 3:
+          return V.initializeRun()
+        case 4:
+          return Ra.initializeRun()
+        case 5:
+          return Laitela.initializeRun()
+        case 6:
+          throw new Error(`Attempted to start Pelle through EnterCelestialsModal instead of ArmageddonModal`)
+        default:
+          throw new Error(`Attempted to start an Unknown Celestial in Celestial Modal Confirmation.`)
       }
     },
   },
@@ -140,8 +147,8 @@ export default {
       </span>
     </div>
     <template #confirm-text>
-      Begin
+      开始
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

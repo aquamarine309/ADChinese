@@ -1,50 +1,46 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "PurgeGlyphModal",
+  name: 'PurgeGlyphModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     harsh: {
       type: Boolean,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     threshold() {
-      return this.harsh ? 1 : 5;
+      return this.harsh ? 1 : 5
     },
     extraMessage() {
-      if (this.glyphsDeleted === 0) return `This will Purge no Glyphs.`;
-      if (this.glyphsDeleted === this.glyphsTotal) return `This will Purge all your Glyphs.`;
-      return `${this.harsh ? `Harsh Purging` : `Purging`} will delete
+      if (this.glyphsDeleted === 0) return `这不会清除任何符文。`
+      if (this.glyphsDeleted === this.glyphsTotal) return `这将清除你所有的符文。`
+      return `${this.harsh ? `严格清除` : `清除`}将删除
         ${formatInt(this.glyphsDeleted)}/${formatInt(this.glyphsTotal)}
-      of your Glyphs.`;
+        个符文。`
     },
     explanation() {
-      if (this.harsh) return `Harsh Purging deletes Glyphs that are strictly worse than any other Glyph in your
-        inventory. For example, if a Glyph has all the same effects as another Glyph, but the values
-        of ALL of the effects are worse, then it will be deleted.`;
-      return `Purging deletes Glyphs that are strictly worse than other Glyphs, while keeping enough to equip a full
-        set with those effects. This behaves like Harsh Purge, except that regular Purge will not delete any given
-        Glyph unless it finds five Glyphs which are better (instead of only one).`;
+      if (this.harsh) return `严格清除会删除那些在你库存中严格劣于其他符文的符文。例如，如果一个符文的所有效果与另一个符文相同，但所有效果的值都更差，那么它将被删除。`
+      return `清除会删除那些严格劣于其他符文的符文，同时保留足够多的符文以装备一套完整的符文组合。这与严格清除类似，但普通清除在找到五个更好的符文（而不是仅一个）之前不会删除任何符文。`
     },
     topLabel() {
-      return `You are about to ${this.harsh ? `Harsh Purge` : `Purge`} your Glyphs`;
+      return `你即将${this.harsh ? `严格清除` : `清除`}你的符文`
     },
 
-    // These two don't need to be reactive since the modal force-closes itself whenever glyphs change
+    // 这两个不需要是响应式的，因为每当符文发生变化时，模态框会自动关闭
     glyphsTotal() {
-      return Glyphs.inventory.filter(slot => slot !== null).length;
+      return Glyphs.inventory.filter((slot) => slot !== null).length
     },
     glyphsDeleted() {
-      return Glyphs.autoClean(this.threshold, false);
+      return Glyphs.autoClean(this.threshold, false)
     },
   },
   methods: {
     handleYesClick() {
-      Glyphs.autoClean(this.threshold, true);
+      Glyphs.autoClean(this.threshold, true)
     },
   },
   template: `
@@ -56,8 +52,7 @@ export default {
       {{ topLabel }}
     </template>
     <div class="c-modal-message__text">
-      This could delete Glyphs in your inventory that are good enough that you might want to use them
-      later. Purging will Purge Glyphs based on your Purge mode. Are you sure you want to do this?
+      这可能会清除你库存中那些你以后可能还想使用的符文。清除将根据你的清除模式删除符文。你确定要这样做吗？
       <br>
       <br>
       {{ explanation }}
@@ -66,6 +61,5 @@ export default {
     <div class="c-modal-hard-reset-danger">
       {{ extraMessage }}
     </div>
-  </ModalWrapperChoice>
-  `
-};
+  </ModalWrapperChoice>`,
+}

@@ -1,11 +1,11 @@
-import ModalWrapper from "./ModalWrapper.js";
-import PrimaryButton from "../PrimaryButton.js";
+import ModalWrapper from './ModalWrapper.js'
+import PrimaryButton from '../PrimaryButton.js'
 
 export default {
-  name: "RealityGlyphCreationModal",
+  name: 'RealityGlyphCreationModal',
   components: {
     ModalWrapper,
-    PrimaryButton
+    PrimaryButton,
   },
   data() {
     return {
@@ -13,37 +13,33 @@ export default {
       realityGlyphLevel: 0,
       // This contains an array where each entry is an array looking like [4000, "realitygalaxies"]
       possibleEffects: [],
-    };
+    }
   },
   methods: {
     update() {
-      this.isDoomed = Pelle.isDoomed;
-      this.realityGlyphLevel = AlchemyResource.reality.effectValue;
-      const realityEffectConfigs = GlyphEffects.all
-        .filter(eff => eff.glyphTypes.includes("reality"))
-        .sort((a, b) => a.bitmaskIndex - b.bitmaskIndex);
-      const minRealityEffectIndex = realityEffectConfigs.map(cfg => cfg.bitmaskIndex).min();
-      this.possibleEffects = realityEffectConfigs
-        .map(cfg => [realityGlyphEffectLevelThresholds[cfg.bitmaskIndex - minRealityEffectIndex], cfg.id]);
+      this.isDoomed = Pelle.isDoomed
+      this.realityGlyphLevel = AlchemyResource.reality.effectValue
+      const realityEffectConfigs = GlyphEffects.all.filter((eff) => eff.glyphTypes.includes('reality')).sort((a, b) => a.bitmaskIndex - b.bitmaskIndex)
+      const minRealityEffectIndex = realityEffectConfigs.map((cfg) => cfg.bitmaskIndex).min()
+      this.possibleEffects = realityEffectConfigs.map((cfg) => [realityGlyphEffectLevelThresholds[cfg.bitmaskIndex - minRealityEffectIndex], cfg.id])
     },
     createRealityGlyph() {
       if (GameCache.glyphInventorySpace.value === 0) {
-        Modal.message.show("No available inventory space; Sacrifice some Glyphs to free up space.",
-          { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
-        return;
+        Modal.message.show('No available inventory space; Sacrifice some Glyphs to free up space.', { closeEvent: GAME_EVENT.GLYPHS_CHANGED })
+        return
       }
-      Glyphs.addToInventory(GlyphGenerator.realityGlyph(this.realityGlyphLevel));
-      AlchemyResource.reality.amount = 0;
-      player.reality.glyphs.createdRealityGlyph = true;
-      this.emitClose();
+      Glyphs.addToInventory(GlyphGenerator.realityGlyph(this.realityGlyphLevel))
+      AlchemyResource.reality.amount = 0
+      player.reality.glyphs.createdRealityGlyph = true
+      this.emitClose()
     },
     formatGlyphEffect(effect) {
-      if (this.realityGlyphLevel < effect[0]) return `(Requires Glyph level ${formatInt(effect[0])})`;
-      const config = GlyphEffects[effect[1]];
-      const value = config.effect(this.realityGlyphLevel, rarityToStrength(100));
-      const effectTemplate = config.singleDesc;
-      return effectTemplate.replace("{value}", config.formatEffect(value));
-    }
+      if (this.realityGlyphLevel < effect[0]) return `(需要符文等级达到 ${formatInt(effect[0])})`
+      const config = GlyphEffects[effect[1]]
+      const value = config.effect(this.realityGlyphLevel, rarityToStrength(100))
+      const effectTemplate = config.singleDesc
+      return effectTemplate.replace('{value}', config.formatEffect(value))
+    },
   },
   template: `
   <ModalWrapper>
@@ -91,5 +87,5 @@ export default {
       </PrimaryButton>
     </div>
   </ModalWrapper>
-  `
-};
+  `,
+}

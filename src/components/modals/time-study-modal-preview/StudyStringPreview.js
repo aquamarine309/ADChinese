@@ -1,7 +1,7 @@
-import PseudoTimeStudyButton from "./PseudoTimeStudyButton.js";
-import PseudoTimeStudyConnection from "./PseudoTimeStudyConnection.js";
+import PseudoTimeStudyButton from './PseudoTimeStudyButton.js'
+import PseudoTimeStudyConnection from './PseudoTimeStudyConnection.js'
 
-import { STUDY_TREE_LAYOUT_TYPE, TimeStudyTreeLayout } from "../../tabs/time-studies/time-study-tree-layout.js";
+import { STUDY_TREE_LAYOUT_TYPE, TimeStudyTreeLayout } from '../../tabs/time-studies/time-study-tree-layout.js'
 
 export const ForceBoughtState = {
   notBought: 0,
@@ -11,18 +11,18 @@ export const ForceBoughtState = {
   getState(forceState, currentState) {
     switch (forceState) {
       case this.notBought:
-        return false;
+        return false
       case this.unspecified:
-        return currentState;
+        return currentState
       case this.bought:
-        return true;
+        return true
     }
-    return currentState;
-  }
-};
+    return currentState
+  },
+}
 
 export default {
-  name: "TimeStudiesTab",
+  name: 'TimeStudiesTab',
   components: {
     PseudoTimeStudyButton,
     PseudoTimeStudyConnection,
@@ -30,16 +30,16 @@ export default {
   props: {
     disregardCurrentStudies: {
       type: Boolean,
-      default: false
+      default: false,
     },
     newStudies: {
       required: true,
-      validator: newStudies => Array.isArray(newStudies) || newStudies === undefined,
+      validator: (newStudies) => Array.isArray(newStudies) || newStudies === undefined,
     },
     showPreview: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
@@ -48,70 +48,74 @@ export default {
       renderedStudyCount: 0,
       isEnslaved: false,
       delayTimer: 0,
-    };
+    }
   },
   computed: {
     layout() {
-      return TimeStudyTreeLayout.create(this.layoutType, 0.15);
+      return TimeStudyTreeLayout.create(this.layoutType, 0.15)
     },
     studies() {
-      return this.layout.studies;
+      return this.layout.studies
     },
     connections() {
-      return this.layout.connections;
+      return this.layout.connections
     },
     treeStyleObject() {
       return {
         width: `${this.layout.width}rem`,
-        height: `${this.layout.height}rem`
-      };
+        height: `${this.layout.height}rem`,
+      }
     },
     respecClassObject() {
       return {
-        "o-primary-btn--subtab-option": true,
-        "o-primary-btn--respec-active": this.respec
-      };
-    }
+        'o-primary-btn--subtab-option': true,
+        'o-primary-btn--respec-active': this.respec,
+      }
+    },
   },
   watch: {
     vLevel() {
       // When vLevel changes, we recompute the study tree because of triad studies
-      this.$recompute("layout");
-    }
+      this.$recompute('layout')
+    },
   },
   methods: {
     update() {
-      this.layoutType = STUDY_TREE_LAYOUT_TYPE.current;
-      this.vLevel = Ra.pets.v.level;
-      this.isEnslaved = Enslaved.isRunning || Date.now() - this.delayTimer < 1000;
+      this.layoutType = STUDY_TREE_LAYOUT_TYPE.current
+      this.vLevel = Ra.pets.v.level
+      this.isEnslaved = Enslaved.isRunning || Date.now() - this.delayTimer < 1000
     },
     studyComponent(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: return NormalTimeStudy;
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return ECTimeStudy;
-        case TIME_STUDY_TYPE.DILATION: return DilationTimeStudy;
-        case TIME_STUDY_TYPE.TRIAD: return TriadTimeStudy;
+        case TIME_STUDY_TYPE.NORMAL:
+          return NormalTimeStudy
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE:
+          return ECTimeStudy
+        case TIME_STUDY_TYPE.DILATION:
+          return DilationTimeStudy
+        case TIME_STUDY_TYPE.TRIAD:
+          return TriadTimeStudy
       }
-      throw "Unknown Time Study type";
+      throw 'Unknown Time Study type'
     },
     studyString(study) {
       switch (study.type) {
-        case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: return `${study.id}`;
-        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return `EC${study.id}`;
+        case TIME_STUDY_TYPE.NORMAL:
+        case TIME_STUDY_TYPE.TRIAD:
+          return `${study.id}`
+        case TIME_STUDY_TYPE.ETERNITY_CHALLENGE:
+          return `EC${study.id}`
       }
-      return "Dilation Study";
+      return '膨胀研究'
     },
     getStudyForceBoughtState(studyStr) {
-      if (!this.disregardCurrentStudies) return ForceBoughtState.unspecified;
-      return this.newStudies.includes(studyStr) ? ForceBoughtState.bought : ForceBoughtState.notBought;
+      if (!this.disregardCurrentStudies) return ForceBoughtState.unspecified
+      return this.newStudies.includes(studyStr) ? ForceBoughtState.bought : ForceBoughtState.notBought
     },
     getConnectionForceBoughtState(setup) {
-      if (!this.disregardCurrentStudies) return ForceBoughtState.unspecified;
-      return (this.newStudies.includes(this.studyString(setup.connection.to)) &&
-        this.newStudies.includes(this.studyString(setup.connection.from)))
-        ? ForceBoughtState.bought
-        : ForceBoughtState.notBought;
-    }
+      if (!this.disregardCurrentStudies) return ForceBoughtState.unspecified
+      return this.newStudies.includes(this.studyString(setup.connection.to)) && this.newStudies.includes(this.studyString(setup.connection.from)) ? ForceBoughtState.bought : ForceBoughtState.notBought
+    },
   },
   template: `
   <div
@@ -148,8 +152,8 @@ export default {
       class="c-unavailable-warning"
       data-v-study-string-preview
     >
-      Preview Unavailable
+      预览不可用
     </span>
   </div>
-  `
-};
+  `,
+}

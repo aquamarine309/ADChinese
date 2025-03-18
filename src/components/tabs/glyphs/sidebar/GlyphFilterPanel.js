@@ -1,139 +1,137 @@
-import AutoSacrificeAdvancedTab from "./AutoSacrificeAdvancedTab.js";
-import AutoSacrificeEffectTab from "./AutoSacrificeEffectTab.js";
-import GlyphComponent from "../../../GlyphComponent.js";
-import SliderComponent from "../../../SliderComponent.js";
+import AutoSacrificeAdvancedTab from './AutoSacrificeAdvancedTab.js'
+import AutoSacrificeEffectTab from './AutoSacrificeEffectTab.js'
+import GlyphComponent from '../../../GlyphComponent.js'
+import SliderComponent from '../../../SliderComponent.js'
 
 export default {
-  name: "GlyphFilterPanel",
+  name: 'GlyphFilterPanel',
   components: {
     AutoSacrificeEffectTab,
     AutoSacrificeAdvancedTab,
     SliderComponent,
-    GlyphComponent
+    GlyphComponent,
   },
   data() {
     return {
       mode: AUTO_GLYPH_SCORE.LOWEST_SACRIFICE,
       effectCount: 0,
-      lockedTypes: GlyphTypes.locked.map(e => e.id),
+      lockedTypes: GlyphTypes.locked.map((e) => e.id),
       advancedType: GLYPH_TYPES[0],
       alchemyUnlocked: false,
       // Note: there are two units at play: strength is from 1..3.5+; rarity is 0..100
-      rarityThresholds: GLYPH_TYPES.mapToObject(e => e, () => 0),
+      rarityThresholds: GLYPH_TYPES.mapToObject(
+        (e) => e,
+        () => 0
+      ),
       autoRealityForFilter: player.options.autoRealityForFilter,
-    };
+    }
   },
   computed: {
     modes() {
-      return AUTO_GLYPH_SCORE;
+      return AUTO_GLYPH_SCORE
     },
     glyphTypes() {
-      return GlyphTypes.list.filter(e => !this.lockedTypes.includes(e.id));
+      return GlyphTypes.list.filter((e) => !this.lockedTypes.includes(e.id))
     },
     raritySliderProps() {
       return {
         min: 0,
         max: 100,
-        width: "18rem",
+        width: '18rem',
         valueInDot: true,
-        tooltip: "never",
-        "dot-width": "2.2rem",
-        "dot-height": "1.6rem",
-        "dot-class": "c-glyph-sacrifice-options__rarity-slider-handle",
-        "bg-class": "c-glyph-sacrifice-options__rarity-slider-bg",
-        "process-class": "c-glyph-sacrifice-options__rarity-slider-process",
+        tooltip: 'never',
+        'dot-width': '2.2rem',
+        'dot-height': '1.6rem',
+        'dot-class': 'c-glyph-sacrifice-options__rarity-slider-handle',
+        'bg-class': 'c-glyph-sacrifice-options__rarity-slider-bg',
+        'process-class': 'c-glyph-sacrifice-options__rarity-slider-process',
         style: {
-          "margin-left": "1rem",
-        }
-      };
+          'margin-left': '1rem',
+        },
+      }
     },
     glyphIconProps() {
       return {
-        size: "3rem",
-        "glow-blur": "0.3rem",
-        "glow-spread": "0.1rem",
-        "text-proportion": 0.66
-      };
+        size: '3rem',
+        'glow-blur': '0.3rem',
+        'glow-spread': '0.1rem',
+        'text-proportion': 0.66,
+      }
     },
     questionmarkTooltip() {
-      return `All Glyph choices are given a score and compared to a threshold based on the chosen mode. 
-        The Glyph with the highest score is picked, but will still be Sacrificed if below the threshold.
-        (click for more detail)`;
+      return `所有符文选项都会被评分，并与基于所选模式的阈值进行比较。
+        得分最高的符文将被选中，但如果低于阈值仍会被献祭。
+        （点击查看更多详情）`
     },
     autoRealityTooltip() {
-      return `If Auto-Reality is on, ignore all other settings and immediately Reality if no upcoming
-        Glyphs would be kept`;
+      return `如果自动现实开启，将忽略所有其他设置，并在没有符文会被保留时立即重启现实`
     },
     unlockedModes() {
-      return Object.values(this.modes).filter(idx => this.isUnlocked(idx));
-    }
+      return Object.values(this.modes).filter((idx) => this.isUnlocked(idx))
+    },
   },
   methods: {
     update() {
-      this.effectCount = player.reality.glyphs.filter.simple;
-      this.mode = AutoGlyphProcessor.scoreMode;
+      this.effectCount = player.reality.glyphs.filter.simple
+      this.mode = AutoGlyphProcessor.scoreMode
       for (const type of generatedTypes) {
-        this.rarityThresholds[type] = AutoGlyphProcessor.types[type].rarity;
+        this.rarityThresholds[type] = AutoGlyphProcessor.types[type].rarity
       }
-      this.lockedTypes = GlyphTypes.locked.map(e => e.id);
-      this.alchemyUnlocked = Ra.unlocks.unlockGlyphAlchemy.canBeApplied;
+      this.lockedTypes = GlyphTypes.locked.map((e) => e.id)
+      this.alchemyUnlocked = Ra.unlocks.unlockGlyphAlchemy.canBeApplied
     },
     optionClass(idx) {
-      const icon = this.modeIcon(idx);
-      return [
-        "c-glyph-sacrifice-options__option",
-        idx === this.mode
-          ? "c-glyph-sacrifice-options__option--active"
-          : "c-glyph-sacrifice-options__option--inactive",
-        icon
-      ];
+      const icon = this.modeIcon(idx)
+      return ['c-glyph-sacrifice-options__option', idx === this.mode ? 'c-glyph-sacrifice-options__option--active' : 'c-glyph-sacrifice-options__option--inactive', icon]
     },
     modeIcon(idx) {
       switch (idx) {
         case this.modes.LOWEST_SACRIFICE:
-          return "fas fa-burn";
+          return 'fas fa-burn'
         case this.modes.EFFECT_COUNT:
-          return "fas fa-list-ul";
+          return 'fas fa-list-ul'
         case this.modes.RARITY_THRESHOLD:
-          return "fas fa-gem";
+          return 'fas fa-gem'
         case this.modes.SPECIFIED_EFFECT:
-          return "fas fa-tasks";
+          return 'fas fa-tasks'
         case this.modes.EFFECT_SCORE:
-          return "fas fa-list-ol";
+          return 'fas fa-list-ol'
         case this.modes.LOWEST_ALCHEMY:
-          return "fas fa-atom";
+          return 'fas fa-atom'
         case this.modes.ALCHEMY_VALUE:
-          return "fas fa-flask";
+          return 'fas fa-flask'
         default:
-          throw Error("Unrecognized glyph filter mode");
+          throw Error('Unrecognized glyph filter mode')
       }
     },
     strengthThreshold(type) {
-      return rarityToStrength(this.rarityThresholds[type]);
+      return rarityToStrength(this.rarityThresholds[type])
     },
     advancedTypeSelectStyle(type) {
-      const color = GlyphAppearanceHandler.getBorderColor(type.id);
-      return type.id === this.advancedType ? {
-        color,
-        "text-shadow": `0 0 0.25rem ${color}, 0 0 0.5rem ${color}, 0 0 0.75rem ${color}, 0 0 1rem ${color}`,
-      } : {};
+      const color = GlyphAppearanceHandler.getBorderColor(type.id)
+      return type.id === this.advancedType
+        ? {
+            color,
+            'text-shadow': `0 0 0.25rem ${color}, 0 0 0.5rem ${color}, 0 0 0.75rem ${color}, 0 0 1rem ${color}`,
+          }
+        : {}
     },
     setMode(m) {
-      AutoGlyphProcessor.scoreMode = m;
-      player.reality.hasCheckedFilter = false;
+      AutoGlyphProcessor.scoreMode = m
+      player.reality.hasCheckedFilter = false
     },
     setRarityThreshold(id, value) {
-      AutoGlyphProcessor.types[id].rarity = value;
+      AutoGlyphProcessor.types[id].rarity = value
     },
     setEffectCount(event) {
-      const inputValue = event.target.value;
+      const inputValue = event.target.value
       if (!isNaN(inputValue)) {
-        this.effectCount = Math.clamp(inputValue, 0, 8);
-        player.reality.glyphs.filter.simple = this.effectCount;
+        this.effectCount = Math.clamp(inputValue, 0, 8)
+        player.reality.glyphs.filter.simple = this.effectCount
       }
     },
     filterMode(index) {
-      return AutoGlyphProcessor.filterModeName(index);
+      return AutoGlyphProcessor.filterModeName(index)
     },
     isUnlocked(index) {
       switch (index) {
@@ -142,51 +140,51 @@ export default {
         case this.modes.RARITY_THRESHOLD:
         case this.modes.SPECIFIED_EFFECT:
         case this.modes.EFFECT_SCORE:
-          return true;
+          return true
         case this.modes.LOWEST_ALCHEMY:
         case this.modes.ALCHEMY_VALUE:
-          return this.alchemyUnlocked;
+          return this.alchemyUnlocked
         default:
-          throw Error("Unrecognized glyph filter mode");
+          throw Error('Unrecognized glyph filter mode')
       }
     },
     // Clicking bumps the rarity over to adjacent thresholds between rarities; normal clicks move to the higher one
     // and shift-clicks move to the lower one. There is a loop-around that makes 100 go to 0 next and vice versa
     bumpRarity(type) {
-      const rarityThresholds = GlyphRarities.map(r => strengthToRarity(r.minStrength));
-      let newRarity;
+      const rarityThresholds = GlyphRarities.map((r) => strengthToRarity(r.minStrength))
+      let newRarity
       if (ui.view.shiftDown) {
-        const lower = rarityThresholds.filter(s => s < this.rarityThresholds[type]);
-        newRarity = lower.length === 0 ? 100 : lower.max();
+        const lower = rarityThresholds.filter((s) => s < this.rarityThresholds[type])
+        newRarity = lower.length === 0 ? 100 : lower.max()
       } else {
         // Note: As the minimum of an empty array is zero, this wraps around to 0% again if clicked at 100% rarity
-        newRarity = rarityThresholds.filter(s => s > this.rarityThresholds[type]).min();
+        newRarity = rarityThresholds.filter((s) => s > this.rarityThresholds[type]).min()
       }
-      this.setRarityThreshold(type, newRarity);
+      this.setRarityThreshold(type, newRarity)
     },
     showFilterHowTo() {
-      ui.view.h2pForcedTab = GameDatabase.h2p.tabs.filter(tab => tab.name === "Advanced Glyph Mechanics")[0];
-      Modal.h2p.show();
+      ui.view.h2pForcedTab = GameDatabase.h2p.tabs.filter((tab) => tab.name === 'Advanced Glyph Mechanics')[0]
+      Modal.h2p.show()
     },
     getSymbol(type) {
-      return CosmeticGlyphTypes[type].currentSymbol.symbol;
+      return CosmeticGlyphTypes[type].currentSymbol.symbol
     },
     toggleAutoReality() {
-      player.options.autoRealityForFilter = !player.options.autoRealityForFilter;
-      this.autoRealityForFilter = player.options.autoRealityForFilter;
-      player.reality.hasCheckedFilter = false;
+      player.options.autoRealityForFilter = !player.options.autoRealityForFilter
+      this.autoRealityForFilter = player.options.autoRealityForFilter
+      player.reality.hasCheckedFilter = false
     },
+
     exportFilterSettings() {
-      const filter = player.reality.glyphs.filter;
-      const serializeType = settings => [settings.rarity, settings.score, settings.effectCount,
-        settings.specifiedMask, settings.effectScores.join("/")].join(",");
-      const simpleData = [filter.select, filter.simple, filter.trash].join("|");
-      const typeData = ALCHEMY_BASIC_GLYPH_TYPES.map(t => serializeType(filter.types[t])).join("|");
-      copyToClipboard(GameSaveSerializer.encodeText(`${simpleData}|${typeData}`, "glyph filter"));
-      GameUI.notify.info("筛选设置已导出到剪贴板");
+      const filter = player.reality.glyphs.filter
+      const serializeType = (settings) => [settings.rarity, settings.score, settings.effectCount, settings.specifiedMask, settings.effectScores.join('/')].join(',')
+      const simpleData = [filter.select, filter.simple, filter.trash].join('|')
+      const typeData = ALCHEMY_BASIC_GLYPH_TYPES.map((t) => serializeType(filter.types[t])).join('|')
+      copyToClipboard(GameSaveSerializer.encodeText(`${simpleData}|${typeData}`, 'glyph filter'))
+      GameUI.notify.info('筛选设置已导出到剪贴板')
     },
     importFilterSettings() {
-      Modal.importFilter.show();
+      Modal.importFilter.show()
     },
   },
   template: `
@@ -197,13 +195,13 @@ export default {
         data-v-glyph-filter-panel
       >
         <i
-          v-tooltip="'Export filter settings'"
+          v-tooltip="'导出筛选设置'"
           class="fas fa-file-export l-top-left-btn"
           @click="exportFilterSettings"
           data-v-glyph-filter-panel
         />
         <i
-          v-tooltip="'Import filter settings'"
+          v-tooltip="'导入筛选设置'"
           class="fas fa-file-import l-top-left-btn"
           @click="importFilterSettings"
           data-v-glyph-filter-panel
@@ -249,11 +247,10 @@ export default {
       class="c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyph score is assigned based on type. Priority is given to Glyphs belonging to the type of which you have
-      the least total Glyph Sacrifice value.
+        符文评分基于类型分配。优先选择属于总符文献祭值最低类型的符文。
       <br>
       <br>
-      This mode never keeps Glyphs, but will instead always sacrifice the Glyph it chooses.
+        此模式不会保留任何符文，而是始终献祭所选的符文。
     </div>
     <div
       v-if="mode === modes.EFFECT_COUNT"
@@ -309,7 +306,7 @@ export default {
         <span
           v-for="type in glyphTypes"
           :key="type.id"
-          v-tooltip="type.id.capitalize()"
+          v-tooltip=""
           class="l-glyph-sacrifice-options__advanced-type-select c-glyph-sacrifice-options__advanced-type-select"
           :style="advancedTypeSelectStyle(type)"
           @click="advancedType=type.id"
@@ -342,12 +339,12 @@ export default {
         />
       </template>
     </div>
-    <div
+<div
       v-if="mode === modes.EFFECT_SCORE"
       class="c-glyph-sacrifice-options__advanced"
     >
       <div>
-        Glyph Type:
+        符文类型：
         <span
           v-for="type in glyphTypes"
           :key="type.id"
@@ -373,24 +370,21 @@ export default {
       class="c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyph score is assigned based on current Alchemy Resource totals. Priority is given to the Glyph type with
-      the lowest associated alchemy resource total.
+        符文评分基于当前炼金资源总量。优先选择关联炼金资源总量最低的符文类型。
       <br>
       <br>
-      This mode never keeps Glyphs.
+        此模式不会保留任何符文。
     </div>
     <div
       v-if="mode === modes.ALCHEMY_VALUE"
       class="c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyphs will be assigned values based on <i>current</i> refinement value, accounting for the type-specific
-      resource caps. Priority is given to Glyphs which are worth the most alchemy resources; Glyphs which would
-      cause you to hit a cap are effectively worth less.
+        符文将根据<i>当前</i>精炼值分配价值，并考虑类型特定的资源上限。优先选择价值最高的符文；会导致达到资源上限的符文实际价值较低。
       <br>
       <br>
-      This mode never keeps Glyphs.
+        此模式不会保留任何符文。
     </div>
   </div>
-  `
-};
+  `,
+}

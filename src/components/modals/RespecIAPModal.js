@@ -1,24 +1,25 @@
-import ModalWrapperChoice from "./ModalWrapperChoice.js";
+import ModalWrapperChoice from './ModalWrapperChoice.js'
 
 export default {
-  name: "RespecIAPModal",
+  name: 'RespecIAPModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   methods: {
     returnedSTDCount() {
-      let std = 0;
+      let std = 0
       for (const purchase of ShopPurchase.all) {
-        if (purchase.config.instantPurchase) continue;
-        std += purchase.purchases * purchase.cost;
+        if (purchase.config.instantPurchase) continue
+        std += purchase.purchases * purchase.cost
       }
-      return std;
+      return std
     },
     handleYesClick() {
-      ShopPurchaseData.respecAll();
-      EventHub.ui.offAll(this);
-    }
+      ShopPurchaseData.respecAll()
+      EventHub.ui.offAll(this)
+    },
   },
+  //没卵用不翻了
   template: `
   <ModalWrapperChoice
     option="respecIAP"
@@ -50,5 +51,5 @@ export default {
        >You will not be able to respec again unless you purchase more STD coins.</b>
     </div>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

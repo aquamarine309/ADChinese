@@ -1,9 +1,9 @@
-import SecretAchievementRow from "./SecretAchievementRow.js";
+import SecretAchievementRow from './SecretAchievementRow.js'
 
 export default {
-  name: "SecretAchievementTab",
+  name: 'SecretAchievementTab',
   components: {
-    SecretAchievementRow
+    SecretAchievementRow,
   },
   computed: {
     rows: () => SecretAchievements.allRows,
@@ -12,7 +12,7 @@ export default {
   <div class="l-achievements-tab">
     <div class="c-achievements-tab__header">
       <span>
-        Secret Achievements are optional and give no bonuses.
+        隐藏成就仅供娱乐，不提供任何加成
       </span>
     </div>
     <div class="l-achievement-grid">
@@ -23,5 +23,5 @@ export default {
       />
     </div>
   </div>
-  `
-};
+  `,
+}

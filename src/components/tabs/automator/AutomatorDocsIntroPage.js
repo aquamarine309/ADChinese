@@ -1,111 +1,91 @@
 export default {
-  name: "AutomatorDocsIntroPage",
+  name: 'AutomatorDocsIntroPage',
   template: `
-  <div>
-    Welcome to the Antimatter Dimensions Automator!
-    <br>
-    <br>
-    This page is an introduction page which gives a very broad overview of everything you can do with the Automator.
-    Specific details on various functionality can be found in the How To Play or their respective tabs (when relevant).
-    <br>
-    <br>
-    <b>Scripting Language:</b> The Automator uses a custom scripting language in order to perform certain game actions
-    for you. Click 
-    <div
-      class="fas fa-list c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> to bring up a list of available commands. You can
-    also define constants as shorthand names for various values on the
-    <div
-      class="fas fa-book c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> page.
-    <br>
-    <br>
-    <b>Layout:</b> This Automator itself is split up into two halves; the left half contains your script and controls
-    for starting, stopping, and repeating its execution, and the right half contains Automator information. Clicking
-    <div
-      class="fas fa-expand-arrows-alt c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> in the top-right corner will expand the Automator
-    to take up the whole browser page for easier editing.
-    <br>
-    <br>
-    <b>Editor Modes:</b> There are two different editors you can use to write your automator scripts - a block-based
-    editor (default) and a text-based editor. You can swap between the two editor types with the switch in the
-    top-right corner of the left half. Note that scripts with errors may not properly convert between the two modes,
-    which can cause part of your script to be deleted.
-    <br>
-    <br>
-    <b>Making Scripts:</b> You can switch between multiple scripts or make new scripts using the dropdown on the
-    second row of buttons. The current script can be renamed or deleted with the
-    <div
-      class="fas fa-edit c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> and
-    <div
-      class="fas fa-trash c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> buttons. The Automator will always contain at
-    least one script for you to edit; deleting your last one will automatically create a new blank one.
-    <br>
-    <br>
-    <b>Writing Scripts:</b> Scripts in the block editor are made by going to the block tab
-    <div
-      class="fas fa-cubes c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    />, while scripts in the text editor are made by typing into
-    the left half as a text box. In either editor mode, you can also use some smaller premade scripts from the
-    template generator 
-    <div
-      class="fas fa-file-code c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    />. You can undo or redo a limited
-    number of edits using 
-    <div
-      class="fas fa-arrow-rotate-left c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> or
-    <div
-      class="fas fa-arrow-rotate-right c-automator-button-icon"
-      data-v-automator-docs-intro-page
-     />, or by using the respective hotkeys. Edit history
-    is cleared upon switching, converting, or deleting scripts.
-    <br>
-    <br>
-    <b>Debugging:</b> The two main tools you have for fixing your scripts are the Error Log
-    <div
-      class="fas fa-exclamation-triangle c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> for when you can't get your script to run at
-    all, and the Event Log 
-    <div
-      class="fas fa-eye c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> for when it runs but doesn't do what you
-    expect it to do.
-    <br>
-    <br>
-    <b>Importing/Exporting:</b> Automator scripts can be exported and imported in text format by using the
-    <div
-      class="fas fa-file-export c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> and
-    <div
-      class="fas fa-file-import c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> buttons respectively. You can also access additional
-    extended exporting options 
-    <div
-      class="fas fa-window-restore c-automator-button-icon"
-      data-v-automator-docs-intro-page
-    /> 
-    if desired.
-    <br>
-    <br>
-    <b>Script saving:</b> Script changes are not immediately saved to your computer under all conditions;
-    check the Automator How To Play entries for more details. Additionally there are two character limits to reduce lag,
-    shown above the automator panels.
-  </div>
-  `
-};
+<div>
+  欢迎来到《反物质维度》自动脚本编辑器！
+  <br>
+  <br>
+  本页面是一个介绍页面，为您提供了一个关于自动脚本编辑器功能的广泛概述。具体功能的详细信息可以在“如何游玩”或相关标签页中找到（如有）。
+  <br>
+  <br>
+  <b>脚本语言：</b> 自动脚本编辑器使用一种自定义脚本语言来为您执行某些游戏操作。点击
+  <div
+    class="fas fa-list c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 以查看可用命令列表。您还可以在
+  <div
+    class="fas fa-book c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 页面上定义常量，作为各种值的简写名称。
+  <br>
+  <br>
+  <b>布局：</b> 自动脚本编辑器本身分为两部分；左侧包含您的脚本以及用于启动、停止和重复执行的控制按钮，右侧包含自动脚本编辑器的信息。点击右上角的
+  <div
+    class="fas fa-expand-arrows-alt c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 可以将自动脚本编辑器扩展到整个浏览器页面，以便更轻松地进行编辑。
+  <br>
+  <br>
+  <b>编辑器模式：</b> 您可以使用两种不同的编辑器来编写自动脚本——块编辑器（默认）和文本编辑器。您可以通过左侧右上角的开关在两种编辑器模式之间切换。请注意，存在错误的脚本可能无法在两种模式之间正确转换，这可能会导致部分脚本被删除。
+  <br>
+  <br>
+  <b>创建脚本：</b> 您可以使用第二行按钮中的下拉菜单在多个脚本之间切换或创建新脚本。当前脚本可以通过
+  <div
+    class="fas fa-edit c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 和
+  <div
+    class="fas fa-trash c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 按钮进行重命名或删除。自动脚本编辑器始终包含至少一个脚本供您编辑；删除最后一个脚本将自动创建一个新的空白脚本。
+  <br>
+  <br>
+  <b>编写脚本：</b> 在块编辑器中，脚本是通过进入块标签
+  <div
+    class="fas fa-cubes c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 创建的，而在文本编辑器中，脚本是通过在左侧的文本框中输入创建的。在任何编辑器模式下，您还可以使用模板生成器
+  <div
+    class="fas fa-file-code c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 中的一些预置脚本。您可以使用
+  <div
+    class="fas fa-arrow-rotate-left c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 或
+  <div
+    class="fas fa-arrow-rotate-right c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 或相应的快捷键来撤销或重做有限次数的编辑。切换、转换或删除脚本时，编辑历史将被清除。
+  <br>
+  <br>
+  <b>调试：</b> 您有两个主要工具来修复脚本：错误日志
+  <div
+    class="fas fa-exclamation-triangle c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  />（当您的脚本无法运行时使用）和事件日志
+  <div
+    class="fas fa-eye c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  />（当脚本运行但未达到预期效果时使用）。
+  <br>
+  <br>
+  <b>导入/导出：</b> 自动脚本可以通过
+  <div
+    class="fas fa-file-export c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 和
+  <div
+    class="fas fa-file-import c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  /> 按钮以文本格式导出和导入。如果需要，您还可以访问其他扩展导出选项
+  <div
+    class="fas fa-window-restore c-automator-button-icon"
+    data-v-automator-docs-intro-page
+  />。
+  <br>
+  <br>
+  <b>脚本保存：</b> 脚本更改不会在所有条件下立即保存到您的计算机；有关更多详细信息，请查看自动脚本编辑器的“如何游玩”条目。此外，为了减少延迟，自动脚本面板上方显示了两个字符限制。
+</div>
+  `,
+}

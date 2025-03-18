@@ -1,31 +1,31 @@
 export default {
-  name: "AutomatorDocsManPage",
+  name: 'AutomatorDocsManPage',
   props: {
     command: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   computed: {
     description() {
-      const desc = this.command.description;
-      return typeof desc === "function" ? desc() : desc;
-    }
+      const desc = this.command.description
+      return typeof desc === 'function' ? desc() : desc
+    },
   },
   template: `
   <div class="c-automator-docs-page">
-    <b>NAME</b>
+    <b>名称</b>
     <div
       class="c-automator-docs-page__indented"
       v-html="command.keyword"
     />
-    <b>SYNTAX</b>
+    <b>语法</b>
     <div
       class="c-automator-docs-page__indented"
       v-html="command.syntax"
     />
     <template v-if="command.description">
-      <b>DESCRIPTION</b>
+      <b>描述</b>
       <div
         class="c-automator-docs-page__indented"
         v-html="description"
@@ -47,7 +47,7 @@ export default {
       </template>
     </template>
     <template v-if="command.examples">
-      <b>USAGE EXAMPLES</b>
+      <b>示例</b>
       <div
         v-for="example in command.examples"
         :key="example"
@@ -56,5 +56,5 @@ export default {
       />
     </template>
   </div>
-  `
-};
+  `,
+}

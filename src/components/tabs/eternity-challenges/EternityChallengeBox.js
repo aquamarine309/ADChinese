@@ -1,21 +1,21 @@
-import wordShift from "../../../core/word-shift.js";
+import wordShift from '../../../core/word-shift.js'
 
-import DescriptionDisplay from "../../DescriptionDisplay.js";
-import EffectDisplay from "../../EffectDisplay.js";
-import EternityChallengeBoxWrapper from "./EternityChallengeBoxWrapper.js";
+import DescriptionDisplay from '../../DescriptionDisplay.js'
+import EffectDisplay from '../../EffectDisplay.js'
+import EternityChallengeBoxWrapper from './EternityChallengeBoxWrapper.js'
 
 export default {
-  name: "EternityChallengeBox",
+  name: 'EternityChallengeBox',
   components: {
     EternityChallengeBoxWrapper,
     DescriptionDisplay,
-    EffectDisplay
+    EffectDisplay,
   },
   props: {
     challenge: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -25,68 +25,66 @@ export default {
       canBeUnlocked: false,
       completions: 0,
       showGoalSpan: false,
-      lastGoal: "",
-    };
+      lastGoal: '',
+    }
   },
   computed: {
     config() {
-      return this.challenge.config;
+      return this.challenge.config
     },
     goalDisplay() {
-      const config = this.config;
-      let goal = `目标：${this.goalAtCompletions(this.completions)} 无限点数`;
+      const config = this.config
+      let goal = `目标：${this.goalAtCompletions(this.completions)} 无限点数`
       if (config.restriction) {
-        goal += ` ${config.formatRestriction(config.restriction(this.completions))}`;
+        goal += ` ${config.formatRestriction(config.restriction(this.completions))}`
       }
-      return goal;
+      return goal
     },
     firstGoal() {
-      return this.goalAtCompletions(0);
+      return this.goalAtCompletions(0)
     },
     currentRewardConfig() {
-      const challenge = this.challenge;
-      const config = this.config.reward;
+      const challenge = this.challenge
+      const config = this.config.reward
       return {
         effect: () => config.effect(challenge.completions),
         formatEffect: config.formatEffect,
         cap: config.cap,
-      };
+      }
     },
     nextRewardConfig() {
-      const challenge = this.challenge;
-      const config = this.config.reward;
+      const challenge = this.challenge
+      const config = this.config.reward
       return {
         effect: () => config.effect(challenge.completions + 1),
         formatEffect: config.formatEffect,
         cap: config.cap,
-      };
+      }
     },
     name() {
-      return `永恒挑战${this.challenge.id}`;
-    }
+      return `永恒挑战${this.challenge.id}`
+    },
   },
   methods: {
     update() {
-      const challenge = this.challenge;
-      this.isUnlocked = challenge.isUnlocked;
-      this.isRunning = challenge.isRunning;
-      this.isCompleted = challenge.isFullyCompleted;
-      this.completions = challenge.completions;
-      this.showGoalSpan = PlayerProgress.realityUnlocked();
-      this.canBeUnlocked = TimeStudy.eternityChallenge(challenge.id).canBeBought;
+      const challenge = this.challenge
+      this.isUnlocked = challenge.isUnlocked
+      this.isRunning = challenge.isRunning
+      this.isCompleted = challenge.isFullyCompleted
+      this.completions = challenge.completions
+      this.showGoalSpan = PlayerProgress.realityUnlocked()
+      this.canBeUnlocked = TimeStudy.eternityChallenge(challenge.id).canBeBought
 
-      this.lastGoal = (Enslaved.isRunning && this.challenge.id === 1)
-        ? wordShift.wordCycle(this.config.scrambleText.map(x => format(x)))
-        : this.goalAtCompletions(this.challenge.maxCompletions - 1);
+      this.lastGoal = Enslaved.isRunning && this.challenge.id === 1 ? wordShift.wordCycle(this.config.scrambleText.map((x) => format(x))) : this.goalAtCompletions(this.challenge.maxCompletions - 1)
     },
     start() {
       if (this.canBeUnlocked) {
-        TimeStudy.eternityChallenge(this.challenge.id).purchase();
-      } else this.challenge.requestStart();
+        TimeStudy.eternityChallenge(this.challenge.id).purchase()
+      } else this.challenge.requestStart()
     },
     goalAtCompletions(completions) {
-      return format(this.challenge.goalAtCompletions(completions), 2, 1);
-    }
+      return format(this.challenge.goalAtCompletions(completions), 2, 1)
+    },
   },
   template: `
   <EternityChallengeBoxWrapper
@@ -134,5 +132,5 @@ export default {
       </span>
     </template>
   </EternityChallengeBoxWrapper>
-  `
-};
+  `,
+}

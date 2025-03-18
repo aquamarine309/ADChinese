@@ -1,9 +1,9 @@
-import CelestialQuoteHistory from "../../CelestialQuoteHistory.js";
-import EffarigRunUnlockReward from "./EffarigRunUnlockReward.js";
-import EffarigUnlockButton from "./EffarigUnlockButton.js";
+import CelestialQuoteHistory from '../../CelestialQuoteHistory.js'
+import EffarigRunUnlockReward from './EffarigRunUnlockReward.js'
+import EffarigUnlockButton from './EffarigUnlockButton.js'
 
 export default {
-  name: "EffarigTab",
+  name: 'EffarigTab',
   components: {
     EffarigUnlockButton,
     EffarigRunUnlockReward,
@@ -20,75 +20,67 @@ export default {
       amplifiedShards: 0,
       amplifiedShardsRate: 0,
       runUnlocked: false,
-      quote: "",
+      quote: '',
       isRunning: false,
       vIsFlipped: false,
-      relicShardRarityAlwaysMax: false
-    };
+      relicShardRarityAlwaysMax: false,
+    }
   },
   computed: {
-    shopUnlocks: () => [
-      EffarigUnlock.adjuster,
-      EffarigUnlock.glyphFilter,
-      EffarigUnlock.setSaves
-    ],
+    shopUnlocks: () => [EffarigUnlock.adjuster, EffarigUnlock.glyphFilter, EffarigUnlock.setSaves],
     runUnlock: () => EffarigUnlock.run,
-    runUnlocks: () => [
-      EffarigUnlock.infinity,
-      EffarigUnlock.eternity,
-      EffarigUnlock.reality
-    ],
+    runUnlocks: () => [EffarigUnlock.infinity, EffarigUnlock.eternity, EffarigUnlock.reality],
     symbol: () => GLYPH_SYMBOLS.effarig,
     runButtonOuterClass() {
       return {
-        "l-effarig-run-button": true,
-        "c-effarig-run-button": true,
-        "c-effarig-run-button--running": this.isRunning,
-        "c-effarig-run-button--not-running": !this.isRunning,
-        "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
-      };
+        'l-effarig-run-button': true,
+        'c-effarig-run-button': true,
+        'c-effarig-run-button--running': this.isRunning,
+        'c-effarig-run-button--not-running': !this.isRunning,
+        'c-celestial-run-button--clickable': !this.isDoomed,
+        'o-pelle-disabled-pointer': this.isDoomed,
+      }
     },
     runButtonInnerClass() {
-      return this.isRunning ? "c-effarig-run-button__inner--running" : "c-effarig-run-button__inner--not-running";
+      return this.isRunning ? 'c-effarig-run-button__inner--running' : 'c-effarig-run-button__inner--not-running'
     },
     runDescription() {
       return `${GameDatabase.celestials.descriptions[1].effects()}\n
-      ${GameDatabase.celestials.descriptions[1].description()}`;
+      ${GameDatabase.celestials.descriptions[1].description()}`
     },
     showShardsRate() {
-      return this.currentShardsRate;
+      return this.currentShardsRate
     },
     isDoomed: () => Pelle.isDoomed,
   },
   watch: {
     isRunning() {
-      this.$recompute("runDescription");
-    }
+      this.$recompute('runDescription')
+    },
   },
   methods: {
     update() {
-      this.relicShards = Currency.relicShards.value;
-      this.shardRarityBoost = Effarig.maxRarityBoost / 100;
-      this.shardPower = Ra.unlocks.maxGlyphRarityAndShardSacrificeBoost.effectOrDefault(1);
-      this.shardsGained = Effarig.shardsGained;
-      this.currentShardsRate = (this.shardsGained / Time.thisRealityRealTime.totalMinutes);
-      this.amplification = simulatedRealityCount(false);
-      this.amplifiedShards = this.shardsGained * (1 + this.amplification);
-      this.amplifiedShardsRate = (this.amplifiedShards / Time.thisRealityRealTime.totalMinutes);
-      this.quote = Effarig.quote;
-      this.runUnlocked = EffarigUnlock.run.isUnlocked;
-      this.isRunning = Effarig.isRunning;
-      this.vIsFlipped = V.isFlipped;
-      this.relicShardRarityAlwaysMax = Ra.unlocks.extraGlyphChoicesAndRelicShardRarityAlwaysMax.canBeApplied;
+      this.relicShards = Currency.relicShards.value
+      this.shardRarityBoost = Effarig.maxRarityBoost / 100
+      this.shardPower = Ra.unlocks.maxGlyphRarityAndShardSacrificeBoost.effectOrDefault(1)
+      this.shardsGained = Effarig.shardsGained
+      this.currentShardsRate = this.shardsGained / Time.thisRealityRealTime.totalMinutes
+      this.amplification = simulatedRealityCount(false)
+      this.amplifiedShards = this.shardsGained * (1 + this.amplification)
+      this.amplifiedShardsRate = this.amplifiedShards / Time.thisRealityRealTime.totalMinutes
+      this.quote = Effarig.quote
+      this.runUnlocked = EffarigUnlock.run.isUnlocked
+      this.isRunning = Effarig.isRunning
+      this.vIsFlipped = V.isFlipped
+      this.relicShardRarityAlwaysMax = Ra.unlocks.extraGlyphChoicesAndRelicShardRarityAlwaysMax.canBeApplied
     },
     startRun() {
-      if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Effarig's", number: 1 });
+      if (this.isDoomed) return
+      Modal.celestials.show({ name: '鹿颈长的', number: 1 })
     },
     createCursedGlyph() {
-      Glyphs.giveCursedGlyph();
-    }
+      Glyphs.giveCursedGlyph()
+    },
   },
   template: `
   <div class="l-teresa-celestial-tab">
@@ -116,10 +108,10 @@ export default {
           你将在下次现实中获得 {{ format(shardsGained, 2) }} 遗迹碎片（{{ format(currentShardsRate, 2) }}/分钟）。
           <span v-if="amplification !== 0">
             <br>
-            Due to amplification of your current Reality,
+            由于现实扩增效果，
             <br>
-            you will actually gain a total of
-            {{ format(amplifiedShards, 2) }} Relic Shards ({{ format(amplifiedShardsRate, 2) }}/min).
+            你实际获得
+            {{ format(amplifiedShards, 2) }} 遗迹碎片 ({{ format(amplifiedShardsRate, 2) }}/分钟).
           </span>
         </div>
         <div
@@ -177,5 +169,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

@@ -1,34 +1,34 @@
 export default {
-  name: "HowToPlay",
+  name: 'HowToPlay',
   data() {
     return {
       hasTutorial: false,
       isModern: false,
-    };
+    }
   },
   computed: {
     h2pClassObject() {
       return {
-        "o-tab-btn l-help-me": true,
-      };
+        'o-tab-btn l-help-me': true,
+      }
     },
     topMargin() {
       return {
-        "margin-top": this.isModern ? "4.5rem" : "1rem",
-      };
-    }
+        'margin-top': this.isModern ? '4.5rem' : '1rem',
+      }
+    },
   },
   methods: {
     update() {
-      this.hasTutorial = Tutorial.emphasizeH2P();
-      this.isModern = player.options.newUI;
+      this.hasTutorial = Tutorial.emphasizeH2P()
+      this.isModern = player.options.newUI
     },
     showH2P() {
-      Modal.h2p.show();
+      Modal.h2p.show()
     },
     showInfo() {
-      Modal.information.show();
-    }
+      Modal.information.show()
+    },
   },
   template: `
   <div>
@@ -44,7 +44,7 @@ export default {
         class="h2p-tooltip"
         data-v-how-to-play
       >
-        Click for info
+        点击查看介绍
       </div>
     </div>
     <div
@@ -61,5 +61,5 @@ export default {
       i
     </div>
   </div>
-  `
-};
+  `,
+}

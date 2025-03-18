@@ -1,9 +1,9 @@
-import HiddenTabGroup from "./HiddenTabGroup.js";
-import ModalWrapperOptions from "../ModalWrapperOptions.js";
-import PrimaryButton from "../../../PrimaryButton.js";
+import HiddenTabGroup from './HiddenTabGroup.js'
+import ModalWrapperOptions from '../ModalWrapperOptions.js'
+import PrimaryButton from '../../../PrimaryButton.js'
 
 export default {
-  name: "HiddenTabsModal",
+  name: 'HiddenTabsModal',
   components: {
     HiddenTabGroup,
     ModalWrapperOptions,
@@ -13,53 +13,51 @@ export default {
     return {
       isEnslaved: false,
       isAlmostEnd: false,
-    };
+    }
   },
   computed: {
     tabs: () => Tabs.currentUIFormat,
   },
   methods: {
     update() {
-      this.isEnslaved = Enslaved.isRunning;
-      this.isAlmostEnd = Pelle.hasGalaxyGenerator;
+      this.isEnslaved = Enslaved.isRunning
+      this.isAlmostEnd = Pelle.hasGalaxyGenerator
     },
     showAllTabs() {
       for (const tab of this.tabs) {
-        tab.unhideTab();
-        for (const subtab of tab.subtabs)
-          subtab.unhideTab();
+        tab.unhideTab()
+        for (const subtab of tab.subtabs) subtab.unhideTab()
       }
-    }
+    },
   },
   template: `
-  <ModalWrapperOptions
+<ModalWrapperOptions
     class="l-wrapper"
     data-v-hidden-tabs-modal
   >
     <template #header>
-      Modify Visible Tabs
+      修改可见选项卡
     </template>
     <div class="c-modal--short">
-      Click a button to toggle showing a tab on/off.
+      点击按钮可切换显示选项卡的打开/关闭。
       <br>
-      Some tabs cannot be hidden, and you cannot hide your current tab.
+      某些选项卡无法隐藏，您也无法隐藏当前选项卡。
       <br>
-      Unhiding a tab in which all subtabs are hidden will also unhide all subtabs,
-      and hiding all subtabs will also hide the tab.
+      取消隐藏所有子选项卡都被隐藏的选项卡也会取消隐藏所有子选项卡，隐藏所有子选项卡也会隐藏该选项卡。
       <br>
       <div v-if="isAlmostEnd">
-        You cannot hide your tabs after unlocking the Galaxy Generator.
+        解锁星系生成器后，您无法隐藏选项卡。
       </div>
       <div v-if="isEnslaved">
         <br>
-        <i>You must... see everywhere...</i>
+        <i>你必须...看到所有地方...</i>
         <br>
-        (You cannot hide your tabs within this Reality)
+        （在此现实中，您无法隐藏选项卡）
       </div>
       <PrimaryButton
         @click="showAllTabs"
       >
-        Show all tabs
+        显示所有选项卡
       </PrimaryButton>
       <HiddenTabGroup
         v-for="(tab, index) in tabs"
@@ -70,5 +68,5 @@ export default {
       />
     </div>
   </ModalWrapperOptions>
-  `
-};
+  `,
+}

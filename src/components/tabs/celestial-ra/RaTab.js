@@ -1,13 +1,13 @@
-import CelestialQuoteHistory from "../../CelestialQuoteHistory.js";
-import RaPet from "./RaPet.js";
-import RaPetRemembranceButton from "./RaPetRemembranceButton.js";
+import CelestialQuoteHistory from '../../CelestialQuoteHistory.js'
+import RaPet from './RaPet.js'
+import RaPetRemembranceButton from './RaPetRemembranceButton.js'
 
 export default {
-  name: "RaTab",
+  name: 'RaTab',
   components: {
     RaPet,
     RaPetRemembranceButton,
-    CelestialQuoteHistory
+    CelestialQuoteHistory,
   },
   data() {
     return {
@@ -20,10 +20,10 @@ export default {
       remembranceReq: 0,
       remembranceMult: 1,
       remembranceNerf: 1,
-      petWithRemembrance: "",
+      petWithRemembrance: '',
       isRunning: false,
-      memoryBoosts: "",
-    };
+      memoryBoosts: '',
+    }
   },
   computed: {
     laitelaUnlock: () => Laitela.isUnlocked,
@@ -35,84 +35,84 @@ export default {
       },
       {
         pet: Ra.pets.effarig,
-        scalingUpgradeVisible: () => AlchemyResources.all.filter(r => r.isUnlocked).length > 0,
+        scalingUpgradeVisible: () => AlchemyResources.all.filter((r) => r.isUnlocked).length > 0,
         scalingUpgradeText: () => {
-          const resources = AlchemyResources.all.filter(r => r.isUnlocked).length;
-          return `你已解锁 ${formatInt(resources)} 个炼金资源。`;
+          const resources = AlchemyResources.all.filter((r) => r.isUnlocked).length
+          return `你已解锁 ${formatInt(resources)} 个炼金资源。`
         },
       },
       {
         pet: Ra.pets.enslaved,
         scalingUpgradeVisible: () => Ra.unlocks.improvedStoredTime.isUnlocked,
-        scalingUpgradeText: () => `存储的游戏时间 ${formatX(Ra.unlocks.improvedStoredTime.effects.gameTimeAmplification.effectOrDefault(1), 2)}, 且存储现实时间的上限 +${formatInt(Ra.unlocks.improvedStoredTime.effects.realTimeCap.effectOrDefault(0) / (1000 * 3600))} 小时。`,
+        scalingUpgradeText: () =>
+          `存储的游戏时间 ${formatX(Ra.unlocks.improvedStoredTime.effects.gameTimeAmplification.effectOrDefault(1), 2)}, 且存储现实时间的上限 +${formatInt(
+            Ra.unlocks.improvedStoredTime.effects.realTimeCap.effectOrDefault(0) / (1000 * 3600)
+          )} 小时。`,
       },
       {
         pet: Ra.pets.v,
         scalingUpgradeVisible: () => Ra.unlocks.unlockHardV.isUnlocked,
         scalingUpgradeText: () => {
-          const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0);
-          return `你已解锁了 ${formatInt(triadCount)} 个三体研究。`;
+          const triadCount = Ra.unlocks.unlockHardV.effectOrDefault(0)
+          return `你已解锁了 ${formatInt(triadCount)} 个三体研究。`
         },
-      }
+      },
     ],
     petStyle() {
       return {
-        color: (this.petWithRemembrance === "")
-          ? "white"
-          : this.pets.find(pet => pet.pet.key === this.petWithRemembrance).pet.color,
-      };
+        color: this.petWithRemembrance === '' ? 'white' : this.pets.find((pet) => pet.pet.key === this.petWithRemembrance).pet.color,
+      }
     },
     runButtonClassObject() {
       return {
-        "c-ra-run-button__icon": true,
-        "c-ra-run-button__icon--running": this.isRunning,
-        "c-celestial-run-button--clickable": !this.isDoomed,
-        "o-pelle-disabled-pointer": this.isDoomed
-      };
+        'c-ra-run-button__icon': true,
+        'c-ra-run-button__icon--running': this.isRunning,
+        'c-celestial-run-button--clickable': !this.isDoomed,
+        'o-pelle-disabled-pointer': this.isDoomed,
+      }
     },
     runDescription() {
-      return GameDatabase.celestials.descriptions[4].effects().split("\n");
+      return GameDatabase.celestials.descriptions[4].effects().split('\n')
     },
     memoryDescription() {
-      return `Within Ra's Reality, Memory Chunks for Celestial Memories
-        will be generated based on certain resource amounts.`;
+      return `在太阳神的现实中，天神记忆的记忆块将根据某些资源的数量生成。`
     },
     isDoomed: () => Pelle.isDoomed,
   },
   methods: {
     update() {
-      this.memoriesPerChunk = Ra.productionPerMemoryChunk;
-      this.isRaCapped = Ra.totalPetLevel === 100;
-      this.totalLevels = Ra.totalPetLevel;
-      this.showRemembrance = Ra.unlocks.effarigUnlock.canBeApplied;
-      this.hasRemembrance = Ra.remembrance.isUnlocked;
-      this.remembranceReq = Ra.remembrance.requiredLevels;
-      this.remembranceMult = Ra.remembrance.multiplier;
-      this.remembranceNerf = Ra.remembrance.nerf;
-      this.petWithRemembrance = Ra.petWithRemembrance;
-      this.isRunning = Ra.isRunning;
-      this.memoryBoosts = Ra.memoryBoostResources;
+      this.memoriesPerChunk = Ra.productionPerMemoryChunk
+      this.isRaCapped = Ra.totalPetLevel === 100
+      this.totalLevels = Ra.totalPetLevel
+      this.showRemembrance = Ra.unlocks.effarigUnlock.canBeApplied
+      this.hasRemembrance = Ra.remembrance.isUnlocked
+      this.remembranceReq = Ra.remembrance.requiredLevels
+      this.remembranceMult = Ra.remembrance.multiplier
+      this.remembranceNerf = Ra.remembrance.nerf
+      this.petWithRemembrance = Ra.petWithRemembrance
+      this.isRunning = Ra.isRunning
+      this.memoryBoosts = Ra.memoryBoostResources
     },
     startRun() {
-      if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Ra's", number: 4 });
+      if (this.isDoomed) return
+      Modal.celestials.show({ name: '太阳神的', number: 4 })
     },
     toggleMode() {
-      Ra.toggleMode();
-    }
+      Ra.toggleMode()
+    },
   },
   template: `
   <div class="l-ra-celestial-tab">
     <div class="c-ra-memory-header">
       <CelestialQuoteHistory celestial="ra" />
       <div v-if="!isRaCapped">
-        Each Memory Chunk generates a base of one Memory per second<span v-if="memoriesPerChunk > 1">,
-          which has been increased to {{ format(memoriesPerChunk, 2, 3) }} memories per second</span>.
+        每个记忆块每秒生成一个基础记忆<span v-if="memoriesPerChunk > 1">，
+          已提升至每秒 {{ format(memoriesPerChunk, 2, 3) }} 个记忆</span>。
         <br>
-        Storing real time prevents Memory Chunk generation, but Memories will still be gained normally.
+        存储现实时间会阻止记忆块的生成，但记忆仍会正常获取。
         <span v-if="memoriesPerChunk > 1">
           <br>
-          This is being increased due to {{ memoryBoosts }}.
+          此提升由 {{ memoryBoosts }} 引起。
         </span>
       </div>
       <div v-else>
@@ -120,9 +120,9 @@ export default {
       </div>
     </div>
     <div>
-      Mouse-over the icons below the bar to see descriptions of upgrades,
+      鼠标悬停进度条下方的图标以查看升级描述，
       <br>
-      and mouse-over <i class="fas fa-question-circle" /> icons for specific resource information.
+      并悬停 <i class="fas fa-question-circle" /> 图标以获取特定资源信息。
     </div>
     <div class="l-ra-all-pets-container">
       <RaPet
@@ -183,5 +183,5 @@ export default {
       </div>
     </div>
   </div>
-  `
-};
+  `,
+}

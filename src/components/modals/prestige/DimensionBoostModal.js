@@ -1,35 +1,34 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "DimensionBoostModal",
+  name: 'DimensionBoostModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   props: {
     bulk: {
       type: Boolean,
       required: true,
-    }
+    },
   },
   computed: {
     topLabel() {
-      return `You are about to do a Dimension Boost Reset`;
+      return `你正要进行维度提升`
     },
     message() {
-      const keepDimensions = Perk.antimatterNoReset.canBeApplied || Achievement(111).canBeApplied ||
-        PelleUpgrade.dimBoostResetsNothing.isBought
-        ? `not actually reset anything due to an upgrade you have which prevents Antimatter and Antimatter Dimensions
-          from being reset in this situation. You will still gain the multiplier from the Boost, as usual.`
-        : `reset your Antimatter and Antimatter Dimensions. Are you sure you want to do this?`;
+      const keepDimensions =
+        Perk.antimatterNoReset.canBeApplied || Achievement(111).canBeApplied || PelleUpgrade.dimBoostResetsNothing.isBought
+          ? `……实际上不会重置任何东西，因为你的升级可以防止反物质和反物质维度在这种情况下发生重置。您仍会像往常一样从“提升”中获得倍增效果。`
+          : `重置你的反物质和分物质维度。你确定要这样做吗？`
 
-      return `This will ${keepDimensions}`;
+      return `这将会${keepDimensions}`
     },
   },
   methods: {
     handleYesClick() {
-      requestDimensionBoost(this.bulk);
-      EventHub.ui.offAll(this);
-    }
+      requestDimensionBoost(this.bulk)
+      EventHub.ui.offAll(this)
+    },
   },
   template: `
   <ModalWrapperChoice
@@ -43,5 +42,5 @@ export default {
       {{ message }}
     </div>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

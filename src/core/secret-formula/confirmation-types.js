@@ -1,87 +1,107 @@
 export const confirmationTypes = [
   {
-    name: "维度提升",
-    option: "dimensionBoost",
+    name: '维度提升',
+    option: 'dimensionBoost',
     isUnlocked: () => PlayerProgress.infinityUnlocked() || player.galaxies > 0 || player.dimensionBoosts > 0,
-  }, {
-    name: "反物质星系",
-    option: "antimatterGalaxy",
+  },
+  {
+    name: '反物质星系',
+    option: 'antimatterGalaxy',
     isUnlocked: () => PlayerProgress.infinityUnlocked() || player.galaxies > 0,
-  }, {
-    name: "维度献祭",
-    option: "sacrifice",
+  },
+  {
+    name: '维度献祭',
+    option: 'sacrifice',
     isUnlocked: () => Sacrifice.isVisible,
-  }, {
-    name: "大坍缩",
-    option: "bigCrunch",
+  },
+  {
+    name: '大坍缩',
+    option: 'bigCrunch',
     isUnlocked: () => player.break || PlayerProgress.eternityUnlocked(),
-  }, {
-    name: "挑战",
-    option: "challenges",
+  },
+  {
+    name: '挑战',
+    option: 'challenges',
     isUnlocked: () => PlayerProgress.infinityUnlocked(),
-  }, {
-    name: "退出挑战",
-    option: "exitChallenge",
+  },
+  {
+    name: '退出挑战',
+    option: 'exitChallenge',
     isUnlocked: () => PlayerProgress.infinityUnlocked(),
-  }, {
-    name: "复制器星系",
-    option: "replicantiGalaxy",
+  },
+  {
+    name: '复制器星系',
+    option: 'replicantiGalaxy',
     isUnlocked: () => PlayerProgress.eternityUnlocked() || player.replicanti.unl,
-  }, {
-    name: "永恒",
-    option: "eternity",
+  },
+  {
+    name: '永恒',
+    option: 'eternity',
     isUnlocked: () => PlayerProgress.eternityUnlocked(),
-  }, {
-    name: "时间膨胀",
-    option: "dilation",
+  },
+  {
+    name: '时间膨胀',
+    option: 'dilation',
     isUnlocked: () => PlayerProgress.realityUnlocked() || !Currency.tachyonParticles.eq(0),
-  }, {
-    name: "重置现实",
-    option: "resetReality",
+  },
+  {
+    name: '重置现实',
+    option: 'resetReality',
     isUnlocked: () => PlayerProgress.realityUnlocked(),
-  }, {
-    name: "符文替换",
-    option: "glyphReplace",
+  },
+  {
+    name: '符文替换',
+    option: 'glyphReplace',
     isUnlocked: () => PlayerProgress.realityUnlocked(),
-  }, {
-    name: "符文献祭",
-    option: "glyphSacrifice",
+  },
+  {
+    name: '符文献祭',
+    option: 'glyphSacrifice',
     isUnlocked: () => GlyphSacrificeHandler.canSacrifice,
-  }, {
-    name: "净化符文仓库",
-    option: "autoClean",
+  },
+  {
+    name: '净化符文仓库',
+    option: 'autoClean',
     isUnlocked: () => GlyphSacrificeHandler.canSacrifice,
-  }, {
-    name: "献祭所有符文",
-    option: "sacrificeAll",
+  },
+  {
+    name: '献祭所有符文',
+    option: 'sacrificeAll',
     isUnlocked: () => GlyphSacrificeHandler.canSacrifice,
-  }, {
-    name: "Glyph Selection",
-    option: "glyphSelection",
+  },
+  {
+    name: '符文选择',
+    option: 'glyphSelection',
     isUnlocked: () => Autobuyer.reality.isUnlocked,
-  }, {
-    name: "Glyph Undo",
-    option: "glyphUndo",
+  },
+  {
+    name: '符文撤销',
+    option: 'glyphUndo',
     isUnlocked: () => TeresaUnlocks.undo.canBeApplied,
-  }, {
-    name: "Switch Automator Editor",
-    option: "switchAutomatorMode",
+  },
+  {
+    name: '切换自动机编辑器',
+    option: 'switchAutomatorMode',
     isUnlocked: () => Player.automatorUnlocked,
-  }, {
-    name: "Delete Glyph Preset",
-    option: "deleteGlyphSetSave",
+  },
+  {
+    name: '删除预设',
+    option: 'deleteGlyphSetSave',
     isUnlocked: () => EffarigUnlock.setSaves.isUnlocked,
-  }, {
-    name: "Glyph Refine",
-    option: "glyphRefine",
+  },
+  {
+    name: '符文精炼',
+    option: 'glyphRefine',
     isUnlocked: () => Ra.unlocks.unlockGlyphAlchemy.canBeApplied,
-  }, {
-    name: "Armageddon",
-    option: "armageddon",
+  },
+  {
+    name: '末日',
+    option: 'armageddon',
     isUnlocked: () => Pelle.isDoomed,
-  }, {
-    name: "Respec Shop Purchases",
-    option: "respecIAP",
-    isUnlocked: () => Cloud.isAvailable
-  }
-];
+  },
+  {
+    name: 'Respec Shop Purchases',
+    option: 'respecIAP',
+    isUnlocked: () => Cloud.isAvailable,
+  },
+]

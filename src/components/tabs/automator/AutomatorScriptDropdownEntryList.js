@@ -1,5 +1,5 @@
 export default {
-  name: "AutomatorScriptDropdownEntryList",
+  name: 'AutomatorScriptDropdownEntryList',
   data() {
     return {
       isBlock: false,
@@ -8,84 +8,84 @@ export default {
       isRunning: false,
       isPaused: false,
       canMakeNewScript: false,
-    };
+    }
   },
   computed: {
     scripts() {
-      return Object.values(player.reality.automator.scripts).map(script => ({
+      return Object.values(player.reality.automator.scripts).map((script) => ({
         id: script.id,
         name: script.name,
-      }));
+      }))
     },
     currentScriptContent() {
-      return player.reality.automator.scripts[this.currentScriptID].content;
+      return player.reality.automator.scripts[this.currentScriptID].content
     },
     currentScript() {
-      return CodeMirror.Doc(this.currentScriptContent, "automato").getValue();
+      return CodeMirror.Doc(this.currentScriptContent, 'automato').getValue()
     },
     scriptCount() {
-      return Object.keys(player.reality.automator.scripts).length;
+      return Object.keys(player.reality.automator.scripts).length
     },
     maxScriptCount() {
-      return AutomatorData.MAX_ALLOWED_SCRIPT_COUNT;
+      return AutomatorData.MAX_ALLOWED_SCRIPT_COUNT
     },
   },
   created() {
-    this.currentScriptID = player.reality.automator.state.editorScript;
+    this.currentScriptID = player.reality.automator.state.editorScript
     // Deleted script names potentially persist within the vue component unless we clear them
     this.on$(GAME_EVENT.AUTOMATOR_SAVE_CHANGED, () => {
-      this.$recompute("scripts");
-    });
+      this.$recompute('scripts')
+    })
   },
   methods: {
     update() {
-      this.isBlock = player.reality.automator.type === AUTOMATOR_TYPE.BLOCK;
-      this.runningScriptID = AutomatorBackend.state.topLevelScript;
-      this.isRunning = AutomatorBackend.isRunning;
-      this.isPaused = AutomatorBackend.isOn && !AutomatorBackend.isRunning;
-      this.canMakeNewScript = this.scriptCount < this.maxScriptCount;
+      this.isBlock = player.reality.automator.type === AUTOMATOR_TYPE.BLOCK
+      this.runningScriptID = AutomatorBackend.state.topLevelScript
+      this.isRunning = AutomatorBackend.isRunning
+      this.isPaused = AutomatorBackend.isOn && !AutomatorBackend.isRunning
+      this.canMakeNewScript = this.scriptCount < this.maxScriptCount
     },
     changeScriptID(newID) {
-      this.currentScriptID = newID;
-      player.reality.automator.state.editorScript = newID;
-      this.updateCurrentScriptID();
+      this.currentScriptID = newID
+      player.reality.automator.state.editorScript = newID
+      this.updateCurrentScriptID()
     },
     createNewScript() {
-      const newScript = AutomatorBackend.newScript();
-      player.reality.automator.state.editorScript = newScript.id;
-      this.updateCurrentScriptID();
-      this.$parent.$parent.rename();
+      const newScript = AutomatorBackend.newScript()
+      player.reality.automator.state.editorScript = newScript.id
+      this.updateCurrentScriptID()
+      this.$parent.$parent.rename()
     },
     updateCurrentScriptID() {
-      const storedScripts = player.reality.automator.scripts;
-      this.currentScriptID = player.reality.automator.state.editorScript;
+      const storedScripts = player.reality.automator.scripts
+      this.currentScriptID = player.reality.automator.state.editorScript
       // This shouldn't happen if things are loaded in the right order, but might as well be sure.
       if (storedScripts[this.currentScriptID] === undefined) {
-        this.currentScriptID = Number(Object.keys(storedScripts)[0]);
-        player.reality.automator.state.editorScript = this.currentScriptID;
+        this.currentScriptID = Number(Object.keys(storedScripts)[0])
+        player.reality.automator.state.editorScript = this.currentScriptID
       }
-      if (this.isBlock) this.$nextTick(() => BlockAutomator.updateEditor(this.currentScript));
-      this.$parent.openRequest = false;
-      AutomatorData.clearUndoData();
+      if (this.isBlock) this.$nextTick(() => BlockAutomator.updateEditor(this.currentScript))
+      this.$parent.openRequest = false
+      AutomatorData.clearUndoData()
     },
     dropdownLabel(script) {
-      const labels = [];
-      if (script.id === this.currentScriptID) labels.push("viewing");
+      const labels = []
+      if (script.id === this.currentScriptID) labels.push('viewing')
       if (script.id === this.runningScriptID) {
-        if (this.isRunning) labels.push("running");
-        else if (this.isPaused) labels.push("paused");
+        if (this.isRunning) labels.push('running')
+        else if (this.isPaused) labels.push('paused')
       }
-      const status = labels.length ? `(${labels.join(", ").capitalize()})` : "";
-      return `${script.name} ${status}`;
+      const status = labels.length ? `(${labels.join(', ').capitalize()})` : ''
+      return `${script.name} ${status}`
     },
     labelClassObject(id) {
-      const highlightRunning = this.isRunning || this.isPaused;
+      const highlightRunning = this.isRunning || this.isPaused
       return {
-        "c-automator-docs-script-select": true,
-        "l-active-script": id === this.runningScriptID && highlightRunning,
-        "l-selected-script": id === this.currentScriptID && (id !== this.runningScriptID || !highlightRunning),
-      };
-    }
+        'c-automator-docs-script-select': true,
+        'l-active-script': id === this.runningScriptID && highlightRunning,
+        'l-selected-script': id === this.currentScriptID && (id !== this.runningScriptID || !highlightRunning),
+      }
+    },
   },
   template: `
   <div :key="scripts.length">
@@ -105,15 +105,15 @@ export default {
       @click="createNewScript()"
       data-v-automator-script-dropdown-entry-list
     >
-      <i>Create a new script (You have {{ formatInt(scriptCount) }} / {{ formatInt(maxScriptCount) }})</i>
+      <i>创建一个新脚本 (你有 {{ formatInt(scriptCount) }} / {{ formatInt(maxScriptCount) }})</i>
     </div>
     <div
       v-else
       class="l-create-script c-automator-docs-script-select l-max-scripts"
       data-v-automator-script-dropdown-entry-list
     >
-      <i>You can only have {{ formatInt(maxScriptCount) }} scripts!</i>
+      <i>你只能拥有 {{ formatInt(maxScriptCount) }} 个脚本!</i>
     </div>
   </div>
-  `
-};
+  `,
+}

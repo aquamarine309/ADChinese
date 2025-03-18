@@ -1,58 +1,59 @@
-import ModalWrapperChoice from "../ModalWrapperChoice.js";
+import ModalWrapperChoice from '../ModalWrapperChoice.js'
 
 export default {
-  name: "HardResetModal",
+  name: 'HardResetModal',
   components: {
-    ModalWrapperChoice
+    ModalWrapperChoice,
   },
   data() {
     return {
-      input: ""
-    };
+      input: '',
+    }
   },
   computed: {
     willHardReset() {
-      return this.input === "Shrek is love, Shrek is life";
+      return this.input === 'Shrek is love, Shrek is life'
     },
     hasExtraNG() {
-      return player.records.fullGameCompletions > 0;
+      return player.records.fullGameCompletions > 0
     },
     hasSpeedrun() {
-      return player.speedrun.isUnlocked;
-    }
+      return player.speedrun.isUnlocked
+    },
   },
   destroyed() {
-    if (this.willHardReset) SecretAchievement(38).unlock();
+    if (this.willHardReset) SecretAchievement(38).unlock()
   },
   methods: {
     hardReset() {
-      if (this.willHardReset) GameStorage.hardReset();
-      this.input = "";
+      if (this.willHardReset) GameStorage.hardReset()
+      this.input = ''
     },
   },
   template: `
-  <ModalWrapperChoice
+<ModalWrapperChoice
     :show-cancel="!willHardReset"
     :show-confirm="willHardReset"
     confirm-class="o-primary-btn--width-medium c-modal__confirm-btn c-modal-hard-reset-btn"
     @confirm="hardReset"
   >
     <template #header>
-      HARD RESET
+      硬重置
     </template>
     <div class="c-modal-message__text">
-      Please confirm your desire to hard reset this save slot.
-      <span class="c-modal-hard-reset-danger">Deleting your save will not unlock anything secret.</span>
-      Type in "Shrek is love, Shrek is life" to confirm.
+      请确认您要硬重置此存档槽。
+      <span class="c-modal-hard-reset-danger">删除存档不会解锁任何秘密内容。</span>
+      <br>
+      输入“Shrek is love, Shrek is life”以确认。
       <div class="c-modal-hard-reset-danger">
-        THIS WILL WIPE YOUR SAVE.
+        此操作将清除您的存档。
         <span v-if="hasExtraNG">
           <br>
-          This will also remove any Glyph cosmetics you have unlocked from completing the game!
+          这还将移除您通过完成游戏解锁的所有符文装饰！
         </span>
         <span v-if="hasSpeedrun">
           <br>
-          You will lose the ability to do a Speedrun. To restart your run, use the "Start Speedrun" button instead.
+          您将失去速通能力。若要重新开始速通，请使用“开始速通”按钮。
         </span>
       </div>
     </div>
@@ -68,15 +69,15 @@ export default {
         v-if="willHardReset"
         class="c-modal-hard-reset-danger"
       >
-        Phrase confirmed - continuing will irreversibly delete your save!
+        短语已确认 - 继续操作将不可逆地删除您的存档！
       </div>
       <div v-else>
-        Type in the correct phrase to hard reset.
+        输入正确短语以执行硬重置。
       </div>
     </div>
     <template #confirm-text>
-      HARD RESET
+      硬重置
     </template>
   </ModalWrapperChoice>
-  `
-};
+  `,
+}

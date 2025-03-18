@@ -1,34 +1,34 @@
 export default {
-  name: "NewGame",
+  name: 'NewGame',
   data() {
     return {
       opacity: 0,
       visible: false,
       hasMoreCosmetics: false,
-      selectedSetName: "",
-    };
+      selectedSetName: '',
+    }
   },
   computed: {
     style() {
       return {
         opacity: this.opacity,
-        visibility: this.visible ? "visible" : "hidden",
-      };
-    }
+        visibility: this.visible ? 'visible' : 'hidden',
+      }
+    },
   },
   methods: {
     update() {
-      this.visible = GameEnd.endState > END_STATE_MARKERS.SHOW_NEW_GAME && !GameEnd.removeAdditionalEnd;
-      this.opacity = (GameEnd.endState - END_STATE_MARKERS.SHOW_NEW_GAME) * 2;
-      this.hasMoreCosmetics = GlyphAppearanceHandler.lockedSets.length > 0;
-      this.selectedSetName = GlyphAppearanceHandler.chosenFromModal?.name ?? "None (will choose randomly)";
+      this.visible = GameEnd.endState > END_STATE_MARKERS.SHOW_NEW_GAME && !GameEnd.removeAdditionalEnd
+      this.opacity = (GameEnd.endState - END_STATE_MARKERS.SHOW_NEW_GAME) * 2
+      this.hasMoreCosmetics = GlyphAppearanceHandler.lockedSets.length > 0
+      this.selectedSetName = GlyphAppearanceHandler.chosenFromModal?.name ?? '无（会随机抽选）'
     },
     startNewGame() {
-      NG.startNewGame();
+      NG.startNewGame()
     },
     openSelectionModal() {
-      Modal.cosmeticSetChoice.show();
-    }
+      Modal.cosmeticSetChoice.show()
+    },
   },
   template: `
   <div
@@ -75,5 +75,5 @@ export default {
       你也可以导入“speedrun”，以进入带有统计追踪信息的速通模式，重新开始游戏。
     </h3>
   </div>
-  `
-};
+  `,
+}

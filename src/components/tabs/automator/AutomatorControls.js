@@ -1,11 +1,11 @@
-import AutomatorButton from "./AutomatorButton.js";
-import AutomatorModeSwitch from "./AutomatorModeSwitch.js";
+import AutomatorButton from './AutomatorButton.js'
+import AutomatorModeSwitch from './AutomatorModeSwitch.js'
 
 export default {
-  name: "AutomatorControls",
+  name: 'AutomatorControls',
   components: {
     AutomatorButton,
-    AutomatorModeSwitch
+    AutomatorModeSwitch,
   },
   data() {
     return {
@@ -17,94 +17,91 @@ export default {
       followExecution: false,
       hasErrors: false,
       currentLine: 0,
-      statusName: "",
-      editingName: "",
+      statusName: '',
+      editingName: '',
       editingDifferentScript: false,
       currentChars: 0,
       hasUndo: false,
       hasRedo: false,
-    };
+    }
   },
   computed: {
     fullScreen() {
-      return this.$viewModel.tabs.reality.automator.fullScreen;
+      return this.$viewModel.tabs.reality.automator.fullScreen
     },
     currentScriptID() {
-      return this.$viewModel.tabs.reality.automator.editorScriptID;
+      return this.$viewModel.tabs.reality.automator.editorScriptID
     },
     playTooltip() {
-      if (this.isPaused) return "Resume Automator execution";
-      if (!this.isRunning) return "Start Automator";
-      return "Pause Automator execution";
+      if (this.isPaused) return '恢复自动机执行'
+      if (!this.isRunning) return '启动自动机'
+      return '暂停自动机执行'
     },
     playButtonClass() {
       return {
-        "c-automator__button--active": this.isRunning,
-        "fa-play": !this.isRunning && !this.isPaused,
-        "fa-pause": this.isRunning,
-        "fa-eject": this.isPaused
-      };
+        'c-automator__button--active': this.isRunning,
+        'fa-play': !this.isRunning && !this.isPaused,
+        'fa-pause': this.isRunning,
+        'fa-eject': this.isPaused,
+      }
     },
     statusText() {
       // Pad with leading zeroes based on script length to prevent text jitter on fast scripts. This technically fails
       // for scripts with more than 99999 lines, but scripts that long will be prevented elsewhere
-      const digits = Math.clampMin(Math.ceil(Math.log10(AutomatorBackend.currentScriptLength + 1)), 1);
-      let lineNum = `0000${this.currentLine}`;
-      lineNum = lineNum.slice(lineNum.length - digits);
+      const digits = Math.clampMin(Math.ceil(Math.log10(AutomatorBackend.currentScriptLength + 1)), 1)
+      let lineNum = `0000${this.currentLine}`
+      lineNum = lineNum.slice(lineNum.length - digits)
 
-      if (this.isPaused) return `Paused: "${this.statusName}" (Resumes on Line ${lineNum})`;
-      if (this.isRunning) return `Running: "${this.statusName}" (Line ${lineNum})`;
-      if (this.hasErrors) return `Stopped: "${this.statusName}" has errors (Cannot run)`;
-      return `Stopped: Will start running "${this.statusName}"`;
+      if (this.isPaused) return `已暂停: "${this.statusName}" (暂停于行 ${lineNum})`
+      if (this.isRunning) return `正在运行: "${this.statusName}" (行 ${lineNum})`
+      if (this.hasErrors) return `已停止: "${this.statusName}" 存在错误 (无法运行)`
+      return `已停止：将开始运行 "${this.statusName}"`
     },
     maxScriptChars() {
-      return AutomatorData.MAX_ALLOWED_SCRIPT_CHARACTERS;
+      return AutomatorData.MAX_ALLOWED_SCRIPT_CHARACTERS
     },
   },
   methods: {
     update() {
-      this.isRunning = AutomatorBackend.isRunning;
-      this.isPaused = AutomatorBackend.isOn && !this.isRunning;
-      this.repeatOn = AutomatorBackend.state.repeat;
-      this.justCompleted = AutomatorBackend.hasJustCompleted;
-      this.forceRestartOn = AutomatorBackend.state.forceRestart;
-      this.followExecution = AutomatorBackend.state.followExecution;
-      this.hasErrors = AutomatorData.currentErrors().length !== 0;
-      this.currentLine = AutomatorBackend.currentLineNumber;
+      this.isRunning = AutomatorBackend.isRunning
+      this.isPaused = AutomatorBackend.isOn && !this.isRunning
+      this.repeatOn = AutomatorBackend.state.repeat
+      this.justCompleted = AutomatorBackend.hasJustCompleted
+      this.forceRestartOn = AutomatorBackend.state.forceRestart
+      this.followExecution = AutomatorBackend.state.followExecution
+      this.hasErrors = AutomatorData.currentErrors().length !== 0
+      this.currentLine = AutomatorBackend.currentLineNumber
 
       // When the automator isn't running, the script name contains the last run script instead of the
       // to-be-run script, which is the currently displayed one in the editor
-      this.statusName = (this.isPaused || this.isRunning)
-        ? AutomatorBackend.scriptName
-        : AutomatorBackend.currentEditingScript.name;
-      this.duplicateStatus = AutomatorBackend.hasDuplicateName(this.statusName);
-      this.editingDifferentScript = (this.isRunning || this.isPaused) &&
-        AutomatorBackend.currentEditingScript.id !== AutomatorBackend.currentRunningScript.id;
+      this.statusName = this.isPaused || this.isRunning ? AutomatorBackend.scriptName : AutomatorBackend.currentEditingScript.name
+      this.duplicateStatus = AutomatorBackend.hasDuplicateName(this.statusName)
+      this.editingDifferentScript = (this.isRunning || this.isPaused) && AutomatorBackend.currentEditingScript.id !== AutomatorBackend.currentRunningScript.id
 
-      this.currentChars = AutomatorData.singleScriptCharacters();
-      this.hasUndo = AutomatorData.undoBuffer.length > 0;
-      this.hasRedo = AutomatorData.redoBuffer.length > 0;
+      this.currentChars = AutomatorData.singleScriptCharacters()
+      this.hasUndo = AutomatorData.undoBuffer.length > 0
+      this.hasRedo = AutomatorData.redoBuffer.length > 0
     },
     rewind: () => AutomatorBackend.restart(),
     play() {
       if (this.hasErrors) {
         // This shouldn't be needed but someone's save was still on MODE.RUN when the script had errors so this
         // is just an additional layer of failsafe in case something goes wrong
-        AutomatorBackend.mode = AUTOMATOR_MODE.PAUSED;
-        return;
+        AutomatorBackend.mode = AUTOMATOR_MODE.PAUSED
+        return
       }
       if (this.isRunning) {
-        AutomatorBackend.pause();
-        return;
+        AutomatorBackend.pause()
+        return
       }
-      if (player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) this.$emit("automatorplay");
-      if (AutomatorBackend.isOn) AutomatorBackend.mode = AUTOMATOR_MODE.RUN;
-      else AutomatorBackend.start(this.currentScriptID);
+      if (player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) this.$emit('automatorplay')
+      if (AutomatorBackend.isOn) AutomatorBackend.mode = AUTOMATOR_MODE.RUN
+      else AutomatorBackend.start(this.currentScriptID)
     },
     stop: () => AutomatorBackend.stop(),
     step() {
-      if (AutomatorBackend.isOn) AutomatorBackend.mode = AUTOMATOR_MODE.SINGLE_STEP;
-      else AutomatorBackend.start(this.currentScriptID, AUTOMATOR_MODE.SINGLE_STEP);
+      if (AutomatorBackend.isOn) AutomatorBackend.mode = AUTOMATOR_MODE.SINGLE_STEP
+      else AutomatorBackend.start(this.currentScriptID, AUTOMATOR_MODE.SINGLE_STEP)
     },
     repeat: () => AutomatorBackend.toggleRepeat(),
     restart: () => AutomatorBackend.toggleForceRestart(),
@@ -113,7 +110,7 @@ export default {
     redo: () => AutomatorData.redoScriptEdit(),
   },
   template: `
-  <div
+<div
     class="c-automator__controls l-automator__controls"
     data-v-automator-controls
   >
@@ -126,7 +123,7 @@ export default {
         data-v-automator-controls
       >
         <AutomatorButton
-          v-tooltip="'Rewind Automator to the first command'"
+          v-tooltip="'回退自动机到第一条指令'"
           class="fa-fast-backward"
           @click="rewind"
           data-v-automator-controls
@@ -141,33 +138,33 @@ export default {
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Stop Automator and reset position'"
+          v-tooltip="'停止自动机并重置位置'"
           class="fa-stop"
           @click="stop"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Step forward one line'"
+          v-tooltip="'单步执行下一行'"
           class="fa-step-forward"
           @click="step"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Restart script automatically when it reaches the end'"
+          v-tooltip="'脚本运行结束时自动重新启动'"
           class="fa-sync-alt"
           :class="{ 'c-automator__button--active' : repeatOn }"
           @click="repeat"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Automatically restart the active script when finishing or restarting a Reality'"
+          v-tooltip="'在完成或重启现实时自动重新激活当前脚本'"
           class="fa-reply"
           :class="{ 'c-automator__button--active' : forceRestartOn }"
           @click="restart"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Scroll Automator to follow current line'"
+          v-tooltip="'跟随当前执行的指令自动滚动'"
           class="fa-indent"
           :class="{ 'c-automator__button--active' : followExecution }"
           @click="follow"
@@ -187,14 +184,14 @@ export default {
         data-v-automator-controls
       >
         <AutomatorButton
-          v-tooltip="'Undo'"
+          v-tooltip="'撤销'"
           class="fa-arrow-rotate-left"
           :class="{ 'c-automator__button--inactive' : !hasUndo }"
           @click="undo"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Redo'"
+          v-tooltip="'重做'"
           class="fa-arrow-rotate-right"
           :class="{ 'c-automator__button--inactive' : !hasRedo }"
           @click="redo"
@@ -209,19 +206,19 @@ export default {
     >
       <span
         v-if="duplicateStatus"
-        v-tooltip="'More than one script has this name!'"
+        v-tooltip="'多个脚本使用了此名称！'"
         class="fas fa-exclamation-triangle c-automator__status-text c-automator__status-text--error"
         data-v-automator-controls
       />
       <span
         v-if="editingDifferentScript"
-        v-tooltip="'The automator is running a different script than the editor is showing'"
+        v-tooltip="'编辑器显示的脚本与正在运行的自动机脚本不一致'"
         class="fas fa-circle-exclamation c-automator__status-text c-automator__status-text--warning"
         data-v-automator-controls
       />
       <span
         v-if="justCompleted"
-        v-tooltip="'The automator completed running the previous script'"
+        v-tooltip="'自动机已完成执行上一个脚本'"
         class="fas fa-circle-check c-automator__status-text"
         data-v-automator-controls
       />
@@ -234,5 +231,5 @@ export default {
       </span>
     </div>
   </div>
-  `
-};
+  `,
+}

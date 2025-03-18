@@ -1,10 +1,10 @@
 export default {
-  name: "AutomatorDataTransferSingleEntry",
+  name: 'AutomatorDataTransferSingleEntry',
   props: {
     script: {
       type: Object,
       required: true,
-    }
+    },
   },
   data() {
     return {
@@ -12,40 +12,40 @@ export default {
       constants: [],
       hidePresets: true,
       hideConstants: true,
-    };
+    }
   },
   computed: {
     presetData: () => player.timestudy.presets,
     constantData: () => player.reality.automator.constants,
     hasPresets() {
-      return (this.presets?.length ?? 0) !== 0;
+      return (this.presets?.length ?? 0) !== 0
     },
     hasConstants() {
-      return (this.constants?.length ?? 0) !== 0;
+      return (this.constants?.length ?? 0) !== 0
     },
   },
   methods: {
     update() {
-      this.presets = AutomatorBackend.getUsedPresets(this.script.id);
-      this.constants = AutomatorBackend.getUsedConstants(this.script.id);
+      this.presets = AutomatorBackend.getUsedPresets(this.script.id)
+      this.constants = AutomatorBackend.getUsedConstants(this.script.id)
     },
     iconClass(state) {
-      return state ? "far fa-plus-square" : "far fa-minus-square";
+      return state ? 'far fa-plus-square' : 'far fa-minus-square'
     },
     exportData(id) {
-      const toExport = AutomatorBackend.exportFullScriptData(id);
+      const toExport = AutomatorBackend.exportFullScriptData(id)
       if (toExport) {
-        copyToClipboard(toExport);
-        GameUI.notify.automator(`Exported all data associated with "${this.script.name}" to your clipboard`, 6000);
+        copyToClipboard(toExport)
+        GameUI.notify.automator(`Exported all data associated with "${this.script.name}" to your clipboard`, 6000)
       } else {
-        GameUI.notify.error("Could not export data from blank Automator script!");
+        GameUI.notify.error('无法导出空自动机脚本！')
       }
-    }
+    },
   },
   template: `
   <div class="l-entry-padding">
     <button
-      v-tooltip="'Export Full Script Data'"
+      v-tooltip="'导出全部自动机脚本'"
       class="l-button-margin fas fa-file-export"
       @click="exportData(script.id)"
       data-v-automator-data-transfer-single-entry
@@ -108,5 +108,5 @@ export default {
       未引用任何已定义的常量。
     </span>
   </div>
-  `
-};
+  `,
+}
