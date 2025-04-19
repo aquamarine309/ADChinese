@@ -221,10 +221,10 @@ export default {
         @click="toggleRespecIntoProtected"
         data-v-euqipped-glyphs
       >
-        Unequip Glyphs to:
+        符文卸下后移动到
         <br>
-        <span v-if="respecIntoProtected">Protected slots</span>
-        <span v-else>Main inventory</span>
+        <span v-if="respecIntoProtected">保护格</span>
+        <span v-else>主仓库</span>
       </button>
       <button
         class="l-glyph-equip-button-short c-reality-upgrade-btn"
@@ -232,7 +232,7 @@ export default {
         @click="showOptionModal"
         data-v-euqipped-glyphs
       >
-        Open Glyph Visual Options
+        打开符文显示选项
       </button>
     </div>
   </div>

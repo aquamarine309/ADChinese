@@ -29,7 +29,7 @@ export default {
       class="c-credits-header"
       data-v-credits-display
     >
-      Antimatter Dimensions
+      反物质维度
     </h1>
 
     <div
@@ -65,7 +65,7 @@ export default {
       class="c-credits-header"
       data-v-credits-display
     >
-      Thank you so much for playing!
+      感谢游玩！
     </h1>
   </div>
   `

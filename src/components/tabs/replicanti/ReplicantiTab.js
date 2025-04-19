@@ -205,7 +205,7 @@ export default {
         在没有时间研究192的情况下，你的复制器上限已提升至 {{ format(replicantiCap, 2) }}
         ({{ capMultText }})
         <br>
-        并且由于鹿颈长的无限奖励，你获得了 { formatInt(effarigInfinityBonusRG) }} 个额外的复制器星系。（下一个复制器星系将在 {{ format(nextEffarigRGThreshold, 2) }} 出现）
+        并且由于鹿颈长的无限奖励，你获得了 {{ formatInt(effarigInfinityBonusRG) }} 个额外的复制器星系。（下一个复制器星系将在 {{ format(nextEffarigRGThreshold, 2) }} 出现）
         <br>
       </div>
       <p class="c-replicanti-description">
@@ -236,10 +236,10 @@ export default {
         <ReplicantiUpgradeButton :setup="maxGalaxySetup" />
       </div>
       <div>
-        The Max Replicanti Galaxy upgrade can be purchased endlessly, but costs increase
+        最大复制器上限可以无限制地购买，但是其价格
         <br>
-        more rapidly above {{ formatInt(distantRG) }} Replicanti Galaxies
-        and even more so above {{ formatInt(remoteRG) }} Replicanti Galaxies.
+        会在超过 {{ formatInt(distantRG) }} 复制器星系时大幅增加，
+        超过 {{ formatInt(remoteRG) }} 复制器星系后会更加剧烈。
       </div>
       <br><br>
       <ReplicantiGainText />

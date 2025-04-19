@@ -163,7 +163,7 @@ export default {
         <SingleGlyphCustomzationPanel />
         <ExpandingControlBox
           width-source="content"
-          label="Glyph Level Factors"
+          label="符文等级因子"
           container-class="c-glyph-level-factors-dropdown-header"
           class="l-glyph-level-factors"
           data-v-glyphs-tab

@@ -105,15 +105,13 @@ export default {
   template: `
   <div class="c-automator-docs-page">
     <div>
-      This panel keeps a running event log of all the commands which the automator has recently executed, with a little
-      extra info on some of the commands. It may be useful to help you find problems if you find your automator is
-      getting stuck in certain spots.
+      此面板持续记录自动机最近执行的所有命令，并提供一些命令的额外信息。如果您的自动机在某些地方卡住，此功能可能有助于您找到问题所在。
       <br>
       <br>
-      While your settings are kept within your savefile, the actual events are not and will disappear on refresh.
+      请注意，虽然您的设置保存在您的存档文件中，但实际事件不会保存，并且会在刷新后消失。
       <br>
       <br>
-      <b>Entry Sorting:</b>
+      <b>排序方式：</b>
       <button
         v-tooltip="'Oldest results first'"
         :style="sortStyle(!newestFirst)"
@@ -150,7 +148,7 @@ export default {
       />
     </div>
     <div>
-      <b>Timestamp style:</b>
+      <b>时间戳风格：</b>
       <button
         v-tooltip="'No timestamps'"
         :style="timestampStyle('DISABLED')"
@@ -191,7 +189,7 @@ export default {
       v-for="(event, id) in events"
       :key="id"
     >
-      <b>Line {{ event.line }}{{ timestamp(event) }}:</b>
+      <b>第 {{ event.line }} 行：{{ timestamp(event) }}</b>
       <button
         v-tooltip="'Jump to line'"
         :class="buttonClassObject"

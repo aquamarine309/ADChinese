@@ -188,7 +188,7 @@ export default {
           你已解锁 {{ formatInt(secretAchievementCount) }} 个隐藏成就。
         </div>
         <div v-if="paperclips">
-          你拥有 {{ formatInt(paperclips) }} 个无用回形针
+          你拥有 {{ formatInt(paperclips) }} 个无用回形针。
         </div>
         <div v-if="fullGameCompletions">
           <br>

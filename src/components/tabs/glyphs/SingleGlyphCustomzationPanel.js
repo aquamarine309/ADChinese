@@ -101,12 +101,12 @@ export default {
         class="c-glyph-info-section c-cosmetic-text"
         data-v-single-glyph-customzation-panel
       >
-        <u>Cosmetic Attributes</u>
-        Type: {{ glyph.type.capitalize() }}
+        <u>皮肤属性：</u>
+        类型：{{ glyph.type.capitalize() }}
         <br>
-        All: {{ typeCosmetic }}
+        全部：{{ typeCosmetic }}
         <br>
-        Single: {{ specialCosmetic }}
+        单个：{{ specialCosmetic }}
       </div>
       <div
         class="c-glyph-info-section"
@@ -117,20 +117,19 @@ export default {
           @click="openModal"
           data-v-single-glyph-customzation-panel
         >
-          Customize!
+          选择皮肤！
         </PrimaryButton>
         <PrimaryButton
           class="o-primary-btn--subtab-option"
           @click="glyphID = -1"
           data-v-single-glyph-customzation-panel
         >
-          Clear Box
+          清空方框
         </PrimaryButton>
       </div>
     </div>
     <div v-else>
-      Drag a Glyph over this box to change its appearance! This will make a visual copy of it here,
-      but leave the actual Glyph itself in your inventory. Removing, gaining, or moving any Glyphs will clear this box.
+      将符文拖到此方框上以改变其外观！这会在当前位置生成一个视觉副本，但实际符文仍保留在你的库存中。移除、获得或移动任意符文都会清空此方框。
     </div>
   </div>
   `

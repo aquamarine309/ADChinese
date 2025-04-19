@@ -18,7 +18,7 @@ export class Sacrifice {
     if (EternityChallenge(3).isRunning) return "永恒挑战 3";
     if (DimBoost.purchasedBoosts < 5) return `需要 ${formatInt(5)} 个维度提升`;
     if (AntimatterDimension(8).totalAmount.eq(0)) return "没有第八维度";
-    if (this.nextBoost.lte(1)) return `${formatX(1)} 倍数`;
+    if (this.nextBoost.lte(1)) return `乘数为 ${formatX(1)}`;
     if (Player.isInAntimatterChallenge) return "达到挑战目标";
     return "需要大坍缩";
   }
@@ -27,14 +27,14 @@ export class Sacrifice {
     const f = (name, condition) => (name in changes ? changes[name] : condition);
     let factor = 2;
     let places = 1;
-    let base = `(log₁₀(AD1)/${formatInt(10)})`;
+    let base = `(log₁₀(第一维)/${formatInt(10)})`;
     if (f("Challenge8isRunning", NormalChallenge(8).isRunning)) {
       factor = 1;
       base = "x";
     } else if (f("InfinityChallenge2isCompleted", InfinityChallenge(2).isCompleted)) {
       factor = 1 / 120;
       places = 3;
-      base = "AD1";
+      base = "第一维";
     }
 
     const exponent = (1 +

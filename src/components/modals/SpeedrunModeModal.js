@@ -37,7 +37,7 @@ export default {
     @confirm="startRun"
   >
     <template #header>
-      Entering Speedrun Mode
+      进入速通模式
     </template>
     <div
       v-if="onInfoPage"

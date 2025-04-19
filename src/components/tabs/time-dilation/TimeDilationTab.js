@@ -169,12 +169,12 @@ export default {
       超光速粒子星系。
     </span>
     <span v-if="hasMaxText">
-      Your maximum Dilated Time reached this Reality is
+      此次现实中膨胀时间的最大值是
       <span
         v-tooltip="toMaxTooltip"
         class="max-accent"
         data-v-time-dilation-tab
-      >{{ format(maxDT, 2, 1) }}</span>.
+      >{{ format(maxDT, 2, 1) }}</span>。
     </span>
     <div
       class="l-dilation-upgrades-grid"

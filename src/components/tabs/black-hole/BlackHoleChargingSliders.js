@@ -21,7 +21,7 @@ export default {
   computed: {
     infoTooltip() {
       return this.isLaitela
-        ? "The physics of this Reality do not allow Black Hole Inversion"
+        ? "本次现实的机制不允许启用黑洞"
         : "需要两个永久启动的黑洞，且它们都在暂停状态";
     },
     reqLockText() {

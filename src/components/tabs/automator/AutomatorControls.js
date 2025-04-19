@@ -33,9 +33,9 @@ export default {
       return this.$viewModel.tabs.reality.automator.editorScriptID;
     },
     playTooltip() {
-      if (this.isPaused) return "Resume Automator execution";
-      if (!this.isRunning) return "Start Automator";
-      return "Pause Automator execution";
+      if (this.isPaused) return "恢复自动机执行";
+      if (!this.isRunning) return "运行自动机";
+      return "暂停自动机执行";
     },
     playButtonClass() {
       return {
@@ -52,10 +52,10 @@ export default {
       let lineNum = `0000${this.currentLine}`;
       lineNum = lineNum.slice(lineNum.length - digits);
 
-      if (this.isPaused) return `Paused: "${this.statusName}" (Resumes on Line ${lineNum})`;
-      if (this.isRunning) return `Running: "${this.statusName}" (Line ${lineNum})`;
-      if (this.hasErrors) return `Stopped: "${this.statusName}" has errors (Cannot run)`;
-      return `Stopped: Will start running "${this.statusName}"`;
+      if (this.isPaused) return `已暂停：${this.statusName} （于第 ${lineNum} 行恢复）`;
+      if (this.isRunning) return `运行中：${this.statusName}（第 ${lineNum} 行）`;
+      if (this.hasErrors) return `已停止：${this.statusName} 有错误（无法运行）`;
+      return `已停止：将开始运行 ${this.statusName}`;
     },
     maxScriptChars() {
       return AutomatorData.MAX_ALLOWED_SCRIPT_CHARACTERS;
@@ -179,7 +179,7 @@ export default {
           :class="{ 'c-automator__status-text--error' : currentChars > maxScriptChars }"
           data-v-automator-controls
         >
-          This script: {{ formatInt(currentChars) }}/{{ formatInt(maxScriptChars) }}
+          此脚本：{{ formatInt(currentChars) }} / {{ formatInt(maxScriptChars) }}
         </span>
       </div>
       <div

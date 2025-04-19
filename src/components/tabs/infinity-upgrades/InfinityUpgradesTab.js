@@ -128,20 +128,19 @@ export default {
         @click="disCharge = !disCharge"
         data-v-infinity-upgrades-tab
       >
-        Respec Charged Infinity Upgrades on next Reality
+        在下一次现实时重置已充能的无限升级
       </PrimaryButton>
     </div>
     <div v-if="chargeUnlocked">
-      You have charged {{ formatInt(chargesUsed) }}/{{ formatInt(totalCharges) }} Infinity Upgrades.
-      Charged Infinity Upgrades have their effect altered.
+      你已充能{{ formatInt(chargesUsed) }}/{{ formatInt(totalCharges) }}无限升级。已充能的无限升级会更改其效果。你可以自由地在现实时重置充能的升级。
       <br>
       Hold shift to show Charged Infinity Upgrades. You can freely respec your choices on Reality.
     </div>
     <div v-if="isUseless">
-      You cannot Charge Infinity Upgrades while Doomed.
+      你不能在被毁灭的现实中充能无限升级。
     </div>
     <br>
-    Within each column, the upgrades must be purchased from top to bottom.
+    在升级列表的每一列中，升级必须按从上到下的顺序依次购买。
     <br>
     <div
       class="l-infinity-upgrade-grid l-infinity-upgrades-tab__grid"
@@ -183,10 +182,7 @@ export default {
       />
     </div>
     <div v-if="eternityUnlocked && bottomRowUnlocked">
-      The Infinity Point multiplier becomes more expensive
-      <br>
-      above {{ formatPostBreak(ipMultSoftCap) }} Infinity Points, and cannot be purchased past
-      {{ formatPostBreak(ipMultHardCap) }} Infinity Points.
+      无限点数超过 {{ formatPostBreak(ipMultSoftCap) }} 后，进一步提高无限点数倍增的价格。无限点数大于 {{ formatPostBreak(ipMultHardCap) }} 时无法购买无限点数倍增。
     </div>
   </div>
   `

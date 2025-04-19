@@ -39,10 +39,10 @@ export default {
       class="c-automator-docs-page"
       data-v-automator-docs-command-list
     >
-      Click on an underlined command to see more details on syntax, usage, and functionality.
+      点击带下划线的指令可以查看更多关于语法、用途和功能的详细信息。
       <br>
       <br>
-      <span>Command List:</span>
+      <span>指令列表：</span>
       <br>
       <div
         v-for="(category, i) in categoryNames"

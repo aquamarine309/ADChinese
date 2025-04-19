@@ -30,10 +30,9 @@ export default {
       class="l-header"
       data-v-automator-points-list
     >
-      You have {{ formatInt(totalPoints) }} / {{ formatInt(pointsForAutomator) }}
-      Automator Points towards unlocking the Automator.
+      你有 {{ formatInt(totalPoints) }} / {{ formatInt(pointsForAutomator) }} 自动点数，用于解锁自动机。
       <br>
-      You gain Automator Points from the following sources:
+      你可以通过以下来源获得自动点数：
     </div>
     <div
       class="l-automator-points-list-container"
@@ -55,7 +54,7 @@ export default {
           class="l-large-text"
           data-v-automator-points-list
         >
-          Perks
+          复兴树
         </span>
         <div
           v-for="perk in perkSources"
@@ -72,7 +71,7 @@ export default {
           <span
             class="c-automator-points-list-ap"
             data-v-automator-points-list
-          >{{ formatInt(perk.automatorPoints) }} AP</span>
+          >{{ formatInt(perk.automatorPoints) }} 自动点数</span>
         </div>
       </div>
       <div
@@ -88,7 +87,7 @@ export default {
           <span
             class="c-automator-points-list-ap--large"
             data-v-automator-points-list
-          >{{ formatInt(source.automatorPoints()) }} AP</span>
+          >{{ formatInt(source.automatorPoints()) }} 自动点数</span>
           <span
             class="l-large-text"
             data-v-automator-points-list
@@ -121,12 +120,12 @@ export default {
         <span
           class="c-automator-points-list-ap--large"
           data-v-automator-points-list
-        >{{ formatInt(fromUpgrades) }} AP</span>
+        >{{ formatInt(fromUpgrades) }} 自动点数</span>
         <span
           class="l-large-text"
           data-v-automator-points-list
         >
-          Reality Upgrades
+          现实升级
         </span>
         <div
           v-for="upgrade in upgradeSources"
@@ -139,7 +138,7 @@ export default {
           <span
             class="c-automator-points-list-ap"
             data-v-automator-points-list
-          >{{ formatInt(upgrade.automatorPoints) }} AP</span>
+          >{{ formatInt(upgrade.automatorPoints) }} 自动点数</span>
           <br>
           {{ upgrade.shortDescription }}
         </div>
@@ -147,8 +146,7 @@ export default {
     </div>
     <br>
     <div>
-      The Automator allows (amongst other things) buying full Time Study Trees, entering Eternity Challenges,
-      or starting Dilation.
+      自动机可以购买时间研究、进入永恒挑战或进入时间膨胀。
       <br>
       It can also force prestige events on certain conditions independently from your Autobuyers or modify
       some of your Autobuyer settings.

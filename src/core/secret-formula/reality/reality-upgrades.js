@@ -97,7 +97,7 @@ export const realityUpgrades = [
     formatEffect: value => formatX(value, 2, 2)
   },
   {
-    name: "Paradoxically Attain",
+    name: "逆理成就",
     id: 8,
     cost: 15,
     requirement: "没有自动获得成就完成第一次永恒",
@@ -111,7 +111,7 @@ export const realityUpgrades = [
     formatEffect: value => formatX(value, 2, 2)
   },
   {
-    name: "Linguistically Expand",
+    name: "词域扩张",
     id: 9,
     cost: 15,
     requirement: () => `只装备一个符文时，在一次永恒中获得 ${format("1e4000")} 永恒点数，该符文的等级不低于 ${formatInt(3)}`,

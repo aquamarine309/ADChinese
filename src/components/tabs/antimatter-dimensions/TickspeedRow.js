@@ -29,7 +29,7 @@ export default {
       if (InfinityChallenge(3).isRunning) return `所有反物质维度获得乘
         ${formatX(1.05 + this.galaxyCount * 0.005, 3, 3)} 加成`;
       const tickmult = this.mult;
-      return `${formatX(tickmult.reciprocal(), 2, 3)} faster / upgrade.`;
+      return `${formatX(tickmult.reciprocal(), 2, 3)} 加成 / 升级。`;
     },
     tickspeedDisplay() {
       return `计数频率：${format(this.tickspeed, 2, 3)} / 秒`;

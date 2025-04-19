@@ -25,7 +25,7 @@ export default {
       return CosmeticGlyphTypes.list.filter(t => t.isCosmetic && t.isUnlocked).map(t => t.id);
     },
     setName() {
-      return this.currentSet?.name ?? "None Selected";
+      return this.currentSet?.name ?? "未选定";
     },
     setContents() {
       const contents = [];

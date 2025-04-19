@@ -1,4 +1,4 @@
-import * as ADNotations from "../../modules/notations.js";
+import { ADNotations } from "../../modules/notations.js";
 
 export const NG = {
   startNewGame() {

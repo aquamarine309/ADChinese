@@ -79,7 +79,7 @@ export default {
       {{ name }}
     </template>
     <div v-if="isGlyphSelection">
-      Projected Glyph Level: {{ formatInt(gainedLevel) }}
+      符文等级：{{ formatInt(gainedLevel) }}
     </div>
     <GlyphSetName
       v-if="showSetName"

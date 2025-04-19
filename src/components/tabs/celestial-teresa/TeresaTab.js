@@ -161,7 +161,7 @@ export default {
           {{ runDescription }}
           <br><br>
           <div>
-            This Reality can be repeated for a stronger reward based on the antimatter gained within it.
+            该现实可以重复完成，基于在现实中拥有的反物质获得更强大的奖励。
             <br><br>
             <span v-if="showRunReward">
               
@@ -256,7 +256,7 @@ export default {
           :key="upgrade.id"
           :upgrade="upgrade"
         />
-        You can now modify the appearance of your Glyphs to look like Music Glyphs.
+        你现在可以将符文的外观修改为音乐符文。
       </div>
       <div
         v-else

@@ -74,8 +74,7 @@ export default {
       return GameDatabase.celestials.descriptions[4].effects().split("\n");
     },
     memoryDescription() {
-      return `Within Ra's Reality, Memory Chunks for Celestial Memories
-        will be generated based on certain resource amounts.`;
+      return `在太阳神的现实中，一些资源将基于它们的数量，生成记忆块，进而获得天神记忆。`;
     },
     isDoomed: () => Pelle.isDoomed,
   },
@@ -106,13 +105,12 @@ export default {
     <div class="c-ra-memory-header">
       <CelestialQuoteHistory celestial="ra" />
       <div v-if="!isRaCapped">
-        Each Memory Chunk generates a base of one Memory per second<span v-if="memoriesPerChunk > 1">,
-          which has been increased to {{ format(memoriesPerChunk, 2, 3) }} memories per second</span>.
+        每个记忆块生产记忆的基数是每秒一个<span v-if="memoriesPerChunk > 1">，现已提升为 {{ format(memoriesPerChunk, 2, 3) }}</span>。
         <br>
-        Storing real time prevents Memory Chunk generation, but Memories will still be gained normally.
+        储存现实时间时，不会产生记忆块，但记忆块仍然生产记忆。
         <span v-if="memoriesPerChunk > 1">
           <br>
-          This is being increased due to {{ memoryBoosts }}.
+          该项提升基于{{ memoryBoosts }}。
         </span>
       </div>
       <div v-else>
@@ -121,8 +119,9 @@ export default {
     </div>
     <div>
       Mouse-over the icons below the bar to see descriptions of upgrades,
+      将鼠标悬浮在下列图标上以查看升级描述，
       <br>
-      and mouse-over <i class="fas fa-question-circle" /> icons for specific resource information.
+      将鼠标悬浮在 <i class="fas fa-question-circle" /> 图标上以查看特定资源的信息。
     </div>
     <div class="l-ra-all-pets-container">
       <RaPet

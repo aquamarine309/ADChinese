@@ -195,7 +195,7 @@ export default {
         class="o-primary-btn--subtab-option"
         @click="showAlchemyHowTo"
       >
-        Click for alchemy info
+        点击查看炼金详情
       </PrimaryButton>
       <PrimaryButton
         v-if="!isDoomed"

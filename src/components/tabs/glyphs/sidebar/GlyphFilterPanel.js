@@ -347,7 +347,7 @@ export default {
       class="c-glyph-sacrifice-options__advanced"
     >
       <div>
-        Glyph Type:
+        符文类型：
         <span
           v-for="type in glyphTypes"
           :key="type.id"
@@ -373,23 +373,20 @@ export default {
       class="c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyph score is assigned based on current Alchemy Resource totals. Priority is given to the Glyph type with
-      the lowest associated alchemy resource total.
+      符文分数根据当前的炼金资源总量分配。优先考虑与最低炼金资源总量相关的符文类型。
       <br>
       <br>
-      This mode never keeps Glyphs.
+      （此模式不会保留任何符文）
     </div>
     <div
       v-if="mode === modes.ALCHEMY_VALUE"
       class="c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyphs will be assigned values based on <i>current</i> refinement value, accounting for the type-specific
-      resource caps. Priority is given to Glyphs which are worth the most alchemy resources; Glyphs which would
-      cause you to hit a cap are effectively worth less.
+       符文的值将根据<i>当前的</i>精炼值分配，并考虑特定类型的资源上限。优先考虑那些价值最高的炼金资源符文；那些会导致你达到上限的符文实际上价值较低。
       <br>
       <br>
-      This mode never keeps Glyphs.
+      （此模式不会保留任何符文）
     </div>
   </div>
   `

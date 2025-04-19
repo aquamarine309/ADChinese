@@ -35,10 +35,10 @@ export default {
         const timeToThousand = coeff.times(nextMilestone.divide(replicantiAmount).pow(postScale).minus(1));
         // The calculation seems to choke and return zero if the time is too large, probably because of rounding issues
         const timeEstimateText = timeToThousand.eq(0)
-          ? "an extremely long time"
+          ? "一段极其长的时间"
           : `${TimeSpan.fromSeconds(timeToThousand.toNumber())}`;
-        this.remainingTimeText = `You are gaining ${formatX(gainFactorPerSecond, 2, 1)} Replicanti per second` +
-          ` (${timeEstimateText} until ${format(nextMilestone)})`;
+        this.remainingTimeText = `你每秒获得 ${formatX(gainFactorPerSecond, 2, 1)} 复制器` +
+          ` (${timeEstimateText} 后达到 ${format(nextMilestone)})`;
       } else {
         this.remainingTimeText = "";
       }
@@ -69,11 +69,11 @@ export default {
 
       if (this.remainingTimeText === "") {
         if (remainingTime === 0) {
-          this.remainingTimeText = `At Infinite Replicanti (normally takes
-            ${TimeSpan.fromSeconds(secondsPerGalaxy.toNumber())})`;
+          this.remainingTimeText = `无限复制器 （需要
+            ${TimeSpan.fromSeconds(secondsPerGalaxy.toNumber())}）`;
         } else if (replicantiAmount.lt(100)) {
-          // Because of discrete replication, we add "近似 (Approximately)" at very low amounts
-          this.remainingTimeText = `距离 无限 复制器还有近似 ${TimeSpan.fromSeconds(remainingTime)}`;
+          // Because of discrete replication, we add "大约 (Approximately)" at very low amounts
+          this.remainingTimeText = `距离 无限 复制器还需大约 ${TimeSpan.fromSeconds(remainingTime)}`;
         } else {
           this.remainingTimeText = `距离 无限 复制器还有 ${TimeSpan.fromSeconds(remainingTime)}`;
         }
@@ -88,7 +88,7 @@ export default {
       if (Replicanti.galaxies.max > 0) {
         // If the player has max RGs, don't display the "You are gaining blah" text
         if (player.replicanti.galaxies === Replicanti.galaxies.max) {
-          this.galaxyText = "You have reached the maximum amount of Replicanti Galaxies";
+          this.galaxyText = "你已达到最大复制器星系数量";
         } else {
           this.galaxyText = `你每过 ${TimeSpan.fromSeconds(secondsPerGalaxy.toNumber())} 秒能获得一个复制器星系。`;
           if (galaxiesPerSecond.gte(1)) {

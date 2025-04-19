@@ -21,7 +21,7 @@ export default {
       this.visible = GameEnd.endState > END_STATE_MARKERS.SHOW_NEW_GAME && !GameEnd.removeAdditionalEnd;
       this.opacity = (GameEnd.endState - END_STATE_MARKERS.SHOW_NEW_GAME) * 2;
       this.hasMoreCosmetics = GlyphAppearanceHandler.lockedSets.length > 0;
-      this.selectedSetName = GlyphAppearanceHandler.chosenFromModal?.name ?? "None (will choose randomly)";
+      this.selectedSetName = GlyphAppearanceHandler.chosenFromModal?.name ?? "未选定（随机选择）";
     },
     startNewGame() {
       NG.startNewGame();

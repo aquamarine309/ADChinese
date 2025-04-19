@@ -36,7 +36,7 @@ export default {
         return `（预计获得 ${format(this.projectedRM, 2)} 现实机器）`;
       }
       if (this.newIMCap !== 0) {
-        return `（虚幻机器上限：${formatMachines(0, this.newIMCap)}i）`;
+        return `（虚幻机器上限：${formatMachines(0, this.newIMCap)}）`;
       }
       if (this.machinesGained.lt(Number.MAX_VALUE)) {
         return `（${format(this.machinesGained.divide(this.realityTime), 2, 2)} 现实机器/分钟）`;
