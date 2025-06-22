@@ -117,10 +117,9 @@ export default {
         v-if="isDoomed"
         class="pelle-current-glyph-effects"
       >你不能在被毁灭的现实中献祭符文。
-        
       </span>
       <span v-else>
-        <div>Drag Glyphs here or shift-click to Sacrifice.</div>
+        <div>拖拽符文至此处或按住Shift键点击献祭。</div>
         <div>确认提示可在设置或按住Ctrl键禁用</div>
       </span>
     </div>
@@ -157,10 +156,10 @@ export default {
     </div>
     <div v-if="anySacrifices && !isDoomed">
       <div v-if="teresaMult > 1">
-        Glyph sacrifice values are multiplied by {{ formatX(teresaMult, 2, 2) }};
-        Teresa was last done at {{ lastMachines }}.
+        符文献祭值乘以 {{ formatX(teresaMult, 2, 2) }}；
+        上次以 {{ lastMachines }} 完成特蕾莎。
         <span v-if="hasSeenRealityGlyph">
-          Reality Glyphs are unaffected by this multiplier and have no altered effects.
+          现实符文不受该效果的影响，并且没有异变效果。
         </span>
       </div>
       <template v-for="type in types">
@@ -175,7 +174,7 @@ export default {
       v-else-if="isDoomed"
       class="pelle-current-glyph-effects"
     >
-      All boosts from Glyph Sacrifice are disabled while Doomed, including changes to effects due to Altered Glyphs.
+      在毁灭的现实中，符文献祭提供的所有加成均被禁用，包括变异符文带来的效果变化。
     </div>
     <div v-else>
       你还没有献祭任何符文！

@@ -28,8 +28,8 @@ export default {
       if (GameEnd.creditsClosed) return;
       if (this.isInCelestialReality) {
         if (confirms.exitChallenge) Modal.exitChallenge.show({
-          challengeName: "a Celestial Reality",
-          normalName: "Reality",
+          challengeName: "天神的现实",
+          normalName: "现实",
           hasHigherLayers: false,
           exitFn: () => beginProcessReality(getRealityProps(true))
         });

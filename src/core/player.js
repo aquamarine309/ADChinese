@@ -771,6 +771,7 @@ window.player = {
       AIChance: 0,
       speed: 1,
       includeAnimated: true,
+      chineseNews: true
     },
     notation: "Mixed scientific",
     notationDigits: {

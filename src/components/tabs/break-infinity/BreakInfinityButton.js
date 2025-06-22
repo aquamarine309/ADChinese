@@ -19,7 +19,7 @@ export default {
       };
     },
     tooltip() {
-      if (this.isEnslaved) return "...eons stacked on eons stacked on eons stacked on eons stacked on ...";
+      if (this.isEnslaved) return "……层层纪元相叠，无穷无尽……";
       return undefined;
     },
     text() {

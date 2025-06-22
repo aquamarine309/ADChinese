@@ -235,11 +235,11 @@ export const AutomatorCommands = [
         if (on === BlackHoles.arePaused) BlackHoles.togglePause();
         let blackHoleEvent;
         if (BlackHole(1).isUnlocked) {
-          blackHoleEvent = `Black Holes toggled ${ctx.On ? "ON" : "OFF"}`;
+          blackHoleEvent = `黑洞切换为${ctx.On ? "开启" : "关闭"}`;
         } else if (Enslaved.isRunning || Pelle.isDisabled("blackhole")) {
-          blackHoleEvent = "Black Hole command ignored because BH is disabled in your current Reality";
+          blackHoleEvent = "当前现实禁用黑洞，忽略黑洞相关的指令";
         } else {
-          blackHoleEvent = "Black Hole command ignored because BH is not unlocked";
+          blackHoleEvent = "未解锁黑洞，忽略黑洞相关的指令";
         }
         AutomatorData.logCommandEvent(blackHoleEvent, ctx.startLine);
         return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
@@ -308,13 +308,11 @@ export const AutomatorCommands = [
             ifEndLine: ctx.RCurly[0].startLine
           };
           if (!evalComparison()) {
-            AutomatorData.logCommandEvent(`Checked ${parseConditionalIntoText(ctx)} (false),
-              skipping to line ${AutomatorBackend.translateLineNumber(ctx.RCurly[0].startLine + 1)}`, ctx.startLine);
+            AutomatorData.logCommandEvent(`条件 ${parseConditionalIntoText(ctx)} 为假，跳转至第 ${AutomatorBackend.translateLineNumber(ctx.RCurly[0].startLine + 1)} 行`, ctx.startLine);
             return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
           }
           AutomatorBackend.push(commands);
-          AutomatorData.logCommandEvent(`Checked ${parseConditionalIntoText(ctx)} (true),
-            entering IF block`, ctx.startLine);
+          AutomatorData.logCommandEvent(`条件 ${parseConditionalIntoText(ctx)} 为真，执行对应指令`, ctx.startLine);
           return AUTOMATOR_COMMAND_STATUS.SAME_INSTRUCTION;
         },
         blockCommands: commands,
@@ -349,8 +347,8 @@ export const AutomatorCommands = [
     compile: ctx => {
       const notifyText = ctx.StringLiteral || ctx.StringLiteralSingleQuote;
       return () => {
-        GameUI.notify.automator(`Automator: ${notifyText[0].image}`);
-        AutomatorData.logCommandEvent(`NOTIFY call: ${notifyText[0].image}`, ctx.startLine);
+        GameUI.notify.automator(`自动机：${notifyText[0].image}`);
+        AutomatorData.logCommandEvent(`弹出提示：${notifyText[0].image}`, ctx.startLine);
         return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
       };
     },
@@ -374,9 +372,8 @@ export const AutomatorCommands = [
       let duration;
       if (ctx.Identifier) {
         if (!V.isValidVarFormat(ctx.Identifier[0], AUTOMATOR_VAR_TYPES.DURATION)) {
-          V.addError(ctx, `Constant ${ctx.Identifier[0].image} is not a valid time duration constant`,
-            `Ensure that ${ctx.Identifier[0].image} is a number of seconds less than
-            ${format(Number.MAX_VALUE / 1000)}`);
+          V.addError(ctx, `常量 ${ctx.Identifier[0].image} 不是有效的持续时间数值`,
+            `确认 ${ctx.Identifier[0].image} 的数值（按秒计算）小于 ${format(Number.MAX_VALUE / 1000)}`);
           return false;
         }
         const lookup = V.lookupVar(ctx.Identifier[0], AUTOMATOR_VAR_TYPES.DURATION);
@@ -400,13 +397,13 @@ export const AutomatorCommands = [
         }
         if (S.commandState === null) {
           S.commandState = { timeMs: 0 };
-          AutomatorData.logCommandEvent(`Pause started (waiting ${timeString})`, ctx.startLine);
+          AutomatorData.logCommandEvent(`已开始暂停（等待 ${timeString}）`, ctx.startLine);
         } else {
           S.commandState.timeMs += Math.max(Time.unscaledDeltaTime.totalMilliseconds, AutomatorBackend.currentInterval);
         }
         const finishPause = S.commandState.timeMs >= duration;
         if (finishPause) {
-          AutomatorData.logCommandEvent(`Pause finished (waited ${timeString})`, ctx.startLine);
+          AutomatorData.logCommandEvent(`结束暂停（已等待 ${timeString}）`, ctx.startLine);
           return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
         }
         return AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION;
@@ -444,14 +441,14 @@ export const AutomatorCommands = [
       }
 
       if (ctx.PrestigeEvent && ctx.PrestigeEvent[0].tokenType === T.Reality && !RealityUpgrade(25).isBought) {
-        V.addError(ctx.PrestigeEvent, "Reality autobuyer is not unlocked",
-          "Purchase the Reality Upgrade which unlocks the Reality autobuyer");
+        V.addError(ctx.PrestigeEvent, "未解锁自动现实",
+          "购买对应的现实升级，解锁自动现实");
         return false;
       }
 
       if (ctx.PrestigeEvent && ctx.PrestigeEvent[0].tokenType === T.Infinity && ctx.Respec) {
-        V.addError(ctx.Respec, "There's no 'respec' for infinity",
-          "Remove 'respec' from the command");
+        V.addError(ctx.Respec, "无限并没有 'respec'",
+          "移除指令中的 'respec'");
       }
       return true;
     },
@@ -463,14 +460,14 @@ export const AutomatorCommands = [
         const available = prestigeToken.$prestigeAvailable();
         if (!available) {
           if (!nowait) return AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION;
-          AutomatorData.logCommandEvent(`${ctx.PrestigeEvent.image} attempted, but skipped due to NOWAIT`,
+          AutomatorData.logCommandEvent(`已尝试进行自动${ctx.PrestigeEvent.image}，因 NOWAIT 直接跳过`,
             ctx.startLine);
           return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
         }
         if (respec) prestigeToken.$respec();
         prestigeToken.$prestige();
         const prestigeName = ctx.PrestigeEvent[0].image.toUpperCase();
-        AutomatorData.logCommandEvent(`${prestigeName} triggered (${findLastPrestigeRecord(prestigeName)})`,
+        AutomatorData.logCommandEvent(`${prestigeName}已触发（${findLastPrestigeRecord(prestigeName)}）`,
           ctx.startLine);
         // In the prestigeToken.$prestige() line above, performing a reality reset has code internal to the call
         // which makes the automator restart. However, in that case we also need to update the execution state here,
@@ -500,12 +497,12 @@ export const AutomatorCommands = [
     },
     compile: ctx => () => {
       if (player.dilation.active) {
-        AutomatorData.logCommandEvent(`Start Dilation encountered but ignored due to already being dilated`,
+        AutomatorData.logCommandEvent(`因正在进行时间膨胀，忽略 start dilation 指令`,
           ctx.startLine);
         return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
       }
       if (startDilatedEternity(true)) {
-        AutomatorData.logCommandEvent(`Dilation entered`, ctx.startLine);
+        AutomatorData.logCommandEvent(`已进入时间膨胀`, ctx.startLine);
         return AUTOMATOR_COMMAND_STATUS.NEXT_TICK_NEXT_INSTRUCTION;
       }
       return AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION;
@@ -527,7 +524,7 @@ export const AutomatorCommands = [
       return () => {
         const ec = EternityChallenge(ecNumber);
         if (ec.isRunning) {
-          AutomatorData.logCommandEvent(`Start EC encountered but ignored due to already being in the specified EC`,
+          AutomatorData.logCommandEvent(`因正在进行对应的永恒挑战，忽略 start ec 指令`,
             ctx.startLine);
           return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
         }
@@ -537,7 +534,7 @@ export const AutomatorCommands = [
           }
         }
         if (ec.start(true)) {
-          AutomatorData.logCommandEvent(`Eternity Challenge ${ecNumber} started`, ctx.startLine);
+          AutomatorData.logCommandEvent(`正在进行永恒挑战 ${ecNumber}`, ctx.startLine);
           return AUTOMATOR_COMMAND_STATUS.NEXT_TICK_NEXT_INSTRUCTION;
         }
         return AUTOMATOR_COMMAND_STATUS.NEXT_TICK_SAME_INSTRUCTION;
@@ -562,8 +559,8 @@ export const AutomatorCommands = [
     validate: (ctx, V) => {
       ctx.startLine = ctx.StoreGameTime[0].startLine;
       if (!Enslaved.isUnlocked) {
-        V.addError(ctx.StoreGameTime[0], "You do not yet know how to store game time",
-          "Unlock the ability to store game time");
+        V.addError(ctx.StoreGameTime[0], "你是不懂怎么储存时间喔",
+          "解锁储存时间的能力");
         return false;
       }
       return true;
@@ -572,9 +569,9 @@ export const AutomatorCommands = [
       if (ctx.Use) return () => {
         if (Enslaved.isUnlocked) {
           Enslaved.useStoredTime(false);
-          AutomatorData.logCommandEvent(`Stored game time used`, ctx.startLine);
+          AutomatorData.logCommandEvent(`已使用储存的游戏内时间`, ctx.startLine);
         } else {
-          AutomatorData.logCommandEvent(`Attempted to use stored game time, but failed (not unlocked yet)`,
+          AutomatorData.logCommandEvent(`因储存游戏内时间的功能尚未解锁，无法使用储存的游戏内时间`,
             ctx.startLine);
         }
         return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
@@ -582,7 +579,7 @@ export const AutomatorCommands = [
       const on = Boolean(ctx.On);
       return () => {
         if (on !== player.celestials.enslaved.isStoring) Enslaved.toggleStoreBlackHole();
-        AutomatorData.logCommandEvent(`Storing game time toggled ${ctx.On ? "ON" : "OFF"}`, ctx.startLine);
+        AutomatorData.logCommandEvent(`储存游戏内时间切换为 ${ctx.On ? "开启" : "关闭"}`, ctx.startLine);
         return AUTOMATOR_COMMAND_STATUS.NEXT_INSTRUCTION;
       };
     },
@@ -607,8 +604,8 @@ export const AutomatorCommands = [
       ctx.startLine = ctx.Studies[0].startLine;
       if (ctx.Identifier) {
         if (!V.isValidVarFormat(ctx.Identifier[0], AUTOMATOR_VAR_TYPES.STUDIES)) {
-          V.addError(ctx, `Constant ${ctx.Identifier[0].image} is not a valid Time Study constant`,
-            `Ensure that ${ctx.Identifier[0].image} is a properly-formatted Time Study string`);
+          V.addError(ctx, `常量 ${ctx.Identifier[0].image} 不是有效的时间研究字符串`,
+            `确认 ${ctx.Identifier[0].image} 的值是一个格式正确的时间研究字符串`);
           return false;
         }
         const varInfo = V.lookupVar(ctx.Identifier[0], AUTOMATOR_VAR_TYPES.STUDIES);
@@ -879,13 +876,13 @@ export const AutomatorCommands = [
       let prestigeName;
       switch (ctx.PrestigeEvent[0].tokenType) {
         case T.Infinity:
-          prestigeName = "Infinity";
+          prestigeName = "无限";
           break;
         case T.Eternity:
-          prestigeName = "Eternity";
+          prestigeName = "永恒";
           break;
         case T.Reality:
-          prestigeName = "Reality";
+          prestigeName = "现实";
           break;
         default:
           throw Error("Unrecognized prestige layer in until loop");

@@ -10,10 +10,10 @@ export default {
   }),
   computed: {
     tooltip() {
-      if (this.isDoomed) return "You cannot amplify a Doomed Reality";
-      if (this.isDisabled) return "You cannot amplify Celestial Realities";
+      if (this.isDoomed) return "你无法扩增已被毁灭的现实";
+      if (this.isDisabled) return "你无法扩增天神的现实";
       if (!this.canAmplify) {
-        return "Store more real time or complete the Reality faster to amplify";
+        return "储存更多现实时间或更快现实以扩增";
       }
       return null;
     },

@@ -5,6 +5,7 @@ import { DC } from "../constants.js";
 // R = random chance condition
 // P = patreon
 // AI = created with gpt2
+// T = translated to Chinese
 
 function newsAnimSpd(seconds) {
   return seconds / player.options.news.speed;
@@ -2591,10 +2592,6 @@ export const news = [
       `Can you believe it guys? Update, just 5 hours away. Update is in a 5 hours. Wahoo. I'm so happy about this
       information. Update just 5 hours away. Oh wow. Can you believe it? Update just in a 5 hours. It got here so
       fast. Update, just 5 hours.`
-  },
-  {
-    id: "a391",
-    text: "There is still no Chinese news in ADChinese."
   },
   {
     id: "l1",
@@ -7318,5 +7315,338 @@ export const news = [
   {
     id: "ai997",
     get text() { return `The intergalactic antimatter trade has been severely disrupted, trading entire galaxies for the occasional paperclip. Cargo stands are no longer used. Oddly enough, the entire dimension has become a dumping ground for discarded plastic and other useless garbage. It's almost as if the rest of the multiverse isn't producing enough good  antiparticles to feed the growing population. Unfortunately, the situation is forcing the entire multiverse to scramble to find ways to meet the growing needs of the antimatter-eating  dev, who claims to have over ${format(Number.MAX_VALUE, 2)} specimens left to collect.`; }
+  },
+  {
+    id: "t1",
+    text: "饼干？不存在的谎言。",
+  },
+  {
+    id: "t2",
+    text: "反物质幽灵纯属虚构，正如物质幽灵也是虚构——毕竟连物质都没有，哪来的幽灵？"
+  },
+  {
+    id: "t3",
+    text: "核电站全面关停，反物质能源时代正式降临！"
+  },
+  {
+    id: "t4",
+    text: "严正声明：反物质饼干纯属都市传说，造谣者请立即停止传播。"
+  },
+  {
+    id: "t5",
+    text: "反物质价格雪崩！开采量激增引发市场恐慌"
+  },
+  {
+    id: "t6",
+    text: "今日奇闻：人类用反物质动物祭祀反物质之神"
+  },
+  {
+    id: "t7",
+    text: "恭喜！你创造了 1 个反物质...你不知道这意味着什么"
+  },
+  {
+    id: "t11",
+    text: "科学家宣布：反物质真实颜色是蓝调紫"
+  },
+  {
+    id: "t12",
+    text: "NASA如何办派对？他们正在“星”动！"
+  },
+  {
+    id: "t13",
+    text: "电子开始享受生活？科学家拟命名为“乐子电子”...等等，“正电子”商标已被注册？"
+  },
+  {
+    id: "t14",
+    text: "这段裹脚布式句子毫无意义。创作者该下地狱，开发者为何要写？即便你硬着头皮读...抱歉您已进入无限循环"
+  },
+  {
+    id: "t15",
+    text: "\"幽灵飘过说嗨~\"——Boo-Chan"
+  },
+  {
+    id: "t16",
+    text: "\"求求谁让hevi冷静点\"——被逼疯的Mee6"
+  },
+  {
+    id: "t17",
+    text: "物理学崩溃！反物质使驼鹿突变为人形生物"
+  },
+  {
+    id: "t18",
+    text: "!嗨"
+  },
+  {
+    id: "t19",
+    text: "\"可以\"——可以先生"
+  },
+  {
+    id: "t20",
+    text: "重要通知：英语问候语在反物质宇宙无效"
+  },
+  {
+    id: "t21",
+    text: "最大化还是买单个，这是个问题。"
+  },
+  {
+    id: "t22",
+    text: "一，二...跳过一些数...九十九，NaN！"
+  },
+  {
+    id: "t23",
+    text: "妈！这游戏真的不能暂停啊！"
+  },
+  {
+    id: "t24",
+    text: "科学计数法已加入末日豪华套餐"
+  },
+  {
+    id: "t25",
+    text: "\"让宇宙再次伟大！\"——特离普"
+  },
+  {
+    id: "t26",
+    text: "#今日沙雕图精选"
+  },
+  {
+    id: "t27",
+    get text() {
+      return `新兴邪教崇拜反物质之神“佩勒大仙”，信徒宣称 ${format(Number.MAX_VALUE, 2)} 就是无限真理`;
+    }
+  },
+  {
+    id: "t28",
+    text: "突发：触碰Blob表情包引发大爆炸！反物质泄露还是表情包起义？"
+  },
+  {
+    id: "t29",
+    text: "严正声明：非Kongregate/Steam/官网(https://ivark.github.io/)版本均属盗版"
+  },
+  {
+    id: "t30",
+    text: "求五星好评！让Kongregate见识真正的五星天灾"
+  },
+  {
+    id: "t31",
+    text: "BOO！吓到了吧~"
+  },
+  {
+    id: "t32",
+    text: "\"你吃太久了。\"——Hevipelle"
+  },
+  {
+    id: "t33",
+    text: "\"我恨我自己。\"——Boo-Chan"
+  },
+  {
+    id: "t34",
+    text: "\"老天鹅\"——Xandawesome"
+  },
+  {
+    id: "t35",
+    text: "头顶之上，唯有无尽虚空...与星辰，在更上方闪烁"
+  },
+  {
+    id: "t36",
+    text: "你兴致勃勃制作反物质蛋糕，可惜没人敢吃"
+  },
+  {
+    id: "t37",
+    text: "恶徒遭天谴——反物质风暴现场直击"
+  },
+  {
+    id: "t38",
+    text: "你活着，占据空间，拥有质量，你很物质...除非你是反物质"
+  },
+  {
+    id: "t39",
+    text: "手速过快警告：我的电脑已量子分解"
+  },
+  {
+    id: "t40",
+    text: "「外星人降落后，先扔个八号球测试。若肢体爆炸说明是反物质构成，否则可带去见元首」——尼尔·泰森"
+  },
+  {
+    id: "t41",
+    text: "宇宙物质总量必须等于反物质？多亏令堂维持了平衡"
+  },
+  {
+    id: "t42",
+    text: "物质不灭，反物质永生"
+  },
+  {
+    id: "t43",
+    text: "我们挖巨坑存储反物质...阿黛尔正在坑里打滚《Rolling in the Deep》"
+  },
+  {
+    id: "t44",
+    text: "若万物皆反物质，镜中身影如何存在？"
+  },
+  {
+    id: "t45",
+    text: "反物质生物预知明日股价，引发全球股市崩盘"
+  },
+  {
+    id: "t46",
+    text: "爱犬误食反物质后开始喵喵叫！兽医诊断：物质认知紊乱"
+  },
+  {
+    id: "t47",
+    text: "计算器输入∞=42！《银河系漫游指南》彩蛋实锤"
+  },
+  {
+    id: "t48",
+    text: "你发现了稀有度MAX的反物质蛙蛙meme！"
+  },
+  {
+    id: "t49",
+    get text() {
+      return `求 ${format(1e169)} 个赞！速戳点赞按钮！！`;
+    }
+  },
+  {
+    id: "t50",
+    text: "最新研究：反物质气味=幼猫奶香"
+  },
+  {
+    id: "t51",
+    text: "不过是墙上的又一道反物质（墙上的又一块砖）"
+  },
+  {
+    id: "t52",
+    text: "狙击锁定！弱鸡退散"
+  },
+  {
+    id: "t53",
+    text: "\"十二万分感谢\"——Dankesehr"
+  },
+  {
+    id: "t55",
+    text: "\"正如太阳必从西起，地球歌者诗人中，老子天下第一\"——Hevipelle"
+  },
+  {
+    id: "t56",
+    text: "\"我超会用GitHub\"——Hevipelle（心虚"
+  },
+  {
+    id: "t58",
+    text: "新研究：吃土豆增加反物质内爆风险！科学家建议加大食用量"
+  },
+  {
+    id: "t59",
+    text: "\'我以为修好了那个bug，结果更新后它秽土转生了\'——Hevipelle"
+  },
+  {
+    id: "t60",
+    text: "\"那我可能是弯的\"——Bootato（土豆君）"
+  },
+  {
+    id: "t61",
+    text: "突发！Hevipelle宣布将删除'全部购买'按钮！愚人节特供快讯"
+  },
+  {
+    id: "t63",
+    text: "反物质枪不杀人，人才杀人。同理：反物质烤面包机不烤面包？不，反物质面包烤反物质面包！"
+  },
+  {
+    id: "t64",
+    text: "在反物质人眼中，他们才是物质，而我们才是反物质？"
+  },
+  {
+    id: "t66",
+    text: "宇宙开学日恐慌！物质/反物质学生混合教学引发湮灭事故"
+  },
+  {
+    id: "t67",
+    text: "为什么没人讨论第零维度？开发者心虚删帖中"
+  },
+  {
+    id: "t68",
+    text: "肥猫蹲在反物质上，构成薛定谔的湮灭态"
+  },
+  {
+    id: "t69",
+    text: "谁！把！狗！放！出！来！的！"
+  },
+  {
+    id: "t70",
+    text: "若见此讯，说明你还没禁用新闻栏"
+  },
+  {
+    id: "t71",
+    text: "所谓退群，只是屏蔽通知的自我欺骗"
+  },
+  {
+    id: "t72",
+    text: "\"网络名人名言多半是假的\"——鲁迅"
+  },
+  {
+    id: "t73",
+    text: "\'按理来讲能跑，但怎么崩了\'——程序员の临终遗言"
+  },
+  {
+    id: "t74",
+    text: "本游戏没有bug...只有另类成功体验"
+  },
+  {
+    id: "t75",
+    text: "第三类物质'虚空物质'被发现：完全无用。相关科学家已失业"
+  },
+  {
+    id: "t76",
+    text: "岳母持续唠叨：'这些反物质对撞机太占地方！'"
+  },
+  {
+    id: "t77",
+    text: "若物质存在，反物质是否就不存在？哲学界已疯"
+  },
+  {
+    id: "t78",
+    text: "反物质=生命本源。不是圆石，不是泥土，唯有反物质永恒"
+  },
+  {
+    id: "t79",
+    text: "紧急快讯：错误 错误 错误（本条新闻也是错误）"
+  },
+  {
+    id: "t80",
+    text: "反土拨鼠能啃多少反木头？——量子力学未解之谜"
+  },
+  {
+    id: "t81",
+    text: "为何没有第九维度？因为七把九食。",
+    get unlocked() {
+      return DimBoost.totalBoosts >= 5 ||
+      player.galaxies > 0 ||
+      PlayerProgress.infinityUnlocked();
+    }
+  },
+  {
+    id: "t82",
+    text: "\'我代码写得超棒，这次更新绝对稳\'——Hevipelle（flag已立）"
+  },
+  {
+    id: "t84",
+    text: "话说一半就消失的人，是不是该被反物质净化"
+  },
+  {
+    id: "t86",
+    text: "反物质诚不欺我，物质才虚构万物"
+  },
+  {
+    id: "t87",
+    text: "违背空气动力学：蜜蜂被反物质吞噬的 108 种姿势"
+  },
+  {
+    id: "t88",
+    text: "要么作为物质死去，要么活到被反物质吞噬...再死一次"
+  },
+  {
+    id: "t89",
+    text: "当你凝视反物质时，反物质也在凝视你"
+  },
+  {
+    id: "t177",
+    text: `一旦你获得<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>，即可解锁<span style='color: black; background: black;'>已涂黑</span>。每个<span style='color: black; background: black;'>已涂黑</span>中，对于每个<span style='color: black; background: black;'>已涂黑</span>，都存在对应的<span style='color: black; background: black;'>已涂黑</span>供其<span style='color: black; background: black;'>已涂黑</span>。你可通过消耗<span style='color: black; background: black;'>已涂黑</span>来提升<span style='color: black; background: black;'>已涂黑</span>和<span style='color: black; background: black;'>已涂黑</span>。另有特殊升级可获取<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>。当达到<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>时，可<span style='color: black; background: black;'>已涂黑</span>指定数量的<span style='color: black; background: black;'>已涂黑</span>以换取<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>，其运作机制类似<span style='color: black; background: black;'>已涂黑</span>，能强化<span style='color: black; background: black;'>已涂黑</span>。`
   }
 ];

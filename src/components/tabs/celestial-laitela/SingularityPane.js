@@ -58,16 +58,15 @@ export default {
       return this.formatRate(this.singularitiesGained / totalTime);
     },
     decreaseTooltip() {
-      if (this.singularityCapIncreases === 0) return "You cannot decrease the cap any further!";
+      if (this.singularityCapIncreases === 0) return "你不能再进一步减少上限！";
       const singularities = this.singularitiesGained / this.perStepFactor;
       return this.willCondenseOnDecrease
-        ? `Decreasing the cap will immediately auto-condense for
-          ${format(singularities, 2)} Singularities!`
+        ? `降低上限后将立即自动凝聚 ${format(singularities, 2)} 个奇点!`
         : null;
     },
     increaseTooltip() {
       return this.singularityCapIncreases >= 50
-        ? "You cannot increase the cap any further!"
+        ? "你不能再进一步增加上限！"
         : null;
     }
   },

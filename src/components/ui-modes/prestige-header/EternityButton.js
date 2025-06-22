@@ -180,9 +180,9 @@ export default {
   >
     <!-- Cannot Eternity -->
     <template v-if="type === -1">
-      Reach {{ format(eternityGoal, 2, 2) }}
+      达到 {{ format(eternityGoal, 2, 2) }}
       <br>
-      Infinity Points
+      无限点数
     </template>
 
     <!-- First time -->
@@ -197,11 +197,11 @@ export default {
       <span>永恒点数</span>
       <br>
       <template v-if="showEPRate">
-        Current: {{ format(currentEPRate, 2, 2) }} EP/min
+        当前：{{ format(currentEPRate, 2, 2) }} 永恒点数/分
         <br>
-        Peak: {{ format(peakEPRate, 2, 2) }} EP/min
+        峰值：{{ format(peakEPRate, 2, 2) }} 永恒点数/分
         <br>
-        at {{ format(peakEPRateVal, 2, 2) }} EP
+        峰值时获得 {{ format(peakEPRateVal, 2, 2) }} 永恒点数
       </template>
     </template>
 
@@ -225,7 +225,7 @@ export default {
         获得 <span :style="tachyonAmountStyle">{{ format(gainedTachyons, 2, 1) }}</span> 超光速粒子
       </template>
       <br>
-      You should explore a bit and look at new content before clicking me!
+      在点击前，你该到处看看新内容！
     </template>
 
     <!-- Challenge with multiple completions -->

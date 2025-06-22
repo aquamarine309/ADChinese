@@ -110,13 +110,13 @@ export default {
     },
     startRun() {
       if (this.isDoomed) return;
-      Modal.celestials.show({ name: "V's", number: 3 });
+      Modal.celestials.show({ name: "薇", number: 3 });
     },
     has(info) {
       return info.isUnlocked;
     },
     mode(hex) {
-      return hex.config.mode === V_REDUCTION_MODE.SUBTRACTION ? "reduced" : "divided";
+      return hex.config.mode === V_REDUCTION_MODE.SUBTRACTION ? "减少" : "除以";
     },
     reductionValue(hex) {
       return hex.config.mode === V_REDUCTION_MODE.SUBTRACTION
@@ -196,16 +196,15 @@ export default {
           获得一个诅咒符文
         </PrimaryButton>
         <br>
-        Cursed Glyphs can be created here or in the Effarig tab.
+        诅咒符文可在这或鹿颈长标签页获得。
         <br>
-        Cursed Glyphs count as {{ formatInt(-3) }} Glyphs for the purposes of all requirements related to Glyph count.
+        诅咒符文在所有基于符文数的需求中视为 {{ formatInt(-3) }} 个符文。
         <br>
-        <span v-if="!isDoomed">The Black Hole can now be used to slow down time if they are both permanent.</span>
+        <span v-if="!isDoomed">现在黑洞达到永久生效后，可以用来减缓时间。</span>
         <br><br>
-        Each Hard V-Achievement counts as two V-Achievements and will award {{ formatInt(2) }} Space Theorems
-        instead of {{ formatInt(1) }}.
+        每个困难的薇成就计为两个薇成就，并将赋予 {{ formatInt(2) }} 个空间之理而不是 {{ formatInt(1) }} 个。
         <br>
-        Goal reduction is significantly more expensive for Hard V-Achievements.
+        对应困难的V成就，降低目标所需的价格会明显增加。
       </div>
       <div
         v-if="showReduction"
@@ -235,7 +234,7 @@ export default {
               v-if="has(runMilestones[0][0]) && hex.isReduced"
               class="o-v-unlock-goal-reduction"
             >
-              Goal has been {{ mode(hex) }} by {{ reductionValue(hex) }}
+              已将目标{{ mode(hex) }} {{ reductionValue(hex) }}
             </p>
             <p class="o-v-unlock-amount">
               已完成 {{ formatInt(hex.completions) }}/{{ formatInt(hex.config.values.length) }}

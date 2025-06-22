@@ -81,7 +81,7 @@ export default {
         class="o-primary-btn--subtab-option"
         @click="showLaitelaHowTo()"
       >
-        Click for Lai'tela info
+        点击以查看莱特拉详情
       </PrimaryButton>
       <PrimaryButton
         class="o-primary-btn--subtab-option"

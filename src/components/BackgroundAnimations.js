@@ -17,7 +17,7 @@ export default {
     update() {
       this.blob = Theme.currentName() === "S11";
       this.animateTachyons = player.options.animations.tachyonParticles &&
-        Tabs.current[this.$viewModel.subtab].name === "Time Dilation";
+        Tabs.current[this.$viewModel.subtab].name === "时间膨胀";
     }
   },
   template: `

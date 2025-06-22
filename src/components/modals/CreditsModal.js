@@ -14,7 +14,7 @@ export default {
   >
     <template #header>
       <h1 class="c-game-header__antimatter">
-        Antimatter Dimensions
+        反物质维度
       </h1>
     </template>
     <div

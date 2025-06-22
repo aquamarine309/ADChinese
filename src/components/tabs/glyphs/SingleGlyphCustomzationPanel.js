@@ -19,6 +19,7 @@ export default {
       const g = Glyphs.findById(this.glyphID);
       return {
         type: g.type,
+        name: GAYPH_NAMES[g.type],
         level: g.level,
         strength: g.strength,
         effects: g.effects,
@@ -29,17 +30,17 @@ export default {
     },
     typeCosmetic() {
       const changes = [];
-      if (GlyphAppearanceHandler.symbolMap[this.glyph.type]) changes.push("Symbol");
-      if (GlyphAppearanceHandler.colorMap[this.glyph.type]) changes.push("Color");
-      if (changes.length === 0) return "None";
+      if (GlyphAppearanceHandler.symbolMap[this.glyph.type]) changes.push("符号");
+      if (GlyphAppearanceHandler.colorMap[this.glyph.type]) changes.push("颜色");
+      if (changes.length === 0) return "无";
       return changes.join("/");
     },
     specialCosmetic() {
-      if (this.glyph.cosmetic) return this.glyph.cosmetic.capitalize();
+      if (this.glyph.cosmetic) return this.glyph.cosmetic;
       const changes = [];
-      if (this.glyph.symbol) changes.push("Symbol");
-      if (this.glyph.color) changes.push("Color");
-      if (changes.length === 0) return "None";
+      if (this.glyph.symbol) changes.push("符号");
+      if (this.glyph.color) changes.push("颜色");
+      if (changes.length === 0) return "无";
       return changes.join("/");
     }
   },
@@ -102,7 +103,7 @@ export default {
         data-v-single-glyph-customzation-panel
       >
         <u>皮肤属性：</u>
-        类型：{{ glyph.type.capitalize() }}
+        类型：{{ glyph.name }}
         <br>
         全部：{{ typeCosmetic }}
         <br>

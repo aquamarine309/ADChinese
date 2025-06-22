@@ -33,9 +33,8 @@ export default {
       };
     },
     questionmarkTooltip() {
-      return `Glyph score is rarity, minus ${formatInt(200)} for every missing effect.
-        Glyphs with less than the specified rarity are sacrificed. Additional effects
-        beyond ones specified will not increase Glyph score.`;
+      return `符文评分 = 稀有度 - 每个缺失词条扣除 ${formatInt(200)} 分  
+低于指定稀有度的符文将被净化。超出指定数量的额外词条不会提高符文评分。`;
     }
   },
   methods: {

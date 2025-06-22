@@ -68,7 +68,7 @@ export default {
       return DilationUpgrade.ttGenerator;
     },
     baseGalaxyText() {
-      return `${formatInt(this.baseGalaxies)} Base`;
+      return `${formatInt(this.baseGalaxies)} 基础值`;
     },
     hasMaxText: () => PlayerProgress.realityUnlocked() && !Pelle.isDoomed,
     allRebuyables() {

@@ -33,7 +33,7 @@ export default {
     @confirm="handleYesClick"
   >
     <template #header>
-      Delete this Glyph Set
+      删除这组符文预设
     </template>
     <div class="c-modal-message__text">
       Please confirm your desire to delete this Glyph Set:
@@ -44,7 +44,7 @@ export default {
       This will not affect your actual Glyphs, only the saved preset.
     </div>
     <template #confirm-text>
-      Delete
+      删除
     </template>
   </ModalWrapperChoice>
   `

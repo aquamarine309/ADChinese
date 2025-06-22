@@ -154,7 +154,7 @@ export default {
       />
     </div>
     <div v-if="showLockedDimCostNote">
-      Hold shift to see the Infinity Point cost for locked Infinity Dimensions.
+      按住 Shift 键可查看被锁定无限维度的无限点数价格。
     </div>
   </div>
   `

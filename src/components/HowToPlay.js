@@ -44,7 +44,7 @@ export default {
         class="h2p-tooltip"
         data-v-how-to-play
       >
-        Click for info
+        点击查看详情
       </div>
     </div>
     <div

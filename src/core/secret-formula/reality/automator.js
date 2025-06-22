@@ -623,15 +623,15 @@ export const automator = {
   ],
   otherAutomatorPoints: [
     {
-      name: "Reality Count",
+      name: "现实次数",
       automatorPoints: () => 2 * Math.clampMax(Currency.realities.value, 50),
-      shortDescription: () => `+${formatInt(2)} per Reality, up to ${formatInt(50)} Realities`,
+      shortDescription: () => `每进行一次现实后 +${formatInt(2)}, 最多 ${formatInt(50)} 次现实`,
       symbol: "Ϟ",
     },
     {
-      name: "Black Hole",
+      name: "黑洞",
       automatorPoints: () => (BlackHole(1).isUnlocked ? 10 : 0),
-      shortDescription: () => `Unlocking gives ${formatInt(10)} AP`,
+      shortDescription: () => `解锁后获得 ${formatInt(10)} 自动点数`,
       symbol: "<i class='fas fa-circle'></i>",
     },
   ],

@@ -157,7 +157,7 @@ export default {
   >
     <div>
       <PrimaryButton onclick="Modal.catchup.show(0)">
-        View Content Summary
+        查看内容详情
       </PrimaryButton>
       <div
         class="c-stats-tab-title c-stats-tab-general"
@@ -273,7 +273,7 @@ export default {
         永恒后不能获得储存的无限次数。
       </div>
       <div v-if="eternity.hasBest">
-        Your fastest Eternity was {{ eternity.best.toStringShort() }}.
+        你的最快永恒用时 {{ eternity.best.toStringShort() }}。
       </div>
       <div v-else>
         你<span v-if="reality.isUnlocked">本次现实中</span>不存在最快的永恒用时。

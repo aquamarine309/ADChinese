@@ -26,7 +26,7 @@ export default {
   template: `
   <div class="c-modal-store-btn-container">
     <div class="o-modal-store-label">
-      {{ amount }} STDs
+      {{ amount }} 硬币
     </div>
     <button
       class="o-modal-store-btn"

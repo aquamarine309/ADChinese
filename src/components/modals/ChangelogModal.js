@@ -46,7 +46,7 @@ export default {
         class="c-changelog-title"
         data-v-changelog-modal
       >
-        Changelog
+        更新日志
       </div>
     </div>
     <div
@@ -83,7 +83,7 @@ export default {
           class="c-changelog-body--title"
           data-v-changelog-modal
         >
-          {{ formatDate(shownEntry.date) }}<span v-if="shownEntry.name">: "{{ shownEntry.name }}" update</span>
+          {{ formatDate(shownEntry.date) }}<span v-if="shownEntry.name">：“{{ shownEntry.name }}”更新</span>
         </div>
         <div
           ref="changelogBody"

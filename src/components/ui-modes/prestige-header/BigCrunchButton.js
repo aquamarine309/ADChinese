@@ -129,11 +129,11 @@ export default {
       </b>
       <template v-if="showIPRate">
         <br>
-        Current: {{ format(currentIPRate, 2) }} IP/min
+        当前：{{ format(currentIPRate, 2) }} 无限点数/分
         <br>
-        Peak: {{ format(peakIPRate, 2) }} IP/min
+        峰值：{{ format(peakIPRate, 2) }} 无限点数/分
         <br>
-        at {{ format(peakIPRateVal, 2) }} IP
+        峰值时获得 {{ format(peakIPRateVal, 2) }} 永恒点数
       </template>
       <div v-else />
     </template>

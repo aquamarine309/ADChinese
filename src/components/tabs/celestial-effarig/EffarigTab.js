@@ -84,7 +84,7 @@ export default {
     },
     startRun() {
       if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Effarig's", number: 1 });
+      Modal.celestials.show({ name: "鹿颈长", number: 1 });
     },
     createCursedGlyph() {
       Glyphs.giveCursedGlyph();
@@ -116,10 +116,9 @@ export default {
           你将在下次现实中获得 {{ format(shardsGained, 2) }} 遗迹碎片（{{ format(currentShardsRate, 2) }}/分钟）。
           <span v-if="amplification !== 0">
             <br>
-            Due to amplification of your current Reality,
+            由于当前现实的放大作用，
             <br>
-            you will actually gain a total of
-            {{ format(amplifiedShards, 2) }} Relic Shards ({{ format(amplifiedShardsRate, 2) }}/min).
+            实际将获得总计 {{ format(amplifiedShards, 2) }} 个遗迹碎片（{{ format(amplifiedShardsRate, 2) }}/分钟）。
           </span>
         </div>
         <div

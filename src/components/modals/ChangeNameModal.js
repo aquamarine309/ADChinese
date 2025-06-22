@@ -30,7 +30,7 @@ export default {
   template: `
   <ModalWrapperChoice @confirm="confirmChange">
     <template #header>
-      Change your Speedrun Player Name
+      修改速通玩家名称
     </template>
     <input
       ref="input"

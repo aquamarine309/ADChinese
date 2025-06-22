@@ -45,7 +45,7 @@ export default {
     rolling(newVal, oldVal) {
       if (GameEnd.creditsEverClosed) return;
       if (!oldVal && newVal && this.audio === null) {
-        this.audio = new Audio(`./public/audio/credits.mp3`);
+        this.audio = new Audio(`../../../../public/audio/credits.mp3`);
         this.audio.play();
       }
     }

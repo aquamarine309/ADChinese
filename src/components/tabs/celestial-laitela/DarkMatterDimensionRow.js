@@ -94,9 +94,9 @@ export default {
       return `${line1}<br>${line2}`;
     },
     ascensionTooltip() {
-      return `Interval is capped at ${formatInt(DarkMatterDimension(this.tier).intervalPurchaseCap)}ms.
-        Ascension multiplies interval by ${formatInt(this.intervalAscensionBump)},
-        DM by ${formatInt(this.powerDMPerAscension)}, and DE by ${formatInt(POWER_DE_PER_ASCENSION)}.`;
+      return `间隔已达到上限 ${formatInt(DarkMatterDimension(this.tier).intervalPurchaseCap)} 毫秒。
+        飞升后间隔乘以 ${formatInt(this.intervalAscensionBump)}，
+        暗物质产量乘以 ${formatInt(this.powerDMPerAscension)}，并且暗能量乘以 ${formatInt(POWER_DE_PER_ASCENSION)}。`;
     }
   },
   methods: {

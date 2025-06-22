@@ -13,8 +13,8 @@ export function vUnlockProgress(index) {
 
 export function vUnlockLegendLabel(complete, index) {
   const db = Object.values(GameDatabase.celestials.v.mainUnlock).find(e => e.id === index);
-  if (complete >= 1) return `${db.name} condition for V`;
-  return `Reach ${db.format(db.resource())} / ${db.format(db.requirement)} ${db.name}.`;
+  if (complete >= 1) return `薇的${db.name}条件`;
+  return `达到 ${db.format(db.resource())} / ${db.format(db.requirement)} ${db.name}.`;
 }
 
 // Angle is defined/rescaled so that 0 is the first rift, 4 is the last one, and all 5 are equally spaced around
@@ -217,7 +217,7 @@ export const celestialNavigation = {
         rMinor: 64,
       },
       legend: {
-        text: "Teresa",
+        text: "特蕾莎",
         angle: 135,
         diagonal: 32,
         horizontal: 16,
@@ -241,7 +241,7 @@ export const celestialNavigation = {
         text: () => {
           const rm = Teresa.pouredAmount;
           const cost = TeresaUnlocks.run.price;
-          return `Pour ${format(rm, 2)} / ${format(cost, 2)} RM`;
+          return `进贡 ${format(rm, 2)} / ${format(cost, 2)} 现实机器`;
         },
         angle: 135,
         diagonal: 16,
@@ -277,7 +277,7 @@ export const celestialNavigation = {
       },
       alwaysShowLegend: true,
       legend: {
-        text: "Teresa's Reality",
+        text: "特蕾莎的现实",
         angle: -135,
         diagonal: 96,
         horizontal: 16,
@@ -303,8 +303,8 @@ export const celestialNavigation = {
           const rm = Teresa.pouredAmount;
           const cost = TeresaUnlocks.shop.price;
           return [
-            "Teresa's Perk Point Shop",
-            `Pour ${format(rm, 2)} / ${format(cost, 2)} Reality Machines`
+            "特蕾莎的复兴点商店",
+            `进贡 ${format(rm, 2)} / ${format(cost, 2)} 现实机器`
           ];
         },
         angle: -35,
@@ -334,12 +334,12 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return "Effarig's Shop";
+          if (complete >= 1) return "鹿颈长的商店";
           const rm = Teresa.pouredAmount;
           const cost = TeresaUnlocks.effarig.price;
           return [
-            "Effarig",
-            `Pour ${format(rm, 2)} / ${format(cost, 2)} Reality Machines`
+            "鹿颈长",
+            `进贡 ${format(rm, 2)} / ${format(cost, 2)} 现实机器`
           ];
         },
         angle: -135,
@@ -371,12 +371,12 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return "Unlock Effarig's Reality";
+          if (complete >= 1) return "解锁鹿颈长的现实";
           const rs = Currency.relicShards.value;
           const cost = EffarigUnlock.run.cost;
           return [
-            "Unlock Effarig's Reality",
-            `Reach ${format(rs, 2)} / ${format(cost, 2)} Relic Shards`
+            "解锁鹿颈长的现实",
+            `达到 ${format(rs, 2)} / ${format(cost, 2)} 遗迹碎片`
           ];
         },
         angle: 75,
@@ -410,13 +410,13 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return "Effarig's Infinity";
-          if (complete === 0) return "Unlock Effarig's Reality";
+          if (complete >= 1) return "鹿颈长的无限";
+          if (complete === 0) return "结束鹿颈长的现实";
           const am = Effarig.isRunning ? Currency.antimatter.value : 0;
           return [
-            "Effarig's Infinity",
-            `Reach ${format(am, 2)} / ${format(Number.MAX_VALUE, 2)}`,
-            "Antimatter inside Effarig's Reality."
+            "鹿颈长的无限",
+            "在鹿颈长的现实中",
+            `达到 ${format(am, 2)} / ${format(Number.MAX_VALUE, 2)} 反物质`,
           ];
         },
         angle: 0,
@@ -452,12 +452,12 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return "Effarig's Eternity";
+          if (complete >= 1) return "鹿颈长的永恒";
           const ip = Effarig.isRunning ? Currency.infinityPoints.value : 0;
           return [
-            "Effarig's Eternity",
-            `Reach ${format(ip, 2)} / ${format(Number.MAX_VALUE, 2)}`,
-            "Infinity Points inside Effarig's Reality."
+            "鹿颈长的永恒",
+            "在鹿颈长的现实中",
+            `达到 ${format(ip, 2)} / ${format(Number.MAX_VALUE, 2)} 无限点数`,
           ];
         },
         angle: -45,
@@ -503,13 +503,13 @@ export const celestialNavigation = {
       alwaysShowLegend: true,
       legend: {
         text: complete => {
-          if (complete >= 1) return "Effarig's Reality";
+          if (complete >= 1) return "鹿颈长的现实";
           const ep = Effarig.isRunning ? Currency.eternityPoints.value : 0;
           const goal = DC.E4000;
           return [
-            "Effarig's Reality",
-            `Reach ${format(ep, 2)} / ${format(goal, 2)}`,
-            "Eternity Points inside Effarig's Reality."
+            "鹿颈长的现实",
+            "在鹿颈长的现实中",
+            `达到 ${format(ep, 2)} / ${format(goal, 2)} 永恒点数`
           ];
         },
         angle: -120,
@@ -582,11 +582,11 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return "Glyph level chain has been broken";
+          if (complete >= 1) return "符文等级锁链已打破";
           const goal = 5000;
           return [
-            "Break a chain",
-            `Reach Glyph level ${formatInt(Math.min(player.records.bestReality.glyphLevel, goal))}/${formatInt(goal)}`
+            "打破锁链",
+            `符文等级达到 ${formatInt(Math.min(player.records.bestReality.glyphLevel, goal))}/${formatInt(goal)}`
           ];
         },
         angle: -45,
@@ -627,11 +627,11 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return "Glyph rarity chain has been broken";
+          if (complete >= 1) return "符文稀有度锁链已打破";
           const goal = 100;
           return [
-            "Break a chain",
-            `Reach Glyph rarity ${formatPercents(complete * goal / 100, 1)}/${formatPercents(goal / 100, 1)}`
+            "打破锁链",
+            `符文稀有度达到 ${formatPercents(complete * goal / 100, 1)}/${formatPercents(goal / 100, 1)}`
           ];
         },
         angle: 45,
@@ -670,13 +670,13 @@ export const celestialNavigation = {
       alwaysShowLegend: true,
       legend: {
         text: complete => {
-          if (complete >= 1) return "The Nameless Ones' Reality";
+          if (complete >= 1) return "无名氏的现实";
           const ep = Enslaved.isRunning ? Currency.eternityPoints.value : 0;
           const goal = DC.E4000;
           return [
-            "The Nameless Ones' Reality",
-            `Reach ${format(ep, 2)} / ${format(goal, 2)}`,
-            "Eternity Points inside The Nameless Ones' Reality."
+            "无名氏的现实",
+            "在无名氏的现实中",
+            `达到 ${format(ep, 2)} / ${format(goal, 2)} 永恒点数`,
           ];
         },
         angle: 45,

@@ -10,170 +10,157 @@ export const changelog = [
    */
   {
     date: [2024, 5, 2],
-    name: "Celebrate Android Reality Update",
+    name: "祝贺安卓版现实更新",
     info: `
-Congratulations for the release of Android Reality Update! In order to celebrate this big milestone, we implemented
-some changes mainly based on the player comments and feedback from the Android version.
+恭喜安卓现实版本更新发布！为庆祝这一重要里程碑，我们根据安卓版玩家的评论和反馈实施了以下主要改进：
+
 <br>
 <br>
-<b><i>Once again, thank you so much for playing Antimatter Dimensions!</i></b>
+<b><i>再次衷心感谢您游玩《反物质维度》！</i></b>
 <br>
 <br>
-<b>Major things:</b><br>
+<b>主要更新：</b><br>
 <ul>
-<li>Added newly joined Android testers in credits</li>
-<li>Added a new perk</li>
+<li>在鸣谢名单中添加新加入的 Android 测试人员</li>
+<li>新增一项复兴节点</li>
 </ul>
 <br>
-<b>Additional QoL and information:</b><br>
+<b>新增便利性功能与信息：</b><br>
 <ul>
-<li>Study Presets now carry over when you start over, and Companion Glyph will not leave you too</li>
-<li>Swapped cel2 and Perk shop unlocks</li>
-<li>TS131 now has an additional effect</li>
-<li>Enter key now works in autobuyer inputs to apply changes</li>
-<li>Reward of achievement 118 now improves Sacrifice autobuyer</li>
-<li>Glyph preset settings are now including/increased by default</li>
-<li>Glyph recycle now checks the Glyph effects with Glyph level set in Reality autobuyer</li>
-<li>Added a new cel7 upgrade mimicking EM40</li>
-<li>Added a show all tabs button in tab modify modal</li>
-<li>Added a display when Auto EC is disabled by requirement lock</li>
-<li>Added an option to swap symbol and border colors on Glyphs</li>
-<li>Added a functionality to change the visible resource on Modern UI</li>
-<li>Added a new modal for adjusting exponent notation formatting more flexibly</li>
-<li>Automator now ignores blackhole command while it is being disabled</li>
-<li>Changed requirement of EM1000 to 5 seconds or less</li>
-<li>Study tree will now automatically respec when exiting an EC</li>
-<li>Disabled a rebuyable TP upgrade in cel7, because it caused confusion to many players</li>
-<li>Rebalanced 3rd milestone of 5th bar due to the above upgrade deletion</li>
-<li>Various minor text changes</li>
+<li>研究预设现在会在重新开始时保留，伴生符文也不会消失</li>
+<li>交换了 cel2 和复兴商店的解锁顺序</li>
+<li>时间研究 131 新增附加效果</li>
+<li>自动购买器输入框现在支持回车键确认修改</li>
+<li>成就 118 的奖励现在会强化献祭自动购买器</li>
+<li>符文预设设置现在默认包含/提升等级</li>
+<li>符文回收现在会根据现实自动购买器中的等级设置检查效果</li>
+<li>新增模仿虚幻机器 40 的 cel7 升级</li>
+<li>在标签修改弹窗中添加"显示所有标签"按钮</li>
+<li>当自动永恒挑战因要求未满足被禁用时添加提示</li>
+<li>新增交换符文符号与边框颜色的选项</li>
+<li>新增现代 UI 界面可见资源切换功能</li>
+<li>新增更灵活调整指数记数格式的弹窗</li>
+<li>自动机现在会忽略黑洞禁用状态下的黑洞命令</li>
+<li>将虚幻机器 1000 的要求改为 5 秒或更短</li>
+<li>退出永恒挑战时研究树现在会自动重置</li>
+<li>禁用 cel7 中一项可重复购买的 TP 升级（因造成玩家困惑）</li>
+<li>因上述升级删除，重新平衡了第 5 进度条的第 3 里程碑</li>
+<li>若干文本微调</li>
 </ul>
 <br>
-<b>Minor UI Changes:</b><br>
+<b>次要界面调整：</b><br>
 <ul>
-<li>Adjusted perk layouts for new DAB perk</li>
-<li>Made Glyph sorting order consistent in showcase modal</li>
-<li>Added light and dark Glyph rarity colorblind palettes</li>
-<li>Adjusted various minor UI glitches</li>
+<li>为新 DAB 复兴节点调整复兴布局</li>
+<li>确保符文展示弹窗中的排序顺序一致</li>
+<li>新增浅色/深色符文稀有度色盲调色板</li>
+<li>修复若干细微界面显示问题</li>
 </ul>
 <br>
-<b>Bugfixes:</b><br>
+<b>错误修复：</b><br>
 <ul>
-<li>Fixed link to Synergism</li>
-<li>Fixed tooltip in TD tab</li>
-<li>Fixed offline progress bug</li>
-<li>Fixed Glyph Rarity color bug in popup</li>
-<li>Fixed automator pause command ticking wrongly</li>
-<li>Fixed a NaN display bug with certain autobuyer inputs</li>
-<li>Fixed some buggy behavior for saves without START perk</li>
-<li>Fixed TS192 gave console error while it is being disabled</li>
-<li>Fixed wording on cel7 dilation modal claiming that EP will not be gained</li>
-<li>Fixed ! not being parsed properly when used in study strings in automator scripts</li>
-<li>Fixed Max All TD button not behaving properly with an active Telemechanical Process lock</li>
-<li>Fixed Effarig Glyphs in presets were messed up bug because of the internal format change</li>
-<li>Fixed Glyph preset did not pick the highest level Glyphs while level:increased is selected</li>
-<li>Fixed remnant count not being properly reset when entering cel7 dilation with animation on</li>
-<li>Fixed EC TT cost being calculated incorrectly when using EC! functionality and tree respec simultaneously</li>
-<li>Fixed constant data not being properly carried over on full completion and migrated data on saves
-affected by this bug</li>
-<li>Removed duplicated achievement page text on Design theme</li>
-<li>Prevented offline progress from going above the 1e6 limit that the options menu has</li>
-<li>Fixed tpyo of the century</li>
+<li>修复协同放置模组的链接</li>
+<li>修复时间维度标签页的提示文本</li>
+<li>修复离线进度错误</li>
+<li>修复弹窗中的符文稀有度颜色错误</li>
+<li>修复自动机暂停命令计时错误</li>
+<li>修复特定自动购买器输入导致的 NaN 显示错误</li>
+<li>修复无 START 复兴的存档异常问题</li>
+<li>修复时间研究 192 在禁用时导致控制台报错的问题</li>
+<li>修正 cel7 膨胀弹窗中关于无法获得永恒点数的错误描述</li>
+<li>修复自动机脚本中研究字符串的"!"解析问题</li>
+<li>修复启用远距机械进程锁定时的"最大化所有时间维度"按钮异常</li>
+<li>修复因内部格式变更导致的预设符文配置错误</li>
+<li>修复选择"等级:提升"时预设未正确选取最高等级符文的问题</li>
+<li>修复开启动画时进入 cel7 膨胀后残留计数未重置的问题</li>
+<li>修复同时使用 EC! 功能和重置研究树时永恒挑战时间之理消耗计算错误</li>
+<li>修复完全完成时常量数据未正确继承的问题，并迁移受此影响的存档数据</li>
+<li>移除设计主题下重复的成就页面文本</li>
+<li>防止离线进度超过选项菜单的 1e6 上限</li>
+<li>修复本世纪最严重的拼写错误</li>
 </ul>
 <br>
 `
   },
   {
     date: [2023, 7, 18],
-    name: "Final Official Patch",
+    name: "最终官方补丁",
     info: `
-All of the previous patches since "The Reality Update" have been with the goal of fixing commonly reported bugs and
-implementing highly suggested features. However, this patch is planned to be the final official patch. There may be
-a few minor patches from bugs/requests in response to this set of changes, but these will likely be fixed or added
-as they come in. We may try to add more beyond that, but this is no longer a guarantee and future changes will
-probably not have their own changelog entries.
+自"现实更新"以来的所有补丁都以修复常见问题和实现高需求功能为目标。然而，本次更新将是最后一个官方补丁。后续可能针对此版本的漏洞/请求发布少量小补丁，但未来更新将不再保证且可能不提供更新日志。
+
 <br>
 <br>
-<b><i>At this point, the official version of the game is largely considered to be complete.
-Thank you so much for playing Antimatter Dimensions!</i></b>
+<b><i>至此，游戏正式版已基本完成。衷心感谢您游玩《反物质维度》！</i></b>
 <br>
 <br>
-<b>New things:</b><br>
+<b>新增内容：</b><br>
 <ul>
-<li>Time Study import strings now allow you to immediately enter an Eternity Challenge on importing if the
-string contains an EC and ends with a "!"</li>
-<li>Added hotkeys for Dilation and Glyph respec on Armageddon</li>
-<li>Shift-clicking the Reality button now forces the Glyph selection modal to show up regardless of your settings</li>
-<li>Added 3 more perk layouts (Square, horizontal grid, and distance from START)</li>
-<li>You can now toggle "upgrade locks" for some Reality and Imaginary upgrades, which will automatically prevent
-any manual or automatic actions that would fail their unlock condition</li>
-<li>Glyph Filter settings can now also be imported and exported as text</li>
-<li>You can now tell your filter to immediately Reality (once available, if your autobuyer is on) if none of the
-upcoming choices will be accepted by the filter</li>
-<li>Added Space Theorems (current and total) as an Automator currency</li>
-<li>Added the ability to disable offline time simulation when the game is suspended (due to being out of focus or
-from device hibernation)</li>
-<li>Added information related to save creation time on statistics tab</li>
-<li>The game will now periodically perform automatic local backups, similar to the Android version of the game</li>
+<li>导入时间研究配置时，若字符串包含 EC 并以"!"结尾，将立即进入永恒挑战</li>
+<li>为大灾变场景添加膨胀和符文重置快捷键</li>
+<li>Shift+点击现实按钮现在强制显示符文选择弹窗（无视设置）</li>
+<li>新增 3 种复兴布局（方形/水平网格/距起始点距离）</li>
+<li>可为部分现实/虚幻升级启用"升级锁定"，自动阻止不符合解锁条件的手动/自动操作</li>
+<li>符文筛选设置现在支持文本导入导出</li>
+<li>当筛选器不接受任何待选符文时，可设置为立即执行现实（自动购买器开启且条件满足时）</li>
+<li>将空间之理（当前/总量）添加为自动机货币</li>
+<li>新增禁用后台离线模拟功能（当游戏失去焦点或设备休眠时）</li>
+<li>统计标签页新增存档创建时间信息</li>
+<li>现会定期执行自动本地备份（类似安卓版）</li>
 </ul>
 <br>
-<b>Additional QoL and information:</b><br>
+<b>新增便利性功能与信息：</b><br>
 <ul>
-<li>The tutorial at the start of the game now also emphasizes the How To Play</li>
-<li>Achievements with rewards now have an additional icon on their bottom-left corner</li>
-<li>Infinity and Eternity autobuyers now have status text on their settings boxes which indicate when they will next
-trigger a prestige when on "time" or "X highest" mode</li>
-<li>Eternity Challenges now stay visible on the EC tab as long as you have unlocked them at some point on that Reality,
-even if you unlock a different one afterwards without completing it first</li>
-<li>Resource catchup modal is now slightly more detailed during the first few Realities</li>
-<li>Upgrades affected by the EU2 perk now show more accurate cost text</li>
-<li>You can no longer accidentally Reality without selecting a Glyph; the confirm option will not appear unless one
-is selected. (Disabling the selection modal after unlocking sacrifice still lets the game choose randomly)</li>
-<li>Recent Prestiges for Reality now displays iM when appropriate</li>
-<li>Numerous How To Play entries have been updated or clarified to more accurately describe the game's features</li>
-<li>Added more display options for Recent Prestiges tab</li>
-<li>Many various minor text changes</li>
+<li>游戏初始教程新增游戏指南重点提示</li>
+<li>含奖励的成就左下角新增标识图标</li>
+<li>无限/永恒自动购买器在"时间"或"最高X"模式下，设置框内新增下次触发状态提示</li>
+<li>永恒挑战解锁后将在标签页持续显示（即使未完成就解锁了新挑战）</li>
+<li>前几次现实中的资源追赶弹窗显示更详细</li>
+<li>受 EU2 复兴影响的升级现显示更准确的价格文本</li>
+<li>修复未选择符文时意外执行现实的漏洞（禁用选择弹窗后仍会随机选择）</li>
+<li>现实重置记录现适时显示虚幻机器</li>
+<li>更新澄清多项游戏指南条目</li>
+<li>重置记录标签页新增更多显示选项</li>
+<li>若干文本微调</li>
 </ul>
 <br>
-<b>Minor UI Changes:</b><br>
+<b>界面优化：</b><br>
 <ul>
-<li>Purchase count tooltips for Dimensions now pop out to the left side instead of above</li>
-<li>Changed Break Infinity tab symbol on Modern UI</li>
-<li>Time Study import modal now shows info an import image as a two-column layout to reduce the need to scroll</li>
-<li>Clarified interactions with TS31 and other upgrades</li>
-<li>Eternity Challenges now have a visual overlay to show how many completions they have</li>
-<li>The Reality reset modal now warns you more firmly if you can otherwise Reality for rewards instead</li>
-<li>Added an icon for recently unequipped Glyphs</li>
-<li>Added an "auto" Glyph BG color mode which matches black/white Glyph backgrounds to your current Theme</li>
-<li>Improved color contrast for different Glyph rarities and added decorative borders to Glyphs depending on their
-rarity and/or type</li>
-<li>Added a message modal to clarify why not all Glyphs could be unequipped in certain cases</li>
-<li>Effarig Glyphs now show their effects in "celestial order"</li>
-<li>All <i>inventory</i> Glyphs now also show reduced levels when global level nerfs are active</li>
-<li>Cursed Glyphs can now also be made on cel4's tab</li>
-<li>The glow for the Singularity milestone button can now be disabled</li>
+<li>维度购买次数提示现向左弹出（非向上）</li>
+<li>现代 UI 的突破无限标签页图标更新</li>
+<li>时间研究导入弹窗改为双列布局（减少滚动需求）</li>
+<li>阐明时间研究 31 与其他升级的交互</li>
+<li>永恒挑战新增完成次数视觉标识</li>
+<li>现实重置弹窗在可获取奖励时新增强化警告</li>
+<li>新增最近卸下符文的标识图标</li>
+<li>新增"自动"符文背景色模式（随主题切换黑/白背景）</li>
+<li>优化符文稀有度色彩对比度，新增基于稀有度/类型的装饰边框</li>
+<li>特定情况下无法卸下符文时新增说明弹窗</li>
+<li>鹿颈长符文效果现按"天神顺序"显示</li>
+<li>全局等级削弱时，库存符文同步显示削弱后等级</li>
+<li> cel4 标签页新增诅咒符文制作功能</li>
+<li>新增禁用奇点里程碑按钮光效选项</li>
 </ul>
 <br>
-<b>Bugfixes:</b><br>
+<b>错误修复：</b><br>
 <ul>
-<li>Fixed IP/EP rate display not updating properly when save slot is changed</li>
-<li>Prevented Time Study presets from having duplicate names</li>
-<li>Fixed Eternity button having incorrect styling below Infinite IP in dilation</li>
-<li>Fixed poor Glyph uniformity behavior without START perk</li>
-<li>Fixed some Glyph information being colored based on BG color instead of Theme color</li>
-<li>Disabled automator undo/redo from functioning on tabs other than the editor</li>
-<li>Fixed purchased music Glyphs getting turned into regular Glyphs when cosmetics are reset</li>
-<li>Made Glyph preset loading more forgiving and less likely to fail to load presets</li>
-<li>Fixed cel1 Reality RM record being incorrectly tracked in some cases</li>
-<li>Fixed Glyph filter sometimes not comparing to rarity properly</li>
-<li>Fixed cel7 Glyph slot not appearing/disappearing properly in certain cases</li>
-<li>Fixed misalignment in cel6 icon (credit to @mrkrutaman for the fix)</li>
-<li>Disabled IAP purchase for all Glyph Cosmetics when already purchased</li>
-<li>Fixed Hibernation offline time not giving real-time resources</li>
-<li>Hibernation offline simulation now properly uses offline time settings</li>
-<li>Added a few missing notifications for hotkey presses</li>
-<li>Made Standard notation format larger integers properly</li>
-<li>Removed news ticker with broken link</li>
-<li>Various more minor bugfixes</li>
+<li>修复切换存档时无限点数/永恒点数速率显示异常</li>
+<li>禁止时间研究预设重名</li>
+<li>修复膨胀状态下无限点数以下永恒按钮样式错误</li>
+<li>修复无 START 复兴时的符文均匀性异常</li>
+<li>修复部分符文信息色彩显示错误（误用背景色替代主题色）</li>
+<li>禁止自动机在编辑器外使用撤销/重做功能</li>
+<li>修复重置外观时音乐符文变回普通符文的问题</li>
+<li>优化符文预设加载容错率</li>
+<li>修复特定情况下 cel1 现实机器记录错误</li>
+<li>修复符文筛选器稀有度比对异常</li>
+<li>修复特定情况下 cel7 符文槽位显示异常</li>
+<li>修复 cel6 图标错位问题（鸣谢 @mrkrutaman）</li>
+<li>已购买的符文外观禁止重复购买</li>
+<li>修复休眠离线时间未提供实时资源的问题</li>
+<li>休眠离线模拟现正确应用离线时间设置</li>
+<li>新增部分缺失的快捷键提示</li>
+<li>修复标准记数法的大整数显示问题</li>
+<li>移除含失效链接的新闻播报</li>
+<li>若干细节修复</li>
 </ul>
 <br>
 `
@@ -181,83 +168,78 @@ rarity and/or type</li>
   {
     date: [2023, 5, 25],
     name: "Multiplier Tab, Automator, and Major mechanics fixes",
-    info: `
-<b>Multiplier Tab:</b><br>
-<ul>
-<li>Added a tab for Replicanti speed multipliers</li>
-<li>Power effects can now also be shown as an equivalent-value multiplier</li>
-<li>AD tab now has special behavior within NC12</li>
-<li>Made general categories (ie. "Achievements" or "Time Studies") still openable even with single entries</li>
-<li>DT nerfs no longer apply to game speed within the multiplier tab</li>
-<li>Entries referring to individual upgrades are now worded more consistently</li>
-<li>Filled in a bunch of miscellaneous missing effects and fixed a few mislabeled effects</li>
-</ul>
-<br>
+    info: ` 
+<li>新增复制器速度乘数分解专用标签页</li>  
+<li>效果值现可显示为等效乘数值</li>  
+<li>反物质维度标签页在挑战12中启用特殊机制</li>  
+<li>通用类别（如"成就"或"时间研究"）即使仅含单项仍可展开</li>  
+<li>膨胀时间削弱效果不再影响乘数分解标签页内的游戏速度</li>  
+<li>单项升级条目措辞更统一</li>  
+<li>补充大量遗漏效果并修正错误标签</li>  
+</ul>  
+<br>  
 
-<b>Automator Features:</b><br>
-<ul>
-<li>Automator-related notifications in the top-right now have their own coloring</li>
-<li>Constants now stay in a consistent order when refreshing the page</li>
-<li>New scripts now have enforced unique names by default</li>
-<li>NOTIFY command now also supports single-quotes, as well as mixtures of single/double quotes</li>
-<li>Added buttons for deleting individual constants, and another button to delete all of them</li>
-<li>Added undo/redo functionality</li>
-<li>You can now import all your study presets into the automator as constants</li>
-<li>Added WAIT functionality for next BH1/BH2 activation</li>
-<li>Added STOP command to immediately halt script execution</li>
-<li>You can now use the highest filter score out of your available Glyph options as a variable for
-  comparisons</li>
-</ul>
-<br>
+<b>自动机功能：</b><br>  
+<ul>  
+<li>右上角自动机通知现启用独立配色</li>  
+<li>页面刷新时常量保持固定排序</li>  
+<li>新建脚本默认强制名称唯一</li>  
+<li>NOTIFY指令新增支持单引号及混合引号</li>  
+<li>新增单常量删除按钮及批量删除按钮</li>  
+<li>新增撤销/重做功能</li>  
+<li>支持将研究预设批量导入为自动机常量</li>  
+<li>新增等待下次黑洞1/2激活功能</li>  
+<li>新增STOP指令可立即终止脚本</li>  
+<li>可用当前符文选项最高筛选分作为比较变量</li>  
+</ul>  
+<br>  
 
-<b>Automator Bugfixes:</b><br>
-<ul>
-<li>Block-to-text conversion should be less aggressive on deleting errored lines</li>
-<li>Fixed block editor wiping internal contents of all later blocks whenever block nesting changes</li>
-<li>Fixed a bug which sometimes caused the automator to attempt to run errored scripts and crash the game</li>
-<li>Fixed automator constants not being compared to built-in keywords correctly</li>
-<li>Fixed execution skipping the first line whenever scripts restart due to a REALITY command</li>
-<li>Fixed a few syntax coloring bugs in the Automator text editor</li>
-<li>Fixed a bug which caused the automator to prevent some resources from being reset after full completions</li>
-</ul>
-<br>
+<b>自动机问题修复：</b><br>  
+<ul>  
+<li>模块转文本时减少错误行误删</li>  
+<li>修复模块嵌套变动时后续模块内容清空问题</li>  
+<li>修复自动机偶发运行错误脚本导致崩溃</li>  
+<li>修正常量与内置关键词比对异常</li>  
+<li>修复执行REALITY指令后首行跳过问题</li>  
+<li>修正文本编辑器语法高亮错误</li>  
+<li>修复完全通关后部分资源未重置问题</li>  
+</ul>  
+<br>  
 
-<b>Game Mechanic fixes:</b><br>
-<ul>
-<li>Dark Energy no longer resets after Annihilation</li>
-<li>Dooming is now prevented if you have less than 5 empty inventory slots</li>
-<li>"Refine to cap, then sacrifice" mode now sacrifices when the related resource is still locked</li>
-<li>Secret achievement 46 is now properly awarded if the condition is met while offline</li>
-<li>Storing real time no longer prevents autobuyers from ticking</li>
-<li>Fixed bugged modal and game crash when attempting to exit a Celestial Reality from the Glyph tab</li>
-<li>IAP flag in speedruns is now updated more consistently</li>
-<li>Fixed Reality button sometimes showing an incorrect projected RM value due to amplification</li>
-<li>Fixed Black Holes getting stuck as permanently inactive in some cases</li>
-<li>Fixed negative Glyph counts not being properly updated when using Glyph undo</li>
-<li>Glyph purge modals now count identical Glyphs properly</li>
-<li>Fixed Glyph purge modals sometimes not appearing</li>
-<li>Fixed a poor interaction between the new Glyph RNG and negative seed values</li>
-<li>Fixed Glyph RNG seed not advancing after amplified realities</li>
-</ul>
+<b>游戏机制修复：</b><br>  
+<ul>  
+<li>暗能量湮灭后不再重置</li>  
+<li>物品栏空位不足5格时禁止<strong>毁灭现实</strong>操作</li>  
+<li>"提纯至上限后献祭"模式在关联资源锁定时仍执行献祭</li>  
+<li>离线达成条件时正确解锁隐藏成就46</li>  
+<li>存储现实时间不再阻断自动购买器运行</li>  
+<li>修复从符文页退出天神现实时弹窗异常及崩溃</li>  
+<li>速通模式内购标识更新更稳定</li>  
+<li>修正因强化导致的现实按钮预期理值显示错误</li>  
+<li>修复黑洞偶发永久休眠问题</li>  
+<li>修正符文撤销时负数量更新异常</li>  
+<li>符文清理弹窗现可准确统计相同符文</li>  
+<li>修复符文清理弹窗偶发不显示问题</li>  
+<li>修正新符文随机机制与负种子值的兼容问题</li>  
+<li>修复强化现实后符文随机种子未推进问题</li>  
+</ul>  
 
-<br><b>Other changes:</b><br>
-<ul>
-<li>Added confirmation option to hide Glyph purge modals which mass-sacrifice</li>
-<li>Improved UI behavior when importing saves in certain conditions</li>
-<li>Teresa's EU-start upgrade now applies retroactively</li>
-<li>Offline ticks are now limited to a minimum of 33ms instead of 50ms</li>
-<li>"Offline" progress due to device hibernation now gets simulated as if it were offline time
-  instead of being applied as a single large tick</li>
-<li>Offline/hibernation maximum time has been increased from 6 hours to 24 hours</li>
-<li>Text references to Teresa's Perk Shop have been more standardized</li>
-<li>Positioning for V's entries in navigation was adjusted to prevent text overlap</li>
-<li>AMOLED themes now have proper theming on credits scroll</li>
-<li>Fixed Achievement 142 not unlocking when unlocking the Black Hole</li>
-<li>Fixed Reality Glyph cosmetics not handling colors properly</li>
-<li>Exit Dilation modal no longer erroneously appears outside of Dilation</li>
-<li>A handful of more minor text and typo fixes</li>
+<br><b>其他改动：</b><br>  
+<ul>  
+<li>批量献祭符文清理弹窗新增确认选项</li>  
+<li>优化特定条件下导入存档的界面响应</li>  
+<li>特蕾莎的永恒升级现支持追溯生效</li>  
+<li>离线时间间隔下限从50ms调整为33ms</li>  
+<li>设备休眠导致的"离线"进度现按离线时间模拟（非单次大间隔计算）</li>  
+<li>离线/休眠最大时长从6小时延长至24小时</li>  
+<li>特蕾莎增益商店文本描述标准化</li>  
+<li>调整薇导航条目定位防止文本重叠</li>  
+<li>AMOLED主题现适配致谢列表配色</li>  
+<li>修复解锁黑洞时成就142未触发问题</li>  
+<li>修正现实符文外观颜色处理异常</li>  
+<li>退出时间膨胀弹窗在非膨胀状态下不再误显</li>  
+<li>若干文本细节及拼写修正</li>  
 </ul>
-<br>
 `
   },
   {

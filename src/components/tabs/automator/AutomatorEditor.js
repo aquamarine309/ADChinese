@@ -60,7 +60,7 @@ export default {
       // This may happen if the player has errored textmato scripts and switches to them while in blockmato mode
       if (BlockAutomator.hasUnparsableCommands(this.currentScript) &&
         player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
-        Modal.message.show(`Some incomplete blocks were unrecognizable - defaulting to text editor.`);
+        Modal.message.show(`部分脚本命令无法识别，已默认切换至文本编辑器模式。`);
 
         // AutomatorBackend.changeModes initializes the new editor and savefile state from BlockAutomator.lines, which
         // will be empty if this is running upon game load - this ends up wiping the entire script. So we instead set

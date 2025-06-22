@@ -1,5 +1,3 @@
-import { sha512_256 } from "../../../modules/sha512.js";
-
 import ModalWrapperChoice from "./ModalWrapperChoice.js";
 import PrimaryButton from "../PrimaryButton.js";
 import StudyStringLine from "./StudyStringLine.js";
@@ -98,8 +96,8 @@ export default {
       return combinedTree;
     },
     modalTitle() {
-      if (this.deleting) return `Deleting Study Preset "${this.name}"`;
-      return this.isImporting ? "Input your tree" : `Editing Study Preset "${this.name}"`;
+      if (this.deleting) return `删除时间研究预设“${this.name}”`;
+      return this.isImporting ? "导入时间研究树" : `编辑时间研究预设“${this.name}”`;
     },
     invalidMessage() {
       if (!this.inputIsValidTree || this.importedTree.invalidStudies.length === 0) return null;
@@ -122,7 +120,7 @@ export default {
             break;
         }
       }
-      return `Your import string has invalid study IDs: ${coloredString.replaceAll("#", "").replaceAll(",", ", ")}
+      return `无效的时间研究 ID：${coloredString.replaceAll("#", "").replaceAll(",", ", ")}
         <br><br>`;
     },
     truncatedInput() {
@@ -138,17 +136,14 @@ export default {
       return TimeStudyTree.isValidImportString(this.truncatedInput);
     },
     inputIsSecret() {
-      // The button to open the modal and the actual modal itself display two different strings;
-      // we should allow either to unlock the secret achievement
-      const secretStrings = [
-        "08b819f253b684773e876df530f95dcb85d2fb052046fa16ec321c65f3330608",
-        "bb450c2a3869bae412ed0b4304dc229521fc69f0fdcc95b3b61460aaf5658fc4"
-      ];
-      return secretStrings.includes(sha512_256(this.input.toLowerCase()));
+      // Turning text into hash is troublesome.
+      // And nobody cares whatever I uses hash.
+      // - ADChinese Developer
+      return this.input === "时间研究树";
     },
     confirmText() {
-      if (this.deleting) return "Delete";
-      return this.isImporting ? "Import" : "Save";
+      if (this.deleting) return "删除";
+      return this.isImporting ? "导入" : "保存";
     }
   },
   watch: {
@@ -199,16 +194,16 @@ export default {
     savePreset() {
       if (this.inputIsValid) {
         player.timestudy.presets[this.id].studies = this.input;
-        GameUI.notify.eternity(`Study Tree ${this.name} successfully edited.`);
+        GameUI.notify.eternity(`研究树 ${this.name} 已成功导出`);
         this.emitClose();
       }
     },
     deletePreset() {
       const name = player.timestudy.presets[this.id].name;
-      const presetName = name ? `Study preset "${name}"` : "Study preset";
+      const presetName = name ? `时间研究预设“${name}”` : "时间研究预设";
       player.timestudy.presets[this.id].studies = "";
       player.timestudy.presets[this.id].name = "";
-      GameUI.notify.eternity(`${presetName} deleted from slot ${this.id + 1}`);
+      GameUI.notify.eternity(`${presetName} 已从槽位 ${this.id + 1} 中删除`);
     },
     studyString(study) {
       return study instanceof ECTimeStudyState ? `EC${study.id}` : `${study.id}`;
@@ -281,7 +276,7 @@ export default {
           />
         </template>
         <div v-if="!deleting && !inputIsValidTree && hasInput">
-          Not a valid tree
+          无效的时间研究树
         </div>
       </div>
       <div
@@ -303,7 +298,7 @@ export default {
         v-tooltip="'This will format the study preset text, for example, changing \\'a,b,c|d\\' to \\'a, b, c | d\\'.'"
         @click="convertInputShorthands"
       >
-        Format Preset Text
+        格式化预设文本
       </PrimaryButton>
     </div>
     <span v-if="isImporting">
@@ -330,7 +325,7 @@ export default {
           class="c-modal__confirmation-toggle__text"
           data-v-study-string-modal
         >
-          Also respec tree and eternity
+          同时重置时间研究树并永恒
           <span
             v-if="!canEternity"
             class="c-modal__confirmation-toggle__warning"

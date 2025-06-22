@@ -30,28 +30,21 @@ export default {
   },
   computed: {
     firstRealityText() {
-      return `Reality will reset everything except Challenge records and anything under the General header on the
-        Statistics tab. The first ${formatInt(13)} rows of Achievements are also reset,
-        but you will automatically get one Achievement back every
-        ${timeDisplayNoDecimals(30 * 60000)}. You will also gain Reality Machines based on your Eternity Points, a
-        Glyph with a level based on your Eternity Points, Replicanti, and Dilated Time, a Perk Point to spend
-        on quality of life upgrades, and unlock various upgrades.`;
+      return `进行现实将重置所有的游戏内容，以下除外：挑战纪录和统计页面中“概况”条目下的内容。\n\n进行现实将重置前 ${formatInt(13)} 行的所有成就，但你将每隔 ${timeDisplayNoDecimals(30 * 60000)} 自动获得一个成就。\n\n现实之后将基于永恒点数获得现实机器，同时获得一个符文。符文的等级基于永恒点数、复制器和膨胀时间计算。你还能获得一个可用于提升游戏体验的复兴点数，并在第一次现实之后解锁大量的现实升级。`;
     },
     canSacrifice() {
       return RealityUpgrade(19).isEffectActive;
     },
     warnText() {
       if (!this.hasChoice) {
-        return `You currently only have a single option for new Glyphs every
-          Reality. You can unlock the ability to choose from multiple Glyphs by canceling out of this modal and
-          purchasing the START Perk.`;
+        return `每次现实时，你只有一个备选符文。你需要关闭这个弹窗，在复兴树中购买 START 节点，才能增加备选符文的数量。`;
       }
 
       if (this.hasFilter && this.selectedGlyph === undefined) {
-        return `If you do not choose a Glyph, one will be automatically selected using your Glyph filter.`;
+        return `若不选择符文，系统将根据你的符文筛选器自动选择。`;
       }
       return this.selectedGlyph === undefined
-        ? `You must select a Glyph in order to continue.`
+        ? `必须选择符文才能继续。`
         : null;
     },
     gained() {
@@ -191,8 +184,7 @@ export default {
       data-v-reality-modal
     >
       <span v-if="simRealities > 1">
-        You will be simulating more Realities than you have open inventory space for;
-        this may result in some Glyphs being Sacrificed.
+        即将执行的现实重置次数超过剩余仓库槽位；这可能导致部分符文被自动净化。  
       </span>
       <span v-else>
         你的符文仓库没有可用空间，选中的符文将被
@@ -201,7 +193,7 @@ export default {
     </div>
     <div v-if="confirmationToDisable">
       <br>
-      You can force this modal to appear (even if disabled) by Shift-clicking the Reality button.
+      按住 Shift 键点击现实按钮可强制显示此弹窗（即使已禁用）。
     </div>
     <template
       v-if="canSacrifice && canConfirm"

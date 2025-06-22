@@ -27,23 +27,23 @@ export default {
       return {
         upgrade: this.blackHole.intervalUpgrade,
         description: () => `黑洞的冷却时间减少 ${this.blackHoleDescription}`,
-        effectTitle: "Current interval",
+        effectTitle: "当前间隔",
         formatEffect: () => TimeSpan.fromSeconds(this.blackHole.rawInterval).toStringShort(false)
       };
     },
     powerConfig() {
       return {
         upgrade: this.blackHole.powerUpgrade,
-        description: () => `Make ${this.blackHoleDescription} ${formatPercents(0.35)} stronger`,
-        effectTitle: "Current power",
+        description: () => `使${this.blackHoleDescription}增强 ${formatPercents(0.35)}`,
+        effectTitle: "当前强度",
         formatEffect: value => formatX(value, 2, 2)
       };
     },
     durationConfig() {
       return {
         upgrade: this.blackHole.durationUpgrade,
-        description: () => `Extend ${this.blackHoleDescription}'s duration by ${formatPercents(0.3)}`,
-        effectTitle: "Current duration",
+        description: () => `${this.blackHoleDescription}的持续时间延长 ${formatPercents(0.3)}`,
+        effectTitle: "当前持续时间",
         formatEffect: () => TimeSpan.fromSeconds(this.blackHole.duration).toStringShort(false)
       };
     }

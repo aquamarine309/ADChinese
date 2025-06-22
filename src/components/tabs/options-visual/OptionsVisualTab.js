@@ -36,10 +36,10 @@ export default {
       return `记数法：${this.notation}`;
     },
     sidebarLabel() {
-      return `Sidebar (Modern UI): ${this.sidebarResource}`;
+      return `侧边栏（现代 UI）: ${this.sidebarResource}`;
     },
     UILabel() {
-      return `UI: ${this.$viewModel.newUI ? "新版" : "旧版"}`;
+      return `UI: ${this.$viewModel.newUI ? "现代" : "经典"}`;
     }
   },
   watch: {
@@ -51,7 +51,7 @@ export default {
     update() {
       const options = player.options;
       this.theme = Theme.currentName();
-      this.notation = options.notation;
+      this.notation = Notations.current.chineseName;
       this.sidebarResource = player.options.sidebarResourceID === 0
         ? "最新资源"
         : this.sidebarDB.find(e => e.id === player.options.sidebarResourceID).optionName;
@@ -113,7 +113,7 @@ export default {
           class="o-primary-btn--option"
           onclick="Modal.infoDisplayOptions.show()"
         >
-          打开名称显示选项
+          打开信息显示选项
         </OptionsButton>
         <OptionsButton
           class="o-primary-btn--option"

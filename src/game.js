@@ -982,8 +982,9 @@ export function simulateTime(seconds, real, fast) {
           GameIntervals.stop();
           ui.$viewModel.modal.progressBar = {
             label: "离线进度模拟",
-            info: () => `为了快速计算离线期间所获得的资源，当前游戏正在以较低精度运行。有关技术细节，请参阅《玩法指南》中「离线进度」条目。如果你急于返回游戏，可点击“加速”按钮通过减少一半计算周期的方式模拟剩余时间（剩余计算周期数最低为 ${formatInt(500)} 个）。而“跳过”按钮则会直接使用全部剩余离线时间，在 ${formatInt(10)} 个计算周期内完成结算。`,
-            progressName: "Ticks",
+            info: () => `游戏正以较低精度运行，以便快速计算你离线期间获得的资源。技术细节请参见“离线进度”的游戏帮助条目。
+若你希望更快返回游戏，可点击“加速”按钮，此时系统将以剩余时间间隔数的一半（最低不少于 ${formatInt(500)} 个）快速模拟剩余进度。点击“跳过”按钮则会将全部剩余离线时间压缩至 ${formatInt(10)} 个时间间隔完成计算。`,
+            progressName: "时间间隔",
             current: doneSoFar,
             max: ticks,
             startTime: Date.now(),

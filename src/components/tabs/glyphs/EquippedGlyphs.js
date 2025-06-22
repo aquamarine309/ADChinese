@@ -28,17 +28,15 @@ export default {
       return this.slotCount + 1;
     },
     respecTooltip() {
-      const reset = Pelle.isDoomed ? "Armageddon" : "Reality";
-      return this.respec
-        ? `Respec is active and will place your currently - equipped Glyphs into your inventory after ${reset}.`
-        : `Your currently-equipped Glyphs will stay equipped on ${reset}.`;
+      const reset = Pelle.isDoomed ? "末日" : "现实";
+      return this.respec  
+        ? `卸下后，${reset}后将把当前装备的符文移回仓库。`  
+        : `当前装备的符文将在${reset}后保持生效状态！`;
     },
     undoTooltip() {
-      if (!this.undoSlotsAvailable) return "You do not have available inventory space to unequip Glyphs to";
-      return this.undoAvailable
-        ? ("Unequip the last equipped Glyph and rewind Reality to when you equipped it." +
-          " (Most resources will be fully reset)")
-        : "Undo is only available for Glyphs equipped during this Reality";
+      return !this.undoSlotsAvailable ? "仓库空间不足，无法卸下符文。" : (this.undoAvailable  
+      ? "撤销最近装备的符文，并将现实返回至装备前的状态（多数资源将完全重置）。"  
+      : "仅可撤销本轮现实中装备的符文操作。");
     },
     unequipText() {
       if (Pelle.isDoomed) return "在末日时卸下符文";
@@ -214,7 +212,7 @@ export default {
         @click="undo"
         data-v-euqipped-glyphs
       >
-        <span>Rewind to <b>undo</b> the last equipped Glyph</span>
+        <span>返回至<b>撤销</b>最近装备的符文</span>
       </button>
       <button
         class="l-glyph-equip-button c-reality-upgrade-btn"

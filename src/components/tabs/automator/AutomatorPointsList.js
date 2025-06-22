@@ -148,11 +148,9 @@ export default {
     <div>
       自动机可以购买时间研究、进入永恒挑战或进入时间膨胀。
       <br>
-      It can also force prestige events on certain conditions independently from your Autobuyers or modify
-      some of your Autobuyer settings.
+      自动机使用一种自定义的脚本语言。除未提及的其他自动化功能外，它能购买完整的时间研究树，进入永恒挑战或启动时间膨胀。在某些条件下，它还可以无视自动购买器的设置，强制进行重置（无限/永恒/现实），或修改一些自动购买器设置。
       <br>
-      The speed of the Automator gradually increases as you get more Realities. If unlocked right now,
-      it would run {{ format(1000 / automatorInterval, 2, 2) }} commands per real-time second.
+      自动机的运行速度会随着现实次数的不断增加而逐渐加快。如果自动机现在解锁，它将以每秒 {{ format(1000 / automatorInterval, 2, 2) }} 条指令的速度运行。
     </div>
   </div>
   `

@@ -90,8 +90,7 @@ export default {
         {{ reqLockText }}
       </div>
       <br>
-      Inverting the Black Hole only affects its own speedup, no other upgrades or effects, although
-      it will also indirectly affect the Effarig Game speed power effect.
+      反转黑洞仅影响其自身的加速效果，不影响其他升级或效果，但会间接作用于鹿颈长的游戏速度指数的效果。
     </div>
   </div>
   `

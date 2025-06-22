@@ -13,8 +13,7 @@ export default {
   },
   computed: {
     questionMarkTooltip() {
-      return `Protected slots are unaffected by anything which may move or purge Glyphs.
-        New Glyphs will never be inserted into these slots.`;
+      return `受保护的槽位不受任何可能移动或净化符文操作的影响，且新符文永远不会插入这些槽位。`;
     }
   },
   watch: {

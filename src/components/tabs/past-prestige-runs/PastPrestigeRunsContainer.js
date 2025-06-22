@@ -256,11 +256,10 @@ export default {
           data-v-past-prestige-runs-container
         >
           <i v-if="index === 10">
-            An average cannot be calculated with no {{ singular }}.
+            无可用{{ singular }}时无法计算平均值。
           </i>
           <i v-else>
-            You have not done {{ formatInt(index + 1) }}
-            {{ singular }} yet.
+            尚未完成第 {{ formatInt(index + 1) }} 次{{ singular }}。
           </i>
         </span>
         <span

@@ -442,14 +442,14 @@ export default {
       class="l-glyph-levels-and-weights__factor l-glyph-level-and-weights-note"
       data-v-glyph-levels-and-weights
     >
-      Note: All resources here are log10 of their actual values.
+      注意：此处所有资源值均为实际值的 log10。
     </div>
     <div
       :style="rowStyle('info2')"
       class="l-glyph-levels-and-weights__factor l-glyph-level-and-weights-note"
       data-v-glyph-levels-and-weights
     >
-      EP, Replicanti, and DT use their highest values this Reality.
+      EP、复制器和膨胀时间使用本轮现实中达到的最高值。
     </div>
     <template v-if="adjustVisible">
       <div

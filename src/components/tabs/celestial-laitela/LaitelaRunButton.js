@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     completionTime() {
-      if (this.tierNotCompleted) return "Not completed at this tier";
+      if (this.tierNotCompleted) return "尚未完成本层级";
       return `最佳完成时间：${TimeSpan.fromSeconds(this.realityTime).toStringShort()}`;
     },
     runEffects() {
@@ -41,7 +41,7 @@ export default {
     },
     startRun() {
       if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Lai'tela's", number: 5 });
+      Modal.celestials.show({ name: "莱特拉", number: 5 });
     },
     classObject() {
       return {

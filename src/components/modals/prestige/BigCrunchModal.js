@@ -50,15 +50,13 @@ export default {
       bigCrunchResetRequest();
       EventHub.ui.offAll(this);
       if (this.isFirstInfinity) {
-        setTimeout(() => Modal.message.show(`This animation will occur after every manually-triggered Infinity. If
-          you would like to disable it, there is a setting to do so in the Options tab. This can be done for any
-          visual animation effect in the game after seeing it for the first time.`, {}, 3), 2000);
+        setTimeout(() => Modal.message.show(`每次手动触发的无限重置后将播放此动画。如需禁用，请在选项标签页中调整设置。游戏中所有视觉动画效果在首次触发后均可禁用。`, {}, 3), 2000);
       }
     }
   },
   template: `
   <ResetModal
-    header="You are about to Infinity"
+    header="你将要进行无限"
     :message="message"
     :gained-resources="ipGainInfo"
     :starting-resources="startingResources"

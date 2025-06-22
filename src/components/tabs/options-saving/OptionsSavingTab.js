@@ -34,8 +34,7 @@ export default {
   },
   computed: {
     modalTooltip() {
-      return `The game will detect certain situations where you might not want to overwrite your cloud save, and show
-        you a modal with more information if this is ON.`;
+      return `当检测到你可能不希望覆盖云存档的情况时，若此选项开启，游戏将显示包含详细信息的弹窗。`;
     },
     overwriteTooltip() {
       if (this.showCloudModal) return "This setting does nothing since the modal is being shown.";

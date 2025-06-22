@@ -48,7 +48,7 @@ export default {
         v-for="(category, i) in categoryNames"
         :key="i"
       >
-        {{ category }} ({{ commandsInCategory(i).length }} commands)
+        {{ category }}（{{ commandsInCategory(i).length }} 条指令）
         <div
           v-for="command in commandsInCategory(i)"
           :key="command.id"
@@ -63,10 +63,7 @@ export default {
       </div>
       <br>
       <span>
-        Note: In the SYNTAX note on each command, <u>underlined</u> inputs are <i>required</i> inputs which you must
-        fill and inputs in [square brackets] are optional (if used, they should be input <i>without</i> the brackets).
-        Any other parts should be typed in as they appear. Unless otherwise stated, all of the inputs are
-        case-insensitive. Some commands may have more than one valid format, which will appear on separate lines.
+        注意：每个指令的语法说明中，<u>带下划线</u>的参数为<i>必填</i>参数，必须填写；方括号[]内的参数为可选参数（使用时需<i>省略</i>方括号）。其余部分应按原样输入。除非特别说明，所有参数均不区分大小写。部分指令可能有多种有效格式，将分行显示。
       </span>
     </div>
   </div>

@@ -63,11 +63,11 @@ export default {
     <span
       class="c-reality-shard-gain"
       data-v-armageddon-button
-    >{{ format(realityShardGain, 2, 2) }}</span>/s ➜
+    >{{ format(realityShardGain, 2, 2) }}</span>/秒 ➜
     <span
       class="c-reality-shard-gain"
       data-v-armageddon-button
-    >{{ format(nextRealityShardGain, 2, 2) }}</span>/s
+    >{{ format(nextRealityShardGain, 2, 2) }}</span>/秒
   </button>
   `
 };

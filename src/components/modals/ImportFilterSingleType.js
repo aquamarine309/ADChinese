@@ -102,7 +102,7 @@ export default {
           ach-tooltip="Number of effects in Specified Effect"
           data-v-import-filter-single-type
         >
-          Minimum Effects: {{ effectStr }}
+          最小词条数量：{{ effectStr }}
         </span>
         <span
           class="c-target-score"
@@ -110,7 +110,7 @@ export default {
           ach-tooltip="Threshold for Effect Score"
           data-v-import-filter-single-type
         >
-          Score: {{ scoreStr }}
+          分数：{{ scoreStr }}
         </span>
       </span>
       <br>
@@ -148,7 +148,7 @@ export default {
       </span>
     </span>
     <span v-else>
-      (No changes)
+      （无变化）
     </span>
   </div>
   `

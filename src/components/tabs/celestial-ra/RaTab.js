@@ -94,7 +94,7 @@ export default {
     },
     startRun() {
       if (this.isDoomed) return;
-      Modal.celestials.show({ name: "Ra's", number: 4 });
+      Modal.celestials.show({ name: "太阳神", number: 4 });
     },
     toggleMode() {
       Ra.toggleMode();
@@ -118,7 +118,6 @@ export default {
       </div>
     </div>
     <div>
-      Mouse-over the icons below the bar to see descriptions of upgrades,
       将鼠标悬浮在下列图标上以查看升级描述，
       <br>
       将鼠标悬浮在 <i class="fas fa-question-circle" /> 图标上以查看特定资源的信息。

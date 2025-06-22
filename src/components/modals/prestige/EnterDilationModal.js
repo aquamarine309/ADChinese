@@ -15,17 +15,17 @@ export default {
         multipliers you have.`;
     },
     entranceLabel() {
-      return `You are about to enter Dilation`;
+      return `你确定要进行时间膨胀吗？`;
     },
     EPSinceLabel() {
       if (player.dilation.lastEP.eq(-1)) {
-        return "This is your first Dilation";
+        return "这是你的第一次时间膨胀";
       }
       if (!isInCelestialReality() && Ra.unlocks.unlockDilationStartingTP.canBeApplied) {
         return `You already have the maximum feasible amount of Tachyon Particles you can attain due to
           Teresa's Level ${formatInt(25)} reward.`;
       }
-      return `You last completed Dilation at ${format(player.dilation.lastEP, 2, 2)} Eternity Points.`;
+      return `你上次以 ${format(player.dilation.lastEP, 2, 2)} 永恒点数完成了时间膨胀。`;
     }
   },
   methods: {
@@ -55,7 +55,7 @@ export default {
       {{ message }}
     </div>
     <template #confirm-text>
-      Enter
+      进入
     </template>
   </ModalWrapperChoice>
   `

@@ -191,7 +191,7 @@ export const AutomatorData = {
   },
   createNewScript(content, name) {
     const newScript = AutomatorScript.create(name, content);
-    GameUI.notify.automator(`Imported Script "${name}"`);
+    GameUI.notify.automator(`导入脚本 "${name}"`);
     player.reality.automator.state.editorScript = newScript.id;
     AutomatorData.clearUndoData();
     EventHub.dispatch(GAME_EVENT.AUTOMATOR_SAVE_CHANGED);
@@ -274,7 +274,7 @@ export const AutomatorData = {
   // could in principle be combined into one function to reduce boilerplace, but keeping them
   // separate is probably more readable externally
   undoScriptEdit() {
-    if (this.undoBuffer.length === 0 || Tabs.current._currentSubtab.name !== "Automator") return;
+    if (this.undoBuffer.length === 0 || Tabs.current._currentSubtab.key !== "automator") return;
 
     const undoContent = this.undoBuffer.pop();
     this.pushRedoData(this.currentScriptText());
@@ -285,7 +285,7 @@ export const AutomatorData = {
     else BlockAutomator.updateEditor(undoContent);
   },
   redoScriptEdit() {
-    if (this.redoBuffer.length === 0 || Tabs.current._currentSubtab.name !== "Automator") return;
+    if (this.redoBuffer.length === 0 || Tabs.current._currentSubtab.key !== "automator") return;
 
     const redoContent = this.redoBuffer.pop();
     // We call this with a value which is always higher than said threshold, forcing the current text to be pushed

@@ -99,7 +99,7 @@ export default {
         @click="centerTree"
         data-v-perk-point-label
       >
-        以 START 居中复兴树
+        基于 START 居中复兴树
       </PrimaryButton>
       <PrimaryButton
         class="o-primary-btn"

@@ -27,67 +27,67 @@ import { GameKeyboard } from "./keyboard.js";
 
 export const shortcuts = [
   {
-    name: "Toggle Autobuyers",
+    name: "切换自动购买器",
     keys: ["a"],
     type: "bindHotkey",
     function: () => keyboardToggleAutobuyers(),
     visible: true
   }, {
-    name: "Buy one Tickspeed",
+    name: "就买一个计数频率",
     keys: ["shift", "t"],
     type: "bindRepeatableHotkey",
     function: () => buyTickSpeed(),
     visible: true
   }, {
-    name: "Buy max Tickspeed",
+    name: "最大化计数频率",
     keys: ["t"],
     type: "bindRepeatableHotkey",
     function: () => buyMaxTickSpeed(),
     visible: true
   }, {
-    name: "Max all",
+    name: "最大化",
     keys: ["m"],
     type: "bindRepeatableHotkey",
     function: () => maxAll(),
     visible: true
   }, {
-    name: "Dimensional Sacrifice",
+    name: "维度献祭",
     keys: ["s"],
     type: "bindRepeatableHotkey",
     function: () => sacrificeBtnClick(),
     visible: true
   }, {
-    name: "Dimension Boost",
+    name: "维度提升",
     keys: ["d"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestDimensionBoost(true),
     visible: true
   }, {
-    name: "Single Dimension Boost",
+    name: "单个维度提升",
     keys: ["shift", "d"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestDimensionBoost(false),
     visible: false
   }, {
-    name: "Antimatter Galaxy",
+    name: "反物质星系",
     keys: ["g"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestGalaxyReset(true),
     visible: true
   }, {
-    name: "Single Antimatter Galaxy",
+    name: "单个反物质星系",
     keys: ["shift", "g"],
     type: "bindRepeatableHotkey",
     function: () => manualRequestGalaxyReset(false),
     visible: false
   }, {
-    name: "Big Crunch",
+    name: "大坍缩",
     keys: ["c"],
     type: "bindRepeatableHotkey",
     function: () => manualBigCrunchResetRequest(),
     visible: true
   }, {
-    name: "Replicanti Galaxy",
+    name: "复制器星系",
     keys: ["r"],
     type: "bindHotkey",
     function: () => {
@@ -96,95 +96,95 @@ export const shortcuts = [
     },
     visible: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked()
   }, {
-    name: "Eternity",
+    name: "永恒",
     keys: ["e"],
     type: "bindRepeatableHotkey",
     function: () => eternityResetRequest(),
     visible: () => PlayerProgress.eternityUnlocked() || Player.canEternity
   }, {
-    name: "Toggle Time Study respec",
+    name: "切换时间研究重置状态",
     keys: ["shift", "e"],
     type: "bindHotkey",
     function: () => {
       player.respec = !player.respec;
-      GameUI.notify.info(`Time Study respec is now ${player.respec ? "active" : "inactive"}`);
+      GameUI.notify.info(`时间研究重置已设为${player.respec ? "激活" : "不激活"}`);
     },
     visible: () => PlayerProgress.eternityUnlocked()
   }, {
-    name: "Enter/Exit Dilation",
+    name: "进入/退出 时间膨胀",
     keys: ["l"],
     type: "bindRepeatableHotkey",
     function: () => startDilatedEternityRequest(),
     visible: () => PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked()
   }, {
-    name: "Reality",
+    name: "现实",
     keys: ["y"],
     type: "bindRepeatableHotkey",
     function: () => requestManualReality(),
     visible: () => PlayerProgress.realityUnlocked() || isRealityAvailable()
   }, {
-    name: "Toggle Glyph unequip",
+    name: "切换符文卸下选项",
     keys: ["shift", "y"],
     type: "bindHotkey",
     function: () => {
       player.reality.respec = !player.reality.respec;
-      GameUI.notify.info(`Glyph respec is now ${player.reality.respec ? "active" : "inactive"}`);
+      GameUI.notify.info(`符文卸下状态已改为${player.reality.respec ? "激活" : "不激活"}`);
     },
     visible: () => PlayerProgress.realityUnlocked()
   }, {
-    name: "Start/Pause Automator",
+    name: "启动/暂停自动机",
     keys: ["u"],
     type: "bindHotkey",
     function: () => keyboardAutomatorToggle(),
     visible: () => Player.automatorUnlocked
   }, {
-    name: "Restart Automator",
+    name: "重启自动机",
     keys: ["shift", "u"],
     type: "bindHotkey",
     function: () => keyboardAutomatorRestart(),
     visible: () => Player.automatorUnlocked
   }, {
-    name: "Undo Edit (Automator)",
+    name: "撤销编辑（自动机）",
     keys: ["mod", "z"],
     type: "bind",
     function: () => AutomatorData.undoScriptEdit(),
     visible: () => Player.automatorUnlocked
   }, {
-    name: "Redo Edit (Automator)",
+    name: "重做编辑（自动机）",
     keys: ["mod", "y"],
     type: "bind",
     function: () => AutomatorData.redoScriptEdit(),
     visible: () => Player.automatorUnlocked
   }, {
-    name: "Toggle Black Hole",
+    name: "切换黑洞",
     keys: ["b"],
     type: "bindHotkey",
     function: () => BlackHoles.togglePause(),
     visible: () => PlayerProgress.realityUnlocked()
   }, {
-    name: "Toggle Continuum",
+    name: "切换连续统",
     keys: ["alt", "a"],
     type: "bindHotkey",
     function: () => keyboardToggleContinuum(),
     visible: () => Laitela.continuumUnlocked
   }, {
-    name: "Armageddon",
+    name: "末日",
     keys: ["z"],
     type: "bindRepeatableHotkey",
     function: () => armageddonRequest(),
     visible: () => Pelle.isDoomed
   }, {
-    name: "Toggle Glyph unequip (Pelle)",
+    name: "切换符文卸下状态（佩勒）",
     keys: ["shift", "z"],
     type: "bindHotkey",
     function: () => {
       if (!Pelle.isDoomed) return;
       player.reality.respec = !player.reality.respec;
-      GameUI.notify.info(`Glyph respec is now ${player.reality.respec ? "active" : "inactive"}`);
+      GameUI.notify.info(`符文卸下状态已改为${player.reality.respec ? "激活" : "不激活"}`);
     },
     visible: () => Pelle.isDoomed
   }, {
-    name: "Save game",
+    name: "保存游戏",
     keys: ["mod", "s"],
     type: "bind",
     function: () => {
@@ -193,7 +193,7 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Export game",
+    name: "导出存档",
     keys: ["mod", "e"],
     type: "bind",
     function: () => {
@@ -202,7 +202,7 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Open Hotkey List Modal",
+    name: "打开快捷键列表",
     keys: ["?"],
     type: "bind",
     function: () => {
@@ -211,7 +211,7 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Open How To Play Modal",
+    name: "打开游戏帮助",
     keys: ["h"],
     type: "bind",
     function: () => {
@@ -220,7 +220,7 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Modify visible tabs",
+    name: "修改可见标签页",
     keys: ["tab"],
     type: "bind",
     function: () => {
@@ -229,7 +229,7 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Confirm Modal",
+    name: "确认弹窗",
     keys: ["enter"],
     type: "bind",
     function: () => {
@@ -238,7 +238,7 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Close Modal or open Options",
+    name: "关闭弹窗或打开设置",
     keys: ["esc"],
     type: "bind",
     function: () => {
@@ -247,16 +247,16 @@ export const shortcuts = [
     },
     visible: true
   }, {
-    name: "Paying respects",
+    name: "敬礼",
     keys: ["f"],
     type: "bindRepeatable",
     function: () => {
-      GameUI.notify.info("Paying respects");
+      GameUI.notify.info("敬礼");
       SecretAchievement(13).unlock();
     },
     visible: false
   }, {
-    name: "Change Tab",
+    name: "切换标签页",
     keys: ["up"],
     type: "bind",
     function: () => {
@@ -265,7 +265,7 @@ export const shortcuts = [
     },
     visible: false
   }, {
-    name: "Change Tab",
+    name: "切换标签页",
     keys: ["down"],
     type: "bind",
     function: () => {
@@ -274,7 +274,7 @@ export const shortcuts = [
     },
     visible: false
   }, {
-    name: "Change Subtab",
+    name: "切换标签页",
     keys: ["left"],
     type: "bind",
     function: () => {
@@ -283,7 +283,7 @@ export const shortcuts = [
     },
     visible: false
   }, {
-    name: "Change Subtab",
+    name: "切换标签页",
     keys: ["right"],
     type: "bind",
     function: () => {
@@ -292,49 +292,49 @@ export const shortcuts = [
     },
     visible: false
   }, {
-    name: "Doesn't exist",
+    name: "不存在",
     keys: ["9"],
     type: "bind",
     function: () => SecretAchievement(41).unlock(),
     visible: false
   },
   {
-    name: "Adjust Autobuyers",
+    name: "调整自动购买器",
     keys: ["mod", "alt", "a"],
     type: "bind",
     function: () => keyboardEditAutobuyers(),
     visible: () => Autobuyers.hasAutobuyersForEditModal
   },
   {
-    name: "Fullscreen",
+    name: "全屏",
     keys: ["F10"],
     type: "bind",
     function: () => {},
     visible: () => false
   },
   {
-    name: "Zoom In",
+    name: "放大",
     keys: ["ctrl", "="],
     type: "bind",
     function: () => ElectronRuntime.increaseZoom(),
     visible: () => false
   },
   {
-    name: "Zoom In",
+    name: "放大",
     keys: ["ctrl", "+"],
     type: "bind",
     function: () => ElectronRuntime.increaseZoom(),
     visible: () => false
   },
   {
-    name: "Zoom Out",
+    name: "缩小",
     keys: ["ctrl", "-"],
     type: "bind",
     function: () => ElectronRuntime.decreaseZoom(),
     visible: () => false
   },
   {
-    name: "Reset Zoom",
+    name: "重置缩放",
     keys: ["ctrl", "0"],
     type: "bind",
     function: () => ElectronRuntime.resetZoom(),

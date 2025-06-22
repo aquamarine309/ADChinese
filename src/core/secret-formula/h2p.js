@@ -17,105 +17,39 @@ export const h2p = {
    */
   tabs: [
     {
-      name: "This Modal",
-      info: () => `
-Welcome to the How to Play!
+      name: "本弹窗",
+      info: () => `欢迎使用游戏帮助！
 <br>
+本弹窗包含你在游戏进程中遇到的所有内容的详细说明与补充信息。随着解锁新功能和机制，此处将开放更多页面。若在游戏中感到困惑，可在相关条目中找到有用解释。
 <br>
-This modal (pop-up window) contains in-depth explanations and additional details for everything you will encounter
-as you progress through the game. As you unlock new features and mechanics, you will also gain access to additional
-pages here. If you ever feel lost or confused about how something in the game works, you may find a helpful
-explanation within the related entry in here. 
-<br>
-<br>
-For now, opening the How to Play will always start you on this page. After you get your first Dimension Boost,
-opening this modal will instead place you on the How to Play entry most relevant to the game content on your currently
-visible tab and subtab, if such an entry exists.
+首次打开游戏帮助时始终显示本页。获得首次维度提升后，再次打开本窗口将智能定位至当前标签页/子标签页内容最相关的游戏帮助条目（若存在相关条目）。
 `,
       isUnlocked: () => true,
       tags: ["h2p", "how", "to", "play", "modal"],
       tab: ""
     },
     {
-      name: "Your savefile",
+      name: "你的存档",
       info: () => `
-Your game's save data is stored on your computer's browser data if you are playing on a web browser, or in your Steam
-installation folder if you are playing on Steam. This means that clearing your browser's cache or cookies, or fully
-uninstalling the game from Steam will also delete your save file.
-Similarly, if you are playing in a private or incognito window, your save
-will not be there the next time you open up your browser. The saves are browser-specific as well, so for example
-if you play the game on Chrome, you will not find your save on Firefox. Lastly, any saves you have on the web version
-and the Steam version will also be completely independent from each other.
-<br>
-<br>
-You can transfer your save between places by using the export function, which will copy a <i>very</i> long string of
-random-looking characters into your clipboard. That text contains your save data, which you can load back into the
-game by pasting it into the text box on the import prompt. You need the entirety of the save text for importing to
-work properly, or else the game might not recognize the text as a valid save. Certain messaging applications may
-cut off part of the text if you are using one to transfer the save between devices.
-<br>
-<br>
-A properly-formatted save string from the Reality update will start with
-<b>${GameSaveSerializer.startingString.savefile}</b> and end with <b>${GameSaveSerializer.endingString.savefile}</b>.
-If you are importing from a version of the game from before Reality was released, it will instead start with <b>eyJ</b>
-and end with <b>In19</b>, <b>fX0=</b>, or <b>fQ==</b>. If neither of these are the case, then part of your save is
-missing and it will fail to import. In addition to importing and exporting to your clipboard, you can also import
-and export from text files as well.
-<br>
-You can use the "Choose save" button to pick between three separate saves on your browser. These saves are, for most
-intents and purposes, completely separate from each other. Importing and exporting will only affect the current save
-slot. <b>The only exception is clearing your browser or Steam data, in which case all three saves will be reset.</b>
-<br>
-<br>
-The game automatically saves periodically, by default once every ${formatInt(30)} seconds.
-Keep this in mind if you need to close the game - anything you
-do right before closing it might not be saved unless you wait for the autosave interval or manually save again. The
-length of the autosave interval is adjustable, and its timer can be seen in the bottom-left of the screen.
-<br>
-<br>
-Backups of your savefile are also saved after certain amounts of time online or offline, which you can examine and
-reload at any point by clicking the "Open Automatic Save Backup Menu" button. These backups may be useful if you wish
-to revert your save to what it looked like some time in the past, such as a few minutes ago or when you were last
-offline for a while.
-<br>
-<br>
-You can also connect a Google Account to the game, allowing you to save your progress online. This allows you to play
-with the same save on any device which is also logged into the same account. Cloud saving is only compatible with other
-saves on the web or Steam versions of the game; saves from the Android app of the game will not be automatically linked
-via Cloud saving. Saving and loading from the Cloud will
-automatically overwrite the other save unless the other save is either older or has noticeably more progression, in
-which case a modal will appear which asks you which save you want to keep.
-<br>
-<br>
-You can completely reset your save at any point if desired by clicking the button, which brings up a prompt you need
-to fill out in order to make sure you intentionally wanted to reset. Going through with this reset will only clear
-your current save; the other save slots will be unaffected. <b>Resetting your game in this way is completely
-irreversible and gives you no permanent benefits, secret or otherwise.</b>
+你的游戏存档存储位置取决于平台：网页版存档在浏览器数据中，Steam版在安装目录。清除浏览器缓存/Steam完全卸载将删除存档。在无痕窗口游玩时，下次打开浏览器存档将消失。存档与浏览器绑定（如Chrome存档无法在Firefox读取），且网页版与Steam版存档相互独立。<br><br>
+可通过导出功能转移存档：生成<i>极长</i>随机字符串并复制到剪贴板。完整粘贴至导入窗口即可恢复存档（部分通讯软件可能截断文本导致失败）。<br><br>
+现实版本的标准存档格式：起始符为<b>${GameSaveSerializer.startingString.savefile}</b>，结束符为<b>${GameSaveSerializer.endingString.savefile}</b>。旧版存档起始符为<b>eyJ</b>，结束符为<b>In19</b>、<b>fX0=</b>或<b>fQ==</b>。除剪贴板操作外也支持文本文件导入导出。<br>
+"选择存档"按钮可管理三个独立存档槽位。导入导出仅影响当前槽位。<b>注意：清除浏览器/Steam数据将重置全部存档。</b><br><br>
+游戏默认每${formatInt(30)}秒自动保存。关闭游戏前请留意：若未等到自动保存或手动保存，操作可能丢失。自动保存间隔可在左下角调整。<br><br>
+点击"打开自动备份菜单"可查看存档备份，支持回滚至特定时间点（如数分钟前）。<br><br>
+关联Google账户可实现跨设备云同步（仅限网页版与Steam版）。Android版存档不兼容云同步。云同步时将自动覆盖旧存档，若云端存档较新或进度显著领先，则会弹出选择窗口。<br><br>
+点击重置按钮可清除当前存档（需确认）。<b>注意：此操作不可逆且不会获得任何永久性收益或隐藏奖励，其他槽位不受影响。</b>
 `,
       isUnlocked: () => true,
       tags: ["choose", "cloud", "google", "save", "import", "export", "reset"],
       tab: "options/saving"
     },
     {
-      name: "Customization",
+      name: "自定义",
       info: () => `
-The game has two different UI layouts - the Classic UI maintains the style of Antimatter Dimensions from before the
-Reality update, while the Modern UI is a redesign based on more modern dark theme styles. Additionally, there are
-various themes which can be applied to modify the appearance of everything in the game. There are a few secret themes
-which can be unlocked through importing certain phrases. Both UI layouts support all the different possible themes.
-<br>
-<br>
-The notation used to display numbers in the game defaults to Mixed Scientific, but can be changed to one of numerous
-options in the drop-down menu. Many of these notations are intended as jokes and in some cases will format numbers
-in a way that causes text to spill over into other parts of the screen - this is not a bug. You can additionally
-configure what numbers look like when they are extremely large using the "Exponent Notation Options" menu,
-although this may result in some odd text appearances in some places.
-<br>
-<br>
-Many events in the game trigger full-screen animations or pop-up modals which require you to confirm that you want to
-continue. Most of these animations and confirmations can be disabled on an individual basis through the options,
-although the ability to disable any given animation or confirmation will only appear after they have already shown up
-at least once.
+游戏提供两种UI布局：经典UI保留现实版本更新前的反物质维度风格，现代UI则采用现代深色主题重设计。另有多种主题可全局修改游戏外观，部分隐藏主题需通过导入特定短语解锁，两种UI布局均支持全部主题。<br><br>
+数字显示格式默认为混合科学计数法，可通过下拉菜单切换多种选项。部分格式为趣味设计，可能导致文本溢出屏幕（非程序错误）。此外可在"指数显示格式选项"菜单配置极大数字的呈现方式（某些场景下可能显示异常）。<br><br>
+游戏事件常触发全屏动画或需确认的弹窗。多数动画和确认提示可在选项中单独禁用，但禁用选项需在首次触发后才会显示。
 `,
       isUnlocked: () => true,
       tags: ["UI", "update", "news", "theme", "notation", "comma", "exponent", "animation", "retry", "confirmation",
@@ -123,993 +57,638 @@ at least once.
       tab: "options/visual"
     },
     {
-      name: "Offline Progress",
+      name: "离线进度",
       info: () => `
-Antimatter Dimensions has a catch-up mechanic which attempts to simulate the game's behavior if the game is closed for
-an extended period of time. The simulation behavior is only somewhat accurate, as the game is too mathematically
-complicated to be run at full accuracy in a reasonable amount of time. At the end of the simulation, the game will
-summarize how various relevant resources have changed while you were gone.
-<br>
-<br>
-If the game is left open and becomes unfocused or otherwise suspended for an extended period of time, it will attempt
-to apply the missed time as offline progress when you return. This can be potentially unreliable, as different devices
-handle these situations differently. If this results in undesirable behavior, there is a toggle to turn this off in the
-options - in that case the game will try to apply all the missed time in a single tick.
-<br>
-<br>
-The game runs on a system where everything is updated once per tick - all Dimensions and resources do one unit of
-production, all autobuyers trigger once, all multipliers and values are changed accordingly, and all the displayed
-numbers are updated. By default there are ${formatInt(20)} ticks per second when the game is running, although this can
-be modified by changing the "Update rate" within the game Options.
-Your current settings will run the game at ${format(1000 / player.options.updateRate, 2, 1)} ticks per second on
-average, although lag and internal javascript behavior may cause individual ticks to vary by a few percent.
-<br>
-<br>
-When offline simulation is active, these ticks have an adjusted length in order to fill the amount of time you were
-away - for example having a setting for ${formatInt(1000)} offline ticks and closing the game for an hour will result in
-ticks which are ${format(3.6, 1, 1)} seconds long each. For most things in the game, this is not an issue because this
-will still result in approximately the same amount of resources after the simulation completes. A notable exception is
-autobuyers - in this situation autobuyers will effectively only trigger once every ${format(3.6, 1, 1)} seconds, which
-may have a strong impact depending on the part of the game.
-<br>
-<br>
+反物质维度采用追赶机制模拟长时间关闭游戏后的行为。由于游戏数学模型复杂，模拟精度有限，最终将汇总离线期间关键资源的变化量。<br><br>
+若游戏处于开启状态但被切至后台挂起，恢复时将尝试按离线进度处理。此行为可能因设备差异不可靠，可在选项中关闭——关闭后所有挂起时间将压缩至单一时刻处理。<br><br>
+游戏以时刻为单位运行：每个时刻触发维度生产 → 自动购买器执行 → 数值更新。默认每秒 ${formatInt(20)} 时刻（可通过"更新频率"选项调整）。当前设置下平均每秒运行 ${format(1000 / player.options.updateRate, 2, 1)} 时刻，实际时刻长度可能存在数个百分点波动。<br><br>
+离线模拟时，时刻长度被拉伸以匹配离线时间（例如 ${formatInt(1000)} 个间隔离线 1 小时 → 每时刻 ${format(3.6, 1, 1)} 秒）。多数资源增量与在线近似，但自动购买器仅每 ${format(3.6, 1, 1)} 秒触发一次，可能显著影响游戏进程。<br><br>
 ${player.blackHole[0].unlocked
-    ? `<b>Offline Black Hole behavior:</b> Once the Black Hole has been unlocked, the offline progress simulation will
-      attempt to run the game in a way where each tick contains roughly the same amount of <i>game</i> time. This may
-      give the appearance of the Black Hole(s) being active for a much larger fraction of time than normal while
-      simulating, when in fact the game is running active periods more slowly and "skipping past" the inactive periods
-      because they contribute much less production per real time. This results in behavior which is generally in your
-      favor when compared to ticks with constant real time.
-      <br>
-      <br>`
+    ? `<b>黑洞离线行为：</b>解锁黑洞后，离线模拟将保持每个时刻的<i>游戏</i>时间量近似。这会使黑洞在模拟期间看似活跃时间远超常态——实际是游戏放慢活跃期执行速度并跳过非活跃期（因其单位时间产量低）。相比固定实时长的时刻，此机制通常对你更有利。<br><br>`
     : ""
 }
-Offline tick count can be adjusted between ${formatInt(500)} and ${formatInt(DC.E6)} ticks. Smaller counts will result
-in faster but less accurate simulations, while larger counts will result in more accurate simulations which take longer
-to complete. There is a limit of one day of time per game tick, meaning there are some rare situations (such as not
-playing the game for more than a year) where you may not get all of the time you were away.
-<br>
-<br>
-Offline progress can be disabled entirely if desired, for example for diagnostic or timing purposes, or in order
-to do an "online only" playthrough of the game. Otherwise, offline progress is on by default from the very beginning
-of the game. Note that if offline progress is disabled, the statistic for total time played will also be paused while
-the game closed.
+离线时刻数可在 ${formatInt(500)} 至 ${formatInt(DC.E6)} 间调整。值越小模拟越快但精度越低，值越大精度越高但耗时越长。单时刻最长模拟 1 天，极端情况（如离线超 1 年）可能无法完整计算所有离线时间。<br><br>
+可完全禁用离线进度（如用于调试或纯在线玩法）。禁用时，游戏总时长统计将在关闭期间暂停。
 `,
       isUnlocked: () => true,
       tags: ["offline", "away", "progress"],
       tab: "options/gameplay"
     }, {
-      name: "Effect Stacking",
+      name: "效果作用",
       info: () => `
-Most of the effects and upgrades in Antimatter Dimensions largely fall into three categories:
-<br>
-- <b>Additive:</b> These effects are typically denoted with a + (or the word "increase") followed by a number,
-and add their value to some
-base amount. Multiple additive effects are summed up. These can also sometimes show up as subtractive effects which
-reduce resource costs.
-<br>
-- <b>Multiplicative:</b> These effects are shown either by a × (or the word "multiply") followed by a number or,
-more rarely, as two numbers
-separated by a ➜. Different multiplicative sources always combine by multiplying, never by adding. In some situations,
-there may be negative effects or cost reductions that apply in this category as division.
-<br>
-- <b>Power</b>: These effects are much rarer and appear as ^ followed by a number. Multiple power effects apply
-sequentially, or equivalently by multiplying the values of the power effects together and applying the final value
-as a single power. In rare situations, negative effects may apply here in this category as powers which are less
-than ${formatInt(1)}.
-<br>
-<br>
-Unless otherwise noted when an upgrade or reward <i>replaces</i> an older value, all of these effects stack
-with each other. In the case of an upgrade replacing an older value with a newer value, the replacement occurs before
-any of the above effects are applied. To determine the final value of a set of effects, the effects from each category
-are individually combined, and then applied in the order of additive, multiplicative, then power effects.
-<br>
-<br>
+反物质维度中的效果与升级主要分为三类：<br>
+- <b>加法类：</b> 通常以 + 号（或"增加"一词）后跟数字表示，将数值累加到基础量。多个加法效果相加计算。有时也表现为减法效果（如降低资源成本）。<br>
+- <b>乘法类：</b> 通常以 × 号（或"乘"一词）后跟数字表示，少数情况下为"➜"连接的两个数字。不同乘法来源始终相乘计算。某些场景下可能表现为除法形式的负面效果或成本削减。<br>
+- <b>幂类：</b> 较为罕见，以 ^ 后跟数字表示。多个幂效果按顺序应用（等效于将幂值相乘后作为单一指数应用）。极少数情况下可能表现为小于 ${formatInt(1)} 的指数形式负面效果。<br><br>
+除非特别注明升级或奖励<i>替换</i>旧值，否则所有效果均可叠加。若发生替换，新值将在上述效果应用前生效。最终效果的计算顺序为：加法 → 乘法 → 幂运算。<br><br>
 ${PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked()
-    ? "Dilation and any Dilation-like effects apply <i>after</i> all of these other effects are stacked together."
-    : ""}
-<br>
-<br>
+    ? "时间膨胀及类似效果将在所有其他效果叠加完成后应用。"
+    : ""}<br><br>
 ${PlayerProgress.realityUnlocked()
-    ? `Glyph Effects effectively have two stacking attributes; their internal way of stacking together and the way
-      they stack with all other game effects. These may not necessarily be the same - for example, the "Antimatter
-      Dimension Power" effect will stack <i>additively with itself</i>, but then the total effect will be added to
-      a base value of ${formatInt(1)} and then applied as a <i>power effect</i> to Antimatter Dimensions.`
+    ? `符文效果具有双重叠加属性：其内部叠加方式与游戏全局效果的叠加方式。两者可能不同——例如"反物质维度幂"效果在<i>自身内部加法叠加</i>后，会与基础值 ${formatInt(1)} 相加，最终作为<i>幂类效果</i>应用于反物质维度。`
     : ""}
 `,
       isUnlocked: () => true,
       tags: ["effect", "stack", "combine", "add", "reduce", "multiply", "divide", "power", "dilation", "glyph"],
       tab: "options/gameplay"
     }, {
-      name: "Common Abbreviations",
+      name: "常用缩写",
       info: () => `
-Many resources within the game may appear in an abbreviated format as text in order to save space. This How to
-Play entry will update itself with additional entries for new resources as you encounter them for the first time.
-<br>
-- <b>AM</b>: Antimatter<br>
-- <b>AD</b>: Antimatter Dimension<br>
-- <b>AG</b>: Antimatter Galaxy<br>
-${PlayerProgress.infinityUnlocked() ? "- <b>IP</b>: Infinity Point<br>" : ""}
-${PlayerProgress.infinityUnlocked() ? "- <b>NC</b>: Normal Challenge<br>" : ""}
-${PlayerProgress.infinityUnlocked() ? "- <b>IC</b>: Infinity Challenge<br>" : ""}
-${InfinityDimension(1).isUnlocked || PlayerProgress.eternityUnlocked() ? "- <b>ID</b>: Infinity Dimension<br>" : ""}
-${PlayerProgress.replicantiUnlocked() ? "- <b>RG</b>: Replicanti Galaxy<br>" : ""}
-${PlayerProgress.eternityUnlocked() ? "- <b>EP</b>: Eternity Point<br>" : ""}
-${PlayerProgress.eternityUnlocked() ? "- <b>TT</b>: Time Theorem<br>" : ""}
-${PlayerProgress.eternityUnlocked() ? "- <b>TD</b>: Time Dimension<br>" : ""}
-${PlayerProgress.eternityUnlocked() ? "- <b>EC</b>: Eternity Challenge<br>" : ""}
-${PlayerProgress.dilationUnlocked() ? "- <b>TP</b>: Tachyon Particle<br>" : ""}
-${PlayerProgress.dilationUnlocked() ? "- <b>DT</b>: Dilated Time<br>" : ""}
-${PlayerProgress.dilationUnlocked() ? "- <b>TG</b>: Tachyon Galaxy<br>" : ""}
-${PlayerProgress.realityUnlocked() ? "- <b>RM</b>: Reality Machine<br>" : ""}
-${PlayerProgress.realityUnlocked() ? "- <b>AP</b>: Automator Point<br>" : ""}
-${PlayerProgress.realityUnlocked() ? "- <b>BH</b>: Black Hole<br>" : ""}
-${MachineHandler.isIMUnlocked ? "- <b>iM</b>: Imaginary Machine<br>" : ""}
-${Laitela.isUnlocked ? "- <b>DM</b>: Dark Matter<br>" : ""}
-${Laitela.isUnlocked ? "- <b>DE</b>: Dark Energy<br>" : ""}
+游戏中许多资源采用缩写格式显示以节省空间。本帮助条目将在你首次遇到新资源时自动更新对应条目。<br>
+- <b>AM</b>：反物质<br>
+- <b>AD</b>：反物质维度<br>
+- <b>AG</b>：反物质星系<br>
+${PlayerProgress.infinityUnlocked() ? "- <b>IP</b>：无限点数<br>" : ""}
+${PlayerProgress.infinityUnlocked() ? "- <b>NC</b>：普通挑战<br>" : ""}
+${PlayerProgress.infinityUnlocked() ? "- <b>IC</b>：无限挑战<br>" : ""}
+${InfinityDimension(1).isUnlocked || PlayerProgress.eternityUnlocked() ? "- <b>ID</b>：无限维度<br>" : ""}
+${PlayerProgress.replicantiUnlocked() ? "- <b>RG</b>：复制器星系<br>" : ""}
+${PlayerProgress.eternityUnlocked() ? "- <b>EP</b>：永恒点数<br>" : ""}
+${PlayerProgress.eternityUnlocked() ? "- <b>TT</b>：时间之理<br>" : ""}
+${PlayerProgress.eternityUnlocked() ? "- <b>TD</b>：时间维度<br>" : ""}
+${PlayerProgress.eternityUnlocked() ? "- <b>EC</b>：永恒挑战<br>" : ""}
+${PlayerProgress.dilationUnlocked() ? "- <b>TP</b>：超光速粒子<br>" : ""}
+${PlayerProgress.dilationUnlocked() ? "- <b>DT</b>：膨胀时间<br>" : ""}
+${PlayerProgress.dilationUnlocked() ? "- <b>TG</b>：超光速粒子星系<br>" : ""}
+${PlayerProgress.realityUnlocked() ? "- <b>RM</b>：现实机器<br>" : ""}
+${PlayerProgress.realityUnlocked() ? "- <b>AP</b>：自动机点数<br>" : ""}
+${PlayerProgress.realityUnlocked() ? "- <b>BH</b>：黑洞<br>" : ""}
+${MachineHandler.isIMUnlocked ? "- <b>iM</b>：虚幻机器<br>" : ""}
+${Laitela.isUnlocked ? "- <b>DM</b>：暗物质<br>" : ""}
+${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 `,
       isUnlocked: () => true,
       tags: ["abbreviation", "shorten", "am", "ad", "ag", "ip", "nc", "ic", "id", "rg", "ep", "tt", "td", "ec", "tp",
         "dt", "tg", "rm", "ap", "bh", "im", "dm", "de"],
       tab: ""
     }, {
-      name: "Antimatter Dimensions",
+      name: "反物质维度",
       info: () => `
-Antimatter is a resource that is used throughout the entire game for purchasing various things as you progress. You
-start with ${formatInt(10)} antimatter when you first open the game, and you can
-spend it to buy the 1st Antimatter Dimension to start the game.
-<br>
-<br>
-Antimatter Dimensions are your production units in game. The 1st Antimatter Dimension produces your antimatter.
-Each consecutive Antimatter Dimension produces the previous one, allowing you to have steady growth.
-There are eight Antimatter Dimensions total.
-<br>
-<br>
-<b>Dimension Multiplier:</b> Beside the Dimension there is a multiplier (example: 1st Dimension ${formatX(1, 1, 1)}).
-The base production of each Dimension is multiplied by this number.
-This multiplier increases by ${formatX(2)} for every ${formatInt(10)} of that Dimension purchased.
-Each time this occurs, the price of the dimension will increase.
-<br>
-<br>
-<b>Accumulated Dimension Quantity:</b> The next column is your current amount of that Dimension you own.
-This is a combination of how many you have purchased with antimatter,
-as well as produced from the higher Dimension.
-<br>
-<br>
-<b>Purchased Dimensions Quantity:</b> Next to each accumulated quantity of owned Dimensions,
-the amount of that Dimension purchased toward the next multiplier upgrade is displayed in brackets.
-For example if you have (${formatInt(4)}) next to your accumulated dimension quantity,
-you will need ${formatInt(6)} more of that dimension for the next multiplier increase.
-<br>
-<br>
-<b>Dimension Growth Percent:</b> This number represents the amount of growth that each
-Dimension experiences per second. ${formatPercents(1)} means the dimension is doubling each second.
-This allows you to judge overall growth.
-<br>
-<br>
-<b>Cost &amp; until ${formatInt(10)}:</b>
-You can buy a single quantity of each Dimension with antimatter when the cost button is highlighted.
-Alternatively, if the Until ${formatInt(10)} button is highlighted,
-you can buy whatever quantity gets you to that Dimension's next Dimension multiplier.
-<br>
-<br>
-<b>Max all:</b> Max all will buy until ${formatInt(10)} of the 1st Antimatter Dimension until it cannot anymore,
-then second, and so on until the 8th Antimatter Dimension, and then buy max Tickspeed Upgrades.
-<br>
-<br>
-<b>Dimension base prices:</b> ${Array.range(1, 8)
-    .map(tier => format(AntimatterDimension(tier)._baseCost, 2, 2))
-    .join(", ")}
-<br>
-<b>Base per ${formatInt(10)} bought dimension price increases:</b> ${Array.range(1, 8)
-  .map(tier => format(AntimatterDimension(tier)._baseCostMultiplier, 2, 2))
-  .join(", ")}
-<br>
-<br>
-<b>Hotkeys: 1, 2, 3, 4, 5, 6, 7, 8</b> for buy until ${formatInt(10)} Xth Dimension
-(you can also hold down Shift while buying Dimensions, which will only buy
-${formatInt(1)} instead of ${formatInt(10)}), <b>M</b> for Max all
+反物质是贯穿游戏进程的核心资源，用于购买各类升级。首次打开游戏时，你将拥有 ${formatInt(10)} 个反物质，可消耗其购买第一反物质维度以启动游戏。<br><br>
+反物质维度是游戏中的生产单位：第一反物质维度生产反物质，后续维度生产前序维度，形成稳定增长链。总计八个反物质维度。<br><br>
+<b>维度倍数：</b> 维度旁显示倍数（如：第一维度 ${formatX(1, 1, 1)}）。每购买 ${formatInt(10)} 个该维度，基础倍数增加 ${formatX(2)}，同时维度价格上涨。<br><br>
+<b>累计维度数量：</b> 显示当前拥有量（含反物质购买及高阶维度生产）。<br><br>
+<b>已购买维度数量：</b> 在累计数量旁的括号内显示（如：${formatInt(4)}），表示距离下次倍数升级还需购买 ${formatInt(6)} 个该维度。<br><br>
+<b>维度增长率：</b> 显示每秒增长百分比。${formatPercents(1)} 表示每秒数量翻倍，用于评估整体增速。<br><br>
+<b>购买方式：</b> "购买单个"按钮可购买单个维度；高亮"买到 ${formatInt(10)} 个"按钮可购买至下次倍数升级所需数量。<br><br>
+<b>全部最大化：</b> 依次为第 1-8 反物质维度购买至下次倍数升级所需数量，最后购买最大化的计数频率升级。<br><br>
+<b>维度基础价格：</b> ${Array.range(1, 8).map(tier => format(AntimatterDimension(tier)._baseCost, 2, 2)).join(", ")}<br>
+<b>每 ${formatInt(10)} 个的价格增长倍数：</b> ${Array.range(1, 8).map(tier => format(AntimatterDimension(tier)._baseCostMultiplier, 2, 2)).join(", ")}<br><br>
+<b>快捷键：</b> 1-8 键购买对应维度至 ${formatInt(10)} 个（按住 Shift 时仅买 ${formatInt(1)} 个），M 键执行全部最大化。
 `,
       isUnlocked: () => true,
       tags: ["dims", "normal", "antimatter", "ad"],
       tab: "dimensions/antimatter"
     }, {
-      name: "Tickspeed",
+      name: "计数频率提升",
       info: () => `
-Production in the game happens on each "tick", which initially occurs once per second. By buying Tickspeed Upgrades,
-you can make your Antimatter Dimensions produce faster, as if multiple ticks occur in each second.
+游戏中的生产发生在每个"时刻"上，初始每秒发生一次。购买计数频率升级可使反物质维度生产加速，如同每秒发生多个时刻。
 <br>
+<b>计数频率：</b>表示每秒发生的游戏时刻数。部分时刻也被计算在内，提升生产效果如同已过去部分时刻。注意实际时刻时间是模拟的，游戏始终按选项标签页中选择的更新速率运行计算。
 <br>
-<b>Tickspeed:</b> This states how many game ticks are occurring every second. Fractional ticks are accounted for,
-boosting production as if part of a game tick has passed. Note that the actual tickspeed time is simulated and the
-game always runs calculations at the update rate you've chosen in the Options tab.
+<b>价格：</b>消耗反物质将每秒时刻数乘以显示倍率（无星系时，每次购买为 ${formatX(1.1245, 0, 3)} 倍）
 <br>
+<b>最大化购买：</b>购买当前反物质可承担的最大数量计数频率升级。  
 <br>
-<b>Cost:</b> The cost of antimatter for multiplying ticks/sec by the displayed multiplier.
-(without any Galaxies, this is ${formatX(1.1245, 0, 3)} per purchase)
-<br>
-<br>
-<b>Buy Max:</b> This will buy the maximum amount of Tickspeed Upgrades available
-with your current amount of antimatter.
-<br>
-<br>
-<b>Hotkeys: T</b> will purchase as many Tickspeed Upgrades as possible, or <b>Shift+T</b> to buy a single upgrade.
-<b>M</b> for Max all.
+<b>快捷键：</b><b>T</b>键购买尽量多的升级，<b>Shift+T</b>购买单次升级。<b>M</b>键执行全部最大化。
 `,
       isUnlocked: () => Tickspeed.isUnlocked,
       tags: ["dimension", "earlygame", "time"],
       tab: "dimensions/antimatter"
     }, {
-      name: "Dimension Boosts",
+      name: "维度提升",
       info: () => `
-<b>Dimension Boost:</b> This resets your antimatter and all of your Antimatter Dimensions, but unlocks another
-Antimatter Dimension for you to purchase and boosts your Dimension multipliers.
-The 1st Dimension Boost requires ${formatInt(20)} 4th Dimensions, the 2nd requires ${formatInt(20)} 5th Dimensions, etc.
-After unlocking all ${formatInt(8)} Dimensions,
-every additional boost will cost ${formatInt(15)} more 8th Dimensions than the previous Boost and will no longer
-unlock a Dimension, but will continue to increase your Dimension multipliers.
-<br>
-<br>
-You gain a ${formatX(2)} multiplier to the 1st Dimension for every Dimension Boost you have. Each higher
-Dimension will have the multiplier applied one less time as the previous, down to a minimum of ${formatInt(0)}.
-For example, with ${formatInt(3)} Boosts, the 1st Dimension will gain ${formatX(8)}, the 2nd Dimension ${formatX(4)},
-the 3rd Dimension ${formatX(2)}, and all other Dimensions are unaffected.
-<br>
-<br>
-<b>Hotkey: D</b> will try to purchase a Dimension Boost.
+<b>维度提升：</b>重置反物质及所有反物质维度，但解锁新维度并提升维度倍率。首次提升需 ${formatInt(20)} 个第四维度，第二次需 ${formatInt(20)} 个第五维度，依此类推。解锁全部 ${formatInt(8)} 个维度后，每次额外提升需比前次多 ${formatInt(15)} 个第八维度（不再解锁新维度），但继续提升维度倍率。  
+<br>  
+每次维度提升使第一维度倍率 ×${formatX(2)}，更高维度递减应用倍率（最低 ${formatInt(0)}）。例如 ${formatInt(3)} 次提升后：第一维度 ×${formatX(8)}，第二维度 ×${formatX(4)}，第三维度 ×${formatX(2)}，其余维度不受影响。  
+<br>  
+<b>快捷键：D</b>键尝试执行维度提升。  
 `,
       isUnlocked: () => true,
       tags: ["dimboost", "reset", "earlygame"],
       tab: "dimensions/antimatter"
     }, {
-      name: "Antimatter Galaxies",
+      name: "反物质星系",
       info: () => `
-Purchasing an Antimatter Galaxy will reset your game back to the point where only ${formatInt(4)} Dimensions are
-available, but will increase the effect of your Tickspeed Upgrades by +${format(0.02, 0, 2)} for your first two
-Galaxies. As you get more Galaxies, the multiplier will continue becoming stronger and stronger.
-<br>
-<br>
-Though it will have very little impact for the first few Tickspeed purchases,
-the increase is multiplicative and will not take long to be visible.
-<br>
-<br>
-Your first Antimatter Galaxy requires ${formatInt(80)} Eighth Dimensions, and each additional Galaxy will cost
-another ${formatInt(60)} more.
-<br>
-<b>Distant Galaxy scaling:</b> Above ${formatInt(100)} Antimatter Galaxies the cost increase between Galaxies will
-increase by ${formatInt(2)} per Galaxy, making the next Galaxy cost ${formatInt(62)} more, then ${formatInt(64)} more,
-etc.
-<br>
-<b>Remote Galaxy scaling:</b> Above ${formatInt(Galaxy.remoteStart)} Antimatter Galaxies, the <i>total</i> cost
-increases by another ${formatPercents(0.002, 1)} per Galaxy, on top of Distant scaling.
-<br>
-<br>
-<b>Hotkey: G</b> will try to purchase an Antimatter Galaxy.
+购买反物质星系将重置游戏至仅剩 ${formatInt(4)} 个维度的状态，但前两个星系可使计数频率升级效果提升 +${format(0.02, 0, 2)}。随着星系增多，倍率增幅将持续增强。  
+<br>  
+尽管最初几次计数频率购买影响甚微，但倍数增长效应将快速显现。  
+<br>  
+首个反物质星系需 ${formatInt(80)} 个第八维度，后续每个增加 ${formatInt(60)} 个需求。  
+<br>  
+<b>遥远星系增长：</b>超过 ${formatInt(100)} 个星系后，每个星系的增量需求增加 ${formatInt(2)}（下一个星系的需求在家${formatInt(62)}，再下一个增加${formatInt(64)}，依此类推）
+<br>  
+<b>极远星系增长：</b>超过 ${formatInt(Galaxy.remoteStart)} 个星系后，<i>总</i>成本额外增加 ${formatPercents(0.002, 1)}/星系（在遥远星系基础上叠加）  
+<br>  
+<b>快捷键：G</b>键尝试购买反物质星系。
 `,
       isUnlocked: () => true,
       tags: ["8th", "reset", "galaxy", "earlygame"],
       tab: "dimensions/antimatter"
     }, {
-      name: "Dimensional Sacrifice",
+      name: "维度献祭",
       info: () => `
-<b>You unlock Dimensional Sacrifice after your fifth Dimension Boost.</b>
-<br>
-<br>
-Sacrificing will immediately reset the owned quantity of all non-Eighth Dimensions to zero, without reducing the
-multiplier or the current cost. In return, it will multiply the Eighth Dimension Multiplier by the shown value.
-It will take time to get back to the production you previously had, but you will end up with a net increase.
-<br>
-<br>
-The Dimensional Sacrifice multiplier scales with the number of 1st Dimensions you had at the time of sacrifice,
-and the scaling can be improved by completing certain Achievements and challenges. The multiplier is kept between
-sacrifices, meaning that sacrificing once at ${formatX(10)} and then once at ${formatX(4)} will be the same as
-${formatX(8)} then ${formatX(5)}; in both cases you will end up with a total sacrifice multiplier of ${formatX(40)}.
-<br>
-<br>
-<b>Hotkey: S</b> will try to sacrifice.
+<b>第五次维度提升后解锁维度献祭。</b>  
+<br>  
+献祭将立即重置所有非第八维度的数量至零（不降低倍率或当前价格），同时倍增第八维度倍率（数值显示于按钮）。虽需时间恢复生产水平，但最终将获得净增长。  
+<br>  
+献祭倍率基于献祭时第一维度的数量，可通过完成特定成就和挑战提升倍率增幅。倍率在多次献祭间累积（例：${formatX(10)} 后 ${formatX(4)} 献祭 ≈ ${formatX(8)} 后 ${formatX(5)} 献祭，最终总倍率均为 ${formatX(40)}）。  
+<br>  
+<b>快捷键：S</b>键尝试献祭。  
 `,
       isUnlocked: () => Sacrifice.isVisible,
       tags: ["8th", "reset", "earlygame", "gods", "earlygame"],
       tab: "dimensions/antimatter"
     }, {
-      name: "Achievements",
+      name: "成就",
       info: () => `
-Each Achievement has requirements to unlock. Once unlocked, some Achievements give a reward.
-Requirements and rewards vary in difficulty and benefit significantly.
+      每个成就都有特定的解锁条件。解锁后，部分成就将给予奖励。
+解锁难度与奖励效果各不相同，差异显著。
 <br>
 <br>
-In addition to any specific rewards for individual Achievements, you will receive a ${formatX(1.03, 2, 2)} multiplier
-to all Antimatter Dimensions. Each fully completed row also gives another ${formatX(1.25, 2, 2)}. The total multiplier
-effect from all Achievements together is shown above all the Achievement images.
+除各成就的专属奖励外，每完成一个成就，所有反物质维度将获得 ${formatX(1.03, 2, 2)} 倍加成；
+每完整完成一行成就，还将额外获得 ${formatX(1.25, 2, 2)} 倍加成。所有成就带来的总加成倍数显示在成就图标上方。
 <br>
 <br>
-Secret Achievements offer no gameplay benefits or advantages and are simply there for fun. Hovering over a Secret
-Achievement will give a hint on how to attain them.
-`,
+隐藏成就不会提供游戏性优势，仅为趣味而设。将鼠标悬停在隐藏成就上可查看解锁提示。
+      `,
       isUnlocked: () => true,
       tags: ["earlygame", "awards", "earlygame"],
       tab: "achievements"
     }, {
-      name: "Infinity",
+      name: "无限",
       info: () => `
-Once you have too much antimatter for the world to handle (${formatInt(2)}<sup>${formatInt(1024)}</sup>
-or about ${formatPostBreak(Number.MAX_VALUE, 6)},
-sometimes called "Infinity"), you will be forced to do a “Big Crunch”. This will reset your antimatter, Antimatter
-Dimensions, Dimension Boosts, and your Antimatter Galaxies. Doing a Big Crunch is also sometimes referred to as
-"Infinitying".
+当你的反物质数量超出世界承载极限（${formatInt(2)}<sup>${formatInt(1024)}</sup>，约等于 ${formatPostBreak(Number.MAX_VALUE, 6)}，也称为"无限"）时，你将被迫执行"大坍缩"。这将重置你的反物质、反物质维度、维度提升和反物质星系。执行大坍缩有时也被称为"无限化"。
+
 <br>
 <br>
-You will eventually be able to pass ${formatPostBreak(Number.MAX_VALUE, 6)}, but until then any larger numbers will
-display as ${format(Infinity)}.
+最终你将能够突破 ${formatPostBreak(Number.MAX_VALUE, 6)} 的限制，但在此之前，任何更大的数值都将显示为 ${format(Infinity)}。
+
 <br>
 <br>
-Each Infinity completed will give an Infinity Point, which can be spent on upgrades in the new Infinity tab.
-You must purchase these upgrades from top to bottom. You will also gain one "Infinity", which is effectively
-the number of times you have crunched.
+每次完成大坍缩都会获得一个无限点数，可用于在新的无限标签页中购买升级。你必须从上到下依次购买这些升级。同时你将获得1次"无限"计数，这实际上就是你执行大坍缩的次数。
+
 <br>
 <br>
-The "Multiply Infinity Points from all sources by ${formatInt(2)}" upgrade can be bought multiple times,
-but each purchase requires ${formatInt(10)} times as much IP.
-You must complete the Achievement "No DLC required" to start purchasing this particular upgrade.
+"使所有来源的无限点数乘以 ${formatInt(2)}"的升级可以多次购买，但每次购买需要花费 ${formatInt(10)} 倍于前一次的无限点数。你必须先完成成就"无需DLC"才能开始购买这个特定升级。
+
 <br>
 <br>
-<b>Hotkey: C</b> will try to perform a Big Crunch.
+<b>快捷键：C</b> 可尝试执行大坍缩。
 `,
       isUnlocked: () => PlayerProgress.infinityUnlocked(),
       tags: ["crunch", "big", "upgrades", "ip", "reset", "prestige", "earlygame"],
       tab: "infinity/upgrades"
     }, {
-      name: "Normal Challenges",
+      name: "普通挑战",
       info: () => `
-Normal Challenges are unlocked after your first Infinity; they change in-game mechanics in different ways to create more
-difficult Infinity circumstances. To complete a challenge, you must reach ${formatPostBreak(Number.MAX_VALUE, 2)}
-antimatter again.
+普通挑战将在首次完成无限后解锁。这些挑战会以不同方式改变游戏机制，创造更具挑战性的无限环境。要完成挑战，你必须再次达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质。
 <br>
 <br>
-Each completed Normal Challenge will award an autobuyer or the ability to upgrade an existing autobuyer.
-You can run them multiple times (though only the first time grants a reward),
-and they can be exited at any time via the “Exit Challenge” button.
+每完成一个普通挑战，你将获得一个自动购买器或升级现有自动购买器的能力。你可以重复进行挑战（但只有首次完成会给予奖励），并随时通过"退出挑战"按钮离开挑战。
 <br>
 <br>
-Your first Infinity is considered to be the first Normal Challenge, and is thus already completed when
-you unlock challenges.
+你的第一次无限被视为第一个普通挑战，因此在解锁挑战系统时它已被视为完成。
 <br>
 <br>
-The rightmost column of Infinity Upgrades does not work in challenges.
+无限升级界面最右侧一列的升级在挑战中不会生效。
 `,
       isUnlocked: () => PlayerProgress.infinityUnlocked(),
       tags: ["infinity", "autobuyer", "earlygame"],
       tab: "challenges/normal"
     }, {
-      name: "Autobuyers",
+      name: "自动购买器",
       info: () => `
-Autobuyers allow you to automatically purchase dimensions, upgrades, or prestiges. All autobuyer
-controls are located under the "Autobuyers" subtab of the "Automation" tab, including any additional autobuyers
-unlocked later in the game.
-<br>
-<br>
-Antimatter Dimension Autobuyers and the Tickspeed Upgrade Autobuyer can be unlocked based on your total antimatter,
-but most other autobuyers require upgrades to be purchased or challenges to be beaten.
-<br>
-<br>
-Most Autobuyers have similar attributes:
-<br>
-<br>
-<b>Autobuyer Interval:</b> The cooldown period before the autobuyer attempts to make another purchase.
-Antimatter Dimension Autobuyers and the Tickspeed Upgrade Autobuyer require their respective challenges to be beaten
-before their interval can be upgraded.
-<br>
-<br>
-<b>Antimatter Dimension Autobuyer Bulk Buy:</b> Once the interval of an autobuyer reaches its minimum
-(at ${formatInt(100)} ms), all future upgrades will double the maximum amount the autobuyer can purchase per tick.
-This can be disabled.
-<br>
-<br>
-<b>Antimatter Dimension Autobuyer Buy Quantity:</b> Autobuyers for Dimensions can be set to buy a single Dimension,
-or until ${formatInt(10)}. Bulk buy is disabled when the autobuyer is set to singles.
-<br>
-<br>
-<b>Tickspeed Autobuyer Buy Quantity:</b> The tickspeed autobuyer can be set to buy a single upgrade per activation
-or to buy the max possible once the Tickspeed Challenge (C9) has been beaten.
-<br>
-<br>
-<b>Automatic Dimension Boost Customization:</b> With the Dimension Boost autobuyer you can set the max number of
-Boosts it will attempt to buy, a minimum number of Antimatter Galaxies before Dimension Boosts are
-always auto-purchased, and (when unlocked) the ability to buy an exact number of Dimension Boosts in bulk.
-If you reach your specified Galaxy threshold, the autobuyer will ignore your max Boost limit.
-<br>
-<br>
-<b>Max Galaxies:</b> The highest amount of Galaxies the Galaxies autobuyer will buy.
-<br>
-<br>
-<b>IP on crunch:</b> Once you Break Infinity, you can set how many IP you would like to wait for before crunching.
-<br>
-<br>
-<b>Sacrifice Autobuyer:</b> This autobuyer starts with a maxed interval, potentially triggering every tick.
-<br>
-<br>
-<b>Dynamic Amount:</b> Upgraded prestige autobuyers have a mode that triggers a prestige when a specified threshold
-is passed. Turning on "Dynamic Amount" will allow this threshold value to be automatically increased when unlocking
-certain upgrades or achievements which apply a multiplier to this value.
-<br>
-<br>
-<b>Pause/Resume Autobuyers:</b> This button will pause or resume autobuyers which are turned on.
-It does not change individual autobuyer settings. Think of it like a master switch.
-<br>
-<br>
-<b>Enable/Disable All Autobuyers:</b> This button will turn all of your autobuyers on or off individually.
-<br>
-<br>
-<b>Hotkey: A</b> (for pausing/resuming autobuyers).
-Additionally, holding <b>Alt</b> when pressing a hotkey associated with an upgrade, dimension, or prestige will
-toggle the associated autobuyer.
+自动购买器可让你自动购买维度、升级或转生。所有自动购买器的控制选项都位于"自动化"标签页下的"自动购买器"子标签中，包括游戏后期解锁的任何额外自动购买器。
+
+<br><br>
+反物质维度自动购买器和计数频率升级自动购买器会根据你的总反物质数量解锁，但大多数其他自动购买器需要购买升级或完成挑战才能解锁。
+
+<br><br>
+大多数自动购买器具有相似的属性：
+
+<br><br>
+<b>自动购买间隔：</b> 自动购买器尝试再次购买前的冷却时间。反物质维度自动购买器和计数频率升级自动购买器需要先完成各自的挑战才能升级其间隔时间。
+
+<br><br>
+<b>反物质维度批量购买：</b> 当自动购买器的间隔达到最小值（${formatInt(100)} 毫秒）后，所有后续升级都会使自动购买器每次可购买的最大数量翻倍。此功能可以禁用。
+
+<br><br>
+<b>反物质维度购买数量：</b> 维度自动购买器可以设置为购买单个维度，或最多 ${formatInt(10)} 个。当设置为单次购买时，批量购买功能将被禁用。
+
+<br><br>
+<b>计数频率购买数量：</b> 计数频率自动购买器可以设置为每次激活购买单个升级，或在完成计数频率挑战（挑战 9）后一次性购买最大可能数量。
+
+<br><br>
+<b>自动维度提升自定义：</b> 通过维度提升自动购买器，你可以设置最大尝试购买次数、自动购买前要求的最小反物质星系数量，以及（解锁后）批量购买指定数量维度提升的能力。如果达到你设定的星系阈值，自动购买器将忽略最大提升限制。
+
+<br><br>
+<b>最大星系数：</b> 星系自动购买器将购买的最大星系数量。
+
+<br><br>
+<b>坍缩时无限点数：</b> 突破无限后，你可以设置获得多少无限点数后才执行坍缩。
+
+<br><br>
+<b>献祭自动购买器：</b> 此自动购买器初始具有最短间隔，可能每 tick 都触发。
+
+<br><br>
+<b>动态数量：</b> 升级后的转生自动购买器具有在达到指定阈值时触发转生的模式。开启"动态数量"将在解锁某些升级或成就时自动提高此阈值。
+
+<br><br>
+<b>暂停/恢复自动购买器：</b> 此按钮将暂停或恢复已开启的自动购买器。它不会改变单个自动购买器的设置，相当于总开关。
+
+<br><br>
+<b>启用/禁用所有自动购买器：</b> 此按钮将单独切换所有自动购买器的开关状态。
+
+<br><br>
+<b>快捷键：A</b>（用于暂停/恢复自动购买器）。此外，按住 <b>Alt</b> 同时按下与升级、维度或转生相关的快捷键将切换对应的自动购买器。
 `,
       isUnlocked: () => true,
       tags: ["infinity", "automation", "challenges", "rewards", "interval", "earlygame"],
       tab: "automation/autobuyers"
     }, {
-      name: "Break Infinity",
+      name: "打破无限",
       info: () => `
-Once you Break Infinity, you are no longer limited to ${formatPostBreak(Number.MAX_VALUE, 2)} antimatter and can start
-gaining more than ${formatInt(1)} IP per crunch depending on how much more antimatter you have when you crunch.
-<br>
-<br>
-You now gain ~${format(1.78, 2, 2)} IP for crunching at ${formatPostBreak(Number.MAX_VALUE, 2)} antimatter. The IP you
-gain for crunching is multiplied by ${formatInt(10)} for every additional factor of
-${formatPostBreak(Number.MAX_VALUE, 2)} antimatter you gain (in a continuous manner). This is rounded down to the
-nearest integer <i>after</i> all multipliers are applied.
-<br>
-<br>
-The antimatter costs of all Dimensions begin to increase faster after they pass
-${formatPostBreak(Number.MAX_VALUE, 2)}. The cost <i>between</i> upgrades will increase by ${formatX(10)}
-<i>per upgrade</i> above ${formatPostBreak(Number.MAX_VALUE, 2)}, and a similar scaling happens to
-Tickspeed Upgrade costs as well.
+      打破无限后，你将不再受限于 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质，并且根据坍缩时的反物质数量，每次可获得超过 ${formatInt(1)} 个无限点数。
+
+<br><br>
+现在，当你拥有 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质时进行坍缩可获得约 ${format(1.78, 2, 2)} 个无限点数。每额外获得 ${formatPostBreak(Number.MAX_VALUE, 2)} 倍反物质（连续计算），获得的无限点数量将乘以 ${formatInt(10)}。最终结果会在应用所有乘数后向下取整至最接近的整数。
+
+<br><br>
+所有维度的反物质价格在超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 后会加速增长。升级间的价格将会以每级 ${formatX(10)} 的倍率增长（超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 后），计数频率升级价格也会有类似的增长机制。
 `,
       isUnlocked: () => Autobuyer.bigCrunch.hasMaxedInterval || PlayerProgress.eternityUnlocked(),
       tags: ["limit", "crunch", "upgrades", "midgame"],
       tab: "infinity/break"
     }, {
-      name: "Infinity Dimensions",
+      name: "无限维度",
       info: () => `
-<b>Unlocking Infinity Dimensions:</b> Infinity Dimensions are unlocked by reaching a certain amount of antimatter.
-<br>
-<br>
-<b>Infinity Dimension Purchasing:</b> Infinity Dimensions are only purchasable in sets of ${formatInt(10)}, and cost
-Infinity Points. They give a permanent multiplier per purchase, similar to the other dimensions. The actual multiplier
-applied depends on which Infinity Dimension you purchase. <!-- Sorry Garnet :/ -->
-<br>
-<br>
-<b>Infinity Dimension Production:</b> Just like Antimatter Dimensions, each Infinity Dimension produces the
-next highest Infinity Dimension.
-<br>
-<br>
-Every crunch, your produced Infinity Dimensions are reset to the amount you purchased. While the production
-of Infinity Dimensions does not carry between crunches, all the multipliers you got from purchasing them do.
-<br>
-<br>
-<b>Infinity Dimension unlock thresholds (antimatter):</b> ${Array.range(1, 8)
+      <b>解锁无限维度：</b> 当你的反物质达到特定数量时，就能解锁无限维度。
+
+<br><br>
+<b>购买无限维度：</b> 无限维度只能以 ${formatInt(10)} 个为一组购买，需要花费无限点数。和其他维度一样，每次购买都会获得永久加成，具体加成效果取决于你购买的无限维度类型。
+
+<br><br>
+<b>无限维度生产：</b> 和反物质维度类似，每个无限维度都会生产更高一级的无限维度。
+
+<br><br>
+每次坍缩时，你生产的无限维度数量会重置为已购买数量。虽然生产量不会保留，但通过购买获得的所有加成都会保留。
+
+<br><br>
+<b>无限维度解锁条件（反物质）：</b> ${Array.range(1, 8)
     .map(tier => formatPostBreak(InfinityDimension(tier)._unlockRequirement))
     .join(", ")}
 <br>
-<b>Infinity Dimension purchase multipliers:</b> ${Array.range(1, 8)
+<b>无限维度购买加成：</b> ${Array.range(1, 8)
     .map(tier => format(InfinityDimension(tier)._powerMultiplier))
     .join(", ")}
 <br>
-<b>Infinity Dimension base prices (IP):</b> ${Array.range(1, 8)
+<b>无限维度基础价格（IP）：</b> ${Array.range(1, 8)
     .map(tier => format(InfinityDimension(tier)._baseCost))
     .join(", ")}
 <br>
-<b>Infinity Dimension price increases:</b> ${Array.range(1, 8)
+<b>无限维度价格增长：</b> ${Array.range(1, 8)
     .map(tier => format(InfinityDimension(tier)._costMultiplier))
     .join(", ")}
-<br>
-<br>
-Instead of antimatter, the 1st Infinity Dimension produces Infinity Power, which gives a multiplier applied
-to all Antimatter Dimensions equal to (power<sup>${formatInt(7)}</sup>). Infinity Dimensions are not
-affected by Tickspeed Upgrades.
+
+<br><br>
+第一无限维度不生产反物质，而是生产无限能量，能给所有反物质维度带来 (能量<sup>${formatInt(7)}</sup>) 的加成。无限维度不受计数频率升级影响。
 `,
       isUnlocked: () => Autobuyer.bigCrunch.hasMaxedInterval || PlayerProgress.eternityUnlocked(),
       tags: ["id", "power", "new", "dims", "unlock", "break", "midgame"],
       tab: "dimensions/infinity"
     }, {
-      name: "Infinity Challenges",
+      name: "无限挑战",
       // This one could use some work!
       info: () => `
-Infinity Challenges are like Normal Challenges, but they have higher end goals and are generally harder. Instead of
-only unlocking autobuyers, they give you boosts to your various forms of production in more unique ways. Similarly to
-Normal Challenges, the rightmost column of Infinity Upgrades are disabled within Infinity Challenges.
-<br>
-<br>
-Unlike the Normal Challenges, which are all unlocked at once, Infinity Challenges require you to reach a certain
-amount of antimatter before you can attempt them.
-<br>
-<br>
-<b>Infinity Challenge unlock thresholds:</b> ${GameDatabase.challenges.infinity
+无限挑战和普通挑战很像，但目标更高，难度也更大。它们不会只解锁自动购买器，而是会用更独特的方式提升你的各种生产效率。和普通挑战一样，无限升级界面最右侧的升级在无限挑战中也会失效。
+
+<br><br>
+和一次性解锁所有普通挑战不同，无限挑战需要你达到特定的反物质数量才能尝试。
+
+<br><br>
+<b>无限挑战解锁条件：</b> ${GameDatabase.challenges.infinity
     .map(ic => formatPostBreak(ic.unlockAM)).join(", ")}
 `,
       isUnlocked: () => Autobuyer.bigCrunch.hasMaxedInterval || PlayerProgress.eternityUnlocked(),
       tags: ["rewards", "break", "ic", "midgame"],
       tab: "challenges/infinity"
     }, {
-      name: "Replicanti",
+      name: "复制器",
       info: () => `
-Replicanti are another resource you unlock at ${format(DC.E140)} IP. Rather
-than producing something else, Replicanti actually produces <i>itself</i> up to a maximum of
-${formatPostBreak(Number.MAX_VALUE, 2)}. Replicanti are produced at their own pace, unaffected by Tickspeed Upgrades.
-Each individual Replicanti has a certain chance (initially ${formatPercents(0.01)}) of producing another Replicanti
-every Replicanti tick (initially every second), and both of these can be upgraded by spending IP.
+复制器是你在获得 ${format(DC.E140)} 无限点数后解锁的另一种资源。它不会生产其他东西，而是会<i>自我复制</i>，最高可达 ${formatPostBreak(Number.MAX_VALUE, 2)}。复制器有自己的生产节奏，不受计数频率升级影响。每个复制器都有一定概率（初始 ${formatPercents(0.01)}）在每个复制周期（初始每秒一次）产生另一个复制器，这两个参数都可以通过花费无限点数来升级。
+
+<br><br>
+如果你购买了复制器星系升级，就可以用重置复制器数量（回到 ${formatInt(1)}）来换取一个"免费"的复制器星系。这个星系和反物质星系效果相同，但不会增加你下一个反物质星系的价格。不过它仍然会像普通反物质星系一样重置其他内容。
+
+<br><br>
+<b>快捷键：R</b> 可以尝试购买复制器星系。
 <br>
+复制器能为所有无限维度提供加成，在达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 复制器时最高可获得 ${formatX(Math.pow(2, 20), 2, 2)} 倍加成。
+
+<br><br>
+<b>复制概率升级成本：</b> 基础 ${format(DC.E150)} 无限点数，每次升级增加 ${formatX(DC.E15)} 倍
 <br>
-If you have purchased a Replicanti Galaxy upgrade, then you can get a "free" Replicanti Galaxy in exchange for
-resetting your Replicanti count back to ${formatInt(1)}. This Galaxy is free in that it will act as if it was an
-Antimatter Galaxy, but it will not make your next Antimatter Galaxy more expensive. However, it will still reset the
-same things as an Antimatter Galaxy does.
+<b>复制间隔升级成本：</b> 基础 ${format(DC.E140)} 无限点数，每次升级增加 ${formatX(DC.E10)} 倍
 <br>
-<br>
-<b>Hotkey: R</b> will try to purchase a Replicanti Galaxy.
-<br>
-Replicanti give a multiplier to all Infinity Dimensions, which will reach a maximum of
-${formatX(Math.pow(2, 20), 2, 2)} at ${formatPostBreak(Number.MAX_VALUE, 2)} Replicanti.
-<br>
-<br>
-<b>Chance upgrade cost:</b> Base ${format(DC.E150)} IP, cost increment ${formatX(DC.E15)} IP
-<br>
-<b>Interval upgrade cost:</b> Base ${format(DC.E140)} IP, cost increment ${formatX(DC.E10)} IP
-<br>
-<b>Galaxy upgrade cost:</b> Base ${format(DC.E170)} IP, cost increment ${formatX(DC.E25)} IP and an additional
-${formatX(1e5)} IP per upgrade, scaling similarly to distant Antimatter Galaxies. Above ${formatInt(100)} Replicanti
-Galaxies, this ${formatX(1e5)} per upgrade changes to ${formatX(DC.E55)}. Above ${formatInt(1000)}, the scaling switches
-from quadratic to cubic, with the ${formatX(DC.E55)} multiplier itself increasing by ${formatX(DC.E5)} per upgrade.
+<b>星系升级成本：</b> 基础 ${format(DC.E170)} 无限点数，每次升级增加 ${formatX(DC.E25)} 倍，并额外增加 ${formatX(1e5)} 倍（和遥远反物质星系类似）。超过 ${formatInt(100)} 个复制器星系后，每次升级增加的 ${formatX(1e5)} 倍会变为 ${formatX(DC.E55)} 倍。超过 ${formatInt(1000)} 个后，增长模式会从二次方变为三次方，且 ${formatX(DC.E55)} 倍本身每次升级还会增加 ${formatX(DC.E5)} 倍。
 `,
       isUnlocked: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked(),
       tags: ["interval", "chance", "infinity", "galaxy", "galaxies", "midgame"],
       tab: "infinity/replicanti"
     }, {
-      name: "Eternity",
+      name: "永恒",
       info: () => `
-Upon reaching ${formatPostBreak(Number.MAX_VALUE, 2)} IP, you can Eternity. Eternities will reset everything before this
-point except challenge times, Achievements, and anything under the General section of the Statistics tab. You will be
-able to access more content after your first Eternity.
-<br>
-<br>
-You can pass ${formatPostBreak(Number.MAX_VALUE, 2)} IP without anything being forced upon you, unlike the first time
-you reached ${formatPostBreak(Number.MAX_VALUE, 2)} antimatter. You will receive more Eternity Points the more
-Infinity Points you had before going Eternal. You will also gain one "Eternity" for completing an Eternity.
-<br>
-<br>
-Eternity Point gain scales similarly to Infinity Point gain, but scaling off of Infinity Points instead of antimatter.
-The base amount of EP gained at ${formatPostBreak(Number.MAX_VALUE, 2)} IP is ~${format(1.62, 2, 2)} EP, multiplied by
-${formatInt(5)} for every factor of ${formatPostBreak(Number.MAX_VALUE, 2)} more IP you have. This is always rounded
-down, which means that you will get ${formatInt(1)} EP at ${formatPostBreak(Number.MAX_VALUE, 2)} IP but will not reach
-${formatInt(2)} EP until ${formatPostBreak(DC.E349)}.
-<br>
-<br>
-<b>Hotkey: E</b> will try to perform an Eternity reset.
+当你的无限点数达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 时，就可以进行永恒重置。永恒会重置这之前的所有进度，但会保留挑战时间、成就和统计标签页中"概况"栏目的数据。完成第一次永恒后，你将解锁更多内容。
+
+<br><br>
+和第一次达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质时不同，你可以自由选择何时进行永恒重置，即使已经超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数。永恒时拥有的无限点数越多，获得的永恒点数就越多。每次完成永恒还会获得1次"永恒"计数。
+
+<br><br>
+永恒点数的获取方式和无限点数类似，但是基于无限点数量而非反物质。在 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数时基础获得约 ${format(1.62, 2, 2)} 永恒点数，每多 ${formatPostBreak(Number.MAX_VALUE, 2)} 倍无限点数就乘以 ${formatInt(5)}。结果总是向下取整，这意味着你在 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数时只能获得 ${formatInt(1)} 永恒点数，要到 ${formatPostBreak(DC.E349)} 才能获得 ${formatInt(2)} 永恒点数。
+
+<br><br>
+<b>快捷键：E</b> 可以尝试进行永恒重置。
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["eternal", "ep", "reset", "prestige", "midgame"],
       tab: "eternity/upgrades"
     }, {
-      name: "Eternity Milestones",
+      name: "永恒里程碑",
       info: () => `
-To make Eternities faster and more convenient, you will unlock various buffs as you get more "Eternity". These
-buffs will generally let you start with certain upgrades you would otherwise lose after Eternity, give you new
-autobuyers for better automation, or give you a way to passively gain resources offline at a reduced rate.
-<br>
-<br>
-Milestones which give you upgrades will automatically purchase and upgrade them to their maximum when first starting
-the Eternity, effectively letting you have them permanently.
-<br>
-<br>
-All of the new autobuyers will have toggles next to their respective manual buttons (for example, Infinity Dimension
-autobuyers can be found on the Infinity Dimension tab) in addition to their entries on the autobuyers tab.
-The improvements to the Dimension Boost, Antimatter Galaxy, and Big Crunch autobuyers update their
-already existing entries on the autobuyer tab.
-<br>
-<br>
-The passive generation milestones only work offline by design and may need certain autobuyer settings to work
-properly, as noted on the milestone page itself.
+为了让永恒重置更快捷方便，随着"永恒"次数增加，你会解锁各种增益效果。这些增益能让你在永恒后保留原本会消失的升级、获得新的自动购买器来提升自动化程度，或是以较低效率离线获取资源。
+
+<br><br>
+提供升级的里程碑会在永恒开始时自动帮你购买并升到最高级，相当于永久拥有这些升级。
+
+<br><br>
+所有新自动购买器除了在自动购买器标签页显示外，还会在对应的手动按钮旁出现开关（比如无限维度自动购买器开关就在无限维度标签页）。维度提升、反物质星系和大坍缩自动购买器的升级会直接更新原有条目。
+
+<br><br>
+被动生成类里程碑默认只在离线时生效，可能需要调整自动购买器设置才能正常工作，具体说明见里程碑页面。
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["eternities", "rewards", "automation", "midgame"],
       tab: "eternity/milestones"
     }, {
-      name: "Time Dimensions",
+      name: "时间维度",
       info: () => `
-After your first Eternity, you unlock Time Dimensions. You buy them with Eternity Points and they produce Time Shards,
-which provide Tickspeed Upgrades. These Tickspeed Upgrades function like normal Tickspeed Upgrades but do not increase
-their cost. Time Dimensions, Time Shards, and the Tickspeed Upgrades they provide are kept on Infinity,
-but reset every Eternity.
+第一次永恒后，你将解锁时间维度。用永恒点数购买时间维度可以产生时间碎片，用于提供计数频率升级。这些升级和普通计数频率升级效果相同但不会增加成本。时间维度、时间碎片及其提供的升级会在无限时保留，但每次永恒都会重置。
+
+<br><br>
+和其他维度类似，第二时间维度会生产第一时间维度，以此类推。和无限维度类似，每次永恒后你的生产量会重置为购买数量，但购买的倍率加成会永久保留。
+
+<br><br>
+每次购买会使该时间维度的倍率增加 ${formatX(4)} 倍。升级成本的基础倍率会在达到 ${format(TimeDimension(1)._costIncreaseThresholds[0], 2)} 永恒点数时提升 ${formatX(1.5, 1, 1)} 倍，在 ${format(TimeDimension(1)._costIncreaseThresholds[1])} 永恒点数时再提升 ${formatX(2.2, 1, 1)} 倍（基于基础值）。这些提升会追溯生效，导致达到阈值时价格突然上涨，且仅适用于前四个维度。超过 ${format(TimeDimension(1)._costIncreaseThresholds[2])} 永恒点数后，每次购买会按四次计算成本增长，使价格上涨更加剧烈。
+
+<br><br>
+<b>时间维度基础价格（EP）：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._baseCost)).join(", ")}
 <br>
-<br>
-Similarly to the other dimensions, Second Time Dimensions produce 1st Time Dimensions and so on. Similarly to Infinity
-Dimensions, your production will be reset to the amount you purchased after every Eternity, but you will keep any
-upgrades to your multipliers you purchased.
-<br>
-<br>
-Each purchase increases the multiplier of that specific Time Dimension by ${formatX(4)}. The cost multiplier between
-upgrades has a base value, but is increased by ${formatX(1.5, 1, 1)} at
-${format(TimeDimension(1)._costIncreaseThresholds[0], 2)} EP and ${formatX(2.2, 1, 1)} (of the base value) at
-${format(TimeDimension(1)._costIncreaseThresholds[1])} EP. These increases apply retroactively, causing the cost to
-jump when they reach those thresholds, and only apply to the first four dimensions. Beyond
-${format(TimeDimension(1)._costIncreaseThresholds[2])} EP each dimension purchase counts as four purchases for the
-purpose of cost increases, causing the price to rise much more steeply.
-<br>
-<b>Time Dimension base prices (EP):</b> ${Array.range(1, 8)
-    .map(tier => format(TimeDimension(tier)._baseCost))
-    .join(", ")}
-<br>
-<b>Time Dimension base price increases:</b> ${Array.range(1, 8)
-    .map(tier => format(TimeDimension(tier)._costMultiplier))
-    .join(", ")}
-<br>
-<br>
-Each threshold to gain another Tickspeed Upgrade is ${formatPercents(0.33)} more Time Shards than the previous,
-or ${formatPercents(0.25)} with the relevant Time Study. After ${formatInt(FreeTickspeed.softcap)} upgrades, the
-multiplier between each successive free Tickspeed Upgrade will gradually increase at a rate of ~${formatX(1.35, 0, 2)}
-per ${formatInt(50000)} upgrades (${formatX(1.000006, 0, 6)} per upgrade).
+<b>时间维度基础价格增长：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._costMultiplier)).join(", ")}
+
+<br><br>
+每次获得新计数频率升级所需的时间碎片比前一次多 ${formatPercents(0.33)}（若有对应时间研究则为 ${formatPercents(0.25)}）。超过 ${formatInt(FreeTickspeed.softcap)} 次升级后，后续免费升级的倍率会以每 ${formatInt(50000)} 次升级约 ${formatX(1.35, 0, 2)} 倍的速度增长（每次升级 ${formatX(1.000006, 0, 6)} 倍）。
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["dims", "td", "shards", "eternity", "midgame"],
       tab: "dimensions/time"
     }, {
-      name: "Time Studies",
+      name: "时间研究",
       info: () => `
-A Time Study is a powerful post-Eternity upgrade, which costs a new resource called Time Theorems. Time Studies can
-boost the production of anything you have seen so far in the game, or even change the way some formulas work.
+时间研究是永恒后解锁的强大升级，需要消耗新资源"时间之理"。它能提升游戏中所有已有内容的生产效率，甚至改变某些计算公式的运作方式。
+
+<br><br>
+时间之理是有限资源，每次购买成本都会增加。可以用反物质、无限点数或永恒点数购买，永恒时不会重置。购买成本按固定倍数递增。
+
+<br><br>
+研究以树状结构排列，必须购买前置研究才能继续。初始只能购买最顶端的研究，之后可以购买其下方任意可负担的研究。但有三种例外情况：
 <br>
+当研究连线有颜色时，每次只能选择三条路径中的一条
 <br>
-Time Theorems are a limited resource which costs more for each one you buy. They can be bought with antimatter,
-Infinity Points, or Eternity Points. Their cost increases by a set factor per purchase. Time Theorems do not
-reset on Eternity.
+遇到永恒挑战相关研究时，需要先完成所有关联挑战才能解锁（无需购买该研究）
 <br>
+在底部汇合处，每组只能选择一项研究
+
+<br><br>
+按住Shift点击研究可一键购买到该研究的所有前置（在分叉路径会优先横向购买）。若遇到必须选择的路径或资源不足，可能无法完整购买。
+
+<br><br>
+<b>预设方案：</b> 1-6号按钮可保存当前研究配置，点击快速加载/Shift点击保存。预设可重命名但不能重复。
+
+<br><br>
+<b>导入配置/编辑预设：</b> 编辑时会显示将要购买的研究及错误提示。分叉路径可用名称缩写（如用"antimatter"代表71,81,91,101）。配置末尾加"!"可自动解锁并进入永恒挑战。
+
+<br><br>
+<b>偏好设置：</b> 齿轮图标可设置三叉路径的默认选择，影响Shift点击的购买逻辑。购买特定研究后可为维度分叉设置两条默认路径。
+
+<br><br>
+<b>重置：</b> 可免费重置回收所有已花费时间之理，但只能在完成永恒时进行。
+
+<br><br>
+<b>时间之理消耗：</b>
 <br>
-Studies are laid out in a tree-like fashion, where you must buy prerequisites before continuing. The only study you
-can buy at first is the very top one, and then from there you can purchase any study directly below it which you can
-afford. However, there are three exceptions:
+<b>反物质：</b> 初始 ${format(DC.E20000)}，每次 ${formatX(DC.E20000)} 倍
 <br>
-Where the lines between studies have a color, you can only choose one of the three paths at a time.
+<b>无限点数：</b> 初始 ${formatInt(1)}，每次 ${formatX(DC.E100)} 倍
 <br>
-When a study for an Eternity Challenge is in the way, you need to complete all challenges connected to it at least
-once in order to access the study. You do not need to have the challenge study purchased in order to access it.
-<br>
-Near the bottom, where all the edges join together again, you can only pick one study out of each pair.
-<br>
-<br>
-You are able to hold down shift and then click on a Time Study to buy all studies until that point. This might not buy
-the studies you want if you shift-click a study in a position where you would have to choose between two or more
-different options which you cannot get together (see above), or you cannot afford all the studies needed to reach that
-point. Shift-click will buy studies greedily, getting as many as possible per row before moving farther downward.
-<br>
-<br>
-<b>Presets:</b> The buttons initially labeled 1 through 6 allow you to save your current set of studies into the slot,
-letting you quickly buy that particular set of studies again with a single click. You can hover over the button and
-use the tooltip to load/save a slot, or click to load and shift-click to save. These presets can be renamed, but you
-are not allowed to give multiple presets the same name.
-<br>
-<br>
-<b>Import Tree/Edit Preset:</b> When editing a preset or importing a Time Study Tree, the modal will display what
-Time Studies will be bought when it is loaded, along with any errors.
-For the split paths, you can use the name as a shorthand for the collection of studies.
-For instance, you can replace "71, 81, 91, 101" to represent fully purchasing the antimatter split with
-just "antimatter". Additionally, if a Time Study string has a valid Eternity Challenge, adding a "!" to the end of
-the string will make the game to try to immediately unlock and enter the Eternity Challenge when used.
-<br>
-<br>
-<b>Preferences:</b> Clicking the gear icon will open up a dialog which lets you select "default" paths to pick in the
-three-way branches. Choosing a default will change the shift-click behavior mentioned above so that it will attempt
-to buy your preferred path and continue on instead of stopping completely at the tree splits. You can choose two paths
-for the Dimension split in this dialog if you have purchased the relevant Time Study.
-<br>
-<br>
-<b>Respecs:</b> A respec allows you to reset the upgrades you have in the tree to retrieve all of the Time Theorems
-spent on them. It can be done for free, but only triggers on finishing an Eternity; you cannot respec Time Studies in
-the middle of an Eternity.
-<br>
-<br>
-<b>Costs for Time Theorems:</b>
-<br>
-<b>Antimatter:</b> Initially ${format(DC.E20000)}, ${formatX(DC.E20000)} per Theorem
-<br>
-<b>Infinity Points:</b> Initially ${formatInt(1)}, ${formatX(DC.E100)} per Theorem
-<br>
-<b>Eternity Points:</b> Initially ${formatInt(1)}, ${formatX(2)} per Theorem
+<b>永恒点数：</b> 初始 ${formatInt(1)}，每次 ${formatX(2)} 倍
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["eternity", "ts", "theorems", "tree", "study", "midgame"],
       tab: "eternity/studies"
     }, {
-      name: "Eternity Challenges",
+      name: "永恒挑战",
       info: () => `
-Eternity Challenges are another set of challenges which are unlocked by the Time Study Tree. They require a certain
-amount of Time Theorems and a secondary requirement which you must meet when you unlock the challenge.
-<br>
-<br>
-When you enter an Eternity Challenge, your goal becomes reaching a certain target IP. After completing the challenge,
-you do not need to have the Eternity Challenge's study unlocked for the reward to take effect. The rewards for these
-challenges are similar to Time Studies, but often even stronger and permanent since they do not require you to spend
-Time Theorems to have their effects.
-<br>
-<br>
-You can only have one Eternity Challenge unlocked at a time.
-<br>
-<br>
-You can complete each Eternity Challenge up to five times. After each completion, the rewards grow stronger but the
-goal to the next completion also increases. Additionally, the secondary requirement to unlock the challenge again will
-also increase. The Time Theorem cost does not increase.
-<br>
-<br>
-Completing an Eternity Challenge's secondary requirements will remove them from the study requirement until you complete
-that particular Eternity Challenge, meaning you only need to complete the secondary requirement <i>once</i>.
-As a result, you can unlock an Eternity Challenge with one set of studies, and then respec into a different set of
-studies to beat the challenge. EC11 and EC12 are exceptions to this rule - the Dimension path restrictions remain even
-if you respec your time studies.
+永恒挑战是通过时间研究树解锁的另一组挑战。解锁每个永恒挑战需要消耗一定数量的时间之理，并满足特定的解锁条件。
+
+<br><br>
+进入永恒挑战后，你的目标将变为达成特定的无限点数目标。完成挑战后，即使未解锁对应的挑战研究，奖励也会立即生效。这些挑战奖励与时间研究类似，但效果通常更强且永久有效，因为不需要持续消耗时间之理来维持效果。
+
+<br><br>
+你每次只能解锁一个永恒挑战。
+
+<br><br>
+每个永恒挑战最多可以完成5次。每次完成后，奖励效果会增强，但下次完成的目标要求也会提高。此外，再次解锁该挑战的附加条件也会提升（时间之理的消耗不会增加）。
+
+<br><br>
+完成永恒挑战的附加条件后，该条件将从研究要求中移除（只需完成<i>一次</i>）。这意味着你可以用一组研究配置解锁挑战，然后重置研究树改用其他配置来完成挑战。但EC11和EC12例外 - 即使重置研究树，维度路径的限制仍然有效。
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["ec", "study", "time", "rewards", "completions", "midgame"],
       tab: "challenges/eternity"
     }, {
-      name: "Time Dilation",
+      name: "时间膨胀",
       info: () => `
-Time Dilation is unlocked when you purchase the Time Study to unlock it below the EC11 and EC12 studies.
-In order to purchase this Time Study, you need ${formatInt(5000)} unspent TT with a tree that can reach
-the study, a <i>total</i> of ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} TT, and must have
-completed both EC11 and EC12 five times each.
+时间膨胀功能将在购买EC11和EC12研究下方的对应时间研究后解锁。购买该研究需要 ${formatInt(5000)} 未使用的时间之理，且研究树路径可抵达该研究，<i>累计</i>获得 ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} 时间之理，并且必须完成EC11和EC12各5次。
 <br>
 <br>
-Dilating time will start a modified Eternity, called Time Dilation, in which all of your Antimatter/Infinity/Time
-Dimension multipliers’ <i>exponents</i> and the tickspeed multipliers’ <i>exponent</i> will be raised to
-${formatPow(0.75, 2, 2)}, significantly reducing them. If you can reach ${formatPostBreak(Number.MAX_VALUE, 2)} IP
-to complete this Dilated Eternity, you will be rewarded with a new resource called Tachyon Particles.
+启动时间膨胀将进入特殊的"时间膨胀"状态，其中所有反物质/无限/时间维度的倍率<i>指数</i>以及计数频率倍率的<i>指数</i>都将调整为 ${formatPow(0.75, 2, 2)}，使其效果大幅减弱。如果你能达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数来完成这次膨胀永恒，你将获得名为"超光速粒子"的新资源。
 <br>
 <br>
-You can Dilate as many times as you want, but Tachyon Particles cannot be "farmed" like other resources. Tachyon
-Particles are never reduced, only increased, and they are increased up to a cap based on your TP multipliers and
-antimatter earned in the current Dilation. As a result, you generally cannot increase your TP unless
-you have gained a TP multiplier or are able to significantly increase your antimatter in Dilation.
+你可以进行任意次数的膨胀，但超光速粒子不能像其他资源那样"刷取"。超光速粒子数量只增不减，其上限取决于你当前的TP倍率和本次膨胀中获得的反物质总量。因此，除非你获得了新的TP倍率或能在膨胀中显著提升反物质产量，否则通常无法增加TP。
 <br>
 <br>
-Tachyon Particles generate another currency called Dilated Time. Dilated Time is translated into Tachyon Galaxies by
-reaching thresholds similarly to the Tickspeed Upgrades gained from Time Dimensions. These Tachyon Galaxies are like
-Replicanti Galaxies in that they affect tickspeed as if they were Antimatter Galaxies but they do not increase the cost
-of your next Antimatter Galaxy.
+超光速粒子会生成另一种货币"膨胀时间"。膨胀时间通过达到阈值可转换为超光速粒子星系，其机制类似于从时间维度获得的计数频率升级。这些超光速粒子星系类似于复制器星系，它们像反物质星系一样影响计数频率，但不会增加你下一个反物质星系的成本。
 <br>
 <br>
-Unlocking Time Dilation also unlocks upgrades you can purchase using Dilated Time. The first and third upgrades in the
-first row of Dilation Upgrades can be repeatedly purchased as many times as you can afford them. The second upgrade can
-also be repeatedly bought, but eventually reaches a cap.
+解锁时间膨胀还会解锁可用膨胀时间购买的升级。第一行升级中的第1和第3项可以重复购买任意次数（只要你有足够资源），第2项升级也可以重复购买，但最终会达到上限。
 `,
       isUnlocked: () => DilationTimeStudyState.studies[1].isBought || PlayerProgress.realityUnlocked(),
       tags: ["dial", "dt", "dilated", "tachyon", "particle", "study", "free", "galaxy", "galaxies", "midgame"],
       tab: "eternity/dilation"
     }, {
-      name: "Reality",
+      name: "现实",
       info: () => `
-When you reach ${formatPostBreak(DC.E4000)} EP and have completed the first
-${formatInt(13)} rows of Achievements, you will be able to purchase the Time Study that unlocks Reality.
-Unlocking it opens a new tab, where you can find the button to make a new Reality. Starting a new Reality
-will reset almost the entire game up to this point, but in exchange gives
-you a new currency known as Reality Machines, a Glyph, and a Perk Point.
-<br>
-<br>
-Unlike the other resets so far, you also lose the first ${formatInt(13)} rows of Achievements - that is, all of the
-pre-Reality Achievements and all of their associated rewards. However, you will still keep all values under the General
-header in the Statistics tab and all of your best Challenge times.
-<br>
-<br>
-After completing your first Reality, the Glyphs tab contain a button which lets you restart your current Reality again,
-without changing what your upcoming Glyph choices are. <b>Note that this will not give you any rewards, even if you
-would otherwise be able to complete the Reality normally.</b>
-<br>
-<br>
-You need to redo the requirements for each Achievement in order to get their rewards again, but you will also passively
-unlock the next incomplete Achievement every ${timeDisplayNoDecimals(30 * 60000)} without any effort even if you
-otherwise do not have the requirements to do so. This automatic completion can be disabled, in which case the timer will
-count down to zero and pause, immediately completing another Achievement when unpaused. The timer still progresses
-at the same rate while offline.
-<br>
-<br>
-Reality Machines can be spent on different upgrades throughout the Reality tab and are your primary currency from this
-point onwards. Glyphs are equippable objects which you must equip in order to use their boosts. Perk Points are another
-currency that can be spent in the Perks subtab on different Perks.
-<br>
-<br>
-Reality Machines scale purely off of EP, and the Reality button will tell you how much EP you need in order to gain
-the next one. The first ${formatInt(10)} RM scale linearly in the exponent between
-${formatPostBreak(DC.E4000)} EP and ${formatPostBreak(DC.C10P16000D3)} EP, and then past that
-RM = ${formatInt(1000)}<sup>log<sub>${formatInt(10)}</sub>(EP)/${formatInt(4000)}-${formatInt(1)}</sup>. This formula
-is higher RM gain than linear above ${formatPostBreak(DC.C10P16000D3)} EP.
-<br>
-<br>
-Glyph level scales off of a combination of Eternity Points, Replicanti, and Dilated Time, with a minimum level of
-${formatInt(1)}. The type, effects, and rarity of Glyphs are randomized.
-<br>
-<br>
-You get exactly ${formatInt(1)} Perk Point per Reality.
-<br>
-<br>
-<b>Hotkey: Y</b> will try to perform a Reality reset.
-`,
+      当你达到 ${formatPostBreak(DC.E4000)} 永恒点数并完成前 ${formatInt(13)} 行成就时，你将能够购买解锁"现实"的时间研究。解锁后会开启新标签页，在那里你可以找到开启新现实的按钮。开启新现实将重置目前为止几乎所有游戏进度，但作为回报，你将获得新货币"现实机器"、一个符文和1个复兴点数。
+
+<br><br>
+与其他重置不同，这次你还会失去前 ${formatInt(13)} 行成就 - 即所有现实前的成就及其相关奖励。不过，你仍会保留统计标签页"总体"分类下的所有数据，以及所有最佳挑战时间。
+
+<br><br>
+完成第一次现实后，符文标签页会出现一个按钮，让你可以重新开始当前现实，而不会改变即将获得的符文选择。<b>注意：这样做不会获得任何奖励，即使你本可以正常完成现实。</b>
+
+<br><br>
+你需要重新满足每个成就的要求才能再次获得奖励，但每 ${timeDisplayNoDecimals(30 * 60000)} 你也会被动解锁下一个未完成的成就，即使你并未满足要求。这个自动完成功能可以关闭，此时计时器会倒数至零并暂停，在取消暂停时立即完成另一个成就。离线时计时器仍会以相同速度推进。
+
+<br><br>
+现实机器可以在现实标签页的不同升级上花费，从此成为你的主要货币。符文是可装备的物品，必须装备才能获得加成。复兴点数是另一种货币，可在复兴子标签页用于购买不同复兴节点。
+
+<br><br>
+现实机器的数量完全取决于永恒点数，现实按钮会告诉你需要多少永恒点数才能获得下一个现实机器。前 ${formatInt(10)} 个现实机器在 ${formatPostBreak(DC.E4000)} 到 ${formatPostBreak(DC.C10P16000D3)} 永恒点数之间呈指数线性增长，超过后计算公式为：现实机器 = ${formatInt(1000)}<sup>log<sub>${formatInt(10)}</sub>(永恒点数)/${formatInt(4000)}-${formatInt(1)}</sup>。这个公式在超过 ${formatPostBreak(DC.C10P16000D3)} 永恒点数后比线性增长获得更多现实机器。
+
+<br><br>
+符文等级取决于永恒点数、复制器和膨胀时间的组合，最低为 ${formatInt(1)} 级。符文的类型、效果和稀有度是随机的。
+
+<br><br>
+每次现实获得 ${formatInt(1)} 个复兴点数。
+
+<br><br>
+<b>快捷键：Y</b> 可尝试进行现实重置。
+      `,
       isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
       tags: ["rm", "machines", "glyph", "perk", "reset", "prestige", "endgame", "lategame"],
       tab: "reality/upgrades"
     }, {
-      name: "Glyphs",
+      name: "符文",
       info: () => `
-A Glyph is an equippable object that has four attributes:
+符文是一种可装备物品，包含四个属性：
 <br>
-<b>Type</b> - This is a name given to the Glyph based on what part of the game it will tend to boost
-(eg. "Glyph of X"). This determines the possible effects it may have.
+<b>类型</b> - 根据其强化的游戏内容命名（如"XX符文"），决定可能具有的效果类型。
 <br>
-<b>Level</b> - This contributes to how strong your Glyph is, and it scales based how much of various
-resources you obtained in the Reality you gained it from.
+<b>等级</b> - 影响符文强度，基于获得该符文时在现实中的进度计算。
 <br>
-<b>Rarity</b> - This is a percentage, between ${formatPercents(0)} and ${formatPercents(1)}, which also
-affects the strength of your Glyph. This is random, but can be influenced by various upgrades.
-The percentage is effectively a quality
-rating, higher values are better. Specific ranges of rarities are given names, such as Common or Uncommon.
+<b>稀有度</b> - ${formatPercents(0)}到${formatPercents(1)}的百分比值，同样影响符文强度。该值随机生成但可通过升级影响，数值越高品质越好，具体区间有普通/稀有等名称。
 <br>
-<b>Effects</b> - These are the boosts that equipping the Glyph will give you, and can contain up to four effects.
-Glyphs with higher level or rarity will generally have more effects than weaker Glyphs.
+<b>效果</b> - 装备后提供的加成，最多包含四个效果。等级或稀有度更高的符文通常具有更多效果。
 <br>
-<b>Note: Your first Glyph will have a fixed effect and rarity, but its level will scale based on your progress before
-any Reality content. Once you receive a Glyph, its attributes cannot be changed.</b>
+<b>注意：首个符文具有固定效果和稀有度，但等级会根据现实内容前的进度计算。符文属性一旦获得就无法更改。</b>
 <br>
 <br>
-To equip a Glyph, double-click or drag the icon from your inventory into one of the active circles in the middle
-of the screen. When equipped, Glyph icons become circular and add their effects to the list on the right.
+装备方式：双击或将符文从库存拖至屏幕中央的激活槽位。装备后符文图标变为圆形，效果显示在右侧列表。
 <br>
 <br>
-Equipping multiple Glyphs with the same effect will combine their effects; effects with "+" will generally add
-their values together and effects with "×" will generally multiply their values together.
+多个同类符文效果将叠加："+"效果数值相加，"×"效果数值相乘。
 <br>
 <br>
-You can equip Glyphs into <i>empty</i> active slots at any time during a Reality, which will immediately apply the
-effects of the new Glyph. You can also drag Glyphs into already-occupied slots to switch which ones you have equipped,
-but this will restart your current Reality.
+现实过程中可随时装备符文至<i>空</i>槽位立即生效。拖动替换已装备符文会重启当前现实。
 <br>
 <br>
-The slots in the first rows of your inventory are "protected" slots. New Glyphs will never be placed into them (even if
-there is no more room in your inventory), and they are unaffected by the Sort and Auto clean buttons. If you run out of
-space for new Glyphs in your inventory, any Glyphs you would receive will be automatically deleted (or sacrificed
-if unlocked).
+库存首行为"保护"槽位：新符文不会占用这些位置（即使库存已满），且不受整理/自动清理功能影响。库存满载时新符文将自动销毁（或解锁后转化为献祭）。
 <br>
 <br>
-You can delete Glyphs from your inventory by shift-clicking them, which will prompt you with a confirmation dialog
-asking if you are sure you want to delete the Glyph. Holding shift and ctrl together while clicking will bypass this
-dialog. <b>However, deleting Glyphs will give you no benefit beyond clearing up inventory space if you do so before
-unlocking Glyph Sacrifice from a Reality Upgrade!</b>
+Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。<b>但在解锁符文献祭前，删除仅能释放库存空间。</b>
 <br>
 <br>
-Once you unlock Glyph Sacrifice, you will be able to disable the Glyph Selection modal from appearing. If desired, you
-can force the modal to appear again for this Reality (ignoring this setting) by shift-clicking the Reality button.
-Completing a Reality with the selection modal disabled will choose a random Glyph from your options.
+解锁符文献祭后可禁用选择界面。Shift+点击现实按钮可强制显示界面。禁用状态下完成现实将随机选择符文。
 <br>
 <br>
-Clicking a group of circular Glyphs outside of a modal window will open up a modal which displays a detailed summary
-of all those Glyphs and their various attributes. The summary will show the information for all Glyphs at once with
-slightly shorter descriptions, making it more suitable for sharing with others. This can be done for Glyph records
-in the Statistics page, your equipped Glyphs, and the Upcoming Glyph Selection this Reality.
+点击符文组（非弹窗内）可查看详细属性汇总，适合分享。此功能适用于统计页记录、已装备符文和本次现实的待选符文。
 `,
       isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
       tags: ["reality", "sacrifice", "level", "endgame", "lategame"],
       tab: "reality/glyphs"
     }, {
-      name: "Perks",
+      name: "复兴树",
       info: () => `
-Perks are a type of upgrade unlocked upon Reality. Each Perk effect varies, but most are QoL (quality of life)
-improvements which you can choose your own path through. All Perks only require ${formatInt(1)} Perk Point to buy.
-<br>
-<br>
-Each Reality you gain ${formatInt(1)} Perk Point which can be spent on an upgrade on the tree, starting with
-"You can now choose from ${formatInt(Perk.firstPerk.config.effect)} Glyphs on Reality". You can only unlock Perks
-which are directly adjacent
-to Perks you already have, although there are loops in the tree which you can go through in either direction.
-<br>
-<br>
-The Perk nodes can have two different shapes - circular or diamond. The only difference between the two is that
-diamond-shaped Perks give Automator Points in addition to their normal effect. Different nodes also have
-different colors, roughly indicating which part of the game they affect the most.
+复兴是现实解锁后的一种升级类型。每个复兴效果各不相同，但大多数都是你可以自行选择路径的便利性(QoL)改进。所有复兴都只需要花费 ${formatInt(1)} 个复兴点数即可购买。
+
+<br><br>
+每次现实重置后，你将获得 ${formatInt(1)} 个复兴点数，可用于在复兴树上购买升级，初始选项为"现在每次现实可以从 ${formatInt(Perk.firstPerk.config.effect)} 个符文中选择"。你只能解锁与你已拥有复兴直接相邻的节点，不过树状图中存在可以双向通过的循环路径。
+
+<br><br>
+复兴节点有两种不同形状 - 圆形和菱形。两者唯一的区别在于菱形节点除了常规效果外还会提供自动机点数。不同节点还具有不同颜色，大致表示它们最影响游戏的哪个部分。
 `,
       isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
       tags: ["pp", "reality", "tree", "endgame", "lategame"],
       tab: "reality/perks"
     }, {
-      name: "Automator Overview",
+      name: "自动机总览",
       info: () => `
-The Automator is unlocked upon reaching a total of ${formatInt(AutomatorPoints.pointsForAutomator)} Automator Points.
-Automator Points are given when unlocking various Perks or Reality Upgrades, by unlocking the Black Hole, or by
-simply completing more Realities.
+自动机将在获得总计 ${formatInt(AutomatorPoints.pointsForAutomator)} 自动机点数后解锁。自动机点数可以通过解锁各种复兴或现实升级、解锁黑洞，或者简单地完成更多现实来获得。
 <br>
 <br>
-The Automator uses a scripting language that allows you to automate nearly the entire game.
-The interface has two panes, a script pane on the left where you enter the commands to automate the game and a pane
-on the right which has multiple panels which do many different things as explained on the Automator Introduction page.
+自动机使用一种脚本语言，允许你自动化几乎整个游戏。界面有两个面板，左侧是输入自动化命令的脚本面板，右侧是具有多个功能面板的区域，具体功能如自动机介绍页面所述。
 <br>
 <br>
-If you want a larger workspace, you can press the button in the top right corner of the documentation pane of the
-Automator to expand it to fullscreen. You can also drag the boundary between the panes horizontally to resize the
-panes if you want more room to write your script or read documentation.
+如果你需要更大的工作空间，可以点击自动机文档面板右上角的按钮将其全屏展开。你也可以水平拖动面板之间的边界来调整面板大小，以便获得更多编写脚本或阅读文档的空间。
 <br>
 <br>
-By pressing the top-right button on the script pane, you can switch between the Automator's block and text editor
-modes; the block mode may be more approachable if you are unfamiliar with programming. To enter commands in block mode,
-select the command block pane on the right and drag the box for the relevant command into the script pane and drop it
-where you want the command to go. Commands can be freely rearranged by dragging the blocks around if needed. Switching
-between block and text mode will attempt to automatically translate your script as well, although you may lose part of
-your converted script if it contains errors.
+通过点击脚本面板右上角的按钮，你可以在自动机的积木模式和文本编辑器模式之间切换；如果你不熟悉编程，积木模式可能更容易上手。在积木模式下输入命令时，选择右侧的命令块面板，将相关命令的方框拖到脚本面板中并放置在你想要的位置。如果需要，可以通过拖动积木来自由重新排列命令。在积木和文本模式之间切换会尝试自动转换你的脚本，但如果脚本包含错误，可能会丢失部分转换内容。
 <br>
 <br>
-Just like your entire savefile, individual Automator scripts can be imported and exported from the game.
-Properly-formatted script strings will begin with <b>${GameSaveSerializer.startingString["automator script"]}</b> and
-end with <b>${GameSaveSerializer.endingString["automator script"]}</b>. If this is not the case then part of your script
-was lost in the process of copy-pasting. The import function will load the script into a new slot; your current script
-will not be lost or overwritten.
+就像整个存档文件一样，单个自动机脚本可以从游戏中导入和导出。格式正确的脚本字符串将以<b>${GameSaveSerializer.startingString["automator script"]}</b>开头，以<b>${GameSaveSerializer.endingString["automator script"]}</b>结尾。如果不是这种情况，那么你的部分脚本在复制粘贴过程中丢失了。导入功能会将脚本加载到一个新槽位；你当前的脚本不会丢失或被覆盖。
 <br>
 <br>
-<b>Hotkey: U</b> will pause/unpause the Automator.
+<b>快捷键：U</b> 将暂停/取消暂停自动机。
 `,
       isUnlocked: () => Player.automatorUnlocked,
       tags: ["automation", "reality", "code", "script", "endgame", "lategame"],
       tab: "automation/automator"
     }, {
-      name: "Automator Technical Details",
+      name: "自动机技术细节",
       info: () => `
-<b>Technical Limits</b>
+<b>技术限制</b>
 <br>
 <br>
-There are a few limitations to scripts in order to reduce lag and prevent save file size from getting too large.
-These limits are as follows:
+为了减少延迟并防止存档文件过大，脚本有以下限制：
 <br>
-- Individual scripts are limited to a maximum of ${formatInt(AutomatorData.MAX_ALLOWED_SCRIPT_CHARACTERS)}
-characters each and all scripts combined together cannot exceed ${formatInt(AutomatorData.MAX_ALLOWED_TOTAL_CHARACTERS)}
-characters total.
+- 单个脚本最多 ${formatInt(AutomatorData.MAX_ALLOWED_SCRIPT_CHARACTERS)} 个字符
+- 所有脚本总字符数不超过 ${formatInt(AutomatorData.MAX_ALLOWED_TOTAL_CHARACTERS)}
 <br>
-- Script names cannot exceed ${formatInt(AutomatorData.MAX_ALLOWED_SCRIPT_NAME_LENGTH)} characters.
+- 脚本名称不超过 ${formatInt(AutomatorData.MAX_ALLOWED_SCRIPT_NAME_LENGTH)} 个字符
 <br>
-- Defined constants cannot have names longer than ${formatInt(AutomatorData.MAX_ALLOWED_CONSTANT_NAME_LENGTH)}
-characters, or values longer than ${formatInt(AutomatorData.MAX_ALLOWED_CONSTANT_VALUE_LENGTH)} characters.
+- 定义的常量名称不超过 ${formatInt(AutomatorData.MAX_ALLOWED_CONSTANT_NAME_LENGTH)} 个字符
+- 常量值不超过 ${formatInt(AutomatorData.MAX_ALLOWED_CONSTANT_VALUE_LENGTH)} 个字符
 <br>
-- You cannot have more than a total of ${formatInt(AutomatorData.MAX_ALLOWED_SCRIPT_COUNT)} scripts or
-${formatInt(AutomatorData.MAX_ALLOWED_CONSTANT_COUNT)} defined constants.
+- 脚本总数不超过 ${formatInt(AutomatorData.MAX_ALLOWED_SCRIPT_COUNT)} 个
+- 定义的常量总数不超过 ${formatInt(AutomatorData.MAX_ALLOWED_CONSTANT_COUNT)} 个
 <br>
 <br>
-<b>Script Saving</b>
+<b>脚本保存</b>
 <br>
 <br>
-Scripts are automatically saved as you edit them, but are not saved to your game save until the global autosave timer
-(ie. "Time since last save") triggers a full game save. If you make changes to scripts right before closing the game,
-you should wait until the game saves afterwards in order to not lose your changes. Any edits made to your scripts
-while above the length limits will not be saved until you shorten your scripts to be below them again.
+编辑时会自动保存脚本，但只有在全局自动保存（即"上次保存时间"）触发完整游戏保存时才会存入存档。关闭游戏前修改脚本后，应等待游戏完成保存以免丢失更改。超出长度限制的脚本编辑将不会被保存，直到缩短至限制范围内。
 <br>
 <br>
-<b>Automator Ticks</b>
+<b>自动机时钟</b>
 <br>
 <br>
-The Automator's "execution timer" is based on real time, and is therefore unaffected by things such as the Black Hole,
-Time Glyph effects, and EC12's negative effect. However this execution timer runs entirely independently from the main
-game's production loop, meaning that at faster speeds the Automator can run multiple commands per production tick.
+自动机的"执行计时器"基于现实时间，因此不受黑洞、时间符文效果和EC12负面影响等因素影响。但该计时器完全独立于游戏主循环运行，意味着在高速运行时，自动机每个生产周期可执行多个命令。
 <br>
 <br>
-Some commands are more intensive on the game's internal code and may take longer than a single Automator tick in order
-to process on slower computers. In that case, the Automator will execute those commands and then attempt to "catch up"
-by executing the following commands as quickly as possible until it has run as many commands as it should have at a
-constant execution speed.
+某些命令对游戏内部代码负担较重，在较慢的电脑上可能需要超过一个自动机时钟周期来处理。此时自动机会先执行该命令，然后尽可能快地"追赶"执行后续命令，直到达到恒定执行速度应有的命令数量。
 <br>
 <br>
-<b>Interactions with Offline Progress</b>
+<b>与离线进度的交互</b>
 <br>
 <br>
-Longer production ticks during Offline Progress simulation means that all of your resources are effectively given
-in large chunks instead of more continuously. This may have potentially adverse effects on your script's
-behavior while offline, depending on how exactly your script depends on the game state to work properly.
-Additionally, the PAUSE command may behave oddly due to it also being based on real time.
+离线进度模拟中较长的生产周期意味着所有资源实际上是分大块而非连续获得的。根据脚本对游戏状态的依赖方式，这可能会对离线时的脚本行为产生不利影响。此外，基于现实时间的PAUSE命令也可能出现异常行为。
 `,
       isUnlocked: () => Player.automatorUnlocked,
       tags: ["automation", "reality", "code", "script", "endgame", "lategame"],
       tab: "automation/automator"
     }, {
-      name: "Black Hole",
+      name: "黑洞",
       info: () => `
 The Black Hole is a feature which speeds up how fast the game runs, on a periodic cycle.
 The game will run at normal speed for some amount of time, then have a burst of running extremely fast for a short

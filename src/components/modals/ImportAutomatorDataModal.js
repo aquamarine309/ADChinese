@@ -130,10 +130,10 @@ export default {
     @confirm="importSave"
   >
     <template #header>
-      Import Automator Script Data
+      导入自动机脚本
     </template>
-    This will create a new Automator script at the end of your list.
-    <span v-if="isImportingExtraData">This will also import additional data related to the script.</span>
+    这将在自动机脚本列表的末尾创建一个新的自动机脚本。
+    <span v-if="isImportingExtraData">这将导入与该自动机脚本相关的额外数据。</span>
     <input
       ref="input"
       v-model="input"
@@ -143,12 +143,12 @@ export default {
       @keyup.esc="emitClose"
     >
     <div v-if="isValid">
-      Script name: {{ scriptName }}
+      脚本名称：{{ scriptName }}
       <br>
-      Line count: {{ lineCount }}
+      行数：{{ lineCount }}
       <div v-if="hasPresets">
         <br>
-        Study Presets:
+        预设时间研究树：
         <span
           v-for="(preset, id) in importedPresets"
           :key="id"
@@ -156,15 +156,14 @@ export default {
           data-v-import-automator-data-modal
         >
           <span v-if="preset.name">"{{ preset.name }}" (槽位 {{ preset.id + 1 }})</span>
-          <span v-else>Preset slot #{{ preset.id + 1 }}</span>
+          <span v-else>预设时间研究树槽位：{{ preset.id + 1 }}</span>
         </span>
         <div
           v-if="!ignorePresets && overwrittenPresetCount > 0"
           class="l-has-errors"
           data-v-import-automator-data-modal
         >
-          {{ formatInt(overwrittenPresetCount) }} of your existing presets
-          will be overwritten by imported presets!
+          导入后将覆盖当前的预设时间研究树 {{ formatInt(overwrittenPresetCount) }}
         </div>
         <br>
         <button
@@ -176,7 +175,7 @@ export default {
       </div>
       <div v-if="hasConstants">
         <br>
-        Constants:
+        常量：
         <span
           v-for="(constant, id) in importedConstants"
           :key="id + 10"

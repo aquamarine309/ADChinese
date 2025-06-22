@@ -39,7 +39,7 @@ export default {
     >
       {{ currencyValue }}
     </b>
-    {{ currencyName }}.
+    {{ currencyName }}。
   </div>
   `
 };

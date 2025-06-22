@@ -123,7 +123,7 @@ export default {
     copyAndClose() {
       if (this.isBlock) {
         const newTemplateBlock = {
-          name: `Template: ${this.name}`,
+          name: `模板：${this.name}`,
           blocks: blockifyTextAutomator(this.templateScript.script).blocks
         };
         AutomatorData.blockTemplates.push(newTemplateBlock);

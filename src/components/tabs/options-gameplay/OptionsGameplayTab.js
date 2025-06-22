@@ -126,10 +126,10 @@ export default {
         <PrimaryToggleButton
           v-model="offlineProgress"
           class="o-primary-btn--option l-options-grid__button"
-          label="Offline progress:"
+          label="离线进度："
         />
         <div class="o-primary-btn o-primary-btn--option o-primary-btn--slider l-options-grid__button">
-          <b>Offline ticks: {{ formatInt(offlineTicks) }}</b>
+          <b>离线时间间隔：{{ formatInt(offlineTicks) }}</b>
           <SliderComponent
             class="o-primary-btn--slider__slider"
             v-bind="sliderPropsOfflineTicks"
@@ -140,7 +140,7 @@ export default {
         <PrimaryToggleButton
           v-model="hibernationCatchup"
           class="o-primary-btn--option l-options-grid__button"
-          label="Run suspended time as offline:"
+          label="将切后台的时间视为离线进度运行"
         />
       </div>
       <div class="l-options-grid__row">
@@ -148,7 +148,7 @@ export default {
           v-if="automatorUnlocked"
           class="o-primary-btn o-primary-btn--option o-primary-btn--slider l-options-grid__button"
         >
-          <b>Automator Log Max: {{ formatInt(parseInt(automatorLogSize)) }}</b>
+          <b>自动机日志上限：{{ formatInt(parseInt(automatorLogSize)) }}</b>
           <SliderComponent
             class="o-primary-btn--slider__slider"
             v-bind="sliderPropsAutomatorLogSize"

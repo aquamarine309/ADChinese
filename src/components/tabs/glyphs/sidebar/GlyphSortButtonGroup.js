@@ -36,7 +36,7 @@ export default {
     >
       按等级排序
       <div class="c-glyph-inventory-option__tooltip">
-        Arranges by decreasing Glyph level
+        按符文等级排序
       </div>
     </button>
     <button
@@ -45,7 +45,7 @@ export default {
     >
       按强度排序
       <div class="c-glyph-inventory-option__tooltip">
-        Arranges by decreasing level×rarity
+        按等级×稀有度降序排序
       </div>
     </button>
     <button
@@ -54,7 +54,7 @@ export default {
     >
       按词条排序
       <div class="c-glyph-inventory-option__tooltip">
-        Groups Glyphs together based on effects
+        按符文词条分组
       </div>
     </button>
     <button
@@ -64,7 +64,7 @@ export default {
     >
       按分数排序
       <div class="c-glyph-inventory-option__tooltip">
-        Arranges by decreasing Glyph filter score
+        按符文筛选评分降序排序
       </div>
     </button>
     <button
@@ -73,7 +73,7 @@ export default {
     >
       清除空格
       <div class="c-glyph-inventory-option__tooltip">
-        Moves all Glyphs to the earliest empty slots
+        将所有符文转移至最早可用槽位
       </div>
     </button>
   </div>

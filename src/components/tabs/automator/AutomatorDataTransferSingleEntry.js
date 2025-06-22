@@ -72,7 +72,7 @@ export default {
             data-v-automator-data-transfer-single-entry
           >
             <span v-if="presetData[id].studies">{{ presetData[id].studies }}</span>
-            <i v-else>空的研究预设/i>
+            <i v-else>空的研究预设</i>
           </div>
         </div>
       </span>

@@ -18,16 +18,16 @@ export default {
     moreShiftKeyInfo() {
       const shiftKeyFunctions = [];
       if (this.timeStudyUnlocked) {
-        shiftKeyFunctions.push("while buying Time Studies to buy all up until that point");
-        shiftKeyFunctions.push("to save Time Study Trees");
+        shiftKeyFunctions.push("在购买时间研究时购买至该节点");
+        shiftKeyFunctions.push("保存研究树");
       }
       if (this.glyphSacUnlocked) {
-        shiftKeyFunctions.push("to purge Glyphs");
+        shiftKeyFunctions.push("净化符文");
       }
       const shiftKeyInfo = makeEnumeration(shiftKeyFunctions);
       return (shiftKeyInfo === "")
         ? ""
-        : `You can hold Shift ${shiftKeyInfo}.`;
+        : `你可以按住 Shift 键${shiftKeyInfo}.`;
     },
     hotkeyCount() {
       return shortcuts.length;
@@ -77,7 +77,7 @@ export default {
   template: `
   <ModalWrapper>
     <template #header>
-      Hotkey List
+      快捷键列表
     </template>
     <span
       class="c-modal-hotkeys l-modal-hotkeys"
@@ -94,7 +94,7 @@ export default {
           <span
             class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
             data-v-hotkeys-modal
-          >Buy 1 Dimension</span>
+          >购买 1 个维度</span>
           <kbd>SHIFT</kbd><kbd>1</kbd>-<kbd>SHIFT</kbd><kbd>8</kbd>
         </div>
         <div
@@ -104,7 +104,7 @@ export default {
           <span
             class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
             data-v-hotkeys-modal
-          >Buy 10 Dimensions</span>
+          >购买 10 个维度</span>
           <kbd>1</kbd>-<kbd>8</kbd>
         </div>
         <div
@@ -140,15 +140,14 @@ export default {
           <span
             class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
             data-v-hotkeys-modal
-          >Modifier Key</span>
+          >修饰键</span>
           <kbd>SHIFT</kbd>
         </div>
         <span
           class="c-modal-hotkeys__shift-description"
           data-v-hotkeys-modal
         >
-          Shift is a modifier key that shows additional information on certain things
-          and adjusts the function of certain buttons.
+          Shift 作为修饰键可显示额外信息并调整特定按钮功能。
           <br>
           {{ moreShiftKeyInfo }}
         </span>
@@ -160,18 +159,16 @@ export default {
           <span
             class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
             data-v-hotkeys-modal
-          >Autobuyer Controls</span>
+          >自动购买器控制</span>
           <kbd>ALT</kbd>
         </div>
         <span
           class="c-modal-hotkeys__shift-description"
           data-v-hotkeys-modal
         >
-          Alt is a modifier key that, when pressed in conjunction with any key that has a corresponding autobuyer,
-          will toggle said autobuyer.
+          Alt 作为修饰键，配合自动购买器对应按键可切换其开关状态。
           <br>
-          When pressing both Alt and Shift, you can toggle buying singles or buying max for the Antimatter Dimension
-          and Tickspeed Autobuyers instead.
+          同时按下 Alt 和 Shift 可切换反物质维度和计数频率自动购买器的购买模式（单个/最大）。
         </span>
         <br>
         <div
@@ -181,7 +178,7 @@ export default {
           <span
             class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
             data-v-hotkeys-modal
-          >Tab Movement</span>
+          >标签页切换</span>
           <div>
             <kbd>←</kbd><kbd>↓</kbd><kbd>↑</kbd><kbd>→</kbd>
           </div>
@@ -190,9 +187,7 @@ export default {
           class="c-modal-hotkeys__shift-description"
           data-v-hotkeys-modal
         >
-          Using the Arrow Keys will cycle you through the game's pages.
-          The Up and Down arrows cycle you through tabs,
-          and the Left and Right arrows cycle you through that tab's subtabs.
+          方向键循环切换游戏页面：↑/↓切换主标签页，←/→切换子标签页。
         </span>
         <br>
         <div
@@ -202,15 +197,14 @@ export default {
           <span
             class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
             data-v-hotkeys-modal
-          >Numpad Support</span>
+          >小键盘支持</span>
         </div>
         <span
           class="c-modal-hotkeys__shift-description"
           data-v-hotkeys-modal
         >
-          Due to technical reasons, pressing a numpad key will purchase 10 of a Dimension if possible, but pressing
-          a numpad key with <kbd>SHIFT</kbd> will not buy a single Dimension. It may instead, depending on your device,
-          cause the page to scroll or change game tabs. <kbd>ALT</kbd> will still work as expected.
+          因技术限制，小键盘按键默认购买10个维度（不可用Shift切换单个购买）。
+          部分设备可能导致页面滚动或标签页切换，Alt功能不受影响。
         </span>
         <template v-if="isElectron">
           <br>
@@ -221,28 +215,27 @@ export default {
             <span
               class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name"
               data-v-hotkeys-modal
-            >Window Zoom</span>
+            >窗口缩放</span>
             <kbd>-</kbd><kbd>0</kbd><kbd>+</kbd>
           </div>
           <span
             class="c-modal-hotkeys__shift-description"
             data-v-hotkeys-modal
           >
-            To adjust zoom level, hold <kbd>ctrl</kbd> and press either <kbd>-</kbd> or <kbd>+</kbd> to decrease or
-            increase zoom. <kbd>ctrl</kbd><kbd>0</kbd> will reset zoom to 100%.
+            按住 <kbd>ctrl</kbd> 并按 <kbd>-</kbd>/<kbd>+</kbd> 缩小/放大。<kbd>ctrl</kbd><kbd>0</kbd>重置为100%缩放。
           </span>
           <br>
           <div
             class="l-modal-hotkeys-row"
           >
-            <span class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name">Fullscreen</span>
+            <span class="c-modal-hotkeys-row__name l-modal-hotkeys-row__name">全屏模式</span>
             <kbd>F10</kbd>
           </div>
           <span
             class="c-modal-hotkeys__shift-description"
             data-v-hotkeys-modal
           >
-            To enter or exit fullscreen, press <kbd>F10</kbd>.
+            按 <kbd>F10</kbd> 进入/退出全屏。
           </span>
         </template>
       </div>

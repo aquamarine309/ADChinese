@@ -222,7 +222,7 @@ export default {
       class="c-no-options"
       data-v-glyph-customization-sliding-window
     >
-      You have no custom options for changing Glyph {{ attrString }}s.
+      你还没有解锁修改符文{{ attrString }}的选项。
     </div>
   </div>
   `

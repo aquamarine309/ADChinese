@@ -26,8 +26,8 @@ export default {
       return this.automatorType === AUTOMATOR_TYPE.TEXT;
     },
     automatorModeTooltip() {
-      if (this.automatorType === AUTOMATOR_TYPE.BLOCK) return "Switch to the text editor";
-      return "Switch to the block editor";
+      if (this.automatorType === AUTOMATOR_TYPE.BLOCK) return "切换至文本编辑器";
+      return "切换至积木块编辑器";
     },
     tutorialClass() {
       return {
@@ -58,7 +58,7 @@ export default {
       }
       if (BlockAutomator.hasUnparsableCommands(this.currentScript) &&
         player.reality.automator.type === AUTOMATOR_TYPE.BLOCK) {
-        Modal.message.show(`Some script commands were unrecognizable - defaulting to text editor.`);
+        Modal.message.show(`部分脚本命令无法识别，已默认切换至文本编辑器模式。`);
         AutomatorBackend.changeModes(this.currentScriptID);
       }
       this.$nextTick(() => BlockAutomator.updateEditor(this.currentScript));

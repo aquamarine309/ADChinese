@@ -36,8 +36,8 @@ class Validator extends BaseVisitor {
         startLine: err.line,
         startOffset: err.offset,
         endOffset: err.offset + err.length,
-        info: `Unexpected characters: ${this.rawText.substr(err.offset, err.length)}`,
-        tip: `${this.rawText.substr(err.offset, err.length)} cannot be part of a command, remove them`
+        info: `意外字符：${this.rawText.substr(err.offset, err.length)}`,
+        tip: `${this.rawText.substr(err.offset, err.length)} 不能作为指令的一部分，请移除它们`
       });
     }
   }
@@ -64,12 +64,12 @@ class Validator extends BaseVisitor {
       const isEndToken = parseError.token.tokenType.name === "EOF" || parseError.token.tokenType.name === "EOL";
       if (parseError.name === "NoViableAltException") {
         if (!isEndToken) {
-          err.info = `Unexpected input ${parseError.token.image}`;
-          err.tip = `Remove ${parseError.token.image}`;
+          err.info = `意外输入 ${parseError.token.image}`;
+          err.tip = `移除 ${parseError.token.image}`;
         }
       } else if (parseError.name === "EarlyExitException") {
-        err.info = "Unexpected end of command";
-        err.tip = "Complete the command by adding the other parameters";
+        err.info = "意外的指令结尾";
+        err.tip = "请补充其他参数以完成该指令";
       }
       this.errors.push(err);
     }
@@ -147,19 +147,19 @@ class Validator extends BaseVisitor {
 
       if (err.info.match(/EOF but found.*\}/gu)) {
         err.info = err.info.replaceAll("--> ", "[").replaceAll(" <--", "]");
-        err.tip = "Remove }. Parser halted at this line and may miss errors farther down the script.";
+        err.tip = "删除 }。解析器在此行停止，后续脚本可能存在的错误将被忽略。";
       } else if (err.info.match(/found.*\}/gu)) {
         err.info = err.info.replaceAll("--> ", "[").replaceAll(" <--", "]");
-        err.tip = "Remove }";
+        err.tip = "删除 }";
       } else if (err.info.match(/Expecting/gu)) {
         err.info = err.info.replaceAll("--> ", "[").replaceAll(" <--", "]");
-        err.tip = "Use the appropriate type of data in the command as specified in the command help";
+        err.tip = "请按照指令帮助文档的要求，使用正确的数据类型";
       } else if (err.info.match(/End of line/gu)) {
-        err.tip = "Provide the remaining arguments to complete the incomplete command";
+        err.tip = "请提供剩余参数以补全这条不完整的指令";
       } else if (err.info.match(/EOF but found:/gu)) {
-        err.tip = "Remove extra command argument";
+        err.tip = "请移除多余的指令参数";
       } else {
-        err.tip = "This error's cause is unclear";
+        err.tip = "此错误原因不明";
       }
       modifiedErrors.push(err);
       lastLine = err.startLine;
@@ -181,8 +181,8 @@ class Validator extends BaseVisitor {
   checkTimeStudyNumber(token) {
     const tsNumber = parseFloat(token.image);
     if (!TimeStudy(tsNumber) || (TimeStudy(tsNumber).isTriad && !Ra.canBuyTriad)) {
-      this.addError(token, `Invalid Time Study identifier ${tsNumber}`,
-        `Make sure you copied or typed in your time study IDs correctly`);
+      this.addError(token, `时间研究序号 [${tsNumber}] 无效`,
+        `请确保你已复制或输入正确的时间研究序号`);
       return 0;
     }
     return tsNumber;
@@ -193,8 +193,8 @@ class Validator extends BaseVisitor {
     const varInfo = {};
     const constants = player.reality.automator.constants;
     if (!Object.keys(constants).includes(varName)) {
-      this.addError(identifier, `Variable ${varName} has not been defined`,
-        `Use the definition panel to define ${varName} in order to reference it, or check for typos`);
+      this.addError(identifier, `常量 ${varName} 的值尚未定义`,
+        `在脚本常量页面中定义常量 ${varName} 的值，或者检查一下有没有打错`);
       return undefined;
     }
     const value = constants[varName];
@@ -246,12 +246,12 @@ class Validator extends BaseVisitor {
   duration(ctx) {
     if (ctx.$value) return ctx.$value;
     if (!ctx.TimeUnit || ctx.TimeUnit[0].isInsertedInRecovery) {
-      this.addError(ctx, "Missing time unit", "Provide a unit of time (eg. seconds or minutes)");
+      this.addError(ctx, "缺少时间单位", "请提供时间单位（例如：秒或分钟）");
       return undefined;
     }
     const value = parseFloat(ctx.NumberLiteral[0].image) * ctx.TimeUnit[0].tokenType.$scale;
     if (isNaN(value)) {
-      this.addError(ctx, "Error parsing duration", "Provide a properly-formatted number for time");
+      this.addError(ctx, "解析持续时间时出错", "请提供格式正确的时间数值");
       return undefined;
     }
     ctx.$value = value;
@@ -261,7 +261,7 @@ class Validator extends BaseVisitor {
   xHighest(ctx) {
     if (ctx.$value) return ctx.$value;
     if (!ctx.NumberLiteral || ctx.NumberLiteral[0].isInsertedInRecovery) {
-      this.addError(ctx, "Missing multiplier", "Provide a multiplier to set the autobuyer to");
+      this.addError(ctx, "缺少乘数", "请提供自动购买器的倍率设置");
       return undefined;
     }
     ctx.$value = new Decimal(ctx.NumberLiteral[0].image);

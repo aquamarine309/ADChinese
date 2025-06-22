@@ -46,8 +46,8 @@ export default {
   <div class="c-subtab-option-container">
     <PrimaryToggleButton
       v-model="autobuyersOn"
-      on="Pause autobuyers"
-      off="Resume autobuyers"
+      on="暂停自动购买器"
+      off="恢复自动购买器"
       class="o-primary-btn--subtab-option"
     />
     <PrimaryButton
@@ -61,7 +61,7 @@ export default {
         v-if="showContinuum"
         class="o-primary-btn--subtab-option"
       >
-        Continuum is disabled
+        已禁用连续统
       </PrimaryButton>
     </span>
     <span v-else>

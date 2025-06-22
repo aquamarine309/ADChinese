@@ -56,13 +56,12 @@ export default {
       };
     },
     questionmarkTooltip() {
-      return `All Glyph choices are given a score and compared to a threshold based on the chosen mode. 
-        The Glyph with the highest score is picked, but will still be Sacrificed if below the threshold.
-        (click for more detail)`;
+      return `所有符文选项都会被评分，并与基于当前模式的阈值进行比较；
+得分最高的符文将被选中，但若其得分低于阈值则仍会被献祭。
+（点击查看详情）`;
     },
     autoRealityTooltip() {
-      return `If Auto-Reality is on, ignore all other settings and immediately Reality if no upcoming
-        Glyphs would be kept`;
+      return `若开启自动现实功能，将忽略其他所有设置；当即将获得的符文均无法被保留时，立即执行现实。`;
     },
     unlockedModes() {
       return Object.values(this.modes).filter(idx => this.isUnlocked(idx));
@@ -249,11 +248,10 @@ export default {
       class="c-glyph-sacrifice-options__advanced"
     >
       <br>
-      Glyph score is assigned based on type. Priority is given to Glyphs belonging to the type of which you have
-      the least total Glyph Sacrifice value.
-      <br>
-      <br>
-      This mode never keeps Glyphs, but will instead always sacrifice the Glyph it chooses.
+      符文选分机制基于类型分配：系统将优先选择你当前符文献祭总值最低的类型所属符文。  
+      <br>  
+      <br>  
+      该模式从不保留符文，且必定献祭所选中的符文。
     </div>
     <div
       v-if="mode === modes.EFFECT_COUNT"

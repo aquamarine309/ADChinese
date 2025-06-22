@@ -25,10 +25,10 @@ export default {
       return availableSortModes;
     },
     questionMarkTooltip() {
-      return `The automatic settings below will apply after every Reality`;
+      return `下方的自动设置将在每次现实后生效。`;
     },
     keepTooltip() {
-      return "If set to ON, Glyphs which your filter accepts will never be auto-purged even if they are worse";
+      return "若开启此选项，被筛选器接受的符文将永不自动净化，即使其属性较差。";
     }
   },
   watch: {
