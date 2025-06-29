@@ -49,7 +49,7 @@ export default {
       <span
         class="c-underline"
         data-v-catchup-entry
-      >{{ info.name }}</span>: <i class="fas fa-question-circle" />
+      >{{ info.name }}</span>：<i class="fas fa-question-circle" />
     </span> {{ info.description }}
   </div>
   `

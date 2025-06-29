@@ -153,7 +153,6 @@ export const VUnlocks = mapGameDataToObject(
 
 export const V = {
   displayName: "薇",
-  possessiveName: "V's",
   spaceTheorems: 0,
   checkForUnlocks() {
     for (const unl of VUnlocks.all) {

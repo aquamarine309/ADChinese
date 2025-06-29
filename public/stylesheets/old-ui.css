@@ -57,7 +57,7 @@
   width: 36rem;
   height: 10rem;
   z-index: 1;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 5rem;
 }
 

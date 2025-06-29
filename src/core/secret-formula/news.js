@@ -7648,5 +7648,88 @@ export const news = [
   {
     id: "t177",
     text: `一旦你获得<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>，即可解锁<span style='color: black; background: black;'>已涂黑</span>。每个<span style='color: black; background: black;'>已涂黑</span>中，对于每个<span style='color: black; background: black;'>已涂黑</span>，都存在对应的<span style='color: black; background: black;'>已涂黑</span>供其<span style='color: black; background: black;'>已涂黑</span>。你可通过消耗<span style='color: black; background: black;'>已涂黑</span>来提升<span style='color: black; background: black;'>已涂黑</span>和<span style='color: black; background: black;'>已涂黑</span>。另有特殊升级可获取<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>。当达到<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>时，可<span style='color: black; background: black;'>已涂黑</span>指定数量的<span style='color: black; background: black;'>已涂黑</span>以换取<span style='color: black; background: black;'>已涂黑</span> <span style='color: black; background: black;'>已涂黑</span>，其运作机制类似<span style='color: black; background: black;'>已涂黑</span>，能强化<span style='color: black; background: black;'>已涂黑</span>。`
+  },
+  {
+    id: "t93",
+    text: "在1到10的评分中，我给这款游戏打了<span style='color: red'>java.lang.IndexOutOfBoundsException</span>"
+  },
+  {
+    id: "t94",
+    text: "物质还是反物质，这是个问题。"
+  },
+  {
+    id: "t96",
+    text: "早在远古时代科学就证明，物质构成的猫都是混蛋。好消息是：反物质构成的猫依然是混蛋。"
+  },
+  {
+    id: "t97",
+    text: "从没人告诉我反世界不会让我滚蛋。"
+  },
+  {
+    id: "t98",
+    text: "反物质就像互联网——既然读到这句，说明你永远嫌不够。"
+  },
+  {
+    id: "t99",
+    text: "「反物质让时间旅行成真，而我在此让过去再次伟大」——世界第二任总统"
+  },
+  {
+    id: "t100",
+    text: "请插入第-1号光盘继续游玩《反物质维度™》。"
+  },
+  {
+    id: "t101",
+    text: "剧情——即将推出™"
+  },
+  {
+    id: "t103",
+    text: "反物质...反物质永不改变...直到涉及反物质量子物理，可惜我们缺超光速粒子继续研究。",
+    get unlocked() { return PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked(); }
+  },
+  {
+    id: "t104",
+    text: "反物质维度没有战争。在此我们安全，在此我们自由。"
+  },
+  {
+    id: "t105",
+    text: "反物质解决了全球变暖。另据消息：地球已不复存在。"
+  },
+  {
+    id: "t106",
+    text: "反水，反土，反火，反气。很久以前，四个反国和谐共存。直到反火国发动攻击，一切改变。唯有反神通——四大反元素的掌控者——能为反世界带来平衡。但当世界最需他时，他不慎触碰常规物质炸成了烟花。"
+  },
+  {
+    id: "t107",
+    text: "开反战利品箱是否等于出售随机财产换游戏币？"
+  },
+  {
+    id: "t108",
+    text: "人们开始质疑Hevipelle是否真实存在。"
+  },
+  {
+    id: "t109",
+    text: "《反物质维度》荣幸获Lehmä赞助！现推出食草课程！教您辨别安全可食之草。",
+    isAdvertising: true
+  },
+  {
+    id: "t110",
+    text: "现在是2422年。更新仍未发布。Hevi正为第 38 层重置平衡非统一维度与挑战。成就超 100 行。团队即将启用breaking_breaking_breaking_infinity.js。"
+  },
+  {
+    id: "t111",
+    text: "输入\"Christmas\"解锁秘密主题。"
+  },
+  {
+    id: "t112",
+    text: "【该新闻内容不和谐，已被移除】"
+  },
+  {
+    id: "t113",
+    text: "长久以来我思考着：反物质维度...意味着什么？它显然是游戏——买第一维度产反物质，第二维度产更多第一维度...但不可能仅是游戏，这太肤浅。开发者必将其作为隐喻。当我每周例行用指甲刀修剪指甲时，顿悟了：维度（Dimensions）实为'抑郁（depression）'的形近词。常规物质是助长抑郁的残酷消极思想；反物质则是驱散抑郁的积极思想与益友。你从简单事物起步，与抑郁的对抗几乎难以察觉。但随着坚持，抗争壮大。抑郁看似无限延续，实则只是体量庞大。你的'维度'终将产生足够'反物质'，取代那看似无限的抑郁。此后可能无穷：你首尝快乐，并随超越与'打破'抑郁'无限'而指数增长。继续直到那'无限'相比你获得的快乐微不足道——此时重置眨眼即超。多层重置的含义？'维度转换'是获取快乐的新途径；'维度提升'是升级这些途径。例如：买新车是维度转换，换新车是维度提升。'永恒'是至亲离世等悲剧，令你瞬间归零。但随时间推移，你会更强更快乐。'维度献祭'如同搬家：虽舍弃旧乐，但新机遇带来更大快乐。'计数频率'是获取快乐的难易度，'时间维度'使其更易。反物质维度实为抑郁症患者成功对抗病魔的隐喻。",
+    get unlocked() { return PlayerProgress.eternityUnlocked(); }
+  },
+  {
+    id: "t114",
+    text: "（让我沉睡）置我于内眠。（我难入眠）置我于内眠。（离我而去）轻唤我名付黑暗。（让我沉睡）留我纯白停留。（我难入睡）在终结降临前。（离我而去）留我独对已成虚无。"
   }
 ];

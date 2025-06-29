@@ -231,7 +231,6 @@ const pets = mapGameDataToObject(
 
 export const Ra = {
   displayName: "太阳神",
-  possessiveName: "Ra's",
   unlocks,
   pets,
   remembrance: {

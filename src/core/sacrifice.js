@@ -18,7 +18,7 @@ export class Sacrifice {
     if (EternityChallenge(3).isRunning) return "永恒挑战 3";
     if (DimBoost.purchasedBoosts < 5) return `需要 ${formatInt(5)} 个维度提升`;
     if (AntimatterDimension(8).totalAmount.eq(0)) return "没有第八维度";
-    if (this.nextBoost.lte(1)) return `乘数为 ${formatX(1)}`;
+    if (this.nextBoost.lte(1)) return `加成为 ${formatX(1)}`;
     if (Player.isInAntimatterChallenge) return "达到挑战目标";
     return "需要大坍缩";
   }

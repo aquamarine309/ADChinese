@@ -298,7 +298,7 @@ export const Glyphs = {
     }
     if (this.active[targetSlot] === null) {
       if (sameSpecialTypeIndex >= 0) {
-        Modal.message.show(`You may only have one ${glyph.type.capitalize()} Glyph equipped!`,
+        Modal.message.show(`你只能装备一个${GLYPH_NAMES[glyph.type]}符文。`,
           { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
         return;
       }
@@ -315,7 +315,7 @@ export const Glyphs = {
     } else {
       // We can only replace effarig/reality glyph
       if (sameSpecialTypeIndex >= 0 && sameSpecialTypeIndex !== targetSlot) {
-        Modal.message.show(`You may only have one ${glyph.type.capitalize()} Glyph equipped!`,
+        Modal.message.show(`你只能装备一个${GLYPH_NAMES[glyph.type]}符文。`,
           { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
         return;
       }
@@ -353,8 +353,7 @@ export const Glyphs = {
     if (stillEquipped && !fastReality) {
       const target = player.options.respecIntoProtected ? "保护格" : "主仓库";
       const hasOther = this.findFreeIndex(!player.options.respecIntoProtected) !== -1;
-      setTimeout(() => Modal.message.show(`因仓库空间不足，无法卸下部分符文。 清理${target}的空间${hasOther ? "或选择保留的地方" : ""}
-        以卸下符文.`, { closeEvent: GAME_EVENT.GLYPHS_CHANGED }),
+      setTimeout(() => Modal.message.show(`因仓库空间不足，无法卸下部分符文。 清理${target}的空间${hasOther ? "或选择保留的地方" : ""}以卸下符文.`, { closeEvent: GAME_EVENT.GLYPHS_CHANGED }),
       50);
     }
 
@@ -786,10 +785,10 @@ export const Glyphs = {
     }
     const cursedCount = this.allGlyphs.filter(g => g !== null && g.type === "cursed").length;
     if (cursedCount >= 5) {
-      GameUI.notify.error(`You don't need more than ${format(5)} Cursed Glyphs!`);
+      GameUI.notify.error(`你无需持有多于 ${format(5)} 个诅咒符文。`);
     } else {
       this.addToInventory(GlyphGenerator.cursedGlyph());
-      GameUI.notify.error("Created a Cursed Glyph");
+      GameUI.notify.error("获得一个诅咒符文。");
     }
   }
 };
@@ -848,7 +847,7 @@ export function getAdjustedGlyphLevel(glyph, realityGlyphBoost = Glyphs.levelBoo
 
 export function respecGlyphs() {
   if (!Glyphs.unequipAll()) {
-    Modal.message.show("Some of your Glyphs could not be unequipped due to lack of inventory space.",
+    Modal.message.show("因仓库空间不足，无法卸下部分符文。",
       { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
   }
   player.reality.respec = false;

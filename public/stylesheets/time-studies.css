@@ -40,7 +40,7 @@
 .c-pelle-useless {
   width: 18rem;
   height: 10rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   background-color: crimson;
@@ -75,7 +75,7 @@
 .o-time-study {
   width: 18rem;
   height: 10rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   background-color: black;

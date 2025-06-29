@@ -169,11 +169,11 @@ export const changelog = [
     date: [2023, 5, 25],
     name: "Multiplier Tab, Automator, and Major mechanics fixes",
     info: ` 
-<li>新增复制器速度乘数分解专用标签页</li>  
+<li>新增复制器速度加成分解专用标签页</li>  
 <li>效果值现可显示为等效乘数值</li>  
 <li>反物质维度标签页在挑战12中启用特殊机制</li>  
 <li>通用类别（如"成就"或"时间研究"）即使仅含单项仍可展开</li>  
-<li>膨胀时间削弱效果不再影响乘数分解标签页内的游戏速度</li>  
+<li>膨胀时间削弱效果不再影响加成分解标签页内的游戏速度</li>  
 <li>单项升级条目措辞更统一</li>  
 <li>补充大量遗漏效果并修正错误标签</li>  
 </ul>  

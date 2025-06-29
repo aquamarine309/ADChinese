@@ -37,7 +37,7 @@ export default {
     data-v-hidden-tabs-modal
   >
     <template #header>
-      修改标签页显示
+      修改可见标签页
     </template>
     <div class="c-modal--short">
       点击按钮可切换标签页的显示/隐藏状态。  

@@ -67,9 +67,7 @@ export const automatorTemplates = {
   scripts: [
     {
       name: "Climb EP",
-      description: `This script performs repeated Eternities, attempting to re-purchase a Time Study Tree every
-        Eternity. Autobuyer settings must be supplied for the Infinity and Eternity Autobuyers. The script will
-        repeat until a final Eternity Point value is reached.`,
+      description: `该脚本将反复进行永恒操作，每次永恒时尝试重新购买时间研究树。需配置无限自动购买器和永恒自动购买器。脚本将持续循环，直至达到最终永恒点数目标值。`,
       inputs: [
         { name: "treeStudies", type: "tree", prompt: "Or directly enter your time studies" },
         { name: "treeNowait", type: "nowait", prompt: "Missing Study behavior" },
@@ -82,9 +80,7 @@ export const automatorTemplates = {
       warnings: () => {
         const list = [];
         if (!RealityUpgrade(10).isBought) {
-          list.push(`This script will be unable to properly set Autobuyer modes without at least ${formatInt(100)}
-            Eternities. Consider getting Reality Upgrade "${RealityUpgrade(10).name}" before using this at the start
-            of a Reality.`);
+          list.push(`若永恒次数不足 ${formatInt(100)} 次，此脚本将无法正确配置自动购买器模式。建议在开始现实前，先获取现实升级「${RealityUpgrade(10).name}」。`);
         }
         // Telemechanical Process (TD/5xEP autobuyers)
         if (!RealityUpgrade(13).isBought) {

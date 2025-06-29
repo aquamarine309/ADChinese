@@ -23,10 +23,10 @@ export default {
       const first = this.nextIC?.id === 1;
       const next = InfinityChallenges.nextICUnlockAM;
 
-      if (first) return `The first Infinity Challenge unlocks at ${format(next)} antimatter.`;
+      if (first) return `第一个无限挑战需要 ${format(next)} 反物质解锁。`;
       return next === undefined
-        ? "All Infinity Challenges unlocked"
-        : `Next Infinity Challenge unlocks at ${format(next)} antimatter.`;
+        ? "所有无限挑战已解锁。"
+        : `下一个无限挑战需要 ${format(next)} 反物质解锁。`;
     }
   },
   methods: {

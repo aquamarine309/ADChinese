@@ -106,7 +106,7 @@ export default {
           class="o-primary-btn--option"
           onclick="Modal.confirmationOptions.show()"
         >
-          Open Confirmation Options
+          打开确认选项
         </OptionsButton>
         <PrimaryToggleButton
           v-model="hotkeys"
@@ -140,7 +140,7 @@ export default {
         <PrimaryToggleButton
           v-model="hibernationCatchup"
           class="o-primary-btn--option l-options-grid__button"
-          label="将切后台的时间视为离线进度运行"
+          label="将切后台的时间视为离线进度运行："
         />
       </div>
       <div class="l-options-grid__row">

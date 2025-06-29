@@ -18,6 +18,7 @@ import { reality } from "./reality/index.js";
 import { shopPurchases } from "./shop-purchases.js";
 import { sidebarResources } from "./sidebar-resources.js";
 import { speedrunMilestones } from "./speedrun-milestones.js";
+import { startupTips } from "./startup-tips.js";
 import { tabNotifications } from "./tab-notifications.js";
 import { tabs } from "./tabs.js";
 
@@ -42,6 +43,7 @@ export const GameDatabase = {
   sidebarResources,
   shopPurchases,
   speedrunMilestones,
+  startupTips,
   tabNotifications,
   tabs
 };

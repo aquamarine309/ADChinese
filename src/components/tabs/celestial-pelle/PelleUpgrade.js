@@ -57,7 +57,7 @@ export default {
     },
     timeEstimate() {
       if (!this.hasTimeEstimate || !this.hasRemnants) return null;
-      if (this.notAffordable) return "Never affordable due to Generated Galaxy cap";
+      if (this.notAffordable) return "因生成星系上限而始终无法购买。";
       return this.currentTimeEstimate;
     },
     hasTimeEstimate() {

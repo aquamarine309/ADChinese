@@ -42,7 +42,7 @@
   display: inline-block;
   white-space: nowrap;
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.5rem;
   font-weight: bold;
   -webkit-user-select: none;

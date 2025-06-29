@@ -128,7 +128,7 @@ export default {
         <br>
       </div>
       <div v-if="realityHintsLeft + glyphHintsLeft > 0">
-        你可以花些时间寻找现实中的更多裂缝，但每个提示花费的存储时间将使下一次所需的存储时间增加{{ formatInt(3) }}倍。这个成本增加将在{{ formatInt(24) }}小时内逐渐消失，弄清提示的含义将立即将成本除以{{ formatInt(2) }}。成本不能降到低于{{ format(1e40) }}年。
+        你可以花些时间寻找现实中的更多裂缝，但每个提示花费的存储时间将使下一次所需的存储时间增加{{ formatInt(3) }}倍。这个价格增加将在{{ formatInt(24) }}小时内逐渐消失，弄清提示的含义将立即将价格除以{{ formatInt(2) }}。价格不能降到低于{{ format(1e40) }}年。
         <br><br>
         下一个提示将花费{{ hintCost }}的存储时间。你目前有{{ formattedStored }}。
         <span v-if="currentStored < nextHintCost">

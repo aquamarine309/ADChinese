@@ -157,7 +157,7 @@ export default {
   >
     <div>
       <PrimaryButton onclick="Modal.catchup.show(0)">
-        查看内容详情
+        查看内容摘要
       </PrimaryButton>
       <div
         class="c-stats-tab-title c-stats-tab-general"
@@ -170,12 +170,12 @@ export default {
         data-v-statistics-tab
       >
         <div>您总共制造了 {{ format(totalAntimatter, 2, 1) }} 个反物质。</div>
-        <div>你已经玩了{{ realTimePlayed }}。（现实时间）</div>
+        <div>你已经玩了 {{ realTimePlayed }}（现实时间）。</div>
         <div v-if="reality.isUnlocked">
-          游戏中的你经历了 {{ reality.totalTimePlayed }} 的游戏内时间
+          游戏中的你经历了 {{ reality.totalTimePlayed }}的游戏内时间。
         </div>
         <div>
-          你的存档创建于 {{ startDate }} （{{ saveAge }} 之前）
+          你的存档创建于 {{ startDate }}（{{ saveAge }}之前）。
         </div>
         <br>
         <div>
@@ -243,7 +243,7 @@ export default {
       <div>
         你已在本次无限中花费 {{ infinity.this.toStringShort() }}。
         <span v-if="reality.isUnlocked">
-          （{{ infinity.thisReal.toStringShort() }} 现实时间）
+          （{{ infinity.thisReal.toStringShort() }}现实时间）
         </span>
       </div>
       <div>
@@ -281,7 +281,7 @@ export default {
       <div>
         你已在本次永恒中花费 {{ eternity.this.toStringShort() }}。
         <span v-if="reality.isUnlocked">
-          （{{ eternity.thisReal.toStringShort() }} 现实时间）
+          （{{ eternity.thisReal.toStringShort() }}现实时间）
         </span>
       </div>
       <div>
@@ -309,19 +309,19 @@ export default {
         data-v-statistics-tab
       >
         你已在本次{{ isDoomed ? "末日" : "现实" }}中花费 {{ reality.this.toStringShort() }}。
-        （{{ reality.thisReal.toStringShort() }} 现实时间）
+        （{{ reality.thisReal.toStringShort() }}现实时间）
       </div>
       <div
         v-if="isDoomed"
         class="c-stats-tab-doomed"
         data-v-statistics-tab
       >
-        从毁灭你的现实至今， 你经历了 {{ realTimeDoomed.toStringShort() }} 的现实时间。
+        从毁灭你的现实至今， 你经历了 {{ realTimeDoomed.toStringShort() }}的现实时间。
       </div>
       <div>
         在一次现实中获得现实机器的最大速度：{{ format(reality.bestRate, 2, 2) }}/分
       </div>
-      <div>符文稀有度的最大值为 {{ formatRarity(reality.bestRarity) }}.</div>
+      <div>符文稀有度的最大值为 {{ formatRarity(reality.bestRarity) }}。</div>
       <br>
     </div>
   </div>

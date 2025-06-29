@@ -65,7 +65,7 @@ body.t-s12 {
   height: 100%;
   justify-content: flex-start;
   align-items: stretch;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   background: none;
   margin: auto;
 }
@@ -348,7 +348,7 @@ body.t-s12 {
   width: 25rem;
   height: 4.4rem;
   position: relative;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-text);
   background-color: var(--color-base);
   border: 0.1rem solid var(--color-good);
@@ -448,7 +448,7 @@ body.t-s12 {
 
 .btn-big-crunch {
   z-index: 1;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 5rem;
   color: var(--color-infinity);
   background-color: black;

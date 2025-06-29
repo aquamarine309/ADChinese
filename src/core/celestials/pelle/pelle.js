@@ -53,8 +53,6 @@ const disabledMechanicUnlocks = {
 
 export const Pelle = {
   symbol: "♅",
-  // Suppress the randomness for this form
-  possessiveName: "Pelle's",
 
   // This is called upon initial Dooming and after every Armageddon when using the modal
   initializeRun() {

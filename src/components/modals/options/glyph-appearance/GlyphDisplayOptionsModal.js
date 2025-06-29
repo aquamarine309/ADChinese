@@ -120,7 +120,7 @@ export default {
         />
         <ModalOptionsToggleButton
           v-model="showUnequippedGlyphIcon"
-          text="Unequipped Glyph identifier:"
+          text="标记卸下的符文："
         />
         <ModalOptionsToggleButton
           v-model="glyphEffectDots"

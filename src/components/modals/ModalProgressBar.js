@@ -5,6 +5,11 @@ export default {
   components: {
     OfflineSpeedupButton,
   },
+  data() {
+    return {
+      tipIndex: 0
+    }
+  },
   computed: {
     progress() {
       return this.$viewModel.modal.progressBar;
@@ -21,6 +26,16 @@ export default {
     },
     buttons() {
       return this.progress.buttons || [];
+    },
+    startupTips: () => getAvailableStartupTips().sort(() => Math.random() - 0.5),
+    currentTip() {
+      return this.startupTips[this.tipIndex].config.text;
+    },
+    tipCount() {
+      return this.startupTips.length;
+    },
+    singleTip() {
+      return this.tipCount === 1;
     }
   },
   template: `
@@ -81,6 +96,34 @@ export default {
             :button="button"
             :progress="progress"
           />
+        </div>
+        <div
+          class="l-startup-tips-container"
+          data-v-modal-progress-bar
+        >
+          <div
+            v-if="!singleTip"
+            class="o-startup-tip-count"
+          >
+            {{ formatInt(tipIndex + 1) }} / {{ formatInt(tipCount) }}
+          </div>
+          <div
+            v-if="!singleTip"
+            class="o-startup-tips-toggle-btn"
+            @click="tipIndex = (tipIndex + tipCount - 1) % tipCount"
+            data-v-modal-progress-bar
+          >
+            <i class="fas fa-caret-left" />
+          </div>
+          <div class="o-startup-tips-text">{{ currentTip }}</div>
+          <div
+            v-if="!singleTip"
+            class="o-startup-tips-toggle-btn"
+            @click="tipIndex = (tipIndex + 1) % tipCount"
+            data-v-modal-progress-bar
+          >
+            <i class="fas fa-caret-right" />
+          </div>
         </div>
       </div>
     </div>

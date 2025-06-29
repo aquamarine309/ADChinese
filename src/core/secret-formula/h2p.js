@@ -77,8 +77,8 @@ ${player.blackHole[0].unlocked
       name: "效果作用",
       info: () => `
 反物质维度中的效果与升级主要分为三类：<br>
-- <b>加法类：</b> 通常以 + 号（或"增加"一词）后跟数字表示，将数值累加到基础量。多个加法效果相加计算。有时也表现为减法效果（如降低资源成本）。<br>
-- <b>乘法类：</b> 通常以 × 号（或"乘"一词）后跟数字表示，少数情况下为"➜"连接的两个数字。不同乘法来源始终相乘计算。某些场景下可能表现为除法形式的负面效果或成本削减。<br>
+- <b>加法类：</b> 通常以 + 号（或"增加"一词）后跟数字表示，将数值累加到基础量。多个加法效果相加计算。有时也表现为减法效果（如降低资源价格）。<br>
+- <b>乘法类：</b> 通常以 × 号（或"乘"一词）后跟数字表示，少数情况下为"➜"连接的两个数字。不同乘法来源始终相乘计算。某些场景下可能表现为除法形式的负面效果或价格削减。<br>
 - <b>幂类：</b> 较为罕见，以 ^ 后跟数字表示。多个幂效果按顺序应用（等效于将幂值相乘后作为单一指数应用）。极少数情况下可能表现为小于 ${formatInt(1)} 的指数形式负面效果。<br><br>
 除非特别注明升级或奖励<i>替换</i>旧值，否则所有效果均可叠加。若发生替换，新值将在上述效果应用前生效。最终效果的计算顺序为：加法 → 乘法 → 幂运算。<br><br>
 ${PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked()
@@ -131,7 +131,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 <b>已购买维度数量：</b> 在累计数量旁的括号内显示（如：${formatInt(4)}），表示距离下次倍数升级还需购买 ${formatInt(6)} 个该维度。<br><br>
 <b>维度增长率：</b> 显示每秒增长百分比。${formatPercents(1)} 表示每秒数量翻倍，用于评估整体增速。<br><br>
 <b>购买方式：</b> "购买单个"按钮可购买单个维度；高亮"买到 ${formatInt(10)} 个"按钮可购买至下次倍数升级所需数量。<br><br>
-<b>全部最大化：</b> 依次为第 1-8 反物质维度购买至下次倍数升级所需数量，最后购买最大化的计数频率升级。<br><br>
+<b>全部最大化：</b> 依次为第 1-8 反物质维度购买至下次倍数升级所需数量，最后购买最大化的计数频率提升。<br><br>
 <b>维度基础价格：</b> ${Array.range(1, 8).map(tier => format(AntimatterDimension(tier)._baseCost, 2, 2)).join(", ")}<br>
 <b>每 ${formatInt(10)} 个的价格增长倍数：</b> ${Array.range(1, 8).map(tier => format(AntimatterDimension(tier)._baseCostMultiplier, 2, 2)).join(", ")}<br><br>
 <b>快捷键：</b> 1-8 键购买对应维度至 ${formatInt(10)} 个（按住 Shift 时仅买 ${formatInt(1)} 个），M 键执行全部最大化。
@@ -140,15 +140,15 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
       tags: ["dims", "normal", "antimatter", "ad"],
       tab: "dimensions/antimatter"
     }, {
-      name: "计数频率提升",
+      name: "计数频率",
       info: () => `
-游戏中的生产发生在每个"时刻"上，初始每秒发生一次。购买计数频率升级可使反物质维度生产加速，如同每秒发生多个时刻。
+游戏中的生产发生在每个"时刻"上，初始每秒发生一次。购买计数频率提升可使反物质维度生产加速，如同每秒发生多个时刻。
 <br>
 <b>计数频率：</b>表示每秒发生的游戏时刻数。部分时刻也被计算在内，提升生产效果如同已过去部分时刻。注意实际时刻时间是模拟的，游戏始终按选项标签页中选择的更新速率运行计算。
 <br>
 <b>价格：</b>消耗反物质将每秒时刻数乘以显示倍率（无星系时，每次购买为 ${formatX(1.1245, 0, 3)} 倍）
 <br>
-<b>最大化购买：</b>购买当前反物质可承担的最大数量计数频率升级。  
+<b>最大化购买：</b>购买当前反物质可承担的最大数量计数频率提升。  
 <br>
 <b>快捷键：</b><b>T</b>键购买尽量多的升级，<b>Shift+T</b>购买单次升级。<b>M</b>键执行全部最大化。
 `,
@@ -170,7 +170,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "反物质星系",
       info: () => `
-购买反物质星系将重置游戏至仅剩 ${formatInt(4)} 个维度的状态，但前两个星系可使计数频率升级效果提升 +${format(0.02, 0, 2)}。随着星系增多，倍率增幅将持续增强。  
+购买反物质星系将重置游戏至仅剩 ${formatInt(4)} 个维度的状态，但前两个星系可使计数频率提升效果提升 +${format(0.02, 0, 2)}。随着星系增多，倍率增幅将持续增强。  
 <br>  
 尽管最初几次计数频率购买影响甚微，但倍数增长效应将快速显现。  
 <br>  
@@ -178,7 +178,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 <br>  
 <b>遥远星系增长：</b>超过 ${formatInt(100)} 个星系后，每个星系的增量需求增加 ${formatInt(2)}（下一个星系的需求在家${formatInt(62)}，再下一个增加${formatInt(64)}，依此类推）
 <br>  
-<b>极远星系增长：</b>超过 ${formatInt(Galaxy.remoteStart)} 个星系后，<i>总</i>成本额外增加 ${formatPercents(0.002, 1)}/星系（在遥远星系基础上叠加）  
+<b>极远星系增长：</b>超过 ${formatInt(Galaxy.remoteStart)} 个星系后，<i>总</i>价格额外增加 ${formatPercents(0.002, 1)}/星系（在遥远星系基础上叠加）  
 <br>  
 <b>快捷键：G</b>键尝试购买反物质星系。
 `,
@@ -262,13 +262,13 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 自动购买器可让你自动购买维度、升级或转生。所有自动购买器的控制选项都位于"自动化"标签页下的"自动购买器"子标签中，包括游戏后期解锁的任何额外自动购买器。
 
 <br><br>
-反物质维度自动购买器和计数频率升级自动购买器会根据你的总反物质数量解锁，但大多数其他自动购买器需要购买升级或完成挑战才能解锁。
+反物质维度自动购买器和计数频率提升自动购买器会根据你的总反物质数量解锁，但大多数其他自动购买器需要购买升级或完成挑战才能解锁。
 
 <br><br>
 大多数自动购买器具有相似的属性：
 
 <br><br>
-<b>自动购买间隔：</b> 自动购买器尝试再次购买前的冷却时间。反物质维度自动购买器和计数频率升级自动购买器需要先完成各自的挑战才能升级其间隔时间。
+<b>自动购买间隔：</b> 自动购买器尝试再次购买前的冷却时间。反物质维度自动购买器和计数频率提升自动购买器需要先完成各自的挑战才能升级其间隔时间。
 
 <br><br>
 <b>反物质维度批量购买：</b> 当自动购买器的间隔达到最小值（${formatInt(100)} 毫秒）后，所有后续升级都会使自动购买器每次可购买的最大数量翻倍。此功能可以禁用。
@@ -315,7 +315,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 现在，当你拥有 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质时进行坍缩可获得约 ${format(1.78, 2, 2)} 个无限点数。每额外获得 ${formatPostBreak(Number.MAX_VALUE, 2)} 倍反物质（连续计算），获得的无限点数量将乘以 ${formatInt(10)}。最终结果会在应用所有乘数后向下取整至最接近的整数。
 
 <br><br>
-所有维度的反物质价格在超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 后会加速增长。升级间的价格将会以每级 ${formatX(10)} 的倍率增长（超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 后），计数频率升级价格也会有类似的增长机制。
+所有维度的反物质价格在超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 后会加速增长。升级间的价格将会以每级 ${formatX(10)} 的倍率增长（超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 后），计数频率提升价格也会有类似的增长机制。
 `,
       isUnlocked: () => Autobuyer.bigCrunch.hasMaxedInterval || PlayerProgress.eternityUnlocked(),
       tags: ["limit", "crunch", "upgrades", "midgame"],
@@ -352,7 +352,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     .join(", ")}
 
 <br><br>
-第一无限维度不生产反物质，而是生产无限能量，能给所有反物质维度带来 (能量<sup>${formatInt(7)}</sup>) 的加成。无限维度不受计数频率升级影响。
+第一无限维度不生产反物质，而是生产无限能量，能给所有反物质维度带来 (能量<sup>${formatInt(7)}</sup>) 的加成。无限维度不受计数频率提升影响。
 `,
       isUnlocked: () => Autobuyer.bigCrunch.hasMaxedInterval || PlayerProgress.eternityUnlocked(),
       tags: ["id", "power", "new", "dims", "unlock", "break", "midgame"],
@@ -376,7 +376,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "复制器",
       info: () => `
-复制器是你在获得 ${format(DC.E140)} 无限点数后解锁的另一种资源。它不会生产其他东西，而是会<i>自我复制</i>，最高可达 ${formatPostBreak(Number.MAX_VALUE, 2)}。复制器有自己的生产节奏，不受计数频率升级影响。每个复制器都有一定概率（初始 ${formatPercents(0.01)}）在每个复制周期（初始每秒一次）产生另一个复制器，这两个参数都可以通过花费无限点数来升级。
+复制器是你在获得 ${format(DC.E140)} 无限点数后解锁的另一种资源。它不会生产其他东西，而是会<i>自我复制</i>，最高可达 ${formatPostBreak(Number.MAX_VALUE, 2)}。复制器有自己的生产节奏，不受计数频率提升影响。每个复制器都有一定概率（初始 ${formatPercents(0.01)}）在每个复制周期（初始每秒一次）产生另一个复制器，这两个参数都可以通过花费无限点数来升级。
 
 <br><br>
 如果你购买了复制器星系升级，就可以用重置复制器数量（回到 ${formatInt(1)}）来换取一个"免费"的复制器星系。这个星系和反物质星系效果相同，但不会增加你下一个反物质星系的价格。不过它仍然会像普通反物质星系一样重置其他内容。
@@ -387,11 +387,11 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 复制器能为所有无限维度提供加成，在达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 复制器时最高可获得 ${formatX(Math.pow(2, 20), 2, 2)} 倍加成。
 
 <br><br>
-<b>复制概率升级成本：</b> 基础 ${format(DC.E150)} 无限点数，每次升级增加 ${formatX(DC.E15)} 倍
+<b>复制概率升级价格：</b> 基础 ${format(DC.E150)} 无限点数，每次升级增加 ${formatX(DC.E15)} 倍
 <br>
-<b>复制间隔升级成本：</b> 基础 ${format(DC.E140)} 无限点数，每次升级增加 ${formatX(DC.E10)} 倍
+<b>复制间隔升级价格：</b> 基础 ${format(DC.E140)} 无限点数，每次升级增加 ${formatX(DC.E10)} 倍
 <br>
-<b>星系升级成本：</b> 基础 ${format(DC.E170)} 无限点数，每次升级增加 ${formatX(DC.E25)} 倍，并额外增加 ${formatX(1e5)} 倍（和遥远反物质星系类似）。超过 ${formatInt(100)} 个复制器星系后，每次升级增加的 ${formatX(1e5)} 倍会变为 ${formatX(DC.E55)} 倍。超过 ${formatInt(1000)} 个后，增长模式会从二次方变为三次方，且 ${formatX(DC.E55)} 倍本身每次升级还会增加 ${formatX(DC.E5)} 倍。
+<b>星系升级价格：</b> 基础 ${format(DC.E170)} 无限点数，每次升级增加 ${formatX(DC.E25)} 倍，并额外增加 ${formatX(1e5)} 倍（和遥远反物质星系类似）。超过 ${formatInt(100)} 个复制器星系后，每次升级增加的 ${formatX(1e5)} 倍会变为 ${formatX(DC.E55)} 倍。超过 ${formatInt(1000)} 个后，增长模式会从二次方变为三次方，且 ${formatX(DC.E55)} 倍本身每次升级还会增加 ${formatX(DC.E5)} 倍。
 `,
       isUnlocked: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked(),
       tags: ["interval", "chance", "infinity", "galaxy", "galaxies", "midgame"],
@@ -433,13 +433,13 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "时间维度",
       info: () => `
-第一次永恒后，你将解锁时间维度。用永恒点数购买时间维度可以产生时间碎片，用于提供计数频率升级。这些升级和普通计数频率升级效果相同但不会增加成本。时间维度、时间碎片及其提供的升级会在无限时保留，但每次永恒都会重置。
+第一次永恒后，你将解锁时间维度。用永恒点数购买时间维度可以产生时间碎片，用于提供计数频率提升。这些升级和普通计数频率提升效果相同但不会增加价格。时间维度、时间碎片及其提供的升级会在无限时保留，但每次永恒都会重置。
 
 <br><br>
 和其他维度类似，第二时间维度会生产第一时间维度，以此类推。和无限维度类似，每次永恒后你的生产量会重置为购买数量，但购买的倍率加成会永久保留。
 
 <br><br>
-每次购买会使该时间维度的倍率增加 ${formatX(4)} 倍。升级成本的基础倍率会在达到 ${format(TimeDimension(1)._costIncreaseThresholds[0], 2)} 永恒点数时提升 ${formatX(1.5, 1, 1)} 倍，在 ${format(TimeDimension(1)._costIncreaseThresholds[1])} 永恒点数时再提升 ${formatX(2.2, 1, 1)} 倍（基于基础值）。这些提升会追溯生效，导致达到阈值时价格突然上涨，且仅适用于前四个维度。超过 ${format(TimeDimension(1)._costIncreaseThresholds[2])} 永恒点数后，每次购买会按四次计算成本增长，使价格上涨更加剧烈。
+每次购买会使该时间维度的倍率增加 ${formatX(4)} 倍。升级价格的基础倍率会在达到 ${format(TimeDimension(1)._costIncreaseThresholds[0], 2)} 永恒点数时提升 ${formatX(1.5, 1, 1)} 倍，在 ${format(TimeDimension(1)._costIncreaseThresholds[1])} 永恒点数时再提升 ${formatX(2.2, 1, 1)} 倍（基于基础值）。这些提升会追溯生效，导致达到阈值时价格突然上涨，且仅适用于前四个维度。超过 ${format(TimeDimension(1)._costIncreaseThresholds[2])} 永恒点数后，每次购买会按四次计算价格增长，使价格上涨更加剧烈。
 
 <br><br>
 <b>时间维度基础价格（EP）：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._baseCost)).join(", ")}
@@ -447,7 +447,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 <b>时间维度基础价格增长：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._costMultiplier)).join(", ")}
 
 <br><br>
-每次获得新计数频率升级所需的时间碎片比前一次多 ${formatPercents(0.33)}（若有对应时间研究则为 ${formatPercents(0.25)}）。超过 ${formatInt(FreeTickspeed.softcap)} 次升级后，后续免费升级的倍率会以每 ${formatInt(50000)} 次升级约 ${formatX(1.35, 0, 2)} 倍的速度增长（每次升级 ${formatX(1.000006, 0, 6)} 倍）。
+每次获得新计数频率提升所需的时间碎片比前一次多 ${formatPercents(0.33)}（若有对应时间研究则为 ${formatPercents(0.25)}）。超过 ${formatInt(FreeTickspeed.softcap)} 次升级后，后续免费升级的倍率会以每 ${formatInt(50000)} 次升级约 ${formatX(1.35, 0, 2)} 倍的速度增长（每次升级 ${formatX(1.000006, 0, 6)} 倍）。
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["dims", "td", "shards", "eternity", "midgame"],
@@ -458,7 +458,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 时间研究是永恒后解锁的强大升级，需要消耗新资源"时间之理"。它能提升游戏中所有已有内容的生产效率，甚至改变某些计算公式的运作方式。
 
 <br><br>
-时间之理是有限资源，每次购买成本都会增加。可以用反物质、无限点数或永恒点数购买，永恒时不会重置。购买成本按固定倍数递增。
+时间之理是有限资源，每次购买价格都会增加。可以用反物质、无限点数或永恒点数购买，永恒时不会重置。购买价格按固定倍数递增。
 
 <br><br>
 研究以树状结构排列，必须购买前置研究才能继续。初始只能购买最顶端的研究，之后可以购买其下方任意可负担的研究。但有三种例外情况：
@@ -519,7 +519,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "时间膨胀",
       info: () => `
-时间膨胀功能将在购买EC11和EC12研究下方的对应时间研究后解锁。购买该研究需要 ${formatInt(5000)} 未使用的时间之理，且研究树路径可抵达该研究，<i>累计</i>获得 ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} 时间之理，并且必须完成EC11和EC12各5次。
+时间膨胀功能将在购买EC11和EC12研究下方的对应时间研究后解锁。购买该研究需要 ${formatInt(5000)} 未使用的时间之理，且研究树路径可抵达该研究，<i>累计</i>获得 ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} 时间之理，并且必须完成EC11和EC12各 5 次。
 <br>
 <br>
 启动时间膨胀将进入特殊的"时间膨胀"状态，其中所有反物质/无限/时间维度的倍率<i>指数</i>以及计数频率倍率的<i>指数</i>都将调整为 ${formatPow(0.75, 2, 2)}，使其效果大幅减弱。如果你能达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数来完成这次膨胀永恒，你将获得名为"超光速粒子"的新资源。
@@ -528,7 +528,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 你可以进行任意次数的膨胀，但超光速粒子不能像其他资源那样"刷取"。超光速粒子数量只增不减，其上限取决于你当前的TP倍率和本次膨胀中获得的反物质总量。因此，除非你获得了新的TP倍率或能在膨胀中显著提升反物质产量，否则通常无法增加TP。
 <br>
 <br>
-超光速粒子会生成另一种货币"膨胀时间"。膨胀时间通过达到阈值可转换为超光速粒子星系，其机制类似于从时间维度获得的计数频率升级。这些超光速粒子星系类似于复制器星系，它们像反物质星系一样影响计数频率，但不会增加你下一个反物质星系的成本。
+超光速粒子会生成另一种货币"膨胀时间"。膨胀时间通过达到阈值可转换为超光速粒子星系，其机制类似于从时间维度获得的计数频率提升。这些超光速粒子星系类似于复制器星系，它们像反物质星系一样影响计数频率，但不会增加你下一个反物质星系的价格。
 <br>
 <br>
 解锁时间膨胀还会解锁可用膨胀时间购买的升级。第一行升级中的第1和第3项可以重复购买任意次数（只要你有足够资源），第2项升级也可以重复购买，但最终会达到上限。
@@ -610,7 +610,7 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
     }, {
       name: "复兴树",
       info: () => `
-复兴是现实解锁后的一种升级类型。每个复兴效果各不相同，但大多数都是你可以自行选择路径的便利性(QoL)改进。所有复兴都只需要花费 ${formatInt(1)} 个复兴点数即可购买。
+复兴是现实解锁后的一种升级类型。每个复兴效果各不相同，但大多数都是你可以自行选择路径的游戏体验(QoL)改进。所有复兴都只需要花费 ${formatInt(1)} 个复兴点数即可购买。
 
 <br><br>
 每次现实重置后，你将获得 ${formatInt(1)} 个复兴点数，可用于在复兴树上购买升级，初始选项为"现在每次现实可以从 ${formatInt(Perk.firstPerk.config.effect)} 个符文中选择"。你只能解锁与你已拥有复兴直接相邻的节点，不过树状图中存在可以双向通过的循环路径。
@@ -633,7 +633,7 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
 如果你需要更大的工作空间，可以点击自动机文档面板右上角的按钮将其全屏展开。你也可以水平拖动面板之间的边界来调整面板大小，以便获得更多编写脚本或阅读文档的空间。
 <br>
 <br>
-通过点击脚本面板右上角的按钮，你可以在自动机的积木模式和文本编辑器模式之间切换；如果你不熟悉编程，积木模式可能更容易上手。在积木模式下输入命令时，选择右侧的命令块面板，将相关命令的方框拖到脚本面板中并放置在你想要的位置。如果需要，可以通过拖动积木来自由重新排列命令。在积木和文本模式之间切换会尝试自动转换你的脚本，但如果脚本包含错误，可能会丢失部分转换内容。
+通过点击脚本面板右上角的按钮，你可以在自动机的积木块模式和文本编辑器模式之间切换；如果你不熟悉编程，积木块模式可能更容易上手。在积木块模式下输入命令时，选择右侧的命令块面板，将相关命令的方框拖到脚本面板中并放置在你想要的位置。如果需要，可以通过拖动积木块来自由重新排列命令。在积木块和文本模式之间切换会尝试自动转换你的脚本，但如果脚本包含错误，可能会丢失部分转换内容。
 <br>
 <br>
 就像整个存档文件一样，单个自动机脚本可以从游戏中导入和导出。格式正确的脚本字符串将以<b>${GameSaveSerializer.startingString["automator script"]}</b>开头，以<b>${GameSaveSerializer.endingString["automator script"]}</b>结尾。如果不是这种情况，那么你的部分脚本在复制粘贴过程中丢失了。导入功能会将脚本加载到一个新槽位；你当前的脚本不会丢失或被覆盖。
@@ -690,137 +690,85 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
     }, {
       name: "黑洞",
       info: () => `
-The Black Hole is a feature which speeds up how fast the game runs, on a periodic cycle.
-The game will run at normal speed for some amount of time, then have a burst of running extremely fast for a short
-period of time before going back to normal speed and repeating the cycle.
-<br>
-<br>
-Increased game speed from Black Holes is much stronger than tickspeed because unlike tickspeed, it affects
-<i>everything equally</i>, including things which are only partially affected by tickspeed
-(eg. Infinity/Time Dimensions), things which are normally completely unaffected (eg. DT/TT generation),
-and effects which are boosted purely on time spent (eg. idle path IP/EP multipliers).
-<br>
-<br>
-While most features in the game are boosted by this increased game speed, there are some which remain unaffected.
-In these cases, it will be specifically mentioned that a given time is stated as <i>real time</i> as opposed to
-<i>game time</i>. One such example is the set of Perks which automatically completes Eternity Challenges over time.
-Otherwise, it should be assumed from this point onward that all references to time are for <i>game time</i>.
-Note that this also includes situations where you may want to have a <i>lower</i> amount of time spent, like
-the Reality Upgrade "Replicative Rapidity" for example.
-<br>
-<br>
-You can buy upgrades for the Black Hole by using Reality Machines. There are three upgrades for the Black Hole:
-<br>
-<b>Interval</b> - How long the Black Hole is inactive between bursts,
-reduced by ${formatPercents(0.2)} per upgrade.
-<br>
-<b>Power</b> - How much faster the game runs during the temporary speed bursts,
-increased by ${formatPercents(0.35)} per upgrade.
-<br>
-<b>Duration</b> - How long each speed burst lasts before going back to normal speed,
-increased by ${formatPercents(0.3)} per upgrade.
-<br>
-<br>
-${formatInt(100)} days of <i>game time</i> after unlocking the Black Hole, you unlock the ability to purchase
-a Reality Upgrade that allows you to have a second Black Hole.
-The timer on the second Black Hole only advances when the first Black Hole is active. So, for example, if the first
-Black Hole has a duration of ${formatInt(4)} minutes and the second has an interval of ${formatInt(8)} minutes, the
-second Black Hole will only activate once every two cycles of the first Black Hole regardless of how short the
-first Black Hole's interval is. Note that the timer shown in the in-game header takes account of this and shows
-the actual time until the second Black Hole activates; in the Black Hole tab, you can see the amount of time with
-the first Black Hole active needed for the second Black Hole to activate.
-<br>
-<br>
-When a Black Hole is active at least ${formatPercents(0.9999, 2)} of the time, it becomes permanently active.
-This is tracked separately for the two Black Holes.
-<br>
-<br>
-While offline, Black Hole cycles will still advance normally and their active speed boosts will apply fully as if the
-game were still open. Offline time simulates segments of inactive and active Black Holes with different tick lengths
-in order to reduce the negative effects of small tick count during active periods; the entry for "Offline Progress"
-has been updated with more technical details.
-<br>
-<br>
-The Black Holes can be paused, completely halting their interval/duration cycle. However, when unpausing them, it will
-take ${BlackHoles.ACCELERATION_TIME} real-time seconds for them to go from inactive to their maximum boosted speed.
-This acceleration time will still advance the cycle as if it were running at full speed; so
-while pausing gives some more control, it also ultimately results in some boosted time being lost.
-<br>
-<br>
-Pausing and unpausing affects both Black Holes; they cannot be paused or unpaused independently. They can be paused
-automatically ${BlackHoles.ACCELERATION_TIME} real-time seconds before activation by toggling the relevant setting on
-the Black Hole tab.
-<br>
-<br>
-<b>Upgrade Cost Information:</b>
-<br>
-<b>Interval</b> - Base cost of ${formatInt(15)} RM and increase of ${formatX(3.5, 0, 1)} per upgrade.
-<br>
-<b>Power</b> - Base cost of ${formatInt(20)} RM and increase of ${formatX(2)} per upgrade.
-<br>
-<b>Duration</b> - Base cost of ${formatInt(10)} RM and increase of ${formatX(4)} per upgrade.
-<br>
-<b>Increased cost scaling:</b> Above ${format(1e30)} RM, the cost multiplier between purchases increases by an additive
-+${format(0.2, 0, 1)} per upgrade. Above ${format(Number.MAX_VALUE, 1)} RM, a new scaling occurs which ignores all the
-previous behavior. From this point, all upgrades instead behave as if they had an initial cost of ${format(DC.E310)}
-and further upgrade costs increase by ${format(1e6)}, ${format(1e7)}, and so on (${formatX(10)} between upgrades).
-<br>
-<b>Black Hole 2:</b> All upgrades have an initial cost ${formatX(1000)} higher than the first Black Hole,
-but the same cost multipliers.
-<br>
-<br>
-<b>Hotkey: B</b> will pause/unpause the Black Holes.
+黑洞是一种周期性加速游戏运行的功能。游戏会以正常速度运行一段时间，随后短暂进入极速运行状态，之后恢复常速并循环往复。  
+<br>  
+黑洞加速效果远强于计数频率，因为它能<i>完全均等地影响一切</i>：包括仅部分受计数频率影响的内容（如无限/时间维度）、通常完全不受影响的内容（如膨胀时间/时间之理生成）、以及纯时间累积的增益（如闲置路径的无限点/永恒点倍率）。  
+<br>  
+虽然游戏多数功能受此加速影响，但部分机制保持原速。此类情况会特别注明使用<i>现实时间</i>而非<i>游戏时间</i>。例如随时间自动完成永恒挑战的复兴技能。此后若无特别说明，所有时间均指<i>游戏时间</i>。需注意：当涉及需<i>减少</i>耗时的机制（如现实升级“快速复现”）时同样适用此规则。  
+<br>  
+可使用现实机器购买黑洞升级：  
+<br>  
+<b>间隔</b> - 黑洞爆发间的休眠时长，每次升级减少 ${formatPercents(0.2)}  
+<br>  
+<b>强度</b> - 极速爆发期间的加速倍率，每次升级提升 ${formatPercents(0.35)}  
+<br>  
+<b>持续时间</b> - 每次极速爆发的时长，每次升级增加 ${formatPercents(0.3)}  
+<br>  
+<br>  
+解锁黑洞 ${formatInt(100)} 天<i>游戏时间</i>后，可购买现实升级开启第二黑洞。第二黑洞的计时器仅在第一黑洞激活时推进。例如：若第一黑洞持续 ${formatInt(4)} 分钟且第二黑洞间隔 ${formatInt(8)} 分钟，则无论第一黑洞间隔多短，第二黑洞每两周期激活一次。游戏顶栏计时器会显示第二黑洞实际激活倒计时；黑洞标签页可查看其激活所需的第一黑洞有效时间。  
+<br>  
+<br>  
+当黑洞活跃时间占比 ≥ ${formatPercents(0.9999, 2)} 时，将转为永久激活。两个黑洞独立计算此阈值。  
+<br>  
+<br>  
+离线时黑洞周期正常推进，加速效果完全生效（如同在线）。离线模拟会分段处理休眠/活跃状态，通过调整时间间隔长度减轻活跃期小间隔计数的负面影响；详见"离线进度"条目技术说明。  
+<br>  
+<br>  
+黑洞可暂停（完全停止周期循环）。但取消暂停需 ${BlackHoles.ACCELERATION_TIME} 秒现实时间从静止加速至最高速。加速期间周期按全速推进——暂停虽提供控制力，但会造成加速时间损耗。  
+<br>  
+<br>  
+暂停/取消操作同时影响双黑洞（不可独立控制）。通过在黑洞标签页启用设置，可在激活前 ${BlackHoles.ACCELERATION_TIME} 秒现实时间自动暂停。  
+<br>  
+<br>  
+<b>升级消耗信息：</b>  
+<br>  
+<b>间隔</b> - 基础 ${formatInt(15)} 现实机器，每次升级消耗倍增 ${formatX(3.5, 0, 1)}  
+<br>  
+<b>强度</b> - 基础 ${formatInt(20)} 现实机器，每次升级消耗倍增 ${formatX(2)}  
+<br>  
+<b>持续时间</b> - 基础 ${formatInt(10)} 现实机器，每次升级消耗倍增 ${formatX(4)}  
+<br>  
+<b>消耗增长：</b> 超过 ${format(1e30)} 现实机器后，每次升级消耗增幅额外 +${format(0.2, 0, 1)}。超过 ${format(Number.MAX_VALUE, 1)} 现实机器后采用新规则：所有升级基础消耗重置为 ${format(DC.E310)}，后续升级消耗依次增加 ${format(1e6)}、${format(1e7)}（每次 ${formatX(10)} 倍增）。  
+<br>  
+<b>黑洞 2：</b> 所有升级基础消耗为第一黑洞的 ${formatX(1000)} 倍，但倍增系数相同。  
+<br>  
+<br>  
+<b>快捷键：B</b> 暂停/取消暂停黑洞。  
 `,
       isUnlocked: () => player.blackHole[0].unlocked,
       tags: ["reality", "time", "speed", "duration", "interval", "rm", "endgame", "lategame"],
       tab: "reality/hole"
     }, {
-      name: "Celestials",
+      name: "天神",
       info: () => `
-Once you get all of the Reality Upgrades, the first Celestial is unlocked. This opens up a new tab for Celestials, next
-to the Reality tab. The first subtab under the Celestials tab shows a map called "Celestial Navigation" which updates as
-you progress through the game. Only part of the map will be visible when first unlocked, but new content will gradually
-be revealed as you approach it, generally with a visual indication of your progress towards the next step.
-<br>
-<br>
-Each Celestial has unique mechanics and upgrades, and you need to defeat all seven to beat the game.
-Unlocking or defeating a Celestial has different conditions depending on the Celestial's mechanics.
-<br>
-<br>
-All Celestials have their own Celestial Reality, but how the Reality is relevant to each Celestial and the rest of
-the game will depend on the Celestial.
-<br>
-<br>
-Celestials are timeless entities. Unless otherwise stated, any new mechanics introduced by Celestials are not affected
-by game speed multipliers and instead refer specifically to real time instead of game time.
+当你获得全部现实升级后，首位天神即会解锁。此时现实标签页旁将新增天神标签页。天神标签页的首个子页显示名为"天神导航"的地图，该地图随游戏进度动态更新。初次解锁时仅部分地图可见，但当你接近新内容时会逐步显现，通常配有向下个目标推进的视觉进度指示。  
+<br>  
+每位天神拥有独特机制与升级体系，需击败全部七位天神方可通关游戏。解锁或击败天神的条件因天神机制而异。  
+<br>  
+所有天神均有专属天神现实，但该现实与天神及游戏其他内容的关联方式取决于具体天神。  
+<br>  
+天神乃永久存在。除非特别说明，天神引入的新机制均不受游戏速度倍率影响，且特指现实时间（非游戏时间）。
 `,
       isUnlocked: () => Teresa.isUnlocked,
       tags: ["reality", "challenges", "endgame", "lategame"],
       tab: "celestials/celestial-navigation"
     }, {
-      name: "Teresa, Celestial of Reality",
-      alias: "Teresa",
+      name: "特蕾莎——现实之神",
+      alias: "特蕾莎",
       info: () => `
-Teresa is the first Celestial. They are unlocked by Achievement 147, which requires obtaining all Reality Upgrades.
-<br>
-<br>
-On the main screen, there is a bar with a button above it that says "Pour RM". This allows you to put your RM into the
-container for a Reality Machine multiplier. RM which has been poured into the container cannot be retrieved.
-When you reach ${format(TeresaUnlocks.run.price)} RM inside of the container, you unlock Teresa's Reality.
-<br>
-<br>
-When you complete Teresa's Reality,
-${Teresa.runCompleted
-    ? "your Glyph Sacrifice is multiplied based on the amount of antimatter gained during the run"
-    : "<div style='color: var(--color-bad);'>(complete Teresa's Reality to see the reward)</div>"}.
-Completing Teresa's Reality is only part of the story; you need to keep pouring RM in order to progress. Once
-you are at ${format(TeresaUnlocks.effarig.price)} RM in the container, you will unlock the next Celestial.
-<br>
-<br>
-${Teresa.runCompleted
-    ? "Teresa's Reality can be entered again after completing it, and its reward will become stronger if you " +
-      "reach a higher amount of antimatter on this repeat run."
-    : "(More information available - complete Teresa's Reality)"}
+      特蕾莎是首位天神。祂通过成就147解锁，该成就要求获得全部现实升级。  
+<br>  
+主界面上方进度条配有“进贡现实机器”按钮，可将现实机器注入容器获取倍率加成。注入容器的现实机器不可撤回。当容器内达到 ${format(TeresaUnlocks.run.price)} 现实机器时，你将解锁特蕾莎的现实。  
+<br>  
+完成特蕾莎的现实时，  
+${Teresa.runCompleted  
+    ? "你的符文献祭将根据本轮现实中获得的反物质量获得倍数加成"  
+    : "<div style='color: var(--color-bad);'>（完成特蕾莎的现实以查看奖励）</div>"}。  
+完成特蕾莎的现实仅是开始；你需要继续注入现实机器以推进进度。当容器内达到 ${format(TeresaUnlocks.effarig.price)} 现实机器时，你将解锁下一位天神。  
+<br>  
+${Teresa.runCompleted  
+    ? "完成特蕾莎的现实后，你可以再次进入。若在重复挑战中达到更高的反物质数量，其奖励将变得更强。"  
+    : "(更多信息待解锁——完成特蕾莎的现实)"}
 `,
       isUnlocked: () => Teresa.isUnlocked,
       tags: ["rm", "endgame", "lategame", "perks", "sacrifice", "boo", "ghost", "celestial"],

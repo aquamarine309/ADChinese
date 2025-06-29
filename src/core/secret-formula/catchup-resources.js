@@ -8,9 +8,9 @@ export const catchupResources = [
     description: `每个反物质维度持续生产前一级的维度，最低级的反物质维度生产反物质。`
   },
   {
-    name: "计数频率提升",
+    name: "计数频率",
     id: 1,
-    openH2pEntry: "Tickspeed",
+    openH2pEntry: "计数频率",
     requiredStage: PROGRESS_STAGE.PRE_INFINITY,
     description: `计数频率升级使反物质维度生产其他反物质维度或反物质时，如同时间加速流逝。`
   },

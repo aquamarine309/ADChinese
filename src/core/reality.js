@@ -144,7 +144,7 @@ export function requestManualReality() {
     return;
   }
   if (GameCache.glyphInventorySpace.value === 0) {
-    Modal.message.show("No available inventory space; free up space by shift-clicking Glyphs to get rid of them.",
+    Modal.message.show("仓库空间不足；请按住Shift键点击符文以清除它们来释放空间。",
       { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
     return;
   }
@@ -328,11 +328,9 @@ function giveRealityRewards(realityProps) {
     const current = Teresa.runRewardMultiplier;
     const newMultiplier = Teresa.rewardMultiplier(player.antimatter);
     const isHigher = newMultiplier > current;
-    const modalText = `You have completed Teresa's Reality! ${isHigher
-      ? `Since you gained more Antimatter, you increased your
-      Glyph Sacrifice multiplier from ${format(current, 2, 2)} to ${format(newMultiplier, 2, 2)}`
-      : `You did not gain more Antimatter during this run, so the Glyph Sacrifice multiplier
-      from Teresa did not increase`}.`;
+    const modalText = `你已完成特蕾莎的现实！${isHigher
+      ? `由于你获得了更多的反物质，符文献祭倍数从 ${format(current, 2, 2)} 增加到 ${format(newMultiplier, 2, 2)}。`
+      : `你在这次运行中没有获得更多的反物质，所以来自特蕾莎的符文献祭倍数没有增加。`}`;
     Modal.message.show(modalText, {}, 2);
     if (Currency.antimatter.gt(player.celestials.teresa.bestRunAM)) {
       player.celestials.teresa.bestRunAM = Currency.antimatter.value;
@@ -478,20 +476,14 @@ export function beginProcessReality(realityProps) {
       asyncEntry: doneSoFar => {
         GameIntervals.stop();
         ui.$viewModel.modal.progressBar = {
-          label: "Simulating Amplified Reality",
-          info: () => `The game is currently calculating all the resources you would gain from repeating the
-            Reality you just completed ${formatInt(glyphsToProcess)} more times. Pressing "Quick Glyphs" with
-            more than ${formatInt(glyphsToSample)} Glyphs remaining will speed up the calculation by automatically
-            sacrificing all the remaining Glyphs you would get. Pressing "Skip Glyphs" will ignore all resources
-            related to Glyphs and stop the simulation after giving all other resources.
-            ${Ra.unlocks.unlockGlyphAlchemy.canBeApplied ? `Pressing either button to speed up
-            simulation will not update any resources within Glyph Alchemy.` : ""}`,
+          label: "模拟扩增现实",
+          info: () => `游戏正在计算你额外重复 ${formatInt(glyphsToProcess)} 次当前现实可获得的全部资源。当剩余符文超过 ${formatInt(glyphsToSample)} 个时，点击"快速符文"将自动献祭所有剩余符文以加速计算；点击"跳过符文"则忽略符文相关资源，仅发放其他资源后停止模拟。${Ra.unlocks.unlockGlyphAlchemy.canBeApplied ? `点击任一加速按钮均不会更新符文炼金内的资源。` : ""}`,
           progressName: "Realities",
           current: doneSoFar,
           max: glyphsToProcess,
           startTime: Date.now(),
           buttons: [{
-            text: "Quick Glyphs",
+            text: "快速符文",
             condition: (current, max) => max - current > glyphsToSample,
             click: () => {
               // This changes the simulating function to one that just takes a representative sample of 10000 random
@@ -507,7 +499,7 @@ export function beginProcessReality(realityProps) {
             }
           },
           {
-            text: "Skip Glyphs",
+            text: "跳过符文",
             condition: () => true,
             click: () => {
               // Shortcut to the end since we're ignoring all glyph-related resources

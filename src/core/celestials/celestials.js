@@ -29,7 +29,7 @@ GameDatabase.celestials.descriptions = [
     effects() {
       return `所有维度的倍率、游戏速度和计数频率都受到类似时间膨胀的削弱。
       无限之力可以降低产量和游戏速度的削弱程度，时间碎片可以减少计数频率的削弱程度。
-      符文等级暂时限制 为${formatInt(Effarig.glyphLevelCap)}，稀有度不受影响。`;
+      符文等级暂时限制为 ${formatInt(Effarig.glyphLevelCap)}，稀有度不受影响。`;
     },
     description() {
       return `当你第一次完成一个层级时，直接退出鹿颈长的现实。`;

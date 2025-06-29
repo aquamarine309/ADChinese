@@ -104,6 +104,8 @@ html {
 
   --color-pelle--base: crimson;
   --color-pelle--secondary: #00bcd4;
+  
+  --font-chinese: "Xia Lu Wen Kai";
 }
 
 :root .t-metro,
@@ -286,7 +288,7 @@ body {
   width: 100%;
   height: 100%;
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   font-weight: 300;
   line-height: 1.5;
@@ -353,6 +355,18 @@ body {
 @font-face {
   font-family: "Font Awesome";
   src: url("fa-solid-900.ttf");
+}
+
+@font-face {
+  font-family: "Xia Lu Wen Kai";
+  src: url("XiaLuWenKai-Light.ttf");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Xia Lu Wen Kai";
+  src: url("XiaLuWenKai-Medium.ttf");
+  font-weight: bold;
 }
 
 /* Background for s6 and s10 is not displayed by default */
@@ -464,7 +478,7 @@ button:focus {
   bottom: 0;
   z-index: 2;
   align-items: flex-end;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-text);
   pointer-events: all;
 }
@@ -476,7 +490,7 @@ button:focus {
 }
 
 .c-tt-buy-button {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.35rem;
   font-weight: bold;
   border: 0.1rem solid #691fa5;
@@ -564,7 +578,7 @@ button:focus {
 
 .c-tt-save-load-btn__menu {
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   font-weight: bold;
   color: white;
@@ -589,7 +603,7 @@ button:focus {
 
 .c-tt-save-load-btn__menu-rename {
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   font-weight: bold;
   border: none;
@@ -669,7 +683,7 @@ button:focus {
   width: 20rem;
   height: 6rem;
   position: relative;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.65rem;
   font-weight: bold;
   background-color: black;
@@ -683,7 +697,7 @@ button:focus {
 
 .o-tab-btn {
   white-space: nowrap;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.8rem;
   font-weight: bold;
   color: var(--color-text);
@@ -802,7 +816,7 @@ button:focus {
 .c-reality-button {
   width: 100%;
   height: 100%;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   background: var(--color-background);
@@ -873,7 +887,7 @@ button:focus {
 }
 
 .c-reset-reality-button {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   font-weight: bold;
   color: var(--color-bad);
@@ -912,7 +926,7 @@ button:focus {
 }
 
 .l-reality-amplify-button {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   background-color: #fdd3b0;
   border: var(--var-border-width, 0.2rem) solid sandybrown;
   border-radius: var(--var-border-radius, 0.5rem);
@@ -1567,7 +1581,7 @@ br {
 
 .o-primary-btn {
   height: 2.5rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-text);
@@ -1999,7 +2013,7 @@ br {
 .o-prestige-button {
   width: 22rem;
   height: 7rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   border: var(--var-border-width, 0.2rem) solid;
   border-radius: var(--var-border-radius, 0.4rem);
@@ -2218,7 +2232,7 @@ br {
 /* #region IP Amount */
 
 .c-game-header__tesseract-available {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: #2ebce6;
   background: #111117;
   border-width: var(--var-border-width, 0.2rem) solid;
@@ -2576,7 +2590,7 @@ br {
 }
 
 .c-infinity-dim-tab__tesseract-button {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: #2ebce6;
   background: #111117;
   border: var(--var-border-width, 0.2rem) solid;
@@ -2998,7 +3012,7 @@ br {
   height: 10.6rem;
   position: relative;
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 0.8rem;
   color: black;
   border: var(--var-border-width, 0.2rem) solid;
@@ -3269,7 +3283,7 @@ br {
 }
 
 .t-s4 .c-achievements-tab__header--multipliers::after {
-  content: "you can click the colon at the end of this line in any other theme to turn on these achievement images";
+  content: "在其他主题中，你均可点击此行末尾的冒号以切换成就图片。";
   width: 20rem;
   position: absolute;
   font-size: 0.8rem;
@@ -3490,7 +3504,7 @@ br {
 .o-challenge-btn {
   width: 15rem;
   height: 3rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   font-weight: bold;
   border: var(--var-border-width, 0.3rem) solid #127a20;
@@ -3747,7 +3761,7 @@ br {
 .o-infinity-upgrade-btn {
   width: 19rem;
   height: 9rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   color: white;
@@ -4061,7 +4075,7 @@ br {
 
 .o-autobuyer-input {
   height: 3rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.3rem;
   border: 0.1rem solid #c2c2c2;
   border-radius: var(--var-border-radius, 0.4rem);
@@ -4197,7 +4211,7 @@ br {
 .o-autobuyer-btn {
   width: 17.5rem;
   height: 3.5rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 0.9rem;
   font-weight: bold;
   color: var(--color-text);
@@ -4324,7 +4338,7 @@ br {
   align-items: center;
   text-align: center;
   text-align-last: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   color: black;
   border-radius: var(--var-border-radius, 0.4rem);
@@ -4703,7 +4717,7 @@ properly on certain themes. */
 .o-eternity-upgrade {
   width: 20rem;
   height: 9rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   border: 0.1rem solid var(--color-eternity);
@@ -4861,7 +4875,7 @@ properly on certain themes. */
 .o-eternity-milestone__reward {
   width: 25rem;
   height: 8rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   font-weight: bold;
   color: black;
@@ -5003,7 +5017,7 @@ properly on certain themes. */
 .o-dilation-btn {
   width: 19rem;
   height: 9rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.12rem;
   font-weight: bold;
   border: var(--var-border-width, 0.2rem) solid var(--color-dilation);
@@ -5174,7 +5188,7 @@ properly on certain themes. */
 
 .c-modal {
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   color: var(--color-text);
   background-color: var(--color-base);
@@ -5583,7 +5597,7 @@ properly on certain themes. */
 .o-modal-store-label {
   min-width: 10rem;
   text-align: right;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 2rem;
   margin-right: 1.5rem;
 }
@@ -5593,7 +5607,7 @@ properly on certain themes. */
   min-width: 12rem;
   justify-content: center;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 2rem;
   background: burlywood;
   border: none;
@@ -5663,7 +5677,7 @@ kbd {
 
 .o-notification {
   white-space: nowrap;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.3rem;
   font-weight: bold;
   color: black;
@@ -5989,7 +6003,7 @@ kbd {
 }
 
 .o-teresa-shop-button {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   color: black;
@@ -6053,7 +6067,7 @@ kbd {
   width: 35rem;
   justify-content: center;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   line-height: 1.5;
   color: black;
@@ -6422,7 +6436,7 @@ kbd {
 .o-enslaved-mechanic-button {
   min-width: 18rem;
   min-height: 9rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   background-color: #fdd3b0;
   border: var(--var-border-width, 0.2rem) solid sandybrown;
   border-radius: var(--var-border-radius, 0.5rem);
@@ -6460,7 +6474,7 @@ kbd {
 .o-enslaved-shop-button {
   width: 30rem;
   height: 12rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-text-inverted);
   background-color: var(--color-disabled);
   border: var(--var-border-width, 0.2rem) solid var(--color-bad);
@@ -6496,7 +6510,7 @@ kbd {
   flex-direction: column;
   width: 34rem;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   background: none;
   border: var(--var-border-width, 0.2rem) solid #cd945c;
@@ -6749,7 +6763,7 @@ kbd {
 }
 
 .c-v-run-button {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.3rem;
   color: black;
   background: var(--color-v--base);
@@ -7047,7 +7061,7 @@ kbd {
   height: 36rem;
   justify-content: center;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: #9575cd;
   background: black;
   border: var(--var-border-width, 0.2rem) solid #9575cd;
@@ -7147,7 +7161,7 @@ kbd {
   width: 13rem;
   height: 6.5rem;
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   border: 0.1rem solid #222222;
   border-radius: var(--var-border-radius, 1rem);
@@ -7170,7 +7184,7 @@ kbd {
   height: 33rem;
   justify-content: center;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: black;
   border-radius: var(--var-border-radius, 2rem);
   margin: 2rem;
@@ -7740,7 +7754,7 @@ kbd {
 .o-laitela-run-button {
   width: 24rem;
   height: 84rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   color: var(--color-laitela--accent);
   background: var(--color-laitela--base);
@@ -7787,7 +7801,7 @@ kbd {
 .o-dark-matter-dimension-button {
   width: 15rem;
   height: 5rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   color: var(--color-laitela--accent);
   background: var(--color-laitela--base);
@@ -7962,7 +7976,7 @@ kbd {
 }
 
 .c-laitela-singularity h2 {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.5rem;
   margin: 0;
 }
@@ -7979,7 +7993,7 @@ kbd {
 
 .c-laitela-singularity__cap-control {
   width: 20rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   font-weight: bold;
   color: var(--color-laitela--accent);
@@ -8049,7 +8063,7 @@ kbd {
 .c-singularity-milestone-modal-sort-button {
   width: 26.5rem;
   height: 6rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-laitela--accent);
@@ -8145,7 +8159,7 @@ kbd {
 .l-laitela-annihilation-container {
   width: 51rem;
   height: 20rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   color: var(--color-laitela--accent);
   background: var(--color-laitela--base);
@@ -8157,7 +8171,7 @@ kbd {
 .l-laitela-annihilation-button {
   width: 35rem;
   height: 3rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-laitela--accent);
   background: var(--color-laitela--base);
   border: var(--var-border-width, 0.2rem) solid var(--color-laitela--accent);
@@ -8190,7 +8204,7 @@ kbd {
 .c-laitela-automation-toggle {
   width: 22rem;
   height: 3rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   font-weight: bold;
   color: var(--color-laitela--accent);
@@ -8388,7 +8402,7 @@ kbd {
 
 .c-glyph-levels-and-weights__auto-btn {
   height: 2.5rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   color: var(--color-reality);
@@ -8480,7 +8494,7 @@ kbd {
 
 .c-reality-upgrade-btn {
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   color: var(--color-reality-dark);
   background-color: var(--color-background);
@@ -8758,7 +8772,7 @@ kbd {
 .o-automator-block-input {
   display: inline-block;
   width: fit-content;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   background: var(--color-blockmator-block-background);
   border: 0.1rem solid var(--color-blockmator-block-border);
@@ -9021,7 +9035,7 @@ input.o-automator-block-input {
   height: 3.4rem;
   justify-content: center;
   align-items: center;
-  font: 1rem Typewriter, serif;
+  font: 1rem Typewriter, var(--font-chinese);
   font-weight: bold;
   color: var(--color-text);
   background-color: var(--color-text-inverted);
@@ -9286,4 +9300,40 @@ input.o-automator-block-input {
 .l-fill-container {
   width: 100%;
   height: 100%;
+}
+
+.l-startup-tips-container {
+  display: flex;
+  min-height: 7rem;
+  margin-top: 1rem;
+  padding: 2rem;
+  border-top: var(--color-text) 0.1rem solid;
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.o-startup-tips-toggle-btn {
+  width: 5rem;
+  font-size: 5rem;
+  height: 100%;
+  color: gray;
+  line-height: 5rem;
+  text-align: center;
+}
+
+.o-startup-tips-text {
+  font-family: 1.3rem;
+  height: 100%;
+  flex: 1;
+  margin: 0 0.8rem;
+}
+
+.o-startup-tip-count {
+  font-size: 1rem;
+  position: absolute;
+  left: 2rem;
+  top: 0.5rem;
 }

@@ -7,8 +7,8 @@ import { MultiplierTabIcons } from "./icons.js";
 export const general = {
   achievement: {
     name: (ach, dim) => (dim?.length === 2
-      ? `Achievement ${ach} (${dim})`
-      : `Achievement ${ach}`),
+      ? `成就 ${ach}（${dim}）`
+      : `成就 ${ach}`),
     multValue: (ach, dim) => {
       // There is also a banked infinities gain effect, but we don't track that in the multiplier tab
       if (ach === 131) return Achievement(131).canBeApplied
@@ -47,8 +47,8 @@ export const general = {
   },
   timeStudy: {
     name: (ts, dim) => (dim?.length === 2
-      ? `Time Study ${ts} (${dim})`
-      : `Time Study ${ts}`),
+      ? `时间研究 ${ts}（${dim}）`
+      : `时间研究 ${ts}`),
     multValue: (ts, dim) => {
       // This is a special case for the passive path RG study, as its effect is 0.4 (for galaxy power) but
       // in the multiplier tab we only reference its replicanti speed value (which is 1.5)
@@ -82,7 +82,7 @@ export const general = {
     },
   },
   infinityChallenge: {
-    name: ic => `Infinity Challenge ${ic}`,
+    name: ic => `无限挑战 ${ic}`,
     displayOverride: ic => (ic === 4 ? formatPow(InfinityChallenge(4).reward.effectValue, 0, 3) : ""),
     multValue: (ic, dim) => {
       // We cheat here by actually giving IC4 a multiplier of a value equal to its effect on the final
@@ -116,7 +116,7 @@ export const general = {
     },
   },
   eternityChallenge: {
-    name: ec => `Eternity Challenge ${ec}`,
+    name: ec => `永恒挑战 ${ec}`,
     multValue: (ec, dim) => {
       if (dim?.length === 2) {
         let totalEffect = DC.D1;

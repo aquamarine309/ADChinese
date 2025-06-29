@@ -114,7 +114,7 @@
 
 .c-automator-editor {
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   border-bottom: 0.15rem solid var(--color-automator-controls-background);
 }
@@ -133,7 +133,7 @@
 }
 
 .CodeMirror-hint {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
 }
 
@@ -146,7 +146,7 @@
 
   /* required for expanding into pane */
   flex: 1 1 auto;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   line-height: 1.6rem;
 }
@@ -197,7 +197,7 @@
   width: 100%;
   height: calc(2.1rem + 1rem / 3 - var(--var-border-width, 0rem) * 2);
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   color: var(--color-automator-docs-font);
   background-color: var(--color-automator-controls-inactive);

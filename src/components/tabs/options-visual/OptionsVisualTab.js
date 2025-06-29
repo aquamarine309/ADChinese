@@ -127,7 +127,7 @@ export default {
           class="o-primary-btn--option"
           onclick="Modal.hiddenTabs.show()"
         >
-          修改显示标签页
+          修改可见标签页
         </OptionsButton>
         <PrimaryToggleButton
           v-model="headerTextColored"

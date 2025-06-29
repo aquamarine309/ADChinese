@@ -266,12 +266,12 @@ export default {
           />
           <StudyTreeInfo
             v-if="!deleting && !isImporting && importedTree.hasInfo"
-            header-text="Status after loading with <b>no studies</b>:"
+            header-text="加载后状态（<b>无时间研究</b>）："
             :tree-status="importedTree"
           />
           <StudyTreeInfo
             v-if="!deleting && combinedTree.hasInfo"
-            header-text="Status after loading with <b>current tree</b>:"
+            header-text="加载后状态（<b>当前时间研究</b>）："
             :tree-status="combinedTree"
           />
         </template>
@@ -295,7 +295,7 @@ export default {
       <br>
       <PrimaryButton
         v-if="!deleting"
-        v-tooltip="'This will format the study preset text, for example, changing \\'a,b,c|d\\' to \\'a, b, c | d\\'.'"
+        v-tooltip="'此操作将格式化研究预设文本，例如：将 \'a,b,c|d\' 转换为 \'a, b, c | d\'。'"
         @click="convertInputShorthands"
       >
         格式化预设文本
@@ -304,7 +304,7 @@ export default {
     <span v-if="isImporting">
       <br>
       <div
-        v-tooltip="canEternity ? '' : 'You are currently unable to eternity, so this will only do a normal load.'"
+        v-tooltip="canEternity ? '' : '你当前无法进行永恒，因此将仅执行常规加载。'"
         class="c-modal__confirmation-toggle"
         @click="respecAndLoad = !respecAndLoad"
         data-v-study-string-modal

@@ -194,11 +194,11 @@ export class EternityChallengeState extends GameMechanicState {
     if (!this.isUnlocked) return false;
     const maxInversion = player.requirementChecks.reality.slowestBH <= 1e-300;
     if (this.id === 12 && ImaginaryUpgrade(24).isLockingMechanics && Ra.isRunning && maxInversion) {
-      if (!auto) ImaginaryUpgrade(24).tryShowWarningModal("enter Eternity Challenge 12");
+      if (!auto) ImaginaryUpgrade(24).tryShowWarningModal("进入永恒挑战12");
       return false;
     }
     if (this.id === 7 && ImaginaryUpgrade(15).isLockingMechanics && TimeDimension(1).amount.gt(0)) {
-      if (!auto) ImaginaryUpgrade(15).tryShowWarningModal("enter Eternity Challenge 7");
+      if (!auto) ImaginaryUpgrade(15).tryShowWarningModal("进入永恒挑战7");
       return false;
     }
 

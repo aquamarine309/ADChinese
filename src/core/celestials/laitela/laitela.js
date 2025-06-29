@@ -5,7 +5,6 @@ import { DarkMatterDimensions } from "./dark-matter-dimension.js";
 
 export const Laitela = {
   displayName: "莱特拉",
-  possessiveName: "Lai'tela's",
   get celestial() {
     return player.celestials.laitela;
   },

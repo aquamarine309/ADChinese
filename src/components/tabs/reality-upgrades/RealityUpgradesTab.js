@@ -20,7 +20,7 @@ export default {
       class="c-reality-upgrade-infotext"
       data-v-reality-upgrades-tab
     >
-      第一组升级可以无限购买，但在超过 {{ format(1e30) }} 和 {{ format(maxValue, 1) }} 现实机器后成本增加得更快。
+      第一组升级可以无限购买，但在超过 {{ format(1e30) }} 和 {{ format(maxValue, 1) }} 现实机器后价格增加得更快。
       <br>
       其余的升级是一次性升级，除了需要现实机器外，还需要解锁条件。
       <br>

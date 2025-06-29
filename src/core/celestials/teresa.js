@@ -8,7 +8,6 @@ export const Teresa = {
   lastUnlock: "effarig",
   pouredAmountCap: 1e24,
   displayName: "特蕾莎",
-  possessiveName: "Teresa's",
   get isUnlocked() {
     return Achievement(147).isUnlocked;
   },
@@ -100,10 +99,10 @@ class PerkShopUpgradeState extends RebuyableMechanicState {
       if (GameCache.glyphInventorySpace.value === 0) {
         // Refund the perk point if they didn't actually get a glyph
         Currency.perkPoints.add(1);
-        GameUI.notify.error("You have no empty inventory space!");
+        GameUI.notify.error("你没有空余的仓库空间！");
       } else {
         Glyphs.addToInventory(GlyphGenerator.musicGlyph());
-        GameUI.notify.success("Created a Music Glyph");
+        GameUI.notify.success("获得一个音乐符文。");
       }
     }
     // Fill the inventory with music glyphs

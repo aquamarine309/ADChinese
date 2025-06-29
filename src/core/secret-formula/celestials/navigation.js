@@ -715,12 +715,12 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const goal = 800;
-          if (complete >= 1) return "V's Reality";
+          if (complete >= 1) return "薇的现实";
           const galaxies = player.requirementChecks.infinity.noAD8 ? player.galaxies : 0;
           return [
-            "V's unlock Achievement",
-            `Reach ${formatInt(galaxies)} / ${formatInt(goal)} Antimatter Galaxies without buying`,
-            "8th Antimatter Dimensions in your current Infinity"
+            "薇的解锁成就",
+            "在当前的现实中不购买第八维",
+            `达到 ${formatInt(galaxies)} / ${formatInt(goal)} 反物质星系`,
           ];
         },
         angle: 135,
@@ -921,11 +921,11 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const name = VRunUnlocks.all[0].config.name;
-          if (complete >= 1) return `V-Achievement "${name}"`;
+          if (complete >= 1) return `薇成就“${name}”`;
           const completions = VRunUnlocks.all[0].completions;
           return [
-            "V-Achievement",
-            `Reach ${formatInt(completions)} / ${formatInt(6)} completions in ${name}.`
+            "薇成就",
+            ``
           ];
         },
         angle: -135,
@@ -957,11 +957,11 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const name = VRunUnlocks.all[1].config.name;
-          if (complete >= 1) return `V-Achievement "${name}"`;
+          if (complete >= 1) return `薇成就“${name}”`;
           const completions = VRunUnlocks.all[1].completions;
           return [
-            "V-Achievement",
-            `Reach ${formatInt(completions)} / ${formatInt(6)} completions in ${name}.`
+            "薇成就",
+            `完成 ${formatInt(6)} 次${name}`
           ];
         },
         angle: 20,
@@ -993,11 +993,11 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const name = VRunUnlocks.all[2].config.name;
-          if (complete >= 1) return `V-Achievement "${name}"`;
+          if (complete >= 1) return `薇成就“${name}”`;
           const completions = VRunUnlocks.all[2].completions;
           return [
-            "V-Achievement",
-            `Reach ${formatInt(completions)} / ${formatInt(6)} completions in ${name}.`
+            "薇成就",
+            `完成 ${formatInt(6)} 次${name}`
           ];
         },
         angle: 315,
@@ -1029,11 +1029,11 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const name = VRunUnlocks.all[3].config.name;
-          if (complete >= 1) return `V-Achievement "${name}"`;
+          if (complete >= 1) return `薇成就“${name}”`;
           const completions = VRunUnlocks.all[3].completions;
           return [
-            "V-Achievement",
-            `Reach ${formatInt(completions)} / ${formatInt(6)} completions in ${name}.`
+            "薇成就",
+            `完成 ${formatInt(6)} 次${name}`
           ];
         },
         angle: 135,
@@ -1065,11 +1065,11 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const name = VRunUnlocks.all[4].config.name;
-          if (complete >= 1) return `V-Achievement "${name}"`;
+          if (complete >= 1) return `薇成就“${name}”`;
           const completions = VRunUnlocks.all[4].completions;
           return [
-            "V-Achievement",
-            `Reach ${formatInt(completions)} / ${formatInt(6)} completions in ${name}.`
+            "薇成就",
+            `完成 ${formatInt(6)} 次${name}`
           ];
         },
         angle: 60,
@@ -1101,11 +1101,11 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           const name = VRunUnlocks.all[5].config.name;
-          if (complete >= 1) return `V-Achievement "${name}"`;
+          if (complete >= 1) return `薇成就“${name}”`;
           const completions = VRunUnlocks.all[5].completions;
           return [
-            "V-Achievement",
-            `Reach ${formatInt(completions)} / ${formatInt(6)} completions in ${name}.`
+            "薇成就",
+            `完成 ${formatInt(6)} 次${name}`
           ];
         },
         angle: 260,
@@ -1138,7 +1138,7 @@ export const celestialNavigation = {
       },
       alwaysShowLegend: true,
       legend: {
-        text: "Ra's Reality",
+        text: "太阳神的现实",
         angle: 230,
         diagonal: 85,
         horizontal: 16,
@@ -1161,9 +1161,9 @@ export const celestialNavigation = {
       legend: {
         text: () => {
           const level = Ra.pets.teresa.level;
-          if (level === 25) return `Ra's Teresa Memories have all been returned`;
+          if (level === 25) return `太阳神的特蕾莎记忆已完全恢复`;
           return [
-            "Ra's Teresa Memory level",
+            "太阳神的特蕾莎等级",
             `${formatInt(level)} / ${formatInt(25)}`
           ];
         },
@@ -1211,10 +1211,10 @@ export const celestialNavigation = {
         text: complete => {
           const unlocked = Ra.pets.teresa.level;
           const level = Ra.pets.effarig.level;
-          if (complete < 1) return `Ra's Teresa Memory level ${unlocked} / ${formatInt(8)}`;
-          if (level === 25) return `Ra's Effarig Memories have all been returned`;
+          if (complete < 1) return `太阳神的特蕾莎等级 ${unlocked} / ${formatInt(8)}`;
+          if (level === 25) return `太阳神的鹿颈长记忆已完全恢复`;
           return [
-            "Ra's Effarig Memory level",
+            "太阳神的鹿颈长等级",
             `${formatInt(level)} / ${formatInt(25)}`
           ];
         },
@@ -1262,10 +1262,10 @@ export const celestialNavigation = {
         text: complete => {
           const unlocked = Ra.pets.effarig.level;
           const level = Ra.pets.enslaved.level;
-          if (complete < 1) return `Ra's Effarig Memory level ${unlocked} / ${formatInt(8)}`;
-          if (level === 25) return `Ra's Nameless Memories have all been returned`;
+          if (complete < 1) return `太阳神的鹿颈长等级 ${unlocked} / ${formatInt(8)}`;
+          if (level === 25) return `太阳神的无名氏记忆已完全恢复`;
           return [
-            "Ra's Nameless Memory level",
+            "太阳神的无名氏等级",
             `${formatInt(level)} / ${formatInt(25)}`
           ];
         },
@@ -1313,10 +1313,10 @@ export const celestialNavigation = {
         text: complete => {
           const unlocked = Ra.pets.enslaved.level;
           const level = Ra.pets.v.level;
-          if (complete < 1) return `Ra's Nameless Memory level ${unlocked} / ${formatInt(8)}`;
-          if (level === 25) return `Ra's V Memories have all been returned`;
+          if (complete < 1) return `太阳神的无名氏等级 ${unlocked} / ${formatInt(8)}`;
+          if (level === 25) return `太阳神的薇记忆已完全恢复`;
           return [
-            "Ra's V Memory level",
+            "太阳神的薇等级",
             `${formatInt(level)} / ${formatInt(25)}`
           ];
         },
@@ -1447,7 +1447,7 @@ export const celestialNavigation = {
       alwaysShowLegend: true,
       legend: {
         text: complete => {
-          const realityName = "Lai'tela's Reality";
+          const realityName = "莱特拉的现实";
           if (complete >= 1) return [realityName];
 
           if (!MachineHandler.isIMUnlocked) {
@@ -1455,7 +1455,7 @@ export const celestialNavigation = {
             const realityMachineCap = MachineHandler.baseRMCap;
             return [
               realityName,
-              "The limits of Reality Machines bind you",
+              "现实机器的极限阻挡着你",
               `${format(realityMachines)} / ${format(realityMachineCap)}`
             ];
           }
@@ -1463,8 +1463,8 @@ export const celestialNavigation = {
           const hasIDs = player.requirementChecks.reality.maxID1.neq(0);
           if (hasIDs) return [
             realityName,
-            "The Power of Infinity Dimensions",
-            "blocks your path."
+            "无限维度的力量",
+            "阻挡了你的前路"
           ];
 
           const antimatter = Currency.antimatter.value;
@@ -1508,31 +1508,31 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          const dmdText = "2nd Dark Matter Dimension";
+          const dmdText = "第二暗物质维度";
           const dim = DarkMatterDimension(2);
           if (dim.isUnlocked) return [dmdText];
 
           const goal = dim.adjustedStartingCost;
           if (complete >= 1) return [
             dmdText,
-            `Dark Matter ${format(Currency.darkMatter.max.min(goal), dim.isUnlocked ? 0 : 2)} / ${format(goal)}`
+            `暗物质 ${format(Currency.darkMatter.max.min(goal), dim.isUnlocked ? 0 : 2)} / ${format(goal)}`
           ];
 
           const upgrade = dim.unlockUpgrade;
           if (upgrade.isAvailableForPurchase) return [
             dmdText,
-            `Imaginary Machines
+            `虚幻机器
             ${format(Math.min(upgrade.currency.value, upgrade.cost), upgrade.canBeBought ? 1 : 2)}
             / ${format(upgrade.cost, 1)}`
           ];
 
           if (player.celestials.laitela.fastestCompletion > 30 && Laitela.difficultyTier < 0) return [
             dmdText,
-            `Beat Lai'tela's Reality in less that ${format(30)} seconds`
+            `在 ${format(30)} 秒内击败莱特拉的现实`
           ];
           return [
             dmdText,
-            `Beat Lai'tela's Reality`
+            `击败莱特拉的现实`
           ];
         },
         angle: 135,
@@ -1564,12 +1564,12 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          if (complete >= 1) return ["Obtain a Singularity"];
+          if (complete >= 1) return ["达成奇点"];
           const darkEnergy = Currency.darkEnergy.value;
           const singularityGoal = Singularity.cap;
           return [
-            "Condense your Dark Energy",
-            "Into a Singularity",
+            "将暗能量",
+            "凝聚成奇点",
             `${format(darkEnergy)} / ${format(singularityGoal)}`
           ];
         },
@@ -1606,33 +1606,33 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          const dmdText = "3rd Dark Matter Dimension";
+          const dmdText = "第三暗物质维度";
           const dim = DarkMatterDimension(3);
           if (dim.isUnlocked) return [dmdText];
 
           const goal = dim.adjustedStartingCost;
           if (complete >= 1) return [
             dmdText,
-            `Dark Matter ${format(Currency.darkMatter.max.min(goal), dim.isUnlocked ? 0 : 2)} / ${format(goal)}`
+            `暗物质 ${format(Currency.darkMatter.max.min(goal), dim.isUnlocked ? 0 : 2)} / ${format(goal)}`
           ];
 
           const upgrade = dim.unlockUpgrade;
           if (upgrade.isAvailableForPurchase) return [
             dmdText,
-            `Imaginary Machines
+            `虚幻机器
             ${format(Math.min(upgrade.currency.value, upgrade.cost), upgrade.canBeBought ? 0 : 2)}
             / ${format(upgrade.cost)}`
           ];
 
           if (!player.auto.singularity.isActive) return [
             dmdText,
-            "Unlock Automatic Singularities",
+            "解锁自动凝聚",
             `${format(Currency.singularities.value)} / ${format(SingularityMilestone.autoCondense.start)}`
           ];
 
           return [
             dmdText,
-            `Automatically Condense ${format(20)} Singularities at once`,
+            `一次凝聚 ${format(20)} 个奇点`,
             `${format(Math.clampMax(Singularity.singularitiesGained, 20))} / ${format(20)}`
           ];
         },
@@ -1678,20 +1678,20 @@ export const celestialNavigation = {
       },
       legend: {
         text: complete => {
-          const dmdText = "4th Dark Matter Dimension";
+          const dmdText = "第四暗物质维度";
           const dim = DarkMatterDimension(4);
           if (dim.isUnlocked) return [dmdText];
 
           const goal = dim.adjustedStartingCost;
           if (complete >= 1) return [
             dmdText,
-            `Dark Matter ${format(Currency.darkMatter.max.min(goal), dim.isUnlocked ? 0 : 2)} / ${format(goal)}`
+            `暗物质 ${format(Currency.darkMatter.max.min(goal), dim.isUnlocked ? 0 : 2)} / ${format(goal)}`
           ];
 
           const upgrade = dim.unlockUpgrade;
           if (upgrade.isAvailableForPurchase) return [
             dmdText,
-            `Imaginary Machines
+            `虚幻机器
             ${format(Math.min(upgrade.currency.value, upgrade.cost), upgrade.canBeBought ? 1 : 2)}
             / ${format(upgrade.cost, 1)}`
           ];
@@ -1699,7 +1699,7 @@ export const celestialNavigation = {
           const allGalaxies = Replicanti.galaxies.total + player.galaxies + player.dilation.totalTachyonGalaxies;
           return [
             dmdText,
-            `Have ${format(80000)} total Galaxies`,
+            `共拥有 ${format(80000)} 星系`,
             `${format(Math.clampMax(allGalaxies, 80000))} / ${format(80000)}`
           ];
         },
@@ -1737,8 +1737,8 @@ export const celestialNavigation = {
       },
       legend: {
         text: () => [
-          "Annihilate your",
-          "Dark Matter Dimensions"
+          "湮灭你的",
+          "暗物质维度"
         ],
         angle: 315,
         diagonal: 30,
@@ -1770,14 +1770,14 @@ export const celestialNavigation = {
       legend: {
         text: complete => {
           if (complete < 1) return [
-            "Destabilize Lai'tela's Reality",
-            "To the point where you cannot",
-            "use any Dimensions",
-            `${format(Laitela.difficultyTier)} / ${format(8)} Dimensions disabled`
+            "完成莱特拉的现实",
+            "达到你不能使用",
+            "任何维度的程度",
+            `已禁用第 ${format(Laitela.difficultyTier)} / ${format(8)} 维`
           ];
           return [
-            "Completely destabilized",
-            "Lai'tela's Reality",
+            "彻底完成",
+            "莱特拉的现实",
           ];
         },
         angle: 180,
@@ -1825,20 +1825,20 @@ export const celestialNavigation = {
         text: complete => {
           if (complete === 1) {
             return [
-              "Unlock Pelle",
-              "The Celestial of Antimatter"
+              "解锁佩勒",
+              "反物质之神"
             ];
           }
-          let laitelaString = `${format(Currency.eternityPoints.value)} / ${format("1e4000")} EP`;
+          let laitelaString = `${format(Currency.eternityPoints.value)} / ${format("1e4000")} 永恒点数`;
           if (!Laitela.isRunning || Laitela.difficultyTier !== 8 || Glyphs.activeWithoutCompanion.length > 1) {
-            laitelaString = "Lai'tela's Reality is still intact";
+            laitelaString = "莱特拉的现实依旧完好无损";
           } else if (ImaginaryUpgrade(25).isAvailableForPurchase) {
-            laitelaString = "Lai'tela's Reality has been destroyed";
+            laitelaString = "莱特拉的现实已被摧毁";
           }
           return [
-            "Unlock Pelle",
-            "The Celestial of Antimatter",
-            `${format(Currency.imaginaryMachines.value, 2)} / ${format(1.6e15, 2)} iM`,
+            "解锁佩勒",
+            "反物质之神",
+            `${format(Currency.imaginaryMachines.value, 2)} / ${format(1.6e15, 2)} 虚幻机器`,
             laitelaString
           ];
         },
@@ -1878,13 +1878,13 @@ export const celestialNavigation = {
       forceLegend: () => Pelle.isUnlocked && !Pelle.hasGalaxyGenerator,
       legend: {
         text: complete => {
-          if (complete >= 1) return Pelle.isDoomed ? "Doomed Reality" : "Doom your Reality";
+          if (complete >= 1) return Pelle.isDoomed ? "被毁灭的现实" : "毁灭你的现实";
           const achievements = [Achievements.prePelleRows.countWhere(r => r.every(a => a.isUnlocked)),
             Achievements.prePelleRows.length];
           const alchemy = [AlchemyResources.all.countWhere(r => r.capped), AlchemyResources.all.length];
           return [
-            `Complete ${formatInt(achievements[0])} / ${formatInt(achievements[1])} rows of Achievements`,
-            `Fill ${formatInt(alchemy[0])} / ${formatInt(alchemy[1])} Alchemy Resources`,
+            `完成 ${formatInt(achievements[0])} / ${formatInt(achievements[1])} 行成就`,
+            `填满 ${formatInt(alchemy[0])} / ${formatInt(alchemy[1])} 个炼金资源`,
           ];
         },
         angle: 290,
@@ -1920,8 +1920,8 @@ export const celestialNavigation = {
       alwaysShowLegend: true,
       legend: {
         text: () => [
-          "Galaxy Generator:",
-          `${format(GalaxyGenerator.generatedGalaxies, 2)} / ${format(GalaxyGenerator.generationCap, 2)} Galaxies`
+          "星系生成器：",
+          `${format(GalaxyGenerator.generatedGalaxies, 2)} / ${format(GalaxyGenerator.generationCap, 2)} 星系`
         ],
         angle: 290,
         diagonal: 40,

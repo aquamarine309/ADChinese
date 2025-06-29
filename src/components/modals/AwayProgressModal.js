@@ -66,7 +66,7 @@ export default {
         @something-happened="somethingHappened = true"
       />
     </div>
-    <span v-if="!nothingHappened && somethingHappened">Note: Click an entry to hide it in the future.</span>
+    <span v-if="!nothingHappened && somethingHappened">注：点击条目可将其永久隐藏。</span>
   </ModalWrapper>
   `
 };

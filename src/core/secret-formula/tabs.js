@@ -110,7 +110,7 @@ export const tabs = [
       },
       {
         key: "multipliers",
-        name: "乘数分解",
+        name: "加成分解",
         symbol: "<i class='fas fa-calculator'></i>",
         component: "MultiplierBreakdownTab",
         condition: () => PlayerProgress.infinityUnlocked(),

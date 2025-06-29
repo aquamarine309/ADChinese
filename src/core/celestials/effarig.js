@@ -14,7 +14,6 @@ export const EFFARIG_STAGES = {
 
 export const Effarig = {
   displayName: "鹿颈长",
-  possessiveName: "Effarig's",
   initializeRun() {
     clearCelestialRuns();
     player.celestials.effarig.run = true;

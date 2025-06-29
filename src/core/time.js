@@ -30,7 +30,7 @@ export const Time = {
    * @returns {string}
    */
   toDateTimeString(timestamp) {
-    return new Date(timestamp).toString().replace(/^.{4}(.*:..:..).*$/u, "$1");
+    return new Date(timestamp).toLocaleString();
   },
 
   /**

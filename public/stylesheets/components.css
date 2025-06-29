@@ -223,7 +223,7 @@
 
 .c-define-textbox[data-v-automator-define-single-entry] {
   display: inline-block;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   background: var(--color-blockmator-block-background);
   border: 0.1rem solid var(--color-blockmator-block-border);
@@ -406,7 +406,7 @@
 }
 
 .c-automator__rename-input[data-v-automator-docs] {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.2rem;
   color: var(--color-automator-docs-font);
   background-color: var(--color-automator-controls-active);
@@ -1498,7 +1498,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 
 .c-armageddon-button[data-v-armageddon-button] {
   display: block;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-text);
   background: var(--color-text-inverted);
   border: 0.1rem solid var(--color-pelle--base);
@@ -2396,7 +2396,7 @@ perfectly the same. */
 }
 
 .c-new-game-button[data-v-new-game] {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   background: grey;
   border: black;
   border-radius: var(--var-border-radius, 0.5rem);
@@ -2491,7 +2491,7 @@ perfectly the same. */
 
 .c-tt-save-load-btn__menu[data-v-time-study-save-load-button] {
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   font-weight: bold;
   color: white;
@@ -2516,7 +2516,7 @@ perfectly the same. */
 
 .c-tt-save-load-btn__menu-rename[data-v-time-study-save-load-button] {
   text-align: left;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.4rem;
   font-weight: bold;
   border: none;
@@ -2700,7 +2700,7 @@ perfectly the same. */
 .c-s12-desktop-icon__text[data-v-desktop-icons] {
   overflow: hidden;
   width: 100%;
-  font-family: "Segoe UI", Typewriter, serif;
+  font-family: "Segoe UI", Typewriter, var(--font-chinese);
   font-size: var(--icon-font-size);
   font-weight: normal;
   line-height: var(--icon-line-height);
@@ -3126,7 +3126,7 @@ perfectly the same. */
 }
 
 .c-modal__title[data-v-s12-ui] {
-  font-family: "Segoe UI", Typewriter, serif;
+  font-family: "Segoe UI", Typewriter, var(--font-chinese);
   color: black;
 }
 
@@ -3144,7 +3144,7 @@ perfectly the same. */
 
 .c-custom-save-name__input[data-v-save-file-name] {
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.3rem;
   font-weight: bold;
   border: 0.1rem solid black;
@@ -3453,7 +3453,7 @@ p[data-v-pelle-effects-modal] {
 .o-pseudo-time-study[data-v-pseudo-time-study-button] {
   width: 2.7rem;
   height: 1.5rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 0.85rem;
   color: black;
   border: 0.15rem solid;
@@ -3591,7 +3591,7 @@ p[data-v-pelle-effects-modal] {
   overflow: hidden;
   width: 100%;
   text-align: center;
-  font-family: "Segoe UI", Typewriter, serif;
+  font-family: "Segoe UI", Typewriter, var(--font-chinese);
   font-size: var(--icon-font-size);
   font-weight: normal;
   line-height: var(--icon-line-height);
@@ -3622,7 +3622,7 @@ p[data-v-pelle-effects-modal] {
 
 .c-celestial-quote-history--button[data-v-celestial-quote-history] {
   align-self: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.8rem;
   font-weight: bold;
   color: var(--color-text);
@@ -4116,7 +4116,7 @@ p[data-v-pelle-effects-modal] {
   margin: 0 0.5rem -0.1rem;
   z-index: 1;
   text-align: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   color: var(--color-text);
@@ -4221,7 +4221,7 @@ p[data-v-pelle-effects-modal] {
 .o-dilation-upgrade[data-v-dilation-upgrade-button] {
   width: 19rem;
   height: 9rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
   background: black;
@@ -4499,7 +4499,7 @@ p[data-v-pelle-effects-modal] {
 .o-shop-button-button[data-v-shop-button] {
   display: flex;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   background: turquoise;
   border: none;
   border-radius: var(--var-border-radius, 0.5rem);
@@ -4578,6 +4578,7 @@ p[data-v-pelle-effects-modal] {
   align-items: center;
   font-size: 60rem;
   color: var(--color-pelle--base);
+  font-family: Typewriter;
   text-shadow: 0 0 3rem;
   pointer-events: none;
   user-select: none;
@@ -4738,7 +4739,7 @@ AutobuyerBox components will always render in page order regardless of internal 
   position: relative;
   justify-content: center;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 0.95rem;
   font-weight: bold;
   color: var(--color-text);
@@ -4822,7 +4823,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 }
 
 .o-pelle-button[data-v-pelle-upgrade-panel] {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-text);
   background: var(--color-text-inverted);
   border: 0.1rem solid var(--color-pelle--base);
@@ -5226,7 +5227,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 .c-generator-unlock-button[data-v-pelle-galaxy-generator-panel] {
   width: 25rem;
   height: 10rem;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 2rem;
   font-weight: bold;
   color: black;
@@ -5263,7 +5264,7 @@ AutobuyerBox components will always render in page order regardless of internal 
   height: 11.4rem;
   max-width: 70rem;
   position: relative;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 1.1rem;
   color: var(--color-text);
   background-color: #c1eaf0;
@@ -5335,7 +5336,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 }
 
 .o-pelle-button[data-v-pelle-tab] {
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   color: var(--color-text);
   background: var(--color-text-inverted);
   border: 0.1rem solid var(--color-pelle--base);
@@ -5374,7 +5375,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 .pelle-doom-button[data-v-pelle-tab] {
   width: 20rem;
   align-self: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   font-size: 3rem;
   color: var(--color-pelle--base);
   background: black;
@@ -5841,7 +5842,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 .o-shop-button-button[data-v-shop-tab] {
   display: flex;
   align-items: center;
-  font-family: Typewriter, serif;
+  font-family: Typewriter, var(--font-chinese);
   background: turquoise;
   border: none;
   border-radius: var(--var-border-radius, 0.5rem);

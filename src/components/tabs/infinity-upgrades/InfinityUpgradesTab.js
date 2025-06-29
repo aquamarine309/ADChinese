@@ -134,7 +134,7 @@ export default {
     <div v-if="chargeUnlocked">
       你已充能{{ formatInt(chargesUsed) }}/{{ formatInt(totalCharges) }}无限升级。已充能的无限升级会更改其效果。你可以自由地在现实时重置充能的升级。
       <br>
-      Hold shift to show Charged Infinity Upgrades. You can freely respec your choices on Reality.
+      按住 Shift 键显示充能无限升级。你可在现实时自由重置这些选择。
     </div>
     <div v-if="isUseless">
       你不能在被毁灭的现实中充能无限升级。

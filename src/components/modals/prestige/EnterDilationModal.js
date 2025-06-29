@@ -22,8 +22,7 @@ export default {
         return "这是你的第一次时间膨胀";
       }
       if (!isInCelestialReality() && Ra.unlocks.unlockDilationStartingTP.canBeApplied) {
-        return `You already have the maximum feasible amount of Tachyon Particles you can attain due to
-          Teresa's Level ${formatInt(25)} reward.`;
+        return `由于特蕾莎等级 ${formatInt(25)} 奖励的限制，你已获得当前可达的最大超光速粒子数量。`;
       }
       return `你上次以 ${format(player.dilation.lastEP, 2, 2)} 永恒点数完成了时间膨胀。`;
     }

@@ -38,7 +38,7 @@ export const discordRichPresence = {
    */
   challenges: [
     {
-      name: () => `${Teresa.possessiveName} Reality`,
+      name: () => `${Teresa.displayName}的现实`,
       activityToken: () => Teresa.isRunning,
       // Reward is based on antimatter, but EP is more meaningful pre-completion
       resource: () => (Teresa.runCompleted
@@ -46,7 +46,7 @@ export const discordRichPresence = {
         : `${format(player.eternityPoints, 2)} EP`),
     },
     {
-      name: () => `${Effarig.possessiveName} Reality - ${Effarig.currentStageName}`,
+      name: () => `${Effarig.displayName}的现实 - ${Effarig.currentStageName}`,
       activityToken: () => Effarig.isRunning,
       resource: () => {
         switch (Effarig.currentStage) {
@@ -61,18 +61,18 @@ export const discordRichPresence = {
       },
     },
     {
-      name: () => `${Enslaved.possessiveName} Reality`,
+      name: () => `${Enslaved.displayName}的现实`,
       activityToken: () => Enslaved.isRunning,
       resource: () => `${format(player.eternityPoints, 2)} EP`,
     },
     {
-      name: () => `${V.possessiveName} Reality`,
+      name: () => `${V.displayName}的现实`,
       activityToken: () => V.isRunning,
       resource: () => null,
       // V displays achievements normally and its value is standardized outside of its era
     },
     {
-      name: () => `${Ra.possessiveName} Reality`,
+      name: () => `${Ra.displayName}的现实`,
       activityToken: () => Ra.isRunning,
       resource: () => null,
       // Ra doesn't have a meaningful in-reality resource to display
@@ -81,7 +81,7 @@ export const discordRichPresence = {
       name: () => {
         const dims = Laitela.maxAllowedDimension;
         const dimStr = dims ? `D${dims} max` : "Final";
-        return `${Laitela.possessiveName} Reality - ${dimStr}`;
+        return `${Laitela.displayName}的现实 - ${dimStr}`;
       },
       activityToken: () => Laitela.isRunning,
       resource: () => `${formatPercents(player.celestials.laitela.entropy, 2, 2)} Entropy`,

@@ -2,7 +2,7 @@
   font-family:
     "Comic Sans MS",
     cursive,
-    sans-serif,
+    var(--font-chinese),
     Typewriter,
     fas,
     fab,
