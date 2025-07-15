@@ -115,7 +115,7 @@ export default {
         />
       </div>
       <span class="c-modal__confirmation-toggle__text">
-        Make button glow when new milestones have been reached
+        当达成新里程碑时使按钮高亮
       </span>
     </div>
     <div class="l-singularity-milestone-modal-container-outer">

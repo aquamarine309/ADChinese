@@ -147,7 +147,7 @@ export default {
           <span :style="boostStyle">{{ format(boostThreshold) }} - 基于符文献祭，提供额外加成</span>
         </b>
         <br><br>
-        All effects from Glyph Sacrifice can no longer be increased once they reach {{ format(maxSacrifice) }}.
+        当符文献祭效果达到 {{ format(maxSacrifice) }} 后，所有效果将无法继续提升。
       </div>
     </div>
     <br>

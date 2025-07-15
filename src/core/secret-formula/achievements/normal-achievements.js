@@ -63,7 +63,7 @@ export const normalAchievements = [
     description: "达到无限。",
     checkRequirement: () => true,
     checkEvent: GAME_EVENT.BIG_CRUNCH_BEFORE,
-    get reward() { return `Start with ${formatInt(100)} antimatter。`; },
+    get reward() { return `起始反物质数量为 ${formatInt(100)}。`; },
     effect: 100
   },
   {
@@ -277,7 +277,7 @@ export const normalAchievements = [
     get description() { return `完成所有的普通挑战`; },
     checkRequirement: () => NormalChallenges.all.countWhere(c => !c.isCompleted) === 0,
     checkEvent: [GAME_EVENT.BIG_CRUNCH_AFTER, GAME_EVENT.REALITY_RESET_AFTER, GAME_EVENT.REALITY_UPGRADE_TEN_BOUGHT],
-    get reward() { return `All Dimensions are ${formatPercents(0.1)} stronger。`; },
+    get reward() { return `所有反物质维度增强 ${formatPercents(0.1)}。`; },
     effect: 1.1
   },
   {

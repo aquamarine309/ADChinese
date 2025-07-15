@@ -395,21 +395,21 @@ function toggleAutobuyer(buyer) {
   // Autobuyer.tickspeed.isUnlocked is false without NC9, but we still want the simpler one to be togglable via hotkey
   const isSimpleTickspeed = buyer === Autobuyer.tickspeed && buyer.isBought;
   if (buyer.disabledByContinuum) {
-    GameUI.notify.info("Continuum is enabled, you cannot alter this autobuyer");
+    GameUI.notify.info("连续统已启用，无法修改此自动购买器。");
   } else if (buyer.isUnlocked || isSimpleTickspeed) {
     buyer.toggle();
-    GameUI.notify.info(`${buyer.name} Autobuyer toggled ${(buyer.isActive) ? "on" : "off"}`);
+    GameUI.notify.info(`${buyer.name}自动购买器已${(buyer.isActive) ? "启用" : "禁用"}`);
   }
   return false;
 }
 
 function toggleBuySingles(buyer) {
   if (buyer.disabledByContinuum) {
-    GameUI.notify.info("Continuum is enabled, you cannot alter this autobuyer");
+    GameUI.notify.info("连续统已启用，无法修改此自动购买器。");
   } else if (buyer.isUnlocked && buyer.toggleMode !== null) {
     buyer.toggleMode();
-    const bulkName = (buyer.name === "Tickspeed" || buyer.hasUnlimitedBulk) ? "max" : "10";
-    GameUI.notify.info(`${buyer.name} Autobuyer set to buy ${(buyer.mode === 1) ? "singles" : bulkName}`);
+    const bulkName = (buyer.name === "Tickspeed" || buyer.hasUnlimitedBulk) ? "最大数量" : " 10 个";
+    GameUI.notify.info(`${buyer.name}自动购买器已设为 购买${(buyer.mode === 1) ? "单个" : bulkName}`);
   }
   return false;
 }
@@ -417,7 +417,7 @@ function toggleBuySingles(buyer) {
 function keyboardToggleAutobuyers() {
   if (Tab.automation.isUnlocked) {
     Autobuyers.toggle();
-    GameUI.notify.info(`Autobuyers ${player.auto.autobuyersOn ? "resumed" : "paused"}`);
+    GameUI.notify.info(`自动购买器已${player.auto.autobuyersOn ? "恢复" : "暂停"}`);
   }
 }
 
@@ -430,7 +430,7 @@ function keyboardToggleContinuum() {
   // This is a toggle despite the lack of !, because player.auto.disableContinuum
   // is negated compared to whether continuum is on.
   Laitela.setContinuum(player.auto.disableContinuum);
-  GameUI.notify.info(`${(player.auto.disableContinuum) ? "Disabled" : "Enabled"} Continuum`);
+  GameUI.notify.info(`${(player.auto.disableContinuum) ? "已禁用" : "已启用"}连续统`);
 }
 
 function keyboardAutomatorToggle() {
@@ -446,22 +446,22 @@ function keyboardAutomatorToggle() {
       AutomatorBackend.restart();
       AutomatorBackend.start(visibleIndex);
       if (AutomatorData.currentErrors().length === 0) {
-        GameUI.notify.automator(`Starting script "${AutomatorBackend.scriptName}"`);
+        GameUI.notify.automator(`运行脚本“${AutomatorBackend.scriptName}”`);
       } else {
-        GameUI.notify.error(`Cannot start script "${AutomatorBackend.scriptName}" (has errors)`);
+        GameUI.notify.error(`不能运行脚本“${AutomatorBackend.scriptName}”（有错误）`);
       }
       return;
     }
-    const action = AutomatorBackend.isRunning ? "Resuming" : "Pausing";
+    const action = AutomatorBackend.isRunning ? "已恢复" : "已停止";
     const linenum = AutomatorBackend.currentLineNumber;
-    GameUI.notify.automator(`${action} script "${AutomatorBackend.scriptName}" at line ${linenum}`);
+    GameUI.notify.automator(`${action}脚本 “${AutomatorBackend.scriptName}”位于第 ${linenum} 行`);
   }
 }
 
 function keyboardAutomatorRestart() {
   if (Player.automatorUnlocked) {
-    const action = AutomatorBackend.isOn ? "Restarting" : "Starting";
-    GameUI.notify.automator(`${action} script "${AutomatorBackend.scriptName}"`);
+    const action = AutomatorBackend.isOn ? "重新运行" : "运行";
+    GameUI.notify.automator(`${action}脚本“${AutomatorBackend.scriptName}”`);
 
     AutomatorBackend.restart();
     AutomatorBackend.start();

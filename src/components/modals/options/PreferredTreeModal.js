@@ -66,6 +66,24 @@ export default {
         `o-time-study--${pref ? "bought" : "available"}`
       ];
     },
+    getChineseName(path) {
+      switch (path) {
+        case "Antimatter":
+          return "反物质";
+        case "Infinity":
+          return "无限";
+        case "Time":
+          return "时间";
+        case "Active":
+          return "活跃";
+        case "Passive":
+          return "被动";
+        case "Idle":
+          return "挂机";
+        default:
+          throw new Error("Unknown path in preferred tree modal");
+      }
+    }
   },
   template: `
   <ModalWrapperChoice @confirm="confirmPrefs">
@@ -84,7 +102,7 @@ export default {
           {{ isPreferred(name) }}
         </div>
         <div>
-          {{ name }}
+          {{ getChineseName(name) }}
         </div>
       </button>
     </div>
@@ -98,7 +116,7 @@ export default {
         @click="select(name)"
       >
         <div>
-          {{ name }}
+          {{ getChineseName(name) }}
         </div>
       </button>
     </div>

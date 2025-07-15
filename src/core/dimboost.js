@@ -130,7 +130,7 @@ export class DimBoost {
 
     let newUnlock = "";
     if (!allNDUnlocked && boosts < DimBoost.maxDimensionsUnlockable - 4) {
-      newUnlock = `解锁 第${boosts + 5}维度`;
+      newUnlock = `解锁第${boosts + 5}维度`;
     } else if (boosts === 4 && !NormalChallenge(10).isRunning && !EternityChallenge(3).isRunning) {
       newUnlock = "解锁维度献祭";
     }
@@ -148,7 +148,7 @@ export class DimBoost {
     const areDimensionsKept = (Perk.antimatterNoReset.isBought || Achievement(111).canBeApplied) &&
       (!Pelle.isDoomed || PelleUpgrade.dimBoostResetsNothing.isBought);
     if (areDimensionsKept) return boostEffects[0].toUpperCase() + boostEffects.substring(1);
-    return `重置维度， ${boostEffects}`;
+    return `重置维度，${boostEffects}`;
   }
 
   static get purchasedBoosts() {

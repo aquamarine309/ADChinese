@@ -185,8 +185,8 @@ export function ratePerMinute(amount, time) {
 // eslint-disable-next-line max-params
 export function addInfinityTime(time, realTime, ip, infinities) {
   let challenge = "";
-  if (player.challenge.normal.current) challenge = `Normal Challenge ${player.challenge.normal.current}`;
-  if (player.challenge.infinity.current) challenge = `Infinity Challenge ${player.challenge.infinity.current}`;
+  if (player.challenge.normal.current) challenge = `普通挑战 ${player.challenge.normal.current}`;
+  if (player.challenge.infinity.current) challenge = `无限挑战 ${player.challenge.infinity.current}`;
   player.records.recentInfinities.pop();
   player.records.recentInfinities.unshift([time, realTime, ip, infinities, challenge]);
   GameCache.bestRunIPPM.invalidate();
@@ -214,9 +214,9 @@ export function addEternityTime(time, realTime, ep, eternities) {
   if (player.challenge.eternity.current) {
     const currEC = player.challenge.eternity.current;
     const ec = EternityChallenge(currEC);
-    const challText = player.dilation.active ? "Dilated EC" : "Eternity Challenge";
+    const challText = player.dilation.active ? "膨胀的永恒挑战" : "永恒挑战";
     challenge = `${challText} ${currEC} (${formatInt(ec.completions)}/${formatInt(ec.maxCompletions)})`;
-  } else if (player.dilation.active) challenge = "Time Dilation";
+  } else if (player.dilation.active) challenge = "时间膨胀";
   // If we call this function outside of dilation, it uses the existing AM and produces an erroneous number
   const gainedTP = player.dilation.active ? getTachyonGain() : DC.D0;
   player.records.recentEternities.pop();

@@ -99,7 +99,7 @@ export default {
           你拥有 {{ format(relicShards, 2, 0) }} 遗迹碎片。
           <br>
           <span v-if="relicShardRarityAlwaysMax">
-            即将获得的符文稀有度+{{ formatPercents(shardRarityBoost, 2) }}
+            即将获得的符文稀有度 +{{ formatPercents(shardRarityBoost, 2) }}
           </span>
           <span v-else>
             即将获得的符文稀有度将在 {{ formatPercents(0) }} 和 {{ formatPercents(shardRarityBoost, 2) }} 之间随机增加
@@ -116,7 +116,7 @@ export default {
           你将在下次现实中获得 {{ format(shardsGained, 2) }} 遗迹碎片（{{ format(currentShardsRate, 2) }}/分钟）。
           <span v-if="amplification !== 0">
             <br>
-            由于当前现实的放大作用，
+            由于当前现实的扩增作用，
             <br>
             实际将获得总计 {{ format(amplifiedShards, 2) }} 个遗迹碎片（{{ format(amplifiedShardsRate, 2) }}/分钟）。
           </span>

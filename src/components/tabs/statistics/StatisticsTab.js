@@ -163,7 +163,7 @@ export default {
         class="c-stats-tab-title c-stats-tab-general"
         data-v-statistics-tab
       >
-        常规
+        概况
       </div>
       <div
         class="c-stats-tab-general"

@@ -36,7 +36,7 @@ export default {
       return ShopPurchase.all;
     },
     enableText() {
-      return `In-app Purchases: ${this.IAPsEnabled ? "Enabled" : "Disabled"}`;
+      return `内购：${this.IAPsEnabled ? "已启用" : "已禁用"}`;
     },
     respecText() {
       if (!this.loggedIn) return "Not logged in!";

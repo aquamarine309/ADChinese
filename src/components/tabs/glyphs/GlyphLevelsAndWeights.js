@@ -449,7 +449,7 @@ export default {
       class="l-glyph-levels-and-weights__factor l-glyph-level-and-weights-note"
       data-v-glyph-levels-and-weights
     >
-      EP、复制器和膨胀时间使用本轮现实中达到的最高值。
+      永恒点数、复制器和膨胀时间使用本轮现实中达到的最高值。
     </div>
     <template v-if="adjustVisible">
       <div

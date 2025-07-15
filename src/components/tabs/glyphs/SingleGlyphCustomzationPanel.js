@@ -19,7 +19,7 @@ export default {
       const g = Glyphs.findById(this.glyphID);
       return {
         type: g.type,
-        name: GAYPH_NAMES[g.type],
+        name: GLYPH_NAMES[g.type],
         level: g.level,
         strength: g.strength,
         effects: g.effects,

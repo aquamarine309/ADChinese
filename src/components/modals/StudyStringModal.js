@@ -295,7 +295,7 @@ export default {
       <br>
       <PrimaryButton
         v-if="!deleting"
-        v-tooltip="'此操作将格式化研究预设文本，例如：将 \'a,b,c|d\' 转换为 \'a, b, c | d\'。'"
+        v-tooltip="'此操作将格式化研究预设文本，例如：将 \\'a,b,c|d\\' 转换为 \\'a, b, c | d\\'。'"
         @click="convertInputShorthands"
       >
         格式化预设文本

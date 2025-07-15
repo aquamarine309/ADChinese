@@ -60,7 +60,7 @@ export const h2p = {
       name: "离线进度",
       info: () => `
 反物质维度采用追赶机制模拟长时间关闭游戏后的行为。由于游戏数学模型复杂，模拟精度有限，最终将汇总离线期间关键资源的变化量。<br><br>
-若游戏处于开启状态但被切至后台挂起，恢复时将尝试按离线进度处理。此行为可能因设备差异不可靠，可在选项中关闭——关闭后所有挂起时间将压缩至单一时刻处理。<br><br>
+若游戏处于开启状态但被切至后台挂机，恢复时将尝试按离线进度处理。此行为可能因设备差异不可靠，可在选项中关闭——关闭后所有后台挂机时间将压缩至单一时刻处理。<br><br>
 游戏以时刻为单位运行：每个时刻触发维度生产 → 自动购买器执行 → 数值更新。默认每秒 ${formatInt(20)} 时刻（可通过"更新频率"选项调整）。当前设置下平均每秒运行 ${format(1000 / player.options.updateRate, 2, 1)} 时刻，实际时刻长度可能存在数个百分点波动。<br><br>
 离线模拟时，时刻长度被拉伸以匹配离线时间（例如 ${formatInt(1000)} 个间隔离线 1 小时 → 每时刻 ${format(3.6, 1, 1)} 秒）。多数资源增量与在线近似，但自动购买器仅每 ${format(3.6, 1, 1)} 秒触发一次，可能显著影响游戏进程。<br><br>
 ${player.blackHole[0].unlocked
@@ -85,7 +85,7 @@ ${PlayerProgress.realityUnlocked() || PlayerProgress.dilationUnlocked()
     ? "时间膨胀及类似效果将在所有其他效果叠加完成后应用。"
     : ""}<br><br>
 ${PlayerProgress.realityUnlocked()
-    ? `符文效果具有双重叠加属性：其内部叠加方式与游戏全局效果的叠加方式。两者可能不同——例如"反物质维度幂"效果在<i>自身内部加法叠加</i>后，会与基础值 ${formatInt(1)} 相加，最终作为<i>幂类效果</i>应用于反物质维度。`
+    ? `符文效果具有双重叠加属性：其内部叠加方式与游戏全局效果的叠加方式。两者可能不同——例如"反物质维度指数"效果在<i>自身内部加法叠加</i>后，会与基础值 ${formatInt(1)} 相加，最终作为<i>幂类效果</i>应用于反物质维度。`
     : ""}
 `,
       isUnlocked: () => true,
@@ -125,7 +125,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
       name: "反物质维度",
       info: () => `
 反物质是贯穿游戏进程的核心资源，用于购买各类升级。首次打开游戏时，你将拥有 ${formatInt(10)} 个反物质，可消耗其购买第一反物质维度以启动游戏。<br><br>
-反物质维度是游戏中的生产单位：第一反物质维度生产反物质，后续维度生产前序维度，形成稳定增长链。总计八个反物质维度。<br><br>
+反物质维度是游戏中的生产单位：第一反物质维度生产反物质，高阶维度生产低阶维度，形成稳定增长链。总计八个反物质维度。<br><br>
 <b>维度倍数：</b> 维度旁显示倍数（如：第一维度 ${formatX(1, 1, 1)}）。每购买 ${formatInt(10)} 个该维度，基础倍数增加 ${formatX(2)}，同时维度价格上涨。<br><br>
 <b>累计维度数量：</b> 显示当前拥有量（含反物质购买及高阶维度生产）。<br><br>
 <b>已购买维度数量：</b> 在累计数量旁的括号内显示（如：${formatInt(4)}），表示距离下次倍数升级还需购买 ${formatInt(6)} 个该维度。<br><br>
@@ -160,7 +160,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
       info: () => `
 <b>维度提升：</b>重置反物质及所有反物质维度，但解锁新维度并提升维度倍率。首次提升需 ${formatInt(20)} 个第四维度，第二次需 ${formatInt(20)} 个第五维度，依此类推。解锁全部 ${formatInt(8)} 个维度后，每次额外提升需比前次多 ${formatInt(15)} 个第八维度（不再解锁新维度），但继续提升维度倍率。  
 <br>  
-每次维度提升使第一维度倍率 ×${formatX(2)}，更高维度递减应用倍率（最低 ${formatInt(0)}）。例如 ${formatInt(3)} 次提升后：第一维度 ×${formatX(8)}，第二维度 ×${formatX(4)}，第三维度 ×${formatX(2)}，其余维度不受影响。  
+每次维度提升使第一维度倍率 ${formatX(2)}，随着维度倍率递减（最低 ${formatInt(1)}）。例如 ${formatInt(3)} 次提升后：第一维度 ${formatX(8)}，第二维度 ${formatX(4)}，第三维度 ${formatX(2)}，其余维度不受影响。  
 <br>  
 <b>快捷键：D</b>键尝试执行维度提升。  
 `,
@@ -259,7 +259,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "自动购买器",
       info: () => `
-自动购买器可让你自动购买维度、升级或转生。所有自动购买器的控制选项都位于"自动化"标签页下的"自动购买器"子标签中，包括游戏后期解锁的任何额外自动购买器。
+自动购买器可让你自动购买维度、升级或重置。所有自动购买器的控制选项都位于"自动化"标签页下的"自动购买器"子标签中，包括游戏后期解锁的任何额外自动购买器。
 
 <br><br>
 反物质维度自动购买器和计数频率提升自动购买器会根据你的总反物质数量解锁，但大多数其他自动购买器需要购买升级或完成挑战才能解锁。
@@ -379,7 +379,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 复制器是你在获得 ${format(DC.E140)} 无限点数后解锁的另一种资源。它不会生产其他东西，而是会<i>自我复制</i>，最高可达 ${formatPostBreak(Number.MAX_VALUE, 2)}。复制器有自己的生产节奏，不受计数频率提升影响。每个复制器都有一定概率（初始 ${formatPercents(0.01)}）在每个复制周期（初始每秒一次）产生另一个复制器，这两个参数都可以通过花费无限点数来升级。
 
 <br><br>
-如果你购买了复制器星系升级，就可以用重置复制器数量（回到 ${formatInt(1)}）来换取一个"免费"的复制器星系。这个星系和反物质星系效果相同，但不会增加你下一个反物质星系的价格。不过它仍然会像普通反物质星系一样重置其他内容。
+如果你购买了复制器星系升级，就可以用重置复制器数量（回到 ${formatInt(1)}）来换取一个“免费”的复制器星系。这个星系和反物质星系效果相同，但不会增加你下一个反物质星系的价格。不过它仍然会像普通反物质星系一样重置其他内容。
 
 <br><br>
 <b>快捷键：R</b> 可以尝试购买复制器星系。
@@ -402,7 +402,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 当你的无限点数达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 时，就可以进行永恒重置。永恒会重置这之前的所有进度，但会保留挑战时间、成就和统计标签页中"概况"栏目的数据。完成第一次永恒后，你将解锁更多内容。
 
 <br><br>
-和第一次达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质时不同，你可以自由选择何时进行永恒重置，即使已经超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数。永恒时拥有的无限点数越多，获得的永恒点数就越多。每次完成永恒还会获得1次"永恒"计数。
+和第一次达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 反物质时不同，你可以自由选择何时进行永恒重置，即使已经超过 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数。永恒时拥有的无限点数越多，获得的永恒点数就越多。每次完成永恒还会获得1次“永恒”计数。
 
 <br><br>
 永恒点数的获取方式和无限点数类似，但是基于无限点数量而非反物质。在 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数时基础获得约 ${format(1.62, 2, 2)} 永恒点数，每多 ${formatPostBreak(Number.MAX_VALUE, 2)} 倍无限点数就乘以 ${formatInt(5)}。结果总是向下取整，这意味着你在 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数时只能获得 ${formatInt(1)} 永恒点数，要到 ${formatPostBreak(DC.E349)} 才能获得 ${formatInt(2)} 永恒点数。
@@ -416,7 +416,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "永恒里程碑",
       info: () => `
-为了让永恒重置更快捷方便，随着"永恒"次数增加，你会解锁各种增益效果。这些增益能让你在永恒后保留原本会消失的升级、获得新的自动购买器来提升自动化程度，或是以较低效率离线获取资源。
+为了让永恒重置更快捷方便，随着永恒次数增加，你会解锁各种增益效果。这些增益能让你在永恒后保留原本会消失的升级、获得新的自动购买器来提升自动化程度，或是以较低效率离线获取资源。
 
 <br><br>
 提供升级的里程碑会在永恒开始时自动帮你购买并升到最高级，相当于永久拥有这些升级。
@@ -442,7 +442,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 每次购买会使该时间维度的倍率增加 ${formatX(4)} 倍。升级价格的基础倍率会在达到 ${format(TimeDimension(1)._costIncreaseThresholds[0], 2)} 永恒点数时提升 ${formatX(1.5, 1, 1)} 倍，在 ${format(TimeDimension(1)._costIncreaseThresholds[1])} 永恒点数时再提升 ${formatX(2.2, 1, 1)} 倍（基于基础值）。这些提升会追溯生效，导致达到阈值时价格突然上涨，且仅适用于前四个维度。超过 ${format(TimeDimension(1)._costIncreaseThresholds[2])} 永恒点数后，每次购买会按四次计算价格增长，使价格上涨更加剧烈。
 
 <br><br>
-<b>时间维度基础价格（EP）：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._baseCost)).join(", ")}
+<b>时间维度基础价格（永恒点数）：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._baseCost)).join(", ")}
 <br>
 <b>时间维度基础价格增长：</b> ${Array.range(1, 8).map(tier => format(TimeDimension(tier)._costMultiplier)).join(", ")}
 
@@ -511,7 +511,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 每个永恒挑战最多可以完成5次。每次完成后，奖励效果会增强，但下次完成的目标要求也会提高。此外，再次解锁该挑战的附加条件也会提升（时间之理的消耗不会增加）。
 
 <br><br>
-完成永恒挑战的附加条件后，该条件将从研究要求中移除（只需完成<i>一次</i>）。这意味着你可以用一组研究配置解锁挑战，然后重置研究树改用其他配置来完成挑战。但EC11和EC12例外 - 即使重置研究树，维度路径的限制仍然有效。
+完成永恒挑战的附加条件后，该条件将从研究要求中移除（只需完成<i>一次</i>）。这意味着你可以用一组研究配置解锁挑战，然后重置研究树改用其他配置来完成挑战。但永恒挑战11和永恒挑战12例外 - 即使重置研究树，维度路径的限制仍然有效。
 `,
       isUnlocked: () => PlayerProgress.eternityUnlocked(),
       tags: ["ec", "study", "time", "rewards", "completions", "midgame"],
@@ -519,16 +519,16 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "时间膨胀",
       info: () => `
-时间膨胀功能将在购买EC11和EC12研究下方的对应时间研究后解锁。购买该研究需要 ${formatInt(5000)} 未使用的时间之理，且研究树路径可抵达该研究，<i>累计</i>获得 ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} 时间之理，并且必须完成EC11和EC12各 5 次。
+时间膨胀功能将在购买永恒挑战11和永恒挑战12研究下方的对应时间研究后解锁。购买该研究需要 ${formatInt(5000)} 未使用的时间之理，且研究树路径可抵达该研究，<i>累计</i>获得 ${formatInt(TimeStudy.dilation.totalTimeTheoremRequirement)} 时间之理，并且必须完成永恒挑战11和永恒挑战12各 5 次。
 <br>
 <br>
 启动时间膨胀将进入特殊的"时间膨胀"状态，其中所有反物质/无限/时间维度的倍率<i>指数</i>以及计数频率倍率的<i>指数</i>都将调整为 ${formatPow(0.75, 2, 2)}，使其效果大幅减弱。如果你能达到 ${formatPostBreak(Number.MAX_VALUE, 2)} 无限点数来完成这次膨胀永恒，你将获得名为"超光速粒子"的新资源。
 <br>
 <br>
-你可以进行任意次数的膨胀，但超光速粒子不能像其他资源那样"刷取"。超光速粒子数量只增不减，其上限取决于你当前的TP倍率和本次膨胀中获得的反物质总量。因此，除非你获得了新的TP倍率或能在膨胀中显著提升反物质产量，否则通常无法增加TP。
+你可以进行任意次数的膨胀，但超光速粒子不能像其他资源那样“刷取”。超光速粒子数量只增不减，其上限取决于你当前的超光速粒子倍增和本次膨胀中获得的反物质总量。因此，除非你获得了新的超光速粒子倍增或能在膨胀中显著提升反物质产量，否则通常无法增加超光速粒子。
 <br>
 <br>
-超光速粒子会生成另一种货币"膨胀时间"。膨胀时间通过达到阈值可转换为超光速粒子星系，其机制类似于从时间维度获得的计数频率提升。这些超光速粒子星系类似于复制器星系，它们像反物质星系一样影响计数频率，但不会增加你下一个反物质星系的价格。
+超光速粒子会生成另一种货币“膨胀时间”。膨胀时间通过达到阈值可转换为超光速粒子星系，其机制类似于从时间维度获得的计数频率提升。这些超光速粒子星系类似于复制器星系，它们像反物质星系一样影响计数频率，但不会增加你下一个反物质星系的价格。
 <br>
 <br>
 解锁时间膨胀还会解锁可用膨胀时间购买的升级。第一行升级中的第1和第3项可以重复购买任意次数（只要你有足够资源），第2项升级也可以重复购买，但最终会达到上限。
@@ -539,10 +539,10 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     }, {
       name: "现实",
       info: () => `
-      当你达到 ${formatPostBreak(DC.E4000)} 永恒点数并完成前 ${formatInt(13)} 行成就时，你将能够购买解锁"现实"的时间研究。解锁后会开启新标签页，在那里你可以找到开启新现实的按钮。开启新现实将重置目前为止几乎所有游戏进度，但作为回报，你将获得新货币"现实机器"、一个符文和1个复兴点数。
+      当你达到 ${formatPostBreak(DC.E4000)} 永恒点数并完成前 ${formatInt(13)} 行成就时，你将能够购买解锁“现实”的时间研究。解锁后会开启新标签页，在那里你可以找到开始新现实的按钮。开始新现实将重置目前为止几乎所有游戏进度，但作为回报，你将获得新货币“现实机器”、一个符文和1个复兴点数。
 
 <br><br>
-与其他重置不同，这次你还会失去前 ${formatInt(13)} 行成就 - 即所有现实前的成就及其相关奖励。不过，你仍会保留统计标签页"总体"分类下的所有数据，以及所有最佳挑战时间。
+与其他重置不同，这次你还会失去前 ${formatInt(13)} 行成就——即所有现实前的成就及其相关奖励。不过，你仍会保留统计标签页“概况”分类下的所有数据，以及所有最佳挑战时间。
 
 <br><br>
 完成第一次现实后，符文标签页会出现一个按钮，让你可以重新开始当前现实，而不会改变即将获得的符文选择。<b>注意：这样做不会获得任何奖励，即使你本可以正常完成现实。</b>
@@ -551,7 +551,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 你需要重新满足每个成就的要求才能再次获得奖励，但每 ${timeDisplayNoDecimals(30 * 60000)} 你也会被动解锁下一个未完成的成就，即使你并未满足要求。这个自动完成功能可以关闭，此时计时器会倒数至零并暂停，在取消暂停时立即完成另一个成就。离线时计时器仍会以相同速度推进。
 
 <br><br>
-现实机器可以在现实标签页的不同升级上花费，从此成为你的主要货币。符文是可装备的物品，必须装备才能获得加成。复兴点数是另一种货币，可在复兴子标签页用于购买不同复兴节点。
+现实机器可以花费于现实标签页的不同升级上，从此成为你的主要货币。符文是可装备的物品，必须装备才能获得加成。复兴点数是另一种货币，可在复兴子标签页用于购买不同复兴节点。
 
 <br><br>
 现实机器的数量完全取决于永恒点数，现实按钮会告诉你需要多少永恒点数才能获得下一个现实机器。前 ${formatInt(10)} 个现实机器在 ${formatPostBreak(DC.E4000)} 到 ${formatPostBreak(DC.C10P16000D3)} 永恒点数之间呈指数线性增长，超过后计算公式为：现实机器 = ${formatInt(1000)}<sup>log<sub>${formatInt(10)}</sub>(永恒点数)/${formatInt(4000)}-${formatInt(1)}</sup>。这个公式在超过 ${formatPostBreak(DC.C10P16000D3)} 永恒点数后比线性增长获得更多现实机器。
@@ -573,27 +573,27 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
       info: () => `
 符文是一种可装备物品，包含四个属性：
 <br>
-<b>类型</b> - 根据其强化的游戏内容命名（如"XX符文"），决定可能具有的效果类型。
+<b>类型</b>——根据其强化的游戏内容命名（如"XX符文"），决定可能具有的效果类型。
 <br>
-<b>等级</b> - 影响符文强度，基于获得该符文时在现实中的进度计算。
+<b>等级</b>——影响符文强度，基于获得该符文时在现实中的进度计算。
 <br>
-<b>稀有度</b> - ${formatPercents(0)}到${formatPercents(1)}的百分比值，同样影响符文强度。该值随机生成但可通过升级影响，数值越高品质越好，具体区间有普通/稀有等名称。
+<b>稀有度</b>——${formatPercents(0)}到${formatPercents(1)}的百分比值，同样影响符文强度。该值随机生成但可通过升级影响，数值越高品质越好，具体区间有普通/稀有等名称。
 <br>
-<b>效果</b> - 装备后提供的加成，最多包含四个效果。等级或稀有度更高的符文通常具有更多效果。
+<b>词条</b>——装备后提供的加成，最多包含四个词条。等级或稀有度更高的符文通常具有更多词条。
 <br>
-<b>注意：首个符文具有固定效果和稀有度，但等级会根据现实内容前的进度计算。符文属性一旦获得就无法更改。</b>
-<br>
-<br>
-装备方式：双击或将符文从库存拖至屏幕中央的激活槽位。装备后符文图标变为圆形，效果显示在右侧列表。
+<b>注意：首个符文具有固定词条和稀有度，但等级会根据现实内容前的进度计算。符文属性一旦获得就无法更改。</b>
 <br>
 <br>
-多个同类符文效果将叠加："+"效果数值相加，"×"效果数值相乘。
+装备方式：双击或将符文从库存拖至屏幕中央的激活槽位。装备后符文图标变为圆形，词条显示在右侧列表。
+<br>
+<br>
+多个同类符文词条可以叠加："+"词条数值相加，"×"词条数值相乘。
 <br>
 <br>
 现实过程中可随时装备符文至<i>空</i>槽位立即生效。拖动替换已装备符文会重启当前现实。
 <br>
 <br>
-库存首行为"保护"槽位：新符文不会占用这些位置（即使库存已满），且不受整理/自动清理功能影响。库存满载时新符文将自动销毁（或解锁后转化为献祭）。
+库存首行为“保护”槽位：新符文不会占用这些位置（即使库存已满），且不受整理/自动清理功能影响。库存满载时新符文将自动销毁（或解锁后转化为献祭）。
 <br>
 <br>
 Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。<b>但在解锁符文献祭前，删除仅能释放库存空间。</b>
@@ -613,10 +613,10 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
 复兴是现实解锁后的一种升级类型。每个复兴效果各不相同，但大多数都是你可以自行选择路径的游戏体验(QoL)改进。所有复兴都只需要花费 ${formatInt(1)} 个复兴点数即可购买。
 
 <br><br>
-每次现实重置后，你将获得 ${formatInt(1)} 个复兴点数，可用于在复兴树上购买升级，初始选项为"现在每次现实可以从 ${formatInt(Perk.firstPerk.config.effect)} 个符文中选择"。你只能解锁与你已拥有复兴直接相邻的节点，不过树状图中存在可以双向通过的循环路径。
+每次现实重置后，你将获得 ${formatInt(1)} 个复兴点数，可用于在复兴树上购买升级，初始选项为“现实时你可以在 ${formatInt(4)} 个不同的符文中选择一个符文”。你只能解锁与你已拥有复兴直接相邻的节点，不过树状图中存在可以双向通过的循环路径。
 
 <br><br>
-复兴节点有两种不同形状 - 圆形和菱形。两者唯一的区别在于菱形节点除了常规效果外还会提供自动机点数。不同节点还具有不同颜色，大致表示它们最影响游戏的哪个部分。
+复兴节点有两种不同形状——圆形和菱形。两者唯一的区别在于菱形节点除了常规效果外还会提供自动点数。不同节点还具有不同颜色，大致表示它们最影响游戏的哪个部分。
 `,
       isUnlocked: () => PlayerProgress.realityUnlocked() || TimeStudy.reality.isBought,
       tags: ["pp", "reality", "tree", "endgame", "lategame"],
@@ -667,16 +667,16 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
 <b>脚本保存</b>
 <br>
 <br>
-编辑时会自动保存脚本，但只有在全局自动保存（即"上次保存时间"）触发完整游戏保存时才会存入存档。关闭游戏前修改脚本后，应等待游戏完成保存以免丢失更改。超出长度限制的脚本编辑将不会被保存，直到缩短至限制范围内。
+编辑时会自动保存脚本，但只有在全局自动保存（即“上次保存时间”）触发完整游戏保存时才会存入存档。关闭游戏前修改脚本后，应等待游戏完成保存以免丢失更改。超出长度限制的脚本编辑将不会被保存，直到缩短至限制范围内。
 <br>
 <br>
 <b>自动机时钟</b>
 <br>
 <br>
-自动机的"执行计时器"基于现实时间，因此不受黑洞、时间符文效果和EC12负面影响等因素影响。但该计时器完全独立于游戏主循环运行，意味着在高速运行时，自动机每个生产周期可执行多个命令。
+自动机的“执行计时器”基于现实时间，因此不受黑洞、时间符文效果和永恒挑战12负面影响等因素影响。但该计时器完全独立于游戏主循环运行，意味着在高速运行时，自动机每个生产周期可执行多个命令。
 <br>
 <br>
-某些命令对游戏内部代码负担较重，在较慢的电脑上可能需要超过一个自动机时钟周期来处理。此时自动机会先执行该命令，然后尽可能快地"追赶"执行后续命令，直到达到恒定执行速度应有的命令数量。
+某些命令对游戏内部代码负担较重，在较慢的电脑上可能需要超过一个自动机时钟周期来处理。此时自动机会先执行该命令，然后尽可能快地“追赶”执行后续命令，直到达到恒定执行速度应有的命令数量。
 <br>
 <br>
 <b>与离线进度的交互</b>
@@ -692,9 +692,9 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
       info: () => `
 黑洞是一种周期性加速游戏运行的功能。游戏会以正常速度运行一段时间，随后短暂进入极速运行状态，之后恢复常速并循环往复。  
 <br>  
-黑洞加速效果远强于计数频率，因为它能<i>完全均等地影响一切</i>：包括仅部分受计数频率影响的内容（如无限/时间维度）、通常完全不受影响的内容（如膨胀时间/时间之理生成）、以及纯时间累积的增益（如闲置路径的无限点/永恒点倍率）。  
+黑洞加速效果远强于计数频率，因为它能<i>完全均等地影响一切</i>：包括仅部分受计数频率影响的内容（如无限/时间维度）、通常完全不受影响的内容（如膨胀时间/时间之理生成）、以及纯时间累积的增益（如挂机路径的无限点数/永恒点数倍率）。  
 <br>  
-虽然游戏多数功能受此加速影响，但部分机制保持原速。此类情况会特别注明使用<i>现实时间</i>而非<i>游戏时间</i>。例如随时间自动完成永恒挑战的复兴技能。此后若无特别说明，所有时间均指<i>游戏时间</i>。需注意：当涉及需<i>减少</i>耗时的机制（如现实升级“快速复现”）时同样适用此规则。  
+虽然游戏多数功能受此加速影响，但部分机制保持原速。此类情况会特别注明使用<i>现实时间</i>而非<i>游戏时间</i>。例如随时间自动完成永恒挑战的复兴节点。此后若无特别说明，所有时间均指<i>游戏时间</i>。需注意：当涉及需<i>减少</i>耗时的机制（如现实升级“快速复现”）时同样适用此规则。  
 <br>  
 可使用现实机器购买黑洞升级：  
 <br>  
@@ -711,7 +711,7 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
 当黑洞活跃时间占比 ≥ ${formatPercents(0.9999, 2)} 时，将转为永久激活。两个黑洞独立计算此阈值。  
 <br>  
 <br>  
-离线时黑洞周期正常推进，加速效果完全生效（如同在线）。离线模拟会分段处理休眠/活跃状态，通过调整时间间隔长度减轻活跃期小间隔计数的负面影响；详见"离线进度"条目技术说明。  
+离线时黑洞周期正常推进，加速效果完全生效（如同在线）。离线模拟会分段处理休眠/活跃状态，通过调整时间间隔长度减轻活跃期小间隔计数的负面影响；详见“离线进度”条目技术说明。  
 <br>  
 <br>  
 黑洞可暂停（完全停止周期循环）。但取消暂停需 ${BlackHoles.ACCELERATION_TIME} 秒现实时间从静止加速至最高速。加速期间周期按全速推进——暂停虽提供控制力，但会造成加速时间损耗。  
@@ -753,7 +753,7 @@ Shift+点击符文可删除（需确认），Ctrl+Shift+点击可跳过确认。
       tags: ["reality", "challenges", "endgame", "lategame"],
       tab: "celestials/celestial-navigation"
     }, {
-      name: "特蕾莎——现实之神",
+      name: "现实之神特蕾莎",
       alias: "特蕾莎",
       info: () => `
       特蕾莎是首位天神。祂通过成就147解锁，该成就要求获得全部现实升级。  
@@ -774,172 +774,99 @@ ${Teresa.runCompleted
       tags: ["rm", "endgame", "lategame", "perks", "sacrifice", "boo", "ghost", "celestial"],
       tab: "celestials/teresa"
     }, {
-      name: "Effarig, Celestial of Ancient Relics",
-      alias: "Effarig",
+      name: "古代遗迹之神鹿颈长",
+      alias: "鹿颈长",
       info: () => `
-Effarig is the second Celestial you encounter.
-They are unlocked by pouring at least ${format(TeresaUnlocks.effarig.price)} RM into Teresa's container.
-<br>
-<br>
-Effarig introduces a currency called Relic Shards, which are obtained by using different kinds of Glyph effects during
-a Reality. The number of distinct effects active during the Reality very strongly affects Relic Shard gain, and EP
-affects it to a much lesser degree. Relic Shards are the currency for Effarig unlocks, and will be gained from every
-Reality from now on.
-<br>
-<br>
-Using Relic Shards, you can purchase multiple upgrades (see "Advanced Glyph Mechanics") which improve your Glyphs and
-allow you to filter them based on their effects and rarity when you are doing fully automated Realities.
-<br>
-<br>
-Effarig's final unlock is their own Reality at ${format(GameDatabase.celestials.effarig.unlocks.run.cost)} Relic
-Shards.
-${EffarigUnlock.run.isUnlocked
-    ? "Their Reality is divided into three layers: Infinity, Eternity, and Reality. You must complete each layer " +
-      "before getting access to the next one. Completing Effarig's Eternity unlocks the next Celestial."
-    : "<div style='color: var(--color-effarig--base);'>(unlock Effarig's Reality to see details about it)</div>"
-}
-<br>
-<br>
-Completing Effarig's Reality unlocks
-${EffarigUnlock.reality.isUnlocked
-    ? `a new Glyph type, <span style='color: var(--color-effarig--base);'>Effarig</span> Glyphs. Effarig Glyphs have
-      ${formatInt(7)} different possible effects, which you can view in the Glyph filter settings. You can only
-      have one Effarig Glyph equipped at a time.
-${Ra.unlocks.glyphEffectCount.canBeApplied
-    ? `Due to having Effarig at level 10 within Ra, there are no longer any restrictions on effects that appear on
-      Effarig Glyphs. Any given Effarig Glyph can now have up to all ${formatInt(7)} effects at the same time.`
-    : `Effarig Glyphs can only have at most ${formatInt(4)} effects, and the RM multiplier and Glyph instability
-      effects cannot appear together on the same Glyph.`}`
-    : "<span style='color: var(--color-effarig--base);'>(complete Effarig's Reality to see reward details)</span>"}
-<br>
+鹿颈长是你遇到的第二位天神。  
+通过向特蕾莎的容器注入至少 ${format(TeresaUnlocks.effarig.price)} 现实机器即可解锁。  
+<br>  
+鹿颈长引入了一种名为“遗迹碎片”的货币，通过在现实中使用不同类型的符文词条获得。现实期间激活的不同词条数量会极大影响遗迹碎片获取量，永恒点数对其影响较小。遗迹碎片是鹿颈长解锁的货币，从现在起每次现实都会获得。  
+<br>  
+使用遗迹碎片可购买多项升级（参见“高级符文机制”），这些升级能强化你的符文，并让你在执行全自动现实时根据词条和稀有度筛选符文。  
+<br>  
+鹿颈长的最终解锁是其专属现实，需要 ${format(GameDatabase.celestials.effarig.unlocks.run.cost)} 遗迹碎片。  
+${EffarigUnlock.run.isUnlocked  
+    ? "该现实分为三层：无限、永恒和现实。必须完成每一层才能进入下一层。完成鹿颈长的永恒层将解锁下一位天神。"
+    : "<div style='color: var(--color-effarig--base);'>(解锁鹿颈长的现实以查看详情)</div>"
+}  
+<br>  
+完成鹿颈长的现实将解锁  
+${EffarigUnlock.reality.isUnlocked  
+    ? `新符文类型：<span style='color: var(--color-effarig--base);'>鹿颈长符文</span>。这类符文拥有  
+      ${formatInt(7)} 种可能词条，可在符文筛选设置中查看。你每次只能装备一个鹿颈长符文。  
+${Ra.unlocks.glyphEffectCount.canBeApplied  
+    ? `因太阳神内鹿颈长达到10级，其符文词条不再受限。单个鹿颈长符文现在可同时拥有全部 ${formatInt(7)} 种词条。`  
+    : `鹿颈长符文最多拥有 ${formatInt(4)} 种词条，且现实机器倍率和符文不稳定性词条不会同时出现。`}`  
+    : "<span style='color: var(--color-effarig--base);'>(完成鹿颈长的现实以查看奖励详情)</span>" }  
 <br>
 `,
       isUnlocked: () => TeresaUnlocks.effarig.canBeApplied,
       tags: ["glyph", "sacrifice", "shards", "reality", "spectralflame", "lategame", "endgame", "celestial"],
       tab: "celestials/effarig"
     }, {
-      name: "Advanced Glyph Mechanics",
+      name: "高级符文机制",
       info: () => `
-Glyph level Adjustment is purchasable for ${format(GameDatabase.celestials.effarig.unlocks.adjuster.cost)} Relic
-Shards. This allows you to set weights for each resource (EP, DT, Replicanti, Eternities), in how much they affect the
-level of Glyphs gained on Reality.
+符文等级调整功能可用 ${format(GameDatabase.celestials.effarig.unlocks.adjuster.cost)} 遗迹碎片购买。该功能允许你为每种资源（永恒点数、膨胀时间、复制器、永恒次数）设置权重，这些权重将影响现实后获得符文的等级。
 <br>
 <br>
-Automatic Glyph Filtering is purchasable for ${format(GameDatabase.celestials.effarig.unlocks.glyphFilter.cost)}
-Relic Shards. This system uses one of many methods to assign a score to your Glyph choices, and then picks the choice
-with the highest score. After picking this Glyph, it checks the score against a threshold and either keeps it if the
-score is above the threshold, or sacrifices it instead. There are three basic modes:
+自动符文筛选功能可用 ${format(GameDatabase.celestials.effarig.unlocks.glyphFilter.cost)} 遗迹碎片购买。该系统采用多种方法之一为符文选择评分，然后选取分数最高的选项。选定符文后，系统会将该分数与阈值比较，高于阈值则保留，否则献祭。共有三种基础模式：
 <br>
-<b>Lowest total sacrifice:</b> Glyphs are given a score based on how much sacrifice value you have of that
-particular Glyph's type. Glyphs of the type you have the least sacrifice value in will have the highest score.
-This mode does not have a threshold and always sacrifices your Glyphs.
+<b>最低总献祭值：</b>根据该类型符文的累计献祭值评分，献祭值最低的类型得分最高。此模式无阈值且总会献祭符文。
 <br>
-<b>Number of effects:</b> Glyphs are given a score equal to the number of effects they have, and when multiple
-Glyphs have the same effect count, Glyphs with higher rarity will be picked. The threshold they are
-compared to is specified by your input in the text box.
+<b>词条数量：</b>分数等于符文词条数量，词条数相同时稀有度更高者优先。阈值由文本框输入指定。
 <br>
-<b>Rarity Threshold Mode:</b> Glyphs are given a score equal to their rarity percent. The comparison threshold
-can be set individually per Glyph type.
+<b>稀有度阈值模式：</b>分数等于符文稀有度百分比。可为每种符文类型单独设置比较阈值。
 <br>
 <br>
-Additionally, there are two more advanced modes with some additional flexibility. You may not need these initially, but
-they can come in handy later on:
+另有两种更灵活的高级模式：
 <br>
-<b>Specified Effect Mode:</b> Glyphs are given a score equal to their rarity and checked against the rarity threshold
-you specify, but this score is modified based on your inputs for effects. The Glyph will be checked for having a minimum
-number of effects and having all of the effects you choose, and its score is lowered by ${formatInt(200)} for every
-missing effect. This guarantees that any Glyph that does not have the effects you want will be below the threshold. You
-can forbid specific Glyph <i>types</i> by setting impossible conditions (eg. at least ${formatInt(6)} effects on a Power
-Glyph will prevent Power Glyphs from being selected).
+<b>指定词条模式：</b>基于稀有度评分并对比阈值，但会根据词条选择调整分数。每缺少一个指定词条扣 ${formatInt(200)} 分，确保不符合要求的符文必低于阈值。可通过设置不可能条件（如要求能量符文具有 ${formatInt(6)} 个词条）禁用特定符文<i>类型</i>。
 <br>
-<b>Effect Score Mode:</b> The score of a Glyph is calculated from its rarity plus the score of each effect it has,
-and you can set the threshold and values of each effect individually. Some possible ways this could be used:
+<b>词条评分模式：</b>分数由稀有度与各词条得分总和构成，可单独设置阈值和词条分值。应用场景包括：
 <br>
-- Giving a weaker effect a value of ${formatInt(5)} allows you to keep Glyphs without that effect as long as they are
-rarer to compensate for being weaker
+- 将弱势词条设为 ${formatInt(5)} 分，允许保留不含该词条但稀有度更高的符文
 <br>
-- Assigning a large negative score to a certain effect you do <i>not</i> want will forbid Glyphs with that effect from
-being selected; this can be useful for effect testing and other more limited situations
+- 为不需要的词条设置大幅负分，禁止选择含该词条的符文
 <br>
-- Setting an impossible condition (eg. a threshold score of ${formatInt(999)} and all effects worth ${formatInt(0)})
-will let you forbid entire types like Specified Effect Mode as well
+- 设置不可能条件（如阈值 ${formatInt(999)} 分且所有词条 ${formatInt(0)} 分）可禁用整类符文
 <br>
 <br>
-The Glyph Filter mode is a global setting which applies to all Glyph types at once; for example, you cannot filter
-power Glyphs with "Rarity Threshold" and time Glyphs with "Specified Effect". Selecting one mode will require
-you to configure every Glyph type within its settings for proper filtering. Each filter mode has its own settings
-which will be kept if you switch to another mode.
+符文筛选为全局设置，所有符文类型适用同一模式。每种模式需配置全部符文类型的筛选参数，切换模式时会保留各自配置。
 <br>
 <br>
-Unlocking the Glyph Filter also lets you use the highest Glyph score amongst your upcoming choices as a comparable
-Currency in the Automator. Additionally, you can make your Filter force an immediate Reality (once available) if
-none of the upcoming choices will be kept by the filter, as long as the Reality autobuyer is on.
+解锁符文筛选后，还可在自动机中使用候选符文最高分作为比较值。若筛选器将放弃所有候选符文且现实自动购买器开启，可强制立即进行现实。
 <br>
 <br>
-Glyph Presets are purchasable for ${format(GameDatabase.celestials.effarig.unlocks.setSaves.cost)} Relic
-Shards. This unlocks ${formatInt(7)} slots that allow you to save your currently equipped Glyphs into sets.
-You cannot overwrite a set, you must delete it first. When you load a set, each Glyph in it is found and equipped.
-If any are not found, it will display a warning, but equip all the rest regardless.
-When loading a set, you can be Level and/or Rarity sensitive. The best Glyph from the possible Glyphs
-will always be the one equipped. Just like other groups of circular Glyphs, you can click any of them
-in order to bring up a modal summarizing the whole set of Glyphs.
+符文预设功能可用 ${format(GameDatabase.celestials.effarig.unlocks.setSaves.cost)} 遗迹碎片购买，解锁 ${formatInt(7)} 个装备方案存储槽。存储方案不可覆盖必须先删除。加载方案时会尝试装备全部符文，缺失符文会显示警告但仍装备其余符文。加载时可启用等级/稀有度敏感匹配，系统会自动选择最佳可用符文。与其他圆形符文组一样，点击任意符文可查看整套方案摘要。
 `,
       isUnlocked: () => EffarigUnlock.adjuster.isUnlocked,
       tags: ["glyph", "weight", "adjustment", "sacrifice", "filter", "threshold", "set", "save", "reality", "lategame",
         "endgame"],
       tab: "celestials/glyphfilter"
     }, {
-      name: "The Nameless Ones, Celestial of Time",
-      alias: "Nameless Ones",
+      name: "时间之神无名氏",
+      alias: "无名氏",
       info: () => `
-The Nameless Ones are the third Celestial, unlocked by completing Effarig's Eternity.
-<br>
-<br>
-When unlocking The Nameless Ones, you immediately gain access to two new mechanics related to time. You can store
-"game time" by charging your Black Hole, and you can store "real time" by intentionally halting your production.
-Stored game time is also used as a currency for purchasing unlocks from The Nameless Ones.
-<br>
-<br>
-Charging your Black Hole gives you stored game time, which it does at the expense of setting your game speed to
-${formatInt(1)}. The game is in effect using your increased game speed in order to store game time itself. Its
-main use is to discharge the Black Hole, which takes uses your stored game time to skip forward in time by a duration
-equal to the game time stored. This is different than regular game speed multipliers in that discharging is not subject
-to any modifiers to game speed when it is used, only when it is stored.
-<br>
-<br>
-Storing real time completely stops all production, effectively pausing your game. For every real-time second that
-passes, you gain stored real time (modified by some efficiency factor). You can use stored real time in order to
-amplify a Reality in the Glyphs tab. When you complete the Reality, this uses all of your stored real time at once
-in order to attempt to repeat that
-exact Reality over and over, giving you all the rewards you would normally get from the repetitions. For example, if
-you have ${formatInt(50)} minutes stored and amplify a Reality which has lasted ${formatInt(10)} minutes and would
-give ${format(DC.E30)} RM and ${format(DC.E12)} Relic Shards, the amplified Reality will give you ${format(5e30)} RM,
-${format(5e12)} Relic Shards, ${formatInt(5)} Glyphs (subject to your filtering settings),
-and ${formatInt(5)} Perk Points.
-<br>
-<br>
-However, if your Reality has lasted for less than ${formatInt(1)} second, the amplification factor is capped by the
-amount of seconds stored. For example, if you have ${formatInt(1000)} seconds stored and amplify a Reality which has
-lasted ${format(0.2, 2, 2)} seconds, you will use ${formatInt(200)} seconds to simulate ${formatInt(1000)} Realities.
-<br>
-<br>
-You can toggle a setting to automatically store offline time as stored real time.
-<br>
-<br>
-Their first unlock costs ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP.price).totalYears)}
-years of stored game time. It increases the softcap to Tickspeed Upgrades gained from Time Dimensions
-(the point at which their cost starts increasing faster)
-by ${format(1e5)} Tickspeed Upgrades.
-<br>
-<br>
-At ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.RUN.price).totalYears)} years of stored game time, you are able
-to finally unlock their Reality. The reward for completing The Nameless Ones' Reality is
-${Enslaved.isCompleted
-    ? "unlocking Tesseracts, which have their own How To Play entry."
-    : "<span style='color: var(--color-bad);'>(complete The Nameless Ones' Reality to see reward details)</span>"}
-<br>
-<br>
-The Nameless Ones will not directly unlock the next Celestial.
+无名氏是第三位天神，完成鹿颈长的永恒层后解锁。  
+<br>  
+解锁无名氏时，你将立即获得两项与时间相关的新机制：通过充能黑洞存储“游戏时间”，以及通过暂停生产存储“现实时间”。存储的游戏时间还可用于购买无名氏的解锁项。  
+<br>  
+黑洞充能将游戏速度降至 ${formatInt(1)} 为代价存储游戏时间，实质是将加速效果转化为可存储的时间资源。其主要用途是释放黑洞——消耗存储的游戏时间直接跳过等量时长。与常规加速不同，放电时不受任何游戏速度修正影响（仅存储时受影响）。  
+<br>  
+存储现实时间会完全停止生产（相当于暂停游戏）。每经过1秒现实时间，按效率系数转化为存储值。可在符文页使用存储的现实时间强化现实——完成时将一次性消耗所有存储时间，重复执行完全相同的现实并累积所有奖励。例如：存储 ${formatInt(50)} 分钟且强化耗时 ${formatInt(10)} 分钟的现实（原奖励 ${format(DC.E30)} 现实机器与 ${format(DC.E12)} 遗迹碎片），将获得 ${format(5e30)} 现实机器、${format(5e12)} 遗迹碎片、${formatInt(5)} 个符文（依筛选设置）及 ${formatInt(5)} 复兴点。  
+<br>  
+若现实耗时不足 ${formatInt(1)} 秒，则强化倍数受存储秒数限制。例如存储 ${formatInt(1000)} 秒时强化耗时 ${format(0.2, 2, 2)} 秒的现实，将消耗 ${formatInt(200)} 秒模拟 ${formatInt(1000)} 次现实。  
+<br>  
+可设置将离线时间自动转为存储的现实时间。  
+<br>  
+首个解锁项需消耗 ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP.price).totalYears)} 年存储游戏时间，将时间维度提供的计数频率升级软上限（成本开始激增的临界点）提高 ${format(1e5)} 级。  
+<br>  
+当存储 ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.RUN.price).totalYears)} 年游戏时间后，可解锁祂的现实。完成无名氏现实的奖励是  
+${Enslaved.isCompleted  
+    ? "解锁超立方体（详见游戏帮助条目）"  
+    : "<span style='color: var(--color-bad);'>(完成无名氏的现实以查看奖励详情)</span>"}  
+<br>  
+无名氏不会直接解锁下一位天神。
 `,
       isUnlocked: () => EffarigUnlock.eternity.isUnlocked,
       tags: ["reality", "time", "blackhole", "lategame", "endgame", "testers", "celestial",
@@ -947,79 +874,51 @@ The Nameless Ones will not directly unlock the next Celestial.
       ],
       tab: "celestials/enslaved"
     }, {
-      name: "Tesseracts",
+      name: "超立方体",
       info: () => `
-Tesseracts are a new resource you unlock for completing The Nameless Ones' Reality.
-<br>
-<br>
-Infinity Dimensions are normally capped at ${format(InfinityDimensions.HARDCAP_PURCHASES)} total purchases,
-which limits how large their multipliers can grow since eventually you cannot upgrade them any more.
-Tesseracts allow you to raise this cap by spending Infinity Points.
-<br>
-<br>
-The cost of Tesseracts increases super-exponentially, but each successive Tesseract is significantly stronger than
-the last in order to make up for that. Tesseract count is never reset, meaning that once purchased, you do not need
-to reach the IP cost again in order to take advantage of the raised cap in later Realities.
-<br>
-<br>
-You can see additional information about your current Tesseract count and the cost of the next one in the Infinity
-Dimensions tab. Additionally, your current Infinity Points will now also show a percentage towards the next Tesseract.
-If affordable, the Infinity button itself will visually change and bring you to the Infinity Dimension tab when clicked.
+超立方体是完成无名氏现实后解锁的新资源。  
+<br>  
+无限维度通常有 ${format(InfinityDimensions.HARDCAP_PURCHASES)} 次购买上限，这会限制其倍率增长。超立方体可通过消耗无限点数来提升该上限。  
+<br>  
+超立方体成本呈超指数增长，但每个后续超立方体的效果会显著增强以作补偿。超立方体数量永不重置，意味着购买后无需在未来现实中重复支付相同无限点数即可永久享受上限提升。  
+<br>  
+你可在无限维度标签页查看当前超立方体数量及下一个成本详情。此外，无限点数显示将新增“距下一个超立方体”的百分比进度。若可购买，无限按钮会变色并在点击时跳转至无限维度标签页。  
 `,
       isUnlocked: () => Enslaved.isCompleted,
       tags: ["reality", "lategame", "endgame", "tesseract", "id", "celestial"],
       tab: "celestials/tesseract"
     }, {
-      name: "V, Celestial of Achievements",
-      alias: "V",
+      name: "成就之神薇",
+      alias: "薇",
       info: () => `
-V is a special Celestial in the sense that they are not unlocked by another Celestial,
-but is instead unlocked by completing Achievement ID 151 (row ${formatInt(15)}, column ${formatInt(1)},
-"You really didn't need it anyway"), which requires you to get ${formatInt(800)} Antimatter Galaxies
-without buying 8th Antimatter Dimensions in your current Infinity.
+薇是一位特殊天神，其解锁方式并非通过其他天神，而是需要完成成就ID 151（第 ${formatInt(15)} 行第 ${formatInt(1)} 列“你真的 8 需要”），该成就要求你在当前无限中不购买第八反物质维度的前提下获得 ${formatInt(800)} 个反物质星系。
 <br>
 <br>
-After the subtab is unlocked from the Achievement, you are met with another set of requirements to fully unlock V.
-You must have completed ${formatInt(GameDatabase.celestials.v.mainUnlock.realities.requirement)} Realities and have
-${format(GameDatabase.celestials.v.mainUnlock.realityMachines.requirement)} unspent RM.
-Additionally you need to reach ${format(GameDatabase.celestials.v.mainUnlock.eternities.requirement)} Eternities,
-${format(GameDatabase.celestials.v.mainUnlock.infinities.requirement)} Infinities,
-${format(GameDatabase.celestials.v.mainUnlock.dilatedTime.requirement)} Dilated Time, and
-${format(GameDatabase.celestials.v.mainUnlock.replicanti.requirement)} Replicanti, all in the same Reality.
+解锁子标签页后，还需满足以下条件才能完全解锁薇：
+<br>
+必须完成 ${formatInt(GameDatabase.celestials.v.mainUnlock.realities.requirement)} 次现实并拥有 ${format(GameDatabase.celestials.v.mainUnlock.realityMachines.requirement)} 未消耗现实机器。此外你需要在同一次现实中达到 ${format(GameDatabase.celestials.v.mainUnlock.eternities.requirement)} 次永恒、${format(GameDatabase.celestials.v.mainUnlock.infinities.requirement)} 次无限、${format(GameDatabase.celestials.v.mainUnlock.dilatedTime.requirement)} 膨胀时间和 ${format(GameDatabase.celestials.v.mainUnlock.replicanti.requirement)} 复制器。
 <br>
 <br>
-When you meet all of those requirements, you will be able to access V's Reality.
+满足所有条件后即可进入薇的现实。
 ${VUnlocks.vAchievementUnlock.isUnlocked
-    ? `However, completing the Reality itself is only the beginning. V has six different requirements, each of which
-      require you to make a certain amount of progress within V's Reality. Completing a requirement rewards you with a
-      V-Achievement.
-      V-Achievements are permanent and persist after exiting V's Reality, and do not all need to be done simultaneously.
-      <br>
-      <br>
-      After completing the requirement, the V-Achievement threshold then increases and can be completed again
-      if you can reach the new goal.  You can complete each category of V-Achievement up to six times.
-      Completed V-Achievements do two things:
-      <br>
-      - Upon reaching certain totals of V-Achievements, you automatically unlock upgrades on the V tab without needing
-      to spend any resources.
-      <br>
-      - Each V-Achievement also gives you one Space Theorem.
-      <br>
-      <br>
-      The goal reduction unlocked by having ${formatInt(2)} V-Achievements allows you to make some V-Achievement
-      requirements easier to complete by spending Perk Points, down to a limit of whatever the easiest tier requires.
-      The cost of reducing a goal does not increase as it is used, and will also reduce future tiers as well.
-      <br>
-      <br>
-      Space Theorems allow you to purchase Time Studies which are normally forbidden, such as multiple paths in the
-      Pace Split after the improved IP formula, or both Time Studies within a dark/light pair near the bottom.
-      Like Time Theorems, they are freely given back every time you respec your studies.
-      With enough Space Theorems you will eventually be able to purchase every single Time Study at once!
-      <br>
-      <br>
-      Reaching ${formatInt(36)} V-Achievements (and therefore completing all of V's Achievements) unlocks the next
-      Celestial.`
-    : "<span style='color: var(--color-bad);'>(unlock V's Reality to see further details)</span>"}
+    ? `然而完成现实本身只是开始。薇有六项不同要求，每项都要求你在薇的现实内达成特定进度。完成要求将获得薇成就。薇成就是永久性的，退出薇的现实后仍然保留，且无需同时完成所有成就。
+<br>
+<br>
+完成要求后，薇成就的阈值会提高，如果能够达到新目标可以再次完成。每类薇成就最多可以完成六次。已完成的薇成就具有两种效果：
+<br>
+- 当达到特定数量的薇成就总数时，会自动解锁薇标签页上的升级而无需消耗任何资源。
+<br>
+- 每个薇成就还会给予你一个空间之理。
+<br>
+<br>
+通过获得 ${formatInt(2)} 个薇成就解锁的目标降低功能，允许你通过消耗复兴点来使某些薇成就要求更容易完成，最低可降至最简单层级的要求。降低目标的成本不会随着使用而增加，并且也会降低未来层级的要求。
+<br>
+<br>
+空间之理允许你购买通常被禁止的时间研究，比如改进无限点公式后的多路径分支，或者底部成对黑暗/光明研究中的两项。和时间理数一样，每次重置研究时都会全额返还。拥有足够的空间之理后，你最终可以一次性购买所有时间研究！
+<br>
+<br>
+达到 ${formatInt(36)} 个薇成就（即完成所有薇成就）将解锁下一位天神。`
+    : "<span style='color: var(--color-bad);'>(解锁薇的现实以查看详情)</span>"}
 `,
       isUnlocked: () => Achievement(151).isUnlocked,
       tags: ["reality", "lategame", "endgame", "girlfriend", "challenges", "achievement", "space", "theorems",
