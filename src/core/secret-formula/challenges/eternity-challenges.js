@@ -92,7 +92,7 @@ export const eternityChallenges = [
         return `-${format(value, 2, 1)} (${formatX(total, 2, 1)} total)`;
       }
     },
-    scrambleText: ["无法正常地获得反物质星系", "랜法正㮾䂇齎反物㦂彁系"],
+    scrambleText: ["无法正常地获得反物质星系", "랜法正㮾䂇齎反物㦂彁系"],
   },
   {
     id: 7,

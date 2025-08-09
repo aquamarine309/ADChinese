@@ -85,8 +85,8 @@ export const glyphEffects = {
       ? "永恒点数获取量 \n×{value} [且 ^]{value2}"
       : "永恒点数获取量 ×{value}"),
     totalDesc: () => (GlyphAlteration.isAdded("time")
-      ? "Eternity Point gain ×{value} and ^{value2}"
-      : "Eternity Point gain ×{value}"),
+      ? "永恒点数获取量 ×{value} 且 ^{value2}"
+      : "永恒点数获取量 ×{value}"),
     genericDesc: () => (GlyphAlteration.isAdded("time")
       ? "永恒点数倍数和指数加成"
       : "永恒点数获取量"),

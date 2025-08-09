@@ -86,7 +86,7 @@ export const realityUpgrades = [
     name: "无尽造物",
     id: 7,
     cost: 15,
-    requirement: "至多**个反物质星系完成第一次无限",
+    requirement: `至多 ${formatInt(1)} 个反物质星系完成第一次无限`,
     hasFailed: () => !(player.galaxies <= 1 && player.requirementChecks.reality.noInfinities),
     checkRequirement: () => player.galaxies <= 1 && player.requirementChecks.reality.noInfinities,
     checkEvent: GAME_EVENT.BIG_CRUNCH_BEFORE,
@@ -133,7 +133,7 @@ export const realityUpgrades = [
     name: "生存延续",
     id: 10,
     cost: 15,
-    requirement: () => `至少${formatPostBreak(DC.E400)}无限点数完成第一次手动永恒`,
+    requirement: () => `至少 ${formatPostBreak(DC.E400)} 无限点数完成第一次手动永恒`,
     hasFailed: () => !player.requirementChecks.reality.noEternities,
     checkRequirement: () => Currency.infinityPoints.exponent >= 400 &&
       player.requirementChecks.reality.noEternities,
@@ -141,7 +141,7 @@ export const realityUpgrades = [
     canLock: true,
     lockEvent: "永恒",
     bypassLock: () => Currency.infinityPoints.exponent >= 400,
-    description: () => `每次现实开始时，拥有${formatInt(100)}永恒次数(同样适用于本次现实)`,
+    description: () => `每次现实开始时，拥有 ${formatInt(100)} 永恒次数(同样适用于本次现实)`,
     automatorPoints: 15,
     shortDescription: () => `开局获得 ${formatInt(100)} 永恒次数`,
     effect: () => 100

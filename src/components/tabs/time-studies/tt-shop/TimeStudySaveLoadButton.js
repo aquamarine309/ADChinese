@@ -113,7 +113,7 @@ export default {
         class="l-tt-save-load-btn__menu c-tt-save-load-btn__menu"
         data-v-time-study-save-load-button
       >
-        <span ach-tooltip="Set a custom name (up to 4 ASCII characters)">
+        <span ach-tooltip="自定义名称（上限4个ASCII字符）">
           <input
             type="text"
             size="4"

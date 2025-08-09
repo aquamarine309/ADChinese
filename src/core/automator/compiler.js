@@ -261,7 +261,7 @@ class Validator extends BaseVisitor {
   xHighest(ctx) {
     if (ctx.$value) return ctx.$value;
     if (!ctx.NumberLiteral || ctx.NumberLiteral[0].isInsertedInRecovery) {
-      this.addError(ctx, "缺少乘数", "请提供自动购买器的倍率设置");
+      this.addError(ctx, "缺少倍数", "请提供自动购买器的倍数设置");
       return undefined;
     }
     ctx.$value = new Decimal(ctx.NumberLiteral[0].image);
@@ -271,7 +271,7 @@ class Validator extends BaseVisitor {
   currencyAmount(ctx) {
     if (ctx.$value) return ctx.$value;
     if (!ctx.NumberLiteral || ctx.NumberLiteral[0].isInsertedInRecovery) {
-      this.addError(ctx, "Missing amount", "Provide a threshold to set the autobuyer to");
+      this.addError(ctx, "缺少数量", "请提供自动购买器的数量设置");
       return undefined;
     }
     ctx.$value = new Decimal(ctx.NumberLiteral[0].image);
@@ -300,7 +300,7 @@ class Validator extends BaseVisitor {
     }
     if (ctx.NumberLiteral) {
       if (ctx.NumberLiteral[0].isInsertedInRecovery) {
-        this.addError(ctx, "Missing Time Study number", "Provide a Time Study ID to purchase");
+        this.addError(ctx, "缺失时间研究编号", "输入时间研究的序号或字符串");
         return;
       }
       const id = this.checkTimeStudyNumber(ctx.NumberLiteral[0]);
@@ -327,13 +327,13 @@ class Validator extends BaseVisitor {
     };
     if (ctx.ECNumber) {
       if (ctx.ECNumber.isInsertedInRecovery) {
-        this.addError(ctx.Pipe[0], "Missing Eternity Challenge number",
-          "Specify which Eternity Challenge is being referred to");
+        this.addError(ctx.Pipe[0], "永恒挑战序号缺失",
+          "准确说明你要进入的永恒挑战，例如 ec4");
       }
       const ecNumber = parseFloat(ctx.ECNumber[0].image);
       if (!Number.isInteger(ecNumber) || ecNumber < 0 || ecNumber > 12) {
-        this.addError(ctx.ECNumber, `Invalid Eternity Challenge ID ${ecNumber}`,
-          `Eternity Challenge ${ecNumber} does not exist, use an integer between ${format(1)} and ${format(12)}`);
+        this.addError(ctx.ECNumber, `永恒挑战序号 [${ecNumber}] 无效`,
+          `不存在永恒挑战 ${ecNumber}, 只能是 ${format(1)} 和 ${format(12)} 之间的整数`);
       }
       ctx.$cached.ec = ecNumber;
     }
@@ -346,8 +346,8 @@ class Validator extends BaseVisitor {
       ctx.$value = new Decimal(ctx.NumberLiteral[0].image);
     } else if (ctx.Identifier) {
       if (!this.isValidVarFormat(ctx.Identifier[0], AUTOMATOR_VAR_TYPES.NUMBER)) {
-        this.addError(ctx, `Constant ${ctx.Identifier[0].image} cannot be used for comparison`,
-          `Ensure that ${ctx.Identifier[0].image} contains a properly-formatted number and not a Time Study string`);
+        this.addError(ctx, `常量 ${ctx.Identifier[0].image} 不能用于比较`,
+          `确认 ${ctx.Identifier[0].image} 的值是一个格式正确的数字，而不是时间研究字符串`);
       }
       const varLookup = this.lookupVar(ctx.Identifier[0], AUTOMATOR_VAR_TYPES.NUMBER);
       if (varLookup) ctx.$value = ctx.Identifier[0].image;
@@ -358,23 +358,23 @@ class Validator extends BaseVisitor {
     super.comparison(ctx);
     if (!ctx.compareValue || ctx.compareValue[0].recoveredNode ||
       ctx.compareValue.length !== 2 || ctx.compareValue[1].recoveredNode) {
-      this.addError(ctx, "Missing value for comparison", "Ensure that the comparison has two values");
+      this.addError(ctx, "缺少用于比较的数值", "确保有两个待比较的数值");
     }
     if (!ctx.ComparisonOperator || ctx.ComparisonOperator[0].isInsertedInRecovery) {
-      this.addError(ctx, "Missing comparison operator (<, >, <=, >=)", "Insert the appropriate comparison operator");
+      this.addError(ctx, "缺少比较运算符（<、>、<=、>=）", "确保有比较运算符");
       return;
     }
     if (ctx.ComparisonOperator[0].tokenType === T.OpEQ || ctx.ComparisonOperator[0].tokenType === T.EqualSign) {
-      this.addError(ctx, "Please use an inequality comparison (>, <, >=, <=)",
-        "Comparisons cannot be done with equality, only with inequality operators");
+      this.addError(ctx, "请使用不等于符号进行比较（>、<、>=、<=）",
+        "无法进行相等的比较，只能进行不等于的比较");
     }
   }
 
   badCommand(ctx) {
     const firstToken = ctx.badCommandToken[0].children;
     const firstTokenType = Object.keys(firstToken)[0];
-    this.addError(firstToken[firstTokenType][0], `Unrecognized command "${firstToken[firstTokenType][0].image}"`,
-      "Check to make sure you have typed in the command name correctly");
+    this.addError(firstToken[firstTokenType][0], `指令 [${firstToken[firstTokenType][0].image}] 无法识别`,
+      "请确认你输入了正确的指令名称");
   }
 
   eternityChallenge(ctx) {
@@ -386,13 +386,13 @@ class Validator extends BaseVisitor {
       ecNumber = parseFloat(ctx.NumberLiteral[0].image);
       errToken = ctx.NumberLiteral[0];
     } else {
-      this.addError(ctx, "Missing Eternity Challenge number",
-        "Specify which Eternity Challenge is being referred to");
+      this.addError(ctx, "永恒挑战序号缺失",
+        "准确说明你要进入的永恒挑战，例如 ec4");
       return;
     }
     if (!Number.isInteger(ecNumber) || ecNumber < 1 || ecNumber > 12) {
-      this.addError(errToken, `Invalid Eternity Challenge ID ${ecNumber}`,
-        `Eternity Challenge ${ecNumber} does not exist, use an integer between ${format(1)} and ${format(12)}`);
+      this.addError(errToken, `永恒挑战序号 [${ecNumber}] 无效`,
+        `不存在永恒挑战 ${ecNumber}, 只能是 ${format(1)} 和 ${format(12)} 之间的整数`);
     }
     ctx.$ecNumber = ecNumber;
   }
@@ -400,12 +400,12 @@ class Validator extends BaseVisitor {
   checkBlock(ctx, commandToken) {
     let hadError = false;
     if (!ctx.RCurly || ctx.RCurly[0].isInsertedInRecovery) {
-      this.addError(commandToken[0], "Missing closing }",
+      this.addError(commandToken[0], "缺少右括号 }",
         "This loop has mismatched brackets, add a corresponding } on another line to close the loop");
       hadError = true;
     }
     if (!ctx.LCurly || ctx.LCurly[0].isInsertedInRecovery) {
-      this.addError(commandToken[0], "Missing opening {",
+      this.addError(commandToken[0], "缺少左括号 {",
         "This line has an extra } closing a loop which does not exist, remove the }");
       hadError = true;
     }
