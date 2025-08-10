@@ -86,7 +86,7 @@ export const realityUpgrades = [
     name: "无尽造物",
     id: 7,
     cost: 15,
-    requirement: `至多 ${formatInt(1)} 个反物质星系完成第一次无限`,
+    requirement: () => `至多 ${formatInt(1)} 个反物质星系完成第一次无限`,
     hasFailed: () => !(player.galaxies <= 1 && player.requirementChecks.reality.noInfinities),
     checkRequirement: () => player.galaxies <= 1 && player.requirementChecks.reality.noInfinities,
     checkEvent: GAME_EVENT.BIG_CRUNCH_BEFORE,
