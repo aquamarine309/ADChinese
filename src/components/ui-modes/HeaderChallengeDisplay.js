@@ -52,7 +52,7 @@ export default {
           activityToken: () => player.challenge.infinity.current
         },
         {
-          name: token => `${NormalChallenge(token).config.name}挑战`,
+          name: token => `普通挑战 ${token}`,
           isActive: token => token > 0,
           activityToken: () => player.challenge.normal.current
         },
