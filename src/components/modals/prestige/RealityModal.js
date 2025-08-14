@@ -160,6 +160,7 @@ export default {
         :ignore-modified-level="true"
         :show-sacrifice="canSacrifice"
         @click.native="select(index)"
+        @touchend.native="select(index)"
         data-v-reality-modal
       />
     </div>
