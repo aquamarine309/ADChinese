@@ -701,7 +701,7 @@ export const normalAchievements = [
     checkRequirement: () => Currency.infinityPoints.exponent >= 1000,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
     get reward() {
-      return `Make the Infinity Point formula better. log(x)/${formatInt(308)} ➜ log(x)/${formatFloat(307.8, 1)}`;
+      return `更好的无限点数公式。log(x)/${formatInt(308)} ➜ log(x)/${formatFloat(307.8, 1)}`;
     },
     effect: 307.8
   },
@@ -1284,10 +1284,10 @@ export const normalAchievements = [
   {
     id: 178,
     name: "灭世者",
-    get description() { return `Get ${formatInt(100000)} Antimatter Galaxies。`; },
+    get description() { return `获得 ${formatInt(100000)} 个反物质星系。`; },
     checkRequirement: () => player.galaxies >= 100000,
     checkEvent: GAME_EVENT.GALAXY_RESET_AFTER,
-    get reward() { return `All Galaxies are ${formatPercents(0.01)} stronger。`; },
+    get reward() { return `星系增强 ${formatPercents(0.01)}。`; },
     effect: 1.01
   },
   {
@@ -1309,7 +1309,7 @@ export const normalAchievements = [
   {
     id: 183,
     name: "似曾相识",
-    description: "Complete Infinity Challenge 5 while Doomed.",
+    description: "在被毁灭的现实中，完成无限挑战5。",
     checkRequirement: () => Pelle.isDoomed && InfinityChallenge(5).isCompleted,
     checkEvent: GAME_EVENT.INFINITY_CHALLENGE_COMPLETED,
     // Weirdly specific reward? Yes, its V's ST bonus because we forgot to disable it

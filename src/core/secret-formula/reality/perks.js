@@ -295,7 +295,7 @@ export const perks = {
     label: "IDL",
     family: PERK_FAMILY.ETERNITY,
     get description() {
-      return `Idle path multipliers start as if you have spent ${formatInt(15)} minutes in this Infinity/Eternity.`;
+      return `挂机路径加成从开始就如同你已经在该无限/永恒中经过了${formatInt(15)}分钟`;
     },
     effect: 15,
     layoutPosList: [80248, 79401, 81001, 79802, 78994, 56239],
