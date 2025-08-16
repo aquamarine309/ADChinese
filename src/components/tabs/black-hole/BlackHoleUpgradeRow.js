@@ -26,7 +26,7 @@ export default {
     intervalConfig() {
       return {
         upgrade: this.blackHole.intervalUpgrade,
-        description: () => `黑洞的冷却时间减少 ${this.blackHoleDescription}`,
+        description: () => `${this.blackHoleDescription}的冷却时间减少 ${formatPercents(0.2)}`,
         effectTitle: "当前间隔",
         formatEffect: () => TimeSpan.fromSeconds(this.blackHole.rawInterval).toStringShort(false)
       };

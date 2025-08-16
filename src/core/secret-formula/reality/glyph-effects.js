@@ -47,7 +47,7 @@ export const glyphEffects = {
     bitmaskIndex: 1,
     isGenerated: true,
     glyphTypes: ["time"],
-    singleDesc: "游戏速度 {value}",
+    singleDesc: "游戏速度 ×{value}",
     totalDesc: "游戏速度 ×{value}",
     genericDesc: "游戏速度倍率",
     shortDesc: "游戏速度 ×{value}",
@@ -106,7 +106,7 @@ export const glyphEffects = {
     bitmaskIndex: 4,
     isGenerated: true,
     glyphTypes: ["dilation"],
-    singleDesc: "获得 {value} 倍膨胀时间 ",
+    singleDesc: "获得 ×{value} 倍膨胀时间 ",
     totalDesc: "获得 ×{value} 倍膨胀时间",
     shortDesc: "膨胀时间 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("dilation")
@@ -185,7 +185,7 @@ export const glyphEffects = {
     bitmaskIndex: 8,
     isGenerated: true,
     glyphTypes: ["replication"],
-    singleDesc: "复制速度 {value}",
+    singleDesc: "复制速度 ×{value}",
     totalDesc: "复制速度 ×{value}",
     genericDesc: "复制速度",
     shortDesc: "复制速度 ×{value}",
@@ -306,7 +306,7 @@ export const glyphEffects = {
     glyphTypes: ["infinity"],
     singleDesc: () => (GlyphAlteration.isAdded("infinity")
       ? "无限点数获取量 \n×{value} [且 ^]{value2}"
-      : "无限点数获取量 {value}"),
+      : "无限点数获取量 ×{value}"),
     totalDesc: () => (GlyphAlteration.isAdded("infinity")
       ? "无限点数获取量 ×{value} 且 ^{value2}"
       : "无限点数获取量 ×{value}"),
@@ -375,7 +375,7 @@ export const glyphEffects = {
     bitmaskIndex: 17,
     isGenerated: true,
     glyphTypes: ["power"],
-    singleDesc: "反物质维度倍率 {value}",
+    singleDesc: "反物质维度倍率 ×{value}",
     shortDesc: "反物质维度倍率 ×{value}",
     effect: (level, strength) => (GlyphAlteration.isEmpowered("power")
       ? DC.D11111.pow(level * 220)
@@ -393,7 +393,7 @@ export const glyphEffects = {
     glyphTypes: ["power"],
     singleDesc: "维度提升倍率 ×{value}",
     genericDesc: "维度提升倍率",
-    shortDesc: "维度提升倍率 {value}",
+    shortDesc: "维度提升倍率 ×{value}",
     effect: (level, strength) => Math.pow(level * strength, 0.5) *
       Math.pow(1 + GlyphAlteration.sacrificeBoost("power"), 3),
     formatEffect: x => format(x, 2, 2),
