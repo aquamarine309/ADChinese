@@ -79,7 +79,7 @@ export const alchemyResources = {
     tier: 2,
     uiOrder: 3,
     unlockedAt: 8,
-    description: () => `减少每 ${format(Decimal.NUMBER_MAX_VALUE, 2)} 复制器的减速`,
+    get description() { return `减少每 ${format(Decimal.NUMBER_MAX_VALUE, 2)} 复制器的减速`; },
     formatEffect: value => `复制器间隔增加速度减慢 ${formatX(1.2, 1, 1)} ➜ ${formatX(value, 4, 4)} 每 ${format(Number.MAX_VALUE, 2)}`,
     reagents: [
       {

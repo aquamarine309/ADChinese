@@ -1183,7 +1183,7 @@ export const normalAchievements = [
     get description() { return `无限次数达到 ${format(Decimal.NUMBER_MAX_VALUE, 1)}。`; },
     checkRequirement: () => Currency.infinitiesTotal.gte(Decimal.NUMBER_MAX_VALUE),
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
-    get reward() { return `获得的无限次数 ${formatInt(1024)}。`; },
+    get reward() { return `获得的无限次数 ${formatX(1024)}。`; },
     effect: 1024
   },
   {
