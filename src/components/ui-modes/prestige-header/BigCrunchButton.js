@@ -133,7 +133,7 @@ export default {
         <br>
         峰值：{{ format(peakIPRate, 2) }} 无限点数/分
         <br>
-        峰值时获得 {{ format(peakIPRateVal, 2) }} 永恒点数
+        峰值时获得 {{ format(peakIPRateVal, 2) }} 无限点数
       </template>
       <div v-else />
     </template>
