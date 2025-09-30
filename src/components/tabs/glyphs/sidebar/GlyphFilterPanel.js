@@ -196,13 +196,13 @@ export default {
         data-v-glyph-filter-panel
       >
         <i
-          v-tooltip="'Export filter settings'"
+          v-tooltip="'导出筛选设置'"
           class="fas fa-file-export l-top-left-btn"
           @click="exportFilterSettings"
           data-v-glyph-filter-panel
         />
         <i
-          v-tooltip="'Import filter settings'"
+          v-tooltip="'导入筛选设置'"
           class="fas fa-file-import l-top-left-btn"
           @click="importFilterSettings"
           data-v-glyph-filter-panel

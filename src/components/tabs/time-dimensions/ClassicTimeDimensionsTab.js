@@ -69,7 +69,7 @@ export default {
         你拥有 <span class="c-time-dim-description__accent">{{ format(timeShards, 2, 1) }}</span> 时间碎片。
       </p>
       <p>
-        下一个维度提升需要
+        下一个计数频率提升需要
         <span class="c-time-dim-description__accent">{{ format(upgradeThreshold, 2, 1) }}</span>，每获得一个计数频率升级增加
         <span class="c-time-dim-description__accent">{{ formatX(multPerTickspeed, 2, 2) }}</span>。
       </p>
@@ -97,7 +97,7 @@ export default {
       <div v-if="showLockedDimCostNote">
         按住Shift键可查看它的价格。
       </div>
-      Any 8th Time Dimensions purchased above {{ format(1e8) }} will not further increase the multiplier.
+      第八时间维度购买超过 {{ formatInt(1e8) }} 次后将不再增加倍率。
     </div>
   </div>
   `

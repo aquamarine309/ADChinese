@@ -391,7 +391,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 <br>
 <b>复制间隔升级价格：</b> 基础 ${format(DC.E140)} 无限点数，每次升级增加 ${formatX(DC.E10)} 倍
 <br>
-<b>星系升级价格：</b> 基础 ${format(DC.E170)} 无限点数，每次升级增加 ${formatX(DC.E25)} 倍，并额外增加 ${formatX(1e5)} 倍（和遥远反物质星系类似）。超过 ${formatInt(100)} 个复制器星系后，每次升级增加的 ${formatX(1e5)} 倍会变为 ${formatX(DC.E55)} 倍。超过 ${formatInt(1000)} 个后，增长模式会从二次方变为三次方，且 ${formatX(DC.E55)} 倍本身每次升级还会增加 ${formatX(DC.E5)} 倍。
+<b>星系升级价格：</b> 基础 ${format(DC.E170)} 无限点数，每次升级增加 ${formatX(DC.E25)} 倍，并额外增加 ${formatX(1e5)} 倍（和遥远星系类似）。超过 ${formatInt(100)} 个复制器星系后，每次升级增加的 ${formatX(1e5)} 倍会变为 ${formatX(DC.E55)} 倍。超过 ${formatInt(1000)} 个后，增长模式会从二次方变为三次方，且 ${formatX(DC.E55)} 倍本身每次升级还会增加 ${formatX(DC.E5)} 倍。
 `,
       isUnlocked: () => Replicanti.areUnlocked || PlayerProgress.eternityUnlocked(),
       tags: ["interval", "chance", "infinity", "galaxy", "galaxies", "midgame"],

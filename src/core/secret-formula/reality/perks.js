@@ -143,7 +143,7 @@ export const perks = {
     id: 40,
     label: "EU1",
     family: PERK_FAMILY.ETERNITY,
-    description: `自动购买产生时间之理的膨胀升级`,
+    description: `第一次永恒完成后，无需消耗任何资源即可自动解锁第一行永恒升级`,
     layoutPosList: [89407, 80601, 80201, 79800, 80591, 73007],
   },
   autounlockEU2: {
@@ -151,7 +151,7 @@ export const perks = {
     label: "EU2",
     family: PERK_FAMILY.ETERNITY,
     get description() {
-      return `后三个永恒升级自动以原价的 ${formatX(1e10)} 分之一购买`;
+      return `第二行永恒升级自动以原价的 ${formatX(1e10)} 分之一购买`;
     },
     layoutPosList: [103008, 81001, 80202, 79400, 80594, 81867],
   },
