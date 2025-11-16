@@ -329,7 +329,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
 <b>购买无限维度：</b> 无限维度只能以 ${formatInt(10)} 个为一组购买，需要花费无限点数。和其他维度一样，每次购买都会获得永久加成，具体加成效果取决于你购买的无限维度类型。
 
 <br><br>
-<b>无限维度生产：</b> 和反物质维度类似，每个无限维度都会生产更高一级的无限维度。
+<b>无限维度生产：</b> 和反物质维度类似，每个无限维度都会生产更低一级的无限维度。
 
 <br><br>
 每次坍缩时，你生产的无限维度数量会重置为已购买数量。虽然生产量不会保留，但通过购买获得的所有加成都会保留。
@@ -352,7 +352,7 @@ ${Laitela.isUnlocked ? "- <b>DE</b>：暗能量<br>" : ""}
     .join(", ")}
 
 <br><br>
-第一无限维度不生产反物质，而是生产无限能量，能给所有反物质维度带来 (能量<sup>${formatInt(7)}</sup>) 的加成。无限维度不受计数频率提升影响。
+第一无限维度不生产反物质，而是生产无限之力，能给所有反物质维度带来 (无限之力<sup>${formatInt(7)}</sup>) 的加成。无限维度不受计数频率提升影响。
 `,
       isUnlocked: () => Autobuyer.bigCrunch.hasMaxedInterval || PlayerProgress.eternityUnlocked(),
       tags: ["id", "power", "new", "dims", "unlock", "break", "midgame"],

@@ -66,10 +66,10 @@ export default {
       return this.isCapped ? "已达到上限" : `${this.showCostTitle ? "价格：" : ""}${format(this.cost, 2)} 永恒点数`;
     },
     hasLongText() {
-      return this.buttonContents.length > 15;
+      return this.buttonContents.length > 20;
     },
     showCostTitle() {
-      return this.cost.exponent < 1e6;
+      return this.cost.exponent < 1e5;
     },
     timeEstimate() {
       if (!this.showTTCost || this.ttGen.eq(0)) return "";

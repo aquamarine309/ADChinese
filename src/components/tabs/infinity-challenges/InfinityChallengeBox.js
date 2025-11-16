@@ -61,10 +61,7 @@ export default {
           :config="config.reward"
           title="奖励："
         />
-        <EffectDisplay
-          v-if="isCompleted"
-          :config="config.reward"
-        />
+        <EffectDisplay :config="config.reward" />
       </div>
     </template>
   </ChallengeBox>

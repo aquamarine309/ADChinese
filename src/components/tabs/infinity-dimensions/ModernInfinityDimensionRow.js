@@ -57,7 +57,7 @@ export default {
       return `达到 ${formatPostBreak(InfinityDimension(this.tier).amRequirement)} 反物质`;
     },
     hasLongText() {
-      return this.costDisplay.length > 15;
+      return this.costDisplay.length > 20;
     },
     capTooltip() {
       if (this.enslavedRunning) return `Nameless prevents the purchase of more than ${format(10)} Infinity Dimensions`;
@@ -69,7 +69,7 @@ export default {
         this.hasPrevTier;
     },
     showCostTitle() {
-      return this.cost.exponent < 1e6;
+      return this.cost.exponent < 1e5;
     }
   },
   watch: {

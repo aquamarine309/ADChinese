@@ -29,10 +29,14 @@ export default {
       hasContinuum: false,
       isContinuumActive: false,
       multiplierText: "",
+      isFullyAutomated: false
     };
   },
   computed: {
     sacrificeTooltip() {
+      if (this.isFullyAutomated) {
+        return "自动献祭已开启且拥有成就 118，因此献祭将完全自动化";
+      }
       return `为第八维度提供 ${formatX(this.sacrificeBoost, 2, 2)}`;
     },
   },
@@ -81,7 +85,8 @@ export default {
 
       this.multiplierText = `购买10个维度的加成倍数：${formatX(this.buy10Mult, 2, 2)}`;
       if (!isSacrificeUnlocked) return;
-      this.isSacrificeAffordable = Sacrifice.canSacrifice;
+      this.isFullyAutomated = Autobuyer.sacrifice.isActive && Achievement(118).isUnlocked;
+      this.isSacrificeAffordable = Sacrifice.canSacrifice && !this.isFullyAutomated;
       this.currentSacrifice.copyFrom(Sacrifice.totalBoost);
       this.sacrificeBoost.copyFrom(Sacrifice.nextBoost);
       this.disabledCondition = Sacrifice.disabledCondition;
@@ -109,6 +114,9 @@ export default {
         @click="sacrifice"
       >
         <span v-if="isSacrificeAffordable">维度献祭（{{ formatX(sacrificeBoost, 2, 2) }}）</span>
+        <span v-else-if="isFullyAutomated && disabledCondition !== ''">
+          维度献祭已自动化（成就 118）
+        </span>
         <span v-else>维度献祭已禁用（{{ disabledCondition }}）</span>
       </PrimaryButton>
       <button

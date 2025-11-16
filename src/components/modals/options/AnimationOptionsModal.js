@@ -24,7 +24,10 @@ export default {
       reality: false,
       background: false,
       blobSnowflakes: 16,
-      isS11Active: false
+      isS11Active: false,
+      isBlackHoleUnlocked: false,
+      blobHole: false,
+      isS11Unlocked: false
     };
   },
   computed: {
@@ -62,6 +65,9 @@ export default {
     },
     blobSnowflakes(newValue) {
       player.options.animations.blobSnowflakes = parseInt(newValue, 10);
+    },
+    blobHole(newValue) {
+      player.options.animations.blobHole = newValue;
     }
   },
   methods: {
@@ -75,7 +81,8 @@ export default {
       this.tachyonsUnlocked = this.realityUnlocked || Currency.tachyonParticles.gt(0);
       this.animatedThemeUnlocked = Theme.animatedThemeUnlocked;
       this.isS11Active = Theme.currentName() === "S11";
-
+      this.isS11Unlocked = Themes.available().map(t => t.name).includes("S11");
+      this.isBlackHoleUnlocked = BlackHoles.areUnlocked;
       const options = player.options.animations;
       this.bigCrunch = options.bigCrunch;
       this.eternity = options.eternity;
@@ -84,6 +91,7 @@ export default {
       this.reality = options.reality;
       this.background = options.background;
       this.blobSnowflakes = options.blobSnowflakes;
+      this.blobHole = options.blobHole;
     },
     adjustSliderValue(value) {
       this.blobSnowflakes = value;
@@ -120,6 +128,11 @@ export default {
         v-if="realityUnlocked"
         v-model="reality"
         text="现实："
+      />
+      <ModalOptionsToggleButton
+        v-if="isS11Unlocked && isBlackHoleUnlocked"
+        v-model="blobHole"
+        text="总是使用Blob黑洞："
       />
       <div v-if="!isS11Active">
         <ModalOptionsToggleButton

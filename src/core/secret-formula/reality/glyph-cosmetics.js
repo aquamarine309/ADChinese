@@ -137,7 +137,7 @@ export const glyphCosmeticSets = {
   celestial: {
     id: "celestial",
     name: "天神图标",
-    symbol: ["\uF0C1", "⌬", "ᛝ", "♅"],
+    symbol: ["\uF0C1", "⌬", "\uF185", "ᛝ", "♅"],
     color: ["B#00BCD4"],
   },
   alchemy: {

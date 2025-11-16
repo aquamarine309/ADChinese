@@ -3989,6 +3989,7 @@ p[data-v-pelle-effects-modal] {
   padding: 0.5rem;
   font-weight: normal;
   background-color: var(--color-base);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .c-multiplier-entry-root-container[data-v-multiplier-breakdown-entry] {
@@ -4019,7 +4020,7 @@ p[data-v-pelle-effects-modal] {
 }
 
 .c-bar-highlight[data-v-multiplier-breakdown-entry] {
-  animation: a-glow-bar-data-v-multiplier-breakdown-entry 1s infinite;
+  animation: a-glow-bar-data-v-multiplier-breakdown-entry 2s infinite;
 }
 
 @keyframes a-glow-bar-data-v-multiplier-breakdown-entry {
@@ -4080,7 +4081,7 @@ p[data-v-pelle-effects-modal] {
 .c-single-entry-highlight[data-v-multiplier-breakdown-entry] {
   border: 0.1rem solid;
   font-weight: bold;
-  animation: a-glow-text-data-v-multiplier-breakdown-entry 1s infinite;
+  animation: a-glow-text-data-v-multiplier-breakdown-entry 2s infinite;
 }
 
 @keyframes a-glow-text-data-v-multiplier-breakdown-entry {
@@ -5669,6 +5670,7 @@ AutobuyerBox components will always render in page order regardless of internal 
 .l-top-left-btn {
   cursor: pointer;
   border: var(--var-border-width, 0.2rem) solid;
+  border-radius: var(--var-border-radius, 0.2rem);
   width: 2.5rem;
   margin: 0.5rem 0 0 0.5rem;
   padding: 0.5rem;
@@ -5680,6 +5682,7 @@ AutobuyerBox components will always render in page order regardless of internal 
   align-items: center;
   cursor: pointer;
   border: var(--var-border-width, 0.2rem) solid;
+  border-radius: var(--var-border-radius, 0.2rem);
   width: 2rem;
   height: 2rem;
   margin: 0.5rem 0.5rem 0 0;
