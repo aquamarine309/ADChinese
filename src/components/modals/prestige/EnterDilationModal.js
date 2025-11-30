@@ -9,10 +9,7 @@ export default {
   },
   computed: {
     message() {
-      return `Dilating time will start a new Eternity, and all Dimension multiplier's exponents and
-        tickspeed multiplier's exponent will be reduced to ${formatPow(0.75, 2, 2)}. If you can Eternity while Dilated,
-        your Tachyon Particles will be increased to a value based on your highest antimatter and any Tachyon Particle
-        multipliers you have.`;
+      return `时间膨胀将开启新的永恒，所有维度倍数的指数和计数频率倍数的指数将降至 ${formatPow(0.75, 2, 2)}。若能在膨胀期间完成永恒，你的超光速粒子将根据最高反物质数值及拥有的超光速粒子倍数进行提升。`;
     },
     entranceLabel() {
       return `你确定要进行时间膨胀吗？`;

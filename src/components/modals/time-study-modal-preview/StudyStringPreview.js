@@ -99,7 +99,7 @@ export default {
         case TIME_STUDY_TYPE.NORMAL: case TIME_STUDY_TYPE.TRIAD: return `${study.id}`;
         case TIME_STUDY_TYPE.ETERNITY_CHALLENGE: return `EC${study.id}`;
       }
-      return "Dilation Study";
+      return "膨胀研究";
     },
     getStudyForceBoughtState(studyStr) {
       if (!this.disregardCurrentStudies) return ForceBoughtState.unspecified;
@@ -148,7 +148,7 @@ export default {
       class="c-unavailable-warning"
       data-v-study-string-preview
     >
-      Preview Unavailable
+      预设无效
     </span>
   </div>
   `

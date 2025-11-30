@@ -40,9 +40,10 @@ export default {
       const tickspeedInfo = (tickspeedFixed === "")
         ? "计数频率升级将获得小幅提升。"
         : `计数频率升级不会获得加成，因为你当前处于${tickspeedFixed}中。`;
+      const connectionWord = ((tickspeedFixed === "") === (resetList === "")) ? "并且" : "然而";
       const message = (resetList === "")
-        ? `这将不会重置任何东西，并且${tickspeedInfo}`
-        : `这将重置${resetList}。然而，${tickspeedInfo}`;
+        ? `这将不会重置任何东西，${connectionWord}${tickspeedInfo}`
+        : `这将重置${resetList}。${connectionWord}，${tickspeedInfo}`;
 
       if (this.bulk) return `你确定要购买
       ${formatInt(this.newGalaxies)} 个反物质星系吗？ ${message}`;

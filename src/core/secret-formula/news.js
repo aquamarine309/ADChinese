@@ -7629,8 +7629,19 @@ export const news = [
     text: "\'我代码写得超棒，这次更新绝对稳\'——Hevipelle（flag已立）"
   },
   {
+    id: "t83",
+    text: "我拥有 11 个无限点数了，你们呢？",
+    get unlocked() {
+      return PlayerProgress.infinityUnlocked();
+    }
+  },
+  {
     id: "t84",
     text: "话说一半就消失的人，是不是该被反物质净化"
+  },
+  {
+    id: "t85",
+    text: "喵喵咕噜咕噜"
   },
   {
     id: "t86",
@@ -7661,6 +7672,10 @@ export const news = [
     text: "物质还是反物质，这是个问题。"
   },
   {
+    id: "t95",
+    text: "这个版本居然有这么多中文新闻，要不是没有拜谢，不然就看成RBNR了。"
+  },
+  {
     id: "t96",
     text: "早在远古时代科学就证明，物质构成的猫都是混蛋。好消息是：反物质构成的猫依然是混蛋。"
   },
@@ -7683,6 +7698,10 @@ export const news = [
   {
     id: "t101",
     text: "剧情——即将推出™"
+  },
+  {
+    id: "t102",
+    text: "aquamarine怎么不更新ADPuzzled了？这是一个很好的问题。"
   },
   {
     id: "t103",

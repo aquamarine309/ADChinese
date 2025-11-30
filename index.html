@@ -63,5 +63,23 @@
     console.warn(errorMessage);
     window.errorMessages.push(errorMessage);
   });
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeName === 'SCRIPT' &&
+          node.src &&
+          (node.src.includes('google-analytics.com') ||
+            node.src.includes('analytics.js'))) {
+          node.parentNode.removeChild(node);
+          console.log('Prevented loading from GA');
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
 </script>
 </html>

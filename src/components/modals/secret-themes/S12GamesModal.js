@@ -28,7 +28,7 @@ export default {
       class="c-modal__title"
       data-v-s12-games-modal
     >
-      Games
+      游戏
     </div>
     <S12GameEntries />
     <div

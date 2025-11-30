@@ -60,7 +60,7 @@ export const secretAchievements = [
   },
   {
     id: 23,
-    name: "你作弊了",
+    name: "立即停下，罪犯渣滓！",
     description: "打开控制台。"
   },
   {
@@ -171,7 +171,7 @@ export const secretAchievements = [
   },
   {
     id: 45,
-    name: "绵延不绝",
+    name: "牵丝攀藤",
     description: "拖动复兴节点一分钟。",
     checkRequirement: () => player.requirementChecks.permanent.perkTreeDragging++ / 100 >= 60
   },
@@ -188,6 +188,6 @@ export const secretAchievements = [
   {
     id: 48,
     name: "堆栈溢出",
-    description: "自动机脚本中错误的数量等于注释的数量，且都不为零。"
+    description: "使自动机的错误数量多于行数。"
   },
 ];
