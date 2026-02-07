@@ -51,7 +51,7 @@ export default {
     },
     tooltipContents() {
       if (this.showTTCost) return `${this.formattedEPCost}<br>${this.timeEstimate}`;
-      if (this.isCapped) return `Nameless prevents the purchase of more than ${format(1)} Time Dimension`;
+      if (this.isCapped) return `无名氏阻止你购买超过 ${format(1)} 个时间维度`;
       return `已购买 ${formatInt(this.bought)} 次`;
     },
     showRow() {
@@ -72,7 +72,7 @@ export default {
     timeEstimate() {
       if (!this.showTTCost || this.ttGen.eq(0)) return "";
       const time = Decimal.sub(this.ttCost, this.currTT).dividedBy(this.ttGen);
-      return time.gt(0) ? `Enough TT in ${TimeSpan.fromSeconds(time.toNumber()).toStringShort()}` : "";
+      return time.gt(0) ? `${TimeSpan.fromSeconds(time.toNumber()).toStringShort()} 后获得足够的时间之理` : "";
     }
   },
   watch: {

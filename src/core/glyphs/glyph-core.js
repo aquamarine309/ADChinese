@@ -270,11 +270,11 @@ export const Glyphs = {
     if (glyph.type !== "companion") {
       if (RealityUpgrade(9).isLockingMechanics) {
         if (this.activeWithoutCompanion.length > 0) {
-          RealityUpgrade(9).tryShowWarningModal("equip another non-Companion Glyph");
+          RealityUpgrade(9).tryShowWarningModal("装备另一个类型不是同伴的符文");
           return;
         }
         if (glyph.level < 3) {
-          RealityUpgrade(9).tryShowWarningModal(`equip a Glyph whose level is less than ${formatInt(3)}`);
+          RealityUpgrade(9).tryShowWarningModal(`装备一个等级小于 ${formatInt(3)} 的符文`);
           return;
         }
       }
@@ -779,7 +779,7 @@ export const Glyphs = {
   },
   giveCursedGlyph() {
     if (GameCache.glyphInventorySpace.value === 0) {
-      Modal.message.show("No available inventory space; Sacrifice some Glyphs to free up space.",
+      Modal.message.show("仓库空间不足，请献祭符文以获得空余的空间",
         { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
       return;
     }

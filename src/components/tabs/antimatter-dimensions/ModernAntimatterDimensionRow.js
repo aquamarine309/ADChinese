@@ -48,8 +48,8 @@ export default {
       return this.isShown || this.isUnlocked || this.amount.gt(0);
     },
     boughtTooltip() {
-      if (this.isCapped) return `Nameless prevents the purchase of more than ${format(1)} 8th Antimatter Dimension`;
-      if (this.isContinuumActive) return "Continuum produces all your Antimatter Dimensions";
+      if (this.isCapped) return `无名氏阻止你购买超过 ${format(1)} 个第八维`;
+      if (this.isContinuumActive) return "连续统生产所有反物质维度";
       return `已购买 ${formatInt(this.bought)} 次`;
     },
     costUnit() {

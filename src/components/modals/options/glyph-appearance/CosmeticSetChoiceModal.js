@@ -104,7 +104,7 @@ export default {
         </template>
       </ExpandingControlBox>
       <div v-if="currentSet">
-        "{{ currentSet.name }}"皮肤包含以下 {{ setContents }}：
+        “{{ currentSet.name }}”皮肤包含以下 {{ setContents }}：
         <br>
         <span
           v-for="symbol of symbols"

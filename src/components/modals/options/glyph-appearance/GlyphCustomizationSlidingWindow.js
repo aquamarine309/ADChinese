@@ -36,6 +36,9 @@ export default {
     attrString() {
       return this.isSymbol ? "symbol" : "color";
     },
+    attrStringChinese() {
+      return this.isSymbol ? "符号" : "颜色";
+    },
     typeObject() {
       return CosmeticGlyphTypes;
     },
@@ -222,7 +225,7 @@ export default {
       class="c-no-options"
       data-v-glyph-customization-sliding-window
     >
-      你还没有解锁修改符文{{ attrString }}的选项。
+      你还没有解锁修改符文{{ attrStringChinese }}的选项。
     </div>
   </div>
   `

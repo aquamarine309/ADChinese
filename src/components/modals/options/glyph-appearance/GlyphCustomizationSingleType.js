@@ -38,7 +38,7 @@ export default {
       class="c-name"
       data-v-glyph-customization-single-type
     >
-      {{ name }} 符文的外观选项
+      {{ name }}符文的外观选项
     </span>
     <div v-if="type === 'companion'">
       同伴符文不能修改外观。

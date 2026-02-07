@@ -53,7 +53,7 @@ export default {
     },
     tooltipContents() {
       if (this.showTTCost) return `${this.formattedEPCost}<br>${this.timeEstimate}`;
-      if (this.isCapped) return `Nameless prevents the purchase of more than ${format(1)} Time Dimension`;
+      if (this.isCapped) return `无名氏阻止你购买超过 ${format(1)} 个时间维度`;
       return `已购买 ${formatInt(this.bought)} 次`;
     },
     showRow() {
