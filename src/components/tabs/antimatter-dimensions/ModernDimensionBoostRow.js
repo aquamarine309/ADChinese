@@ -64,7 +64,7 @@ export default {
   template: `
   <div class="reset-container dimboost">
     <h4>维度提升（{{ boostCountText }})</h4>
-    <span>需求：{{ formatInt(requirement.amount) }} {{ dimName }}反物质维度</span>
+    <span>需要：{{ formatInt(requirement.amount) }} {{ dimName }}反物质维度</span>
     <button
       :class="classObject"
       @click.exact="dimensionBoost(true)"
