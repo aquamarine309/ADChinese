@@ -79,8 +79,7 @@ export const progressStages = [
     id: PROGRESS_STAGE.LATE_ETERNITY,
     name: "永恒后期",
     hasReached: save => new Decimal(save.dilation.dilatedTime).gt(1e15),
-    suggestedResource: () => "膨胀时间和永恒点数"
-    ),
+    suggestedResource: () => "膨胀时间和永恒点数",
     // Tracks up to e8000 even though many players will reality well before that; we still want to distinguish
     // which saves are farther all the way up to the zeroth-reality RM cap
     subProgressValue: save => Math.clampMax(Math.sqrt((new Decimal(save.eternityPoints).log10() - 1300) / 6700), 1),
