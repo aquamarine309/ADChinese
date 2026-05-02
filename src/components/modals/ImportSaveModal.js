@@ -155,11 +155,11 @@ export default {
     >
     <div class="c-modal-import__save-info">
       <div v-if="inputIsSecret">
-        ???
+        ？？？
       </div>
       <template v-else-if="inputIsValidSave">
         <div v-if="fileName">
-          File name: {{ fileName }}
+          存档名称：{{ fileName }}
         </div>
         <div>反物质：{{ formatPostBreak(antimatter, 2, 1) }}</div>
         <div v-if="progress.isInfinityUnlocked">

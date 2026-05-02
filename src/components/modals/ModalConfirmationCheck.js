@@ -22,7 +22,7 @@ export default {
       };
     },
     tooltipText() {
-      return `${this.setting ? "Disable" : "Reenable"} the ${this.confirmation.name} confirmation`;
+      return `${this.setting ? "关闭" : "开启"}${this.confirmation.name}确认`;
     },
   },
   created() {

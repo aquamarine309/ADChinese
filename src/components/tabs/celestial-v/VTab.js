@@ -204,7 +204,7 @@ export default {
         <br><br>
         每个困难的薇成就计为两个薇成就，并将赋予 {{ formatInt(2) }} 个空间之理而不是 {{ formatInt(1) }} 个。
         <br>
-        对应困难的V成就，降低目标所需的价格会明显增加。
+        对应困难的薇成就，降低目标所需的价格会明显增加。
       </div>
       <div
         v-if="showReduction"

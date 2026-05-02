@@ -3064,7 +3064,7 @@ perfectly the same. */
 }
 
 .l-button-container[data-v-modern-antimatter-dimensions-tab] {
-  width: 100px;
+  width: 120px;
   height: 30px;
   padding: 0;
 }
@@ -3275,8 +3275,7 @@ perfectly the same. */
 .l-information-modal[data-v-information-modal] {
   display: flex;
   flex-direction: column;
-  /* stylelint-disable-next-line unit-allowed-list */
-  width: calc(100vw - 50vh);
+  width: 80vw;
   justify-content: space-around;
 }
 
