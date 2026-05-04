@@ -569,7 +569,7 @@ ${formatX(1.33, 0, 2)} ➜ ${formatX(1.25, 0, 2)}`,
     requirement: [213],
     reqType: TS_REQUIREMENT_TYPE.AT_LEAST_ONE,
     requiresST: [225],
-    description: "基于复制器星系数量提升复制器的加成",
+    description: "基于最大复制器星系数量，获得额外的复制器星系",
     effect: () => Math.floor(player.replicanti.boughtGalaxyCap / 15),
     formatEffect: value => `+${formatInt(value)} 复制器星系`
   },

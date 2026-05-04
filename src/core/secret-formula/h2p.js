@@ -925,81 +925,54 @@ ${VUnlocks.vAchievementUnlock.isUnlocked
         "study", "triad", "celestial"],
       tab: "celestials/v"
     }, {
-      name: "Ra, Celestial of the Forgotten",
-      alias: "Ra",
+      name: "遗忘之神太阳神",
+      alias: "太阳神",
       info: () => `
-Ra is the fifth Celestial, unlocked by fully completing all of V's Achievements. They use their memories in order to
-bring back positive effects from previous Celestials in a stronger way. Over time, you will unlock the previous four
-Celestials <i>within</i> Ra, with each Celestial offering additional upgrades related to their original themes.
+太阳神是第五位天神，通过完全完成薇的全部成就解锁。太阳神利用记忆以更强大的方式重现前几位天神的正面效果。随时间推移，你将在太阳神内部逐步解锁前四位天神，每位天神都提供与其原始主题相关的额外升级。
 <br>
 <br>
-Each previous Celestial within Ra gains levels by using memories, which are generated passively over time from
-Memory Chunks. Memory Chunks can only be gained by entering Ra's Reality, but inside of the Reality Chunks will
-be generated passively based on certain resource totals. If you are storing real time, you will not gain any
-Chunks inside of Ra's Reality, but Memories will still be generated normally. Having a total of
-${formatInt(Ra.remembrance.requiredLevels)} levels across all Celestials unlocks Remembrance,
-which allows you to choose a particular Celestial to gain more chunks while inside of Ra's Reality.
+太阳神内部的每位前天神通过消耗记忆来提升等级，记忆由记忆碎片随时间被动生成。记忆碎片只能通过进入太阳神的现实获得，而在该现实中，碎片会根据特定资源总量被动生成。如果你正在存储现实时间，则不会在太阳神现实中获得任何碎片，但记忆仍会正常生成。所有天神等级总和达到 ${formatInt(Ra.remembrance.requiredLevels)} 级可解锁“追忆”，允许你选择一位特定天神，使其在太阳神现实内获得更多碎片。
 <br>
 <br>
-Memories can be spent on three things - an increase to Memory Chunk gain, an increase to Memory gain, and leveling up
-the Celestial. You start Ra with only Teresa unlocked and each successive Celestial is unlocked by reaching level
-${formatInt(8)} with the previous Celestial. Levels are capped at ${formatInt(25)}.
+记忆可用于三方面：提升记忆碎片获取量、提升记忆获取量以及提升天神等级。开始时太阳神仅解锁特蕾莎，后续每位天神需要前一位达到 ${formatInt(8)} 级才可解锁。等级上限为 ${formatInt(25)} 级。
 <br>
 <br>
-Teresa unlocks the ability to charge your Infinity Upgrades, making them much stronger. They also
-improve your Glyph effects once you reach certain thresholds in Glyph sacrifice value.
+特蕾莎解锁为无限升级充能的能力，使其大幅增强。同时，当符文献祭值达到特定阈值后，特蕾莎还会提升你的符文效果。
 <br>
 <br>
-At level ${formatInt(2)}, Effarig unlocks
+达到 ${formatInt(2)} 级时，鹿颈长解锁
 ${Ra.unlocks.effarigUnlock.canBeApplied
-    ? "a new mechanic called Glyph Alchemy and later on also makes Effarig Glyphs stronger while gradually removing " +
-      "almost all random elements of Glyph generation. Glyph Alchemy also has its own How To Play entry."
-    : "<span style='color: var(--color-bad);'>(unlock Effarig within Ra to see unlock details)</span>"}
+    ? "名为符文炼金的新机制，后续还会使鹿颈长符文变得更强，并逐步移除符文生成中几乎所有的随机因素。符文炼金亦有独立的游戏帮助条目。"
+    : "<span style='color: var(--color-bad);'>(在太阳神中解锁鹿颈长以查看详情)</span>"}
 <br>
 <br>
-The Nameless Ones unlocks
+无名氏解锁
 ${Ra.unlocks.enslavedUnlock.canBeApplied
-    ? "additional mechanics related to charging the Black Holes, as well as making them significantly stronger."
-    : "<span style='color: var(--color-bad);'>(unlock The Nameless Ones within Ra to see unlock details)</span>"}
+    ? "与黑洞充能相关的额外机制，并使其显著增强。"
+    : "<span style='color: var(--color-bad);'>(在太阳神中解锁无名氏以查看详情)</span>"}
 <br>
 <br>
-V unlocks
+薇解锁
 ${Ra.unlocks.vUnlock.canBeApplied
-    ? "Triad Studies, which are new studies near the bottom of the tree which cost Space Theorems. Each Triad Study " +
-      "requires you to also have the three nearby studies as well in order to purchase them. They also unlock a " +
-      "smaller set of more difficult V-Achievements to complete for additional Space Theorems."
-    : "<span style='color: var(--color-bad);'>(unlock V within Ra to see unlock details)</span>"}
+    ? "三体研究，即时间研究树底部附近的新研究，需消耗空间之理。每个三体研究还要求你同时拥有其邻近的三个研究才能购买。此外，三体研究还会解锁一组更少但更难的薇成就，完成后可获得额外的空间之理。"
+    : "<span style='color: var(--color-bad);'>(在太阳神中解锁薇以查看详情)</span>"}
 <br>
 <br>
-Ra will not directly unlock the next Celestial.`,
+太阳神不会直接解锁下一位天神。
+`,
       isUnlocked: () => VUnlocks.raUnlock.isUnlocked,
       tags: ["reality", "memories", "razenpok", "levels", "glyphs", "lategame", "endgame",
         "effarig", "teresa", "nameless", "v", "celestial"],
       tab: "celestials/ra"
     }, {
-      name: "Glyph Alchemy Resources",
+      name: "符文炼金资源",
       info: () => `
-Glyph Alchemy is a mechanic unlocked by reaching Effarig level ${formatInt(2)} in Ra. It unlocks the ability to
-use up your Glyphs by refining them into Alchemy Resources associated with their type. You can refine Glyphs by
-setting your Sacrifice Type to something other than "Always Sacrifice" in the Glyphs tab, and doing the normal
-procedure for a sacrifice.
-Each Alchemy Resource has a unique effect, which you can view on the Alchemy tab.
-<br>
-<br>
-In addition to all their other properties, Glyphs now have a <i>refinement value</i> which determines how much of
-its associated Alchemy Resource it is worth. This value is based on the cube of the Glyph's level, scaled
-so that level ${formatInt(10000)} Glyphs correspond to ${formatInt(10000)} Alchemy Resources. A single Glyph itself,
-however, only gives ${formatPercents(GlyphSacrificeHandler.glyphRefinementEfficiency)} of this value when refined.
-These are values for ${formatPercents(1)} rarity Glyphs; Glyphs of lower rarity still have the same cap but give
-proportionally less resources. For example, a ${formatPercents(0.5)} rarity Glyph will give only half as much.
-<br>
-<br>
-Alchemy Resources cannot be gained indefinitely; there is a per-resource cap which is based on the highest refinement
-value of all the Glyphs of that type you have refined. For example, if the highest level Time Glyph you have refined
-is level ${formatInt(8000)} (refinement value: ${formatInt(GlyphSacrificeHandler.levelRefinementValue(8000))}), then no
-matter how many Time Glyphs you refine, you can never have more than
-${formatInt(GlyphSacrificeHandler.levelRefinementValue(8000))} of the Time resource until you refine another Time Glyph
-with a higher refinement value.
+符文炼金是在太阳神中将鹿颈长升至 ${formatInt(2)} 级后解锁的机制。它允许你将符文精炼为与其类型对应的炼金资源来消耗符文。你可以在符文标签页中将献祭类型设置为“始终献祭”以外的选项，并按正常献祭流程操作来进行精炼。  
+每种炼金资源都有独特效果，可在炼金标签页查看。  
+<br>  
+除了所有其他属性外，符文现在还具有<i>精炼值</i>，该值决定其转化为对应炼金资源的价值量。精炼值基于符文等级的立方计算，并经过标定使 ${formatInt(10000)} 级符文对应 ${formatInt(10000)} 点炼金资源。但每个符文实际只能提供该数值的 ${formatPercents(GlyphSacrificeHandler.glyphRefinementEfficiency)} 进行精炼。以上数值针对稀有度为 ${formatPercents(1)} 的符文；低稀有度符文的精炼值上限相同，但提供的资源等比减少。例如稀有度 ${formatPercents(0.5)} 的符文仅能提供一半资源。  
+<br>  
+炼金资源不能无限获得；每种资源均有上限，该上限取决于你精炼过的同类型符文中最高的精炼值。例如，若你精炼过的最高等级时间符文为 ${formatInt(8000)} 级（精炼值：${formatInt(GlyphSacrificeHandler.levelRefinementValue(8000))}），那么在该项资源上，你最多只能持有 ${formatInt(GlyphSacrificeHandler.levelRefinementValue(8000))} 点，直到精炼出更高精炼值的时间符文为止。
 `,
       isUnlocked: () => Ra.unlocks.unlockGlyphAlchemy.canBeApplied,
       // Oh god I'm so sorry this is so many words
@@ -1009,26 +982,13 @@ with a higher refinement value.
         "reaction"],
       tab: "reality/alchemy"
     }, {
-      name: "Glyph Alchemy Reactions",
+      name: "符文炼金反应",
       info: () => `
-Alchemy Resources can be combined together in certain combinations in order to create new compound resources, which
-are unlocked at certain Effarig levels. Resources are combined once per Reality, unaffected by real time
-amplification. Reactions have a higher yield and thus happen faster when your reagent amounts are higher. The cap for
-compound resources is equal to the lowest cap amongst all of its reagents. In order for a reaction to occur, the
-current amount of all reagents must be greater than the current amount of the produced resource.
-<br>
-<br>
-Reaction speed is proportional to the amount of usable reagents for the reaction, but only reagent amounts above the
-product amount are eligible for being used. For example, if you have ${formatInt(10000)} of all reagents and
-${formatInt(7500)} of the product, only ${formatInt(2500)} of the reagents are used in calculating the reaction speed.
-If you instead had ${formatInt(0)} of the product, <i>all</i> of the reagent is available for the reaction and it will
-produce ${formatX(4)} faster. Lastly, if you had ${formatInt(10000)} of the product, then none of the reagent can be
-used and the reaction will not run at all.
-<br>
-<br>
-To activate or deactivate a reaction, click the circle corresponding to the reaction's product. When the reaction can
-be applied, moving lines will be shown from all reagents to the product. If a connection is a solid line, that means
-that the reaction cannot proceed due to not having enough of that reagent to get more of the product due to its cap.
+炼金资源可以按特定配方组合，生成新的复合资源。复合资源在鹿颈长的特定等级解锁。资源组合每轮现实发生一次，不受现实时间扩增影响。反应产率随试剂数量的增加而提高，因此试剂越多反应越快。复合资源的上限等于其所有试剂中最低的上限。要使反应发生，所有试剂的当前数量必须大于产物的当前数量。  
+<br>  
+反应速度与可用于反应的试剂数量成正比，但只有超过产物数量的那部分试剂才会计入。例如，若所有试剂均为 ${formatInt(10000)}，产物为 ${formatInt(7500)}，则只有 ${formatInt(2500)} 的试剂用于计算反应速度。若产物为 ${formatInt(0)}，则<i>全部</i>试剂均可参与反应，反应速度将加快 ${formatX(4)}。反之，若产物为 ${formatInt(10000)}，则无试剂可用，反应完全停止。  
+<br>  
+要激活或停用某个反应，请点击该反应产物对应的圆圈。当反应可以进行时，从所有试剂指向产物的连接线会呈动态移动状态。若连接线为实线，则表示因该试剂数量不足（受限于其上限）而无法继续增加产物。
 `,
       isUnlocked: () => Ra.unlocks.unlockGlyphAlchemy.canBeApplied,
       tags: ["reality", "lategame", "endgame", "ra", "effarig", "alchemy", "power", "infinity", "time", "replication",
@@ -1037,31 +997,19 @@ that the reaction cannot proceed due to not having enough of that reagent to get
         "reaction"],
       tab: "reality/alchemy"
     }, {
-      name: "Imaginary Machines",
+      name: "虚幻机器",
       info: () => `
-Once you are able to gain at least ${format(MachineHandler.baseRMCap)} Reality Machines in a single Reality, you
-unlock the ability to gain a new resource called Imaginary Machines. Reality Machines will also become hardcapped
-at ${format(MachineHandler.baseRMCap)}; you will be unable to gain any more past this limit.
-<br>
-<br>
-Additionally you unlock the Imaginary Upgrades tab, which contains a set of upgrades similar to the Reality Upgrades -
-each upgrade has a condition you must fulfill to unlock it and an Imaginary Machine cost to actually purchase it.
-The first two rows of upgrades can be repeatedly bought, while the other three are one-time upgrades.
-<br>
-<br>
-Your iM amount is affected by two things:
-<br>
-<b>iM Cap</b> - There is a maximum amount of iM you can ever have, which is based on the highest RM amount you would
-have been able to get if there were no RM cap. This is updated on a continual basis and thus will immediately increase
-if you ever surpass your previous highest uncapped RM amount.
-<br>
-<b>Current iM</b> - Over time your current iM will passively rise towards your iM cap, in a way that slows down
-exponentially as you approach the cap. By default iM slows down at a rate where the amount you are <i>missing</i>
-(ie. your cap minus your current amount) is cut in half every minute. This growth rate is unaffected by any
-modifiers to game speed.
-<br>
-<br>
-Imaginary Machine upgrades will unlock the final two Celestials.
+当你能够在单次现实中获得至少 ${format(MachineHandler.baseRMCap)} 现实机器时，便可以获取名为“虚幻机器”的新资源。现实机器也将被硬上限锁定在 ${format(MachineHandler.baseRMCap)}；你将无法获得超过此上限的现实机器。  
+<br>  
+此外，你还将解锁“虚幻升级”标签页，其中包含一组类似于现实升级的升级项目——每项升级都有必须满足的解锁条件，以及实际购买所需的虚幻机器消耗。前两行升级可重复购买，其余三行为一次性升级。  
+<br>  
+你的虚幻机器数量受两个因素影响：  
+<br>  
+<b>虚幻机器上限</b> — 你所能拥有的虚幻机器最大数量，取决于若无上限时你本可获得的最高现实机器数量。该值会持续更新，一旦你超过之前无上限时的最高现实机器量，上限便会立即提升。  
+<br>  
+<b>当前虚幻机器</b> — 随时间推移，你的当前虚幻机器会被动向上限增长，且越接近上限增速越慢（呈指数级减缓）。默认情况下，虚幻机器的增长速度为：你<i>缺少</i>的部分（即上限减当前值）每减少一半。此增速不受任何游戏速度的影响。  
+<br>  
+虚幻升级将解锁最后两位天神。
 `,
       isUnlocked: () => MachineHandler.isIMUnlocked,
       tags: ["imaginary", "machines", "reality", "lategame", "endgame"],

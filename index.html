@@ -5,6 +5,8 @@
   <title>反物质维度</title>
   <link rel="icon" type="image/png" href="./public/icon.png">
   <meta name="反物质维度" content="A game about huge numbers and watching them go up." >
+  <meta http-equiv="Content-Security-Policy"
+      content="script-src 'self' 'unsafe-inline' 'unsafe-eval' ;">
   <link href="https://fonts.googleapis.com/css?family=PT+Mono" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./public/stylesheets/fontawesome/css/all.css">
   <link rel="stylesheet" type="text/css" href="./public/stylesheets/codemirror/codemirror.css">
@@ -62,24 +64,6 @@
     const errorMessage = `${e.message}\n(at: ${e.filename}:${e.lineno}:${e.colno})`;
     console.warn(errorMessage);
     window.errorMessages.push(errorMessage);
-  });
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeName === 'SCRIPT' &&
-          node.src &&
-          (node.src.includes('google-analytics.com') ||
-            node.src.includes('analytics.js'))) {
-          node.parentNode.removeChild(node);
-          console.log('Prevented loading from GA');
-        }
-      });
-    });
-  });
-  
-  observer.observe(document.documentElement, {
-    childList: true,
-    subtree: true
   });
 </script>
 </html>
