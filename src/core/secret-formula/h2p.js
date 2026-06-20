@@ -1108,7 +1108,6 @@ ${Pelle.isDoomed
       <br>
       <b>快捷键：Z</b> 将尝试执行末日重置。`
     : "<span style='color: var(--color-bad);'><b>你必须毁灭现实才能阅读本条目剩余部分。</b></span>"}
-}
 `,
       isUnlocked: () => Pelle.isUnlocked,
       tags: ["reality", "antimatter", "lategame", "endgame", "final", "hevipelle", "celestial", "doom"],
