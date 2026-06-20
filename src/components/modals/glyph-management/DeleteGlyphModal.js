@@ -29,7 +29,7 @@ export default {
         // Why is confirmedDelete here: refer to SacrificeGlyphModal.vue
 
         this.emitClose();
-        Modal.message.show("The selected Glyph changed position or was otherwise changed!");
+        Modal.message.show("选中的符文改变了位置或发生了其他变化！");
       }
     },
     handleYesClick() {

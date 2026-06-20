@@ -69,7 +69,7 @@ export default {
           const nextCompletion = EternityChallenge(currEC).completions + 1;
           let completionText = "";
           if (Enslaved.isRunning && currEC === 1) {
-            completionText = `(${formatInt(nextCompletion)}/???)`;
+            completionText = `（${formatInt(nextCompletion)}/???）`;
           } else if (nextCompletion === 6) {
             completionText = `（已完成）`;
           } else {
@@ -126,9 +126,9 @@ export default {
       }
 
       if (Player.isInAnyChallenge) {
-        // Regex replacement is used to remove the "(X/Y)" which appears after ECs. The ternary statement is there
+        // Regex replacement is used to remove the "（X/Y）" which appears after ECs. The ternary statement is there
         // because this path gets called for NCs, ICs, and ECs
-        const toExit = this.activeChallengeNames[this.activeChallengeNames.length - 1].replace(/\W+\(.*\)/u, "");
+        const toExit = this.activeChallengeNames[this.activeChallengeNames.length - 1].replace(/\W+（.*）/u, "");
         names = { chall: toExit, normal: isEC ? "永恒" : "无限" };
         clickFn = () => {
           const oldChall = Player.anyChallenge;

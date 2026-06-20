@@ -144,7 +144,7 @@ export default {
         copyToClipboard(toExport);
         GameUI.notify.automator("当前自动机脚本已导出到剪贴板");
       } else {
-        GameUI.notify.error("Could not export blank Automator script!");
+        GameUI.notify.error("无法导出空白自动机脚本！");
       }
     },
     importScript() {
@@ -178,7 +178,7 @@ export default {
       // suppress the error modal instead
       if (this.isBlock && BlockAutomator.hasUnparsableCommands(this.currentScript) && this.currentScript !== "") {
         AutomatorBackend.changeModes(this.currentScriptID);
-        Modal.message.show("Some script commands were unrecognizable - defaulting to text editor.");
+        Modal.message.show("一些脚本命令无法识别——已改用文本编辑器。");
       }
 
       this.$nextTick(() => {

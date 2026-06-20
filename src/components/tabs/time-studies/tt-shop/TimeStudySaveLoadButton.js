@@ -86,8 +86,8 @@ export default {
     handleExport() {
       this.hideContextMenu();
       copyToClipboard(this.preset.studies);
-      const presetName = this.name ? `Study preset "${this.name}"` : "Study preset";
-      GameUI.notify.eternity(`${presetName} exported from slot ${this.saveslot} to your clipboard`);
+      const presetName = this.name ? `研究预设 "${this.name}"` : "研究预设";
+      GameUI.notify.eternity(`来自槽 ${this.saveslot} 的 ${presetName} 已导出至粘贴板。`);
     },
     edit() {
       Modal.studyString.show({ id: this.saveslot - 1 });

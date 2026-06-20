@@ -61,7 +61,7 @@ export const pelleQuotes = {
       { text: '而你，面对$1，又失败了几次？', 1: eternal },
       '若你尚存记忆，细数之。',
       { text: '哪怕是$1——那六位有名者及无数无名者。', 1: deities },
-      { text: '纷繁复杂，悖离逻辑，那些已成为$1。.', 1: unseen },
+      { text: '纷繁复杂，悖离逻辑，那些已成为$1。', 1: unseen },
       { text: '显然，伟大的$1并不会忆及这一切。', 1: destroyer },
       { text: '每一场你所掩藏的$1，皆已过眼云烟。', 1: battles },
     ],

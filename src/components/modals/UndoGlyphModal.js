@@ -14,11 +14,6 @@ export default {
     update() {
       this.showStoredGameTime = Enslaved.isUnlocked;
     },
-    realityInvalidate() {
-      this.emitClose();
-      Modal.message.show("Glyph Undo can only undo with a Reality!",
-        { closeEvent: GAME_EVENT.REALITY_RESET_AFTER });
-    },
     handleYesClick() {
       this.emitClose();
       Glyphs.undo();

@@ -147,7 +147,7 @@ export const GameStorage = {
     Tabs.all.find(t => t.id === player.options.lastOpenTab).show(false);
     Modal.hideAll();
     Cloud.resetTempState();
-    GameUI.notify.info("Game loaded");
+    GameUI.notify.info("存档已加载");
     Achievements.updateSteamStatus();
   },
 

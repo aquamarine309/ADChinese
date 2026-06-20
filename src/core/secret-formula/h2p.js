@@ -768,7 +768,7 @@ ${Teresa.runCompleted
 <br>  
 ${Teresa.runCompleted  
     ? "完成特蕾莎的现实后，你可以再次进入。若在重复挑战中达到更高的反物质数量，其奖励将变得更强。"  
-    : "(更多信息待解锁——完成特蕾莎的现实)"}
+    : "（更多信息待解锁——完成特蕾莎的现实）"}
 `,
       isUnlocked: () => Teresa.isUnlocked,
       tags: ["rm", "endgame", "lategame", "perks", "sacrifice", "boo", "ghost", "celestial"],
@@ -859,7 +859,7 @@ ${Ra.unlocks.glyphEffectCount.canBeApplied
 <br>  
 可设置将离线时间自动转为存储的现实时间。  
 <br>  
-首个解锁项需消耗 ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP.price).totalYears)} 年存储游戏时间，将时间维度提供的计数频率升级软上限（成本开始激增的临界点）提高 ${format(1e5)} 级。  
+首个解锁项需消耗 ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.FREE_TICKSPEED_SOFTCAP.price).totalYears)} 年存储游戏时间，将时间维度提供的计数频率升级软上限（价格开始激增的临界点）提高 ${format(1e5)} 级。  
 <br>  
 当存储 ${format(TimeSpan.fromMilliseconds(ENSLAVED_UNLOCKS.RUN.price).totalYears)} 年游戏时间后，可解锁祂的现实。完成无名氏现实的奖励是  
 ${Enslaved.isCompleted  
@@ -880,9 +880,9 @@ ${Enslaved.isCompleted
 <br>  
 无限维度通常有 ${format(InfinityDimensions.HARDCAP_PURCHASES)} 次购买上限，这会限制其倍率增长。超立方体可通过消耗无限点数来提升该上限。  
 <br>  
-超立方体成本呈超指数增长，但每个后续超立方体的效果会显著增强以作补偿。超立方体数量永不重置，意味着购买后无需在未来现实中重复支付相同无限点数即可永久享受上限提升。  
+超立方体价格呈超指数增长，但每个后续超立方体的效果会显著增强以作补偿。超立方体数量永不重置，意味着购买后无需在未来现实中重复支付相同无限点数即可永久享受上限提升。  
 <br>  
-你可在无限维度标签页查看当前超立方体数量及下一个成本详情。此外，无限点数显示将新增“距下一个超立方体”的百分比进度。若可购买，无限按钮会变色并在点击时跳转至无限维度标签页。  
+你可在无限维度标签页查看当前超立方体数量及下一个价格详情。此外，无限点数显示将新增“距下一个超立方体”的百分比进度。若可购买，无限按钮会变色并在点击时跳转至无限维度标签页。  
 `,
       isUnlocked: () => Enslaved.isCompleted,
       tags: ["reality", "lategame", "endgame", "tesseract", "id", "celestial"],
@@ -911,7 +911,7 @@ ${VUnlocks.vAchievementUnlock.isUnlocked
 - 每个薇成就还会给予你一个空间之理。
 <br>
 <br>
-通过获得 ${formatInt(2)} 个薇成就解锁的目标降低功能，允许你通过消耗复兴点来使某些薇成就要求更容易完成，最低可降至最简单层级的要求。降低目标的成本不会随着使用而增加，并且也会降低未来层级的要求。
+通过获得 ${formatInt(2)} 个薇成就解锁的目标降低功能，允许你通过消耗复兴点来使某些薇成就要求更容易完成，最低可降至最简单层级的要求。降低目标的价格不会随着使用而增加，并且也会降低未来层级的要求。
 <br>
 <br>
 空间之理允许你购买通常被禁止的时间研究，比如改进无限点公式后的多路径分支，或者底部成对黑暗/光明研究中的两项。和时间理数一样，每次重置研究时都会全额返还。拥有足够的空间之理后，你最终可以一次性购买所有时间研究！
@@ -1015,75 +1015,42 @@ ${Ra.unlocks.vUnlock.canBeApplied
       tags: ["imaginary", "machines", "reality", "lategame", "endgame"],
       tab: "reality/imag_upgrades"
     }, {
-      name: "Lai'tela, Celestial of Dimensions",
-      alias: "Lai'tela",
+      name: "维度之神莱特拉",
+      alias: "莱特拉",
       info: () => `
-Lai'tela is the sixth Celestial, unlocked by purchasing the appropriate Imaginary Upgrade for
-${format(ImaginaryUpgrade(15).cost)} iM.
+      莱特拉是第六位天神，通过购买对应的虚幻升级（消耗 ${format(ImaginaryUpgrade(15).cost)} 虚幻机器）解锁。
 <br>
 <br>
-Lai'tela gives a new currency called Dark Matter, which provides a multiplier to Continuum's effect
-based on the highest amount of Dark Matter you have ever had. Dark Matter is produced by
-Dark Matter Dimensions, in a similar cascading way to all other types of dimensions in the game. Unlike other
-dimensions, there are only four Dark Matter Dimensions rather than eight. You start with the first one unlocked
-immediately and the higher ones are unlocked via Imaginary Upgrades. When unlocking dimensions, you are given
-${formatInt(1)} of the dimension and cannot gain more without having it produced from the next tier up.
+莱特拉引入了一种名为“暗物质”的新货币，其效果根据你曾拥有的最高暗物质数量为连续统提供倍数加成。暗物质由暗物质维度以类似于游戏中其他维度的方式产生。与其他维度不同，暗物质维度只有四个而非八个。你一开始即可解锁第一个暗物质维度，更高的维度通过虚幻升级解锁。解锁维度时你会获得 ${formatInt(1)} 个该维度，且在没有更高层级维度生产的情况下无法获得更多数量。
 <br>
 <br>
-Each Dark Matter Dimension, after a certain interval of time, generates two things: Dark Matter or the next lower
-Dark Matter Dimension and another resource called Dark Energy. Dark Matter and Dark Matter Dimension production
-per interval is equal to the product of your Dark Matter multiplier and the number of dimensions you have, while
-Dark Energy production is independent of your dimension amount. Dark Energy is used to produce Singularities, which
-have their own How To Play entry.
+每个暗物质维度经过一定时间间隔后会产生两种东西：暗物质或上一级暗物质维度，以及另一种名为“暗能量”的资源。暗物质和暗物质维度的单次间隔产量等于暗物质倍数与当前维度数量的乘积，而暗能量产量与维度数量无关。暗能量用于产生奇点，相关机制有独立的游戏帮助条目。
 <br>
 <br>
-Dark Matter Dimensions can have their intervals upgraded down to a minimum of ${formatInt(10)}ms, at which point
-you cannot upgrade the interval any further. You can choose to ascend Dark Matter Dimensions which reach
-that point, which initially multiplies Dark Matter gain by ${formatInt(POWER_DM_PER_ASCENSION)} and Dark Energy by
-${formatInt(POWER_DE_PER_ASCENSION)}. The interval gets multiplied by ${formatInt(1200)}, but can be upgraded once
-again. Reaching ${formatInt(10)}ms again allows you to ascend again if you choose to.
+暗物质维度的时间间隔可升级，最低可降至 ${formatInt(10)} 毫秒，此后无法继续缩减间隔。达到该极限后，你可以选择“飞升”该暗物质维度，每次飞升会使暗物质获取量初始提升 ${formatInt(POWER_DM_PER_ASCENSION)} 倍，暗能量获取量初始提升 ${formatInt(POWER_DE_PER_ASCENSION)} 倍。飞升后时间间隔会乘以 ${formatInt(1200)}，但可以再次进行升级。当间隔再次达到 ${formatInt(10)} 毫秒时，你即可再次选择飞升。
 <br>
 <br>
-An Imaginary Upgrade allows you to unlock a prestige called Annihilation. Annihilation resets your Dark Matter
-and Dark Matter Dimensions, but adds to a permanent multiplier to Dark Matter that applies to all Dark Matter
-Dimensions. You can Annihilate multiple times; the additions to the multiplier stack additively, and there is
-no need to Annihilate for a greater addition each time. You must have at least
-${format(Laitela.annihilationDMRequirement)} Dark Matter in order to Annihilate.
+一项虚幻升级允许你解锁名为“湮灭”的重置机制。湮灭会重置暗物质和暗物质维度，但会为暗物质增加一个永久性倍数加成，该加成适用于所有暗物质维度。你可以多次进行湮灭，每次叠加的倍数为加法累加，无需每次都追求更高的加成增量。进行湮灭需要至少拥有 ${format(Laitela.annihilationDMRequirement)} 暗物质。
 <br>
 <br>
-Lai'tela has a Reality which gives a multiplier to Dark Matter Dimensions' Dark Matter power based on how well you
-do in the Reality. Whenever you complete the Reality in under ${formatInt(30)} seconds, your highest available
-Dimension will be permanently disabled during further attempts of the Reality. Disabling all of your dimensions by
-completing the Reality in under ${formatInt(30)} seconds eight times will also give you a ${formatX(8)} multiplier
-to Dark Energy gain.
+莱特拉拥有一个专属现实，会根据你在其中的表现给予暗物质维度暗物质力量的倍数加成。若你在 ${formatInt(30)} 秒内完成该现实，则在后续挑战中你当前最高等级的维度将被永久禁用。若连续八次在 ${formatInt(30)} 秒内完成现实使所有维度被禁用，你还会获得暗能量获取量 ${formatX(8)} 的倍数加成。
 <br>
 <br>
-Lai'tela will not directly unlock the next Celestial.
+莱特拉不会直接解锁下一位天神。
 `,
       isUnlocked: () => Laitela.isUnlocked,
       tags: ["omsi", "reality", "dark", "matter", "dimensions", "lategame", "endgame", "ascend", "celestial"],
       tab: "celestials/laitela"
     }, {
-      name: "Continuum",
+      name: "连续统",
       info: () => `
-When you unlock Lai'tela, your Antimatter Dimensions and Tickspeed Upgrades switch to a new mode of production
-called Continuum, which gives the same effect as previously but allows for buying partial Dimension or
-Tickspeed Upgrades. These fractional purchases are given for free without spending your antimatter and will provide
-an appropriate portion of their multiplier.
+当你解锁莱特拉后，反物质维度和计数频率升级将切换至一种名为“连续统”的新生产模式。该模式效果与先前相同，但允许购买小数个维度或计数频率升级。这些部分购买是免费的，无需消耗反物质，并会提供相应比例的倍数加成。
 <br>
 <br>
-The purchase buttons for Antimatter Dimensions and Tickspeed Upgrades become modified to display the number of upgrades
-you would be able to purchase if Continuum was inactive, and the purchase count is scaled smoothly with antimatter.
-For example, having ${format(2e7)} antimatter will give you a Continuum value of ${format(5.3, 0, 1)} for tickspeed
-(initial cost of ${format(1e3)} and increase of ${formatX(10)}) since you can purchase it ${formatInt(5)} times and
-are roughly ${formatPercents(0.3)} of the way to the next. Tickspeed Continuum in this case will then
-give a production boost equal to (upgrade multiplier)<sup>${format(5.3, 0, 1)}</sup>.
+反物质维度和计数频率升级的购买按钮会有所变化，显示为连续统未激活时你可购买的升级数量，且购买数量会随反物质数量平滑缩放。例如，拥有 ${format(2e7)} 反物质时，计数频率的连续统值为 ${format(5.3, 0, 1)}（初始价格 ${format(1e3)}，增幅 ${formatX(10)}），因为你可以购买 ${formatInt(5)} 次，并大致处于下一次购买的 ${formatPercents(0.3)} 进度。此时计数频率连续统将提供相当于（升级倍数）<sup>${format(5.3, 0, 1)}</sup> 的生产加成。
 <br>
 <br>
-Some upgrades will multiply Continuum value directly, which gives a production boost without affecting the cost
-scaling. However, these upgrades will not function if Continuum is disabled on the Autobuyers page, which may result
-in a loss of production if disabled. Continuum makes your autobuyers for Antimatter Dimensions and Tickspeed obsolete,
-so all the related autobuyer settings for these autobuyers are now hidden on that tab as long as Continuum is active.
+部分升级会直接乘以连续统值，从而在不影响价格缩放的情况下提供生产加成。但若在自动购买器页面中禁用连续统，则这些升级将失效，可能导致产量损失。连续统会使反物质维度和计数频率的自动购买器变得多余，因此在连续统激活期间，这些自动购买器的相关设置将在该标签页中被隐藏。
 `,
       // Apparently continuumUnlocked is really important in a lot of places and if we keep it unlocked
       // Things break, so we check for the iMU instead.
@@ -1091,118 +1058,84 @@ so all the related autobuyer settings for these autobuyers are now hidden on tha
       tags: ["continuum", "purchase", "reality", "lategame", "endgame"],
       tab: ""
     }, {
-      name: "Singularities",
+      name: "奇点",
       info: () => `
-Singularities are a new resource which you can obtain using features within Lai'tela.
+奇点是在莱特拉中通过特定功能获得的新资源。
 <br>
 <br>
-In order to obtain Singularities, you need to reach ${format(200)} Dark Energy. When you do, you get the option to
-condense all your Dark Energy into a Singularity, resetting it back to zero. Any extra Dark Energy above this amount
-do not carry over, and is thus wasted. Note that only Dark Energy is reset, the status of your Dark Matter and its
-dimensions stays the same when condensing Singularities.
+要获得奇点，你需要达到 ${format(200)} 暗能量。达到后，你可以选择将所有暗能量凝聚成一个奇点，暗能量数量将重置为零。超过该数量的多余暗能量不会保留，因此会被浪费。注意，只有暗能量会被重置，暗物质及暗物质维度的状态在凝聚奇点时保持不变。
 <br>
 <br>
-Once you reach ${formatInt(10)} Singularities, you can freely increase or decrease the Dark Energy requirement to
-condense Singularities by a factor of ${formatInt(10)} (with a minimum of ${format(200)}). This increases or decreases
-the number of Singularities gained from resetting at the cap by <i>more than</i> a factor of ${formatInt(10)}, making
-higher caps worth more if you are willing to wait.
+一旦你达到 ${formatInt(10)} 个奇点，即可自由将凝聚奇点所需的暗能量需求增加或减少 ${formatInt(10)} 倍（最低为 ${format(200)}）。这会使从上限重置时获得的奇点数量变化<i>超过</i> ${formatInt(10)} 倍，因此若你愿意等待，更高上限将更具价值。
 <br>
 <br>
-The purpose of Singularities is to unlock Singularity Milestones, which act similarly to Eternity Milestones. Unlocking
-these milestones simply requires you to reach the total number of Singularities specified; Singularities are not spent.
-There are three types of milestones - one-time milestones, milestones repeatable a limited number of times, and
-milestones which can be repeated indefinitely.
+奇点的用途是解锁奇点里程碑，其机制类似于永恒里程碑。这些里程碑仅需达到指定的奇点总数即可解锁，奇点不会被消耗。里程碑分为三种类型：一次性里程碑、可重复有限次数的里程碑以及可无限次重复的里程碑。
 <br>
 <br>
-Independently of the milestone type, milestones also have an icon indicating what kind of upgrade they generally give:
+独立于里程碑类型，里程碑还会附带图标，用以指示其通常提供的升级类型：
 <br>
-<b>ᛝ</b> These milestones help mechanics specific to Lai'tela
+<b>ᛝ</b> 这些里程碑有助于莱特拉专属机制
 <br>
-<i class="fas fa-arrows-alt"></i> These milestones let a resource in Lai'tela affect the rest of the game
+<i class="fas fa-arrows-alt"></i> 这些里程碑使莱特拉中的某项资源影响游戏其他部分
 <br>
-<i class="fas fa-compress-arrows-alt"></i> These milestones improve Lai'tela based on something outside of Lai'tela
+<i class="fas fa-compress-arrows-alt"></i> 这些里程碑基于莱特拉以外的因素来强化莱特拉
 `,
       isUnlocked: () => Laitela.isUnlocked,
       tags: ["reality", "lategame", "endgame", "laitela", "dark"],
       tab: ""
     }, {
-      name: "Pelle, Celestial of Antimatter",
-      alias: "Pelle",
+      name: "反物质之神佩勒",
+      alias: "佩勒",
       info: () => `
-When you purchase the last Imaginary Upgrade and unlock Pelle, you unlock their tab, where you can find a button to
-"Doom your Reality". In order to Doom your Reality, you must have completed all ${formatInt(17)} rows of Achievements
-available to you at this point, and attained ${formatInt(25000)} of each Alchemy Resource.
+当你购买最后一项虚幻升级并解锁佩勒后，你将解锁其标签页，其中包含一个“毁灭你的现实”按钮。要毁灭现实，你必须已完成先前的全部 ${formatInt(17)} 行成就，并拥有每种炼金资源 ${formatInt(25000)} 点。
 <br>
 <br>
 ${Pelle.isDoomed
-    ? `Dooming your Reality will start a new <b>Doomed Reality</b>, resetting almost the entire game up to
-      Reality, not giving you any rewards from your progress in your current Reality.
+    ? `毁灭现实将开启一个新的<b>毁灭现实</b>，重置现实之前几乎所有游戏进度，且不会因当前现实的进度获得任何奖励。
       <br>
       <br>
-      When you enter the Doomed Reality, you keep all values under the General and Reality headers in the Statistics
-      tab and all of your best Challenge times. Inside Doomed Realities, multiple upgrades, Time Studies, Challenge and
-      Celestial rewards, Perks, and other game mechanics are disabled or grant no reward.
-      You can view the "Show effects in Doomed Reality" in Pelle tab for further information.
+      进入毁灭现实后，你将保留统计标签页中“常规”和“现实”标题下的所有数值，以及所有最佳挑战时间。在毁灭现实中，多项升级、时间研究、挑战和天神奖励、复兴以及其他游戏机制会被禁用或不再提供奖励。你可在佩勒标签页中点击“显示被毁灭的现实中的效果”按钮以获取更多信息。
       <br>
       <br>
-      Remnants are a new currency gained on Armageddon resets. Remnant gain is based on your best ever antimatter,
-      Infinity Points, and Eternity Points across all Doomed Realities. Remnants produce Reality Shards which can be
-      spent on Pelle Upgrades.
+      遗物是末日重置中获得的新货币。遗物获取量基于你在所有毁灭现实中的最佳反物质、无限点和永恒点。遗物可产生现实碎片，用于购买佩勒升级。
       <br>
       <br>
-      Pelle Upgrades can be divided into two categories. The five upgrades in the first row can be repeatedly bought,
-      but eventually reach a cap. They grant boosts to different aspects of the game, making progression within Doomed
-      Realities easier.
+      佩勒升级可分为两类。第一行的五项升级可重复购买，但最终会达到上限。它们为游戏的不同方面提供加成，使毁灭现实中的进程更加容易。
       <br>
       <br>
-      The other upgrades in the bottom rows offer automation and QoL (quality of life) improvements. Everything unlocked
-      from these upgrades cannot be unlocked by their usual methods in the game; for example, none of the Normal
-      Challenges will unlock autobuyers if completed since they are all locked behind Pelle Upgrades instead.
-      You can toggle a button above upgrade to hide bought upgrades or click the
-      <i class="fas fa-compress-arrows-alt"></i>-icon to collapse and hide the entire panel.
+      底部几行的其他升级提供自动化和便利性改进。从这些升级中解锁的所有内容无法通过游戏中的常规方法解锁；例如，普通挑战完成时不会解锁自动购买器，因为它们被佩勒升级替代。你可以切换按钮隐藏已购买的升级，或点击 <i class="fas fa-compress-arrows-alt"></i> 图标折叠隐藏整个面板。
       <br>
       <br>
-      <b>Hotkey: Z</b> will try to perform an Armageddon reset.`
-    : "<span style='color: var(--color-bad);'><b>You must Doom your Reality to read the rest of this entry.</b></span>"
+      <b>快捷键：Z</b> 将尝试执行末日重置。`
+    : "<span style='color: var(--color-bad);'><b>你必须毁灭现实才能阅读本条目剩余部分。</b></span>"}
 }
 `,
       isUnlocked: () => Pelle.isUnlocked,
       tags: ["reality", "antimatter", "lategame", "endgame", "final", "hevipelle", "celestial", "doom"],
       tab: "celestials/pelle"
     }, {
-      name: "Pelle Strikes",
+      name: "佩勒冲击",
       info: () => `
-Pelle Strikes are encountered on different events in the Doomed Reality. You have encountered the first Pelle Strike by
-reaching Infinity for the first time within a Doomed Reality. More Strikes eventually occur by further progression.
-Each Pelle Strike adds a nerf to a specific aspect of the game, which can be seen by clicking on the Strike name.
-Each Pelle Strike also unlocks a Rift bar.
+      佩勒冲击会在毁灭现实中的不同事件中遇到。你在毁灭现实中首次达到无限时，即会遇到第一次佩勒冲击。随着进一步推进，更多冲击将陆续发生。每次佩勒冲击都会对游戏的特定方面施加一项削弱，点击冲击名称可查看详情。每次佩勒冲击还会解锁一道裂痕条。
 <br>
 <br>
-Rift bars can be filled by clicking them to toggle between "Idle" and "Filling", although only two Rifts can be
-"Filling" at any given time. When active, Rifts consume ${formatInt(3)}% of a Rift-specific resource per second. Each
-Rift offers a Rift-specific effect which are based on the total amount filled.
+裂痕条可通过点击在“闲置”和“填充”之间切换，但同一时间最多只能有两道裂痕处于“填充”状态。激活时，裂痕每秒消耗 ${formatInt(3)}% 的特定资源。每道裂痕提供其专属效果，效果强度基于已填充的总量。
 ${PelleStrikes.eternity.hasStrike
-    ? `An exception for this is Decay/Collapse/Disarray, whose effect gets capped once you have drained a total of
-    ${formatPostBreak(DC.E2000)} Replicanti.`
+    ? `唯一例外是枯朽/腐败/凋零，其效果在你消耗总计 ${formatPostBreak(DC.E2000)} 复制器后达到上限。`
     : ""}
-In addition, each Rift offers three milestone rewards for filling them up to a certain percentage.
+此外，每道裂痕在填充至特定百分比时，还会提供三个里程碑奖励。
 `,
       isUnlocked: () => PelleStrikes.infinity.hasStrike,
       tags: ["reality", "antimatter", "lategame", "endgame", "final", "pelle", "strike", "rift", "celestial"],
       tab: "celestials/pelle"
     }, {
-      name: "The Galaxy Generator",
+      name: "星系生成器",
       info: () => `
-When you reach ${formatInt(100)}% Recursion/Dispersion/Destruction, you unlock the <b>Galaxy Generator</b>, which can
-passively generate Galaxies. Generated Galaxies are like Replicanti Galaxies and Tachyon Galaxies in that they affect
-tickspeed as if they were Antimatter Galaxies, but they do not increase the cost of your next Antimatter Galaxy. You
-also unlock five new upgrades. The first upgrade increases the base amount of Galaxies generated. The other four
-upgrades then give a multiplier to this base amount. The first two upgrades can be bought by spending antimatter and
-Generated Galaxies. Replicanti or Tachyon Galaxies cannot be spent for purchasing those upgrades.
+      当你达到 ${formatInt(100)}% 轮回/分裂/终结进度时，将解锁<b>星系生成器</b>，它可以被动生成星系。生成星系与复制器星系和超光速粒子星系类似，它们会像反物质星系一样影响计数频率，但不会增加下一个反物质星系的价格。同时，你还会解锁五项新升级。第一项升级增加星系的基础生成数量，其余四项升级则为该基础数量提供倍数加成。前两项升级可通过消耗反物质和生成星系购买。复制器星系和超光速粒子星系不能用于购买这些升级。
 <br>
 <br>
-The <b>Galaxy Generator</b> has a maximum number of Galaxies it can generate, which can only be increased by draining
-Rifts once the current cap has been reached.`,
+<b>星系生成器</b>存在一个可生成星系的上限，达到当前上限后，只能通过消耗裂痕来提升该上限。
+`,
       isUnlocked: () => Pelle.hasGalaxyGenerator,
       tags: ["reality", "antimatter", "lategame", "endgame", "final", "pelle", "galaxy",
         "galaxies", "generator", "celestial"],

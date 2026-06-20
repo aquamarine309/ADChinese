@@ -28,7 +28,7 @@ export default {
     },
     createRealityGlyph() {
       if (GameCache.glyphInventorySpace.value === 0) {
-        Modal.message.show("No available inventory space; Sacrifice some Glyphs to free up space.",
+        Modal.message.show("仓库空间不足；请献祭一些符文以释放空间。",
           { closeEvent: GAME_EVENT.GLYPHS_CHANGED });
         return;
       }
@@ -38,7 +38,7 @@ export default {
       this.emitClose();
     },
     formatGlyphEffect(effect) {
-      if (this.realityGlyphLevel < effect[0]) return `(Requires Glyph level ${formatInt(effect[0])})`;
+      if (this.realityGlyphLevel < effect[0]) return `（符文等级需要达到 ${formatInt(effect[0])}）`;
       const config = GlyphEffects[effect[1]];
       const value = config.effect(this.realityGlyphLevel, rarityToStrength(100));
       const effectTemplate = config.singleDesc;
