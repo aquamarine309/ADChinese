@@ -16,13 +16,13 @@ export default {
     segmentAttr() {
       return {
         icon: `fas o-icon ${this.prevRunInfo.isSegmented ? "fa-stopwatch-20" : "fa-stopwatch"}`,
-        text: this.prevRunInfo.isSegmented ? "Segmented" : "Single Segment",
+        text: this.prevRunInfo.isSegmented ? "分段" : "单段",
       };
     },
     stdAttr() {
       return {
         icon: `fas fa-coins o-icon ${this.prevRunInfo.usedSTD ? "l-icon-on" : "l-icon-off"}`,
-        text: this.prevRunInfo.usedSTD ? "Used STD Upgrades" : "No STDs used",
+        text: this.prevRunInfo.usedSTD ? "使用了STD升级" : "未使用STD",
       };
     },
     offlineAttr() {
@@ -77,7 +77,7 @@ export default {
     class="c-icon-container"
     data-v-previous-speedrun-info
   >
-    <span>Run {{ index }}</span>
+    <span>速通 {{ index }}</span>
     <span>{{ prevRunInfo.name }}</span>
     <span
       v-for="attr in iconAttrs"
@@ -94,7 +94,7 @@ export default {
     class="c-no-record"
     data-v-previous-speedrun-info
   >
-    No speedrun records found for run {{ index }}.
+    第 {{ index }} 次速通没有记录。
   </div>
   `
 };

@@ -27,7 +27,7 @@ export default {
         @click="selectedCommand = -1"
         data-v-automator-docs-command-list
       />
-      Return to the Command List
+      返回到指令列表
     </div>
     <AutomatorDocsManPage
       v-if="selectedCommand !== -1"

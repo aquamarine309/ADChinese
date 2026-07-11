@@ -82,8 +82,8 @@ export default {
     data-v-previous-speedrun-tab
   >
     <b>到目前为止，你已完成了 {{ format(numRuns, 0, 0, x => x) }} 次速通。</b>
-    <b>Statistics of previous runs are below, mouseover icons for more details.</b>
-    <b>Click the magnifying glass to compare the milestones on a particular run to this run.</b>
+    <b>历次速通的统计数据如下，将鼠标悬停在图标上查看更多详情。</b>
+    <b>点击放大镜，可对比某次速通与本次速通的里程碑。</b>
     <b>{{ spectateText }}</b>
     <br>
     <div
@@ -97,7 +97,7 @@ export default {
         @click="changePage(-1)"
         data-v-previous-speedrun-tab
       />
-      Showing runs {{ 10 * runPage + 1 }} to {{ 10 * (runPage + 1) }} ({{ highestIndex }} total runs)
+      显示速通记录第 {{ 10 * runPage + 1 }} 至 {{ 10 * (runPage + 1) }} 条（共 {{ highestIndex }} 条）
       <PrimaryButton
         class="o-primary-btn--subtab-option fas fa-arrow-right"
         :class="{ 'o-primary-btn--disabled' : runPage + 1 > highestIndex / 10 }"
@@ -146,7 +146,7 @@ export default {
         <span
           class="o-box l-milestone-none"
           data-v-previous-speedrun-tab
-        /> Not reached this run
+        /> 本轮未达到
       </div>
       <div
         class="c-legend-cell"
@@ -155,7 +155,7 @@ export default {
         <span
           class="o-box l-milestone-slow"
           data-v-previous-speedrun-tab
-        /> Slower than comparison
+        /> 慢于对比
       </div>
       <div
         class="c-legend-cell"
@@ -164,7 +164,7 @@ export default {
         <span
           class="o-box l-milestone-fast"
           data-v-previous-speedrun-tab
-        /> Faster than comparison
+        /> 快于对比
       </div>
       <div
         class="c-legend-cell"
@@ -173,7 +173,7 @@ export default {
         <span
           class="o-box l-milestone-fastest"
           data-v-previous-speedrun-tab
-        /> Faster than best
+        /> 快于最佳
       </div>
     </div>
     <div

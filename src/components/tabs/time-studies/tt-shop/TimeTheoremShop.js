@@ -197,8 +197,7 @@ export default {
             <span
               v-if="hasTTGen"
               class="checkbox-margin"
-              ach-tooltip="This shows TT generation by default and total TT if you hold shift.
-                Check this box to swap this behavior."
+              ach-tooltip="默认显示时间之理生成量，按住Shift键则显示总时间之理。勾选此框可交换此行为。"
                 data-v-time-theorem-shop
             >
               <input

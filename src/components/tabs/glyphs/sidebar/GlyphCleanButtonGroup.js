@@ -17,19 +17,17 @@ export default {
       return "移除";
     },
     autoCleanTooltip() {
-      return `${this.removeString} Glyphs that are worse in every way than
-        enough other Glyphs${this.hasPerkShop ? " (ignores customized Glyphs)" : ""}`;
+      return `${this.removeString} 在所有方面都劣于足够数量其他符文的符文${this.hasPerkShop ? "（忽略自定义符文）" : ""}`;
     },
     harshAutoCleanTooltip() {
-      return `${this.removeString} Glyphs that are worse in every way than
-        ANY other Glyph${this.hasPerkShop ? " (includes customized Glyphs)" : ""}`;
+      return `${this.removeString} 在所有方面都劣于任何数量其他符文的符文${this.hasPerkShop ? "（忽略自定义符文）" : ""}`;
     },
     deleteRejectedTooltip() {
       const negativeWarning = AutoGlyphProcessor.hasNegativeEffectScore()
-        ? " You also have some negative Effect Filter scores; this may remove some Glyphs you normally want to keep!"
+        ? "你还有一些效果筛选得分为负值，这可能会移除一些你通常想保留的符文！"
         : "";
       return this.removeCount === 0
-        ? `This will not remove any Glyphs, adjust your Filter settings to remove some.`
+        ? `这不会移除任何符文，请调整你的筛选设置以移除部分符文。`
         : `这将移除 ${formatInt(this.removeCount)} 个符文！${negativeWarning}`;
     }
   },

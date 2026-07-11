@@ -20,7 +20,7 @@ export default {
     milestones: () => GameDatabase.speedrunMilestones,
     spectateText() {
       return this.isSpectating
-        ? "Times here are unaffected by END so that you can see your final records"
+        ? "此处时间不受“终局”影响，以便你能查看最终记录。"
         : null;
     }
   },
@@ -45,7 +45,7 @@ export default {
     <PrimaryToggleButton
       v-model="displayAll"
       class="o-primary-btn--subtab-option"
-      label="Describe all milestones:"
+      label="里程碑说明："
     />
     <br>
     <b>{{ startTimeStr }}</b>

@@ -2,22 +2,20 @@ import { automatorTemplates } from "../script-templates.js";
 
 export const automator = {
   categoryNames: [
-    "Time Studies",
-    "Event Triggers",
-    "Alter Settings",
-    "Information",
-    "Script Flow",
+    "时间研究",
+    "事件触发",
+    "修改设置",
+    "信息",
+    "脚本流",
   ],
   commands: [
     {
       id: 0,
       isUnlocked: () => true,
-      keyword: "STUDIES RESPEC",
+      keyword: "重置时间研究",
       category: 0,
       syntax: `<b>studies respec</b>`,
-      description: `This command turns on the respec option, which will respec your Time Studies on the next manual or
-        automatic Eternity. Note that this does not actually perform an Eternity on its own; make sure your Autobuyer
-        is on or you manually run the ETERNITY command (although ETERNITY has its own built-in respec option).`,
+      description: `这条指令会打开重置时间研究的选项，从而在下次永恒的时候重置时间研究。注意它不会进行一次永恒，请确保你的自动购买器开启或者你手动运行永恒指令（尽管永恒之理支持带上重置研究的选项）。`,
       examples: [
         `studies respec`,
       ]
@@ -25,32 +23,29 @@ export const automator = {
     {
       id: 1,
       isUnlocked: () => true,
-      keyword: "STUDIES LOAD",
+      keyword: "载入研究",
       category: 0,
       syntax: `<b>studies</b> [nowait] <b>load id</b> <u>selector</u><br>
         <b>studies</b> [nowait] <b>load name</b> <u>name</u>`,
-      description: `Loads a Time Study preset, as if you had clicked on the button in the Time Study tab.`,
+      description: `载入一个时间研究，就像你点击时间研究标签页下面的按钮一样。`,
       sections: [
         {
-          name: "INPUTS",
+          name: "输入",
           items: [
             {
               header: "<i>nowait</i>",
               description: `
-                If present, the Automator will purchase as many studies as possible before continuing onward. By default
-                (ie. without "nowait") this command will repeat this line indefinitely until all of the studies in the
-                preset are bought; this may cause the Automator to get stuck indefinitely if you are not careful.
+                如果存在该指令，自动机将在继续执行后续指令前尽可能多地购买时间研究。默认情况下（即不含“nowait”时），这个指令会无限重复执行当前行，直到预设中的所有研究全部被购买；若不加注意，可能导致自动机永久卡死。
               `
             },
             {
               header: "<i>selector</i>",
               description: `
-                Finds and loads the specified Time Study preset by its slot number. This is numbered one through six,
-                ordered from left to right.`
+                通过其槽位编号查找并加载指定的时间研究预设。编号为 1 至 6，按从左到右的顺序排列。`
             },
             {
               header: "<i>name</i>",
-              description: "Finds and loads the specified Time Study preset by its given name. This is case-sensitive."
+              description: "通过其名称查找并加载指定的时间研究预设。此操作区分大小写。"
             },
           ]
         }
@@ -64,31 +59,26 @@ export const automator = {
     {
       id: 2,
       isUnlocked: () => true,
-      keyword: "STUDIES PURCHASE",
+      keyword: "购买研究",
       category: 0,
       syntax: `<b>studies</b> [nowait] <b>purchase <u>study_list</u></b>`,
-      description: "Purchase Time Studies specified from a list of Time Studies.",
+      description: "购买时间研究列表上指定的时间研究",
       sections: [
         {
-          name: "INPUTS",
+          name: "输入",
           items: [
             {
               header: "<i>nowait</i>",
               description: `
-                If present, the Automator will purchase as many studies as possible before continuing onward. By default
-                (ie. without "nowait") this command will repeat this line indefinitely until all of the studies in the
-                preset are bought; this may cause the Automator to get stuck indefinitely if you are not careful.
+                如果存在该指令，自动机将在继续执行后续指令前尽可能多地购买时间研究。默认情况下（即不含“nowait”时），此命令会无限重复执行当前行，直到预设中的所有研究全部被购买；若不加注意，可能导致自动机永久卡死。
               `
             },
             {
               header: "<i>study_list</i>",
               description: `
-                The exported Time Study tree format is supported here, which is simply a list of Time Study IDs
-                separated by commas. This command also supports a more flexible formatting, additionally allowing
-                ranges of studies (for example, <u>11-62</u>) and the following aliases:<br>
-                <blockquote><b>antimatter, infinity, time, active, passive, idle, light, dark</b></blockquote>
-                A variable name may be used in place of the entire Time Study list as well (see the definition panel),
-                although in that case the shorthand ranges and aliases are not allowed.`
+ 此处支持导出的时间研究树格式，即用逗号分隔的时间研究编号列表。此命令还支持更灵活的格式，允许使用研究范围（例如 <u>11-62</u>）及以下别名（注意只能使用英文）：<br>
+<blockquote><b>antimatter(反物质), infinity(无限), time(时间), active(活跃), passive(被动), idle(挂机), light(光明), dark(黑暗)</b></blockquote>
+还可以使用变量名来代替整个时间研究列表（见定义面板），但此时不允许使用简写范围和别名。`
             },
           ]
         }
@@ -102,34 +92,29 @@ export const automator = {
     {
       id: 3,
       isUnlocked: () => true,
-      keyword: "PRESTIGE",
+      keyword: "重置(PRESTIGE)",
       category: 1,
       syntax: `
         <b>infinity</b> [nowait]<br>
         <b>eternity</b> [nowait] [respec]<br>
         <b>reality</b> [nowait] [respec]`,
-      description: `Triggers an Infinity, Eternity, or Reality reset if possible, otherwise the automator will wait at
-        this command until it becomes possible. If you find that your script often gets stuck on this command, an
-        Autobuyer may be triggering a prestige before the Automator reaches this line - consider using <i>nowait</i> or
-        adjusting your Autobuyer settings using AUTO.`,
+      description: `触发一次无限、永恒或现实，如果不行，自动机将一直等待到可以为止。如果你发现你的脚本经常因为这条卡住，也许自动机在到达这行前自动购买器正在触发一次重置——考虑用 <i>nowait</i> 或者将自动购买器设置为AUTO。`,
       sections: [
         {
-          name: "MODIFIERS",
+          name: "修饰",
           items: [
             {
               header: "<i>nowait</i>",
               description: `
-                If present, the Automator will move on to the next command instead of repeatedly trying on this
-                command in situations where the prestige is not possible (eg. within an EC below the goal).
+              如果存在该指令，当现在无法重置时（例如在永恒挑战中低于目标），自动机将跳转到下一行而不会重复尝试这一行。
               `
             },
             {
               header: "<i>respec</i>",
               description: `
-                For non-Infinity prestiges, also does the related respec action when triggering prestige.
-                Eternity: Respec Time Studies and Eternity.<br>
-                Reality: Unequip Glyphs and Reality.
-              `
+                对于非无限的重置，触发重置的时候同时有相关的清空行为。
+                永恒：重置时间研究树并永恒。<br>
+                现实：卸下符文并现实。  `
             },
           ]
         }
@@ -143,20 +128,18 @@ export const automator = {
     {
       id: 4,
       isUnlocked: () => true,
-      keyword: "UNLOCK",
+      keyword: "解锁(UNLOCK)",
       category: 1,
       syntax: "<b>unlock</b> [nowait] <u>feature</u>",
-      description: "Unlocks the specified Eternity Challenge or Time Dilation.",
+      description: "解锁特定的永恒挑战或时间膨胀",
       sections: [
         {
-          name: "MODIFIERS",
+          name: "修饰",
           items: [
             {
               header: "<i>nowait</i>",
               description: `
-                If present, the Automator will move on to the next command even if unlocking the feature fails. By
-                default, the Automator will keep running this command until the unlock succeeds.
-              `
+              如果存在该指令，即使解锁失败，自动机也会跳转到下一行。默认情况下，自动机将保持运行直到解锁成功。          `
             },
           ]
         }
@@ -169,15 +152,12 @@ export const automator = {
     {
       id: 5,
       isUnlocked: () => true,
-      keyword: "START",
+      keyword: "开始(START)",
       category: 1,
       syntax: `
         <b>start</b> ec<u>N</u><br>
         <b>start</b> dilation`,
-      description: `Start a specified Eternity Challenge or a Dilated Eternity. This command will also attempt
-        to unlock the EC if not unlocked, but will not do the same for Dilation (use UNLOCK command to do that).
-        If you are already in the specified EC or Dilated Eternity, running this command again will do nothing;
-        otherwise, the Automator will keep attempting to start the Eternity until it succeeds.`,
+      description: `开始指定的永恒挑战或膨胀永恒。这条指令还会尝试解锁尚未解锁的永恒挑战，但不会自动解锁时间膨胀（请使用 UNLOCK 指令来完成）。若你已在指定的永恒挑战或膨胀永恒中，再次运行此命令将不会执行任何操作；否则，自动机会持续尝试开始永恒直到成功。`,
       examples: [
         "start ec12",
         "start dilation"
@@ -186,37 +166,33 @@ export const automator = {
     {
       id: 6,
       isUnlocked: () => true,
-      keyword: "AUTO",
+      keyword: "自动(AUTO)",
       category: 2,
       syntax: `<b>auto infinity</b> [setting]<br>
         <b>auto eternity</b> [setting]<br>
         <b>auto reality</b> [setting]`,
-      description: `Turns prestige Autobuyers on or off and allows you to change their settings. If the setting option
-        is not present, this command will toggle the Autobuyer state, turning it off if it is on and turning it on if
-        it is off. <b>This command will not work if you try to modify an Autobuyer or setting you do not have.</b>`,
+      description: `开启或关闭重置自动购买器，并允许你更改其设置。如果未指定设置选项，此命令将切换自动购买器的状态（开启时关闭，关闭时开启）。<b>如果你尝试修改尚未拥有的自动购买器或设置，这条指令将不会生效。</b>`,
       sections: [
         {
-          name: "SETTINGS",
+          name: "设置",
           items: [
             {
               header: "<i>on</i> | <i>off</i>",
-              description: "Turns specified Autobuyer on or off.",
+              description: "打开或关闭特定的自动购买器",
             },
             {
-              header: "<u><i>number</i></u> <u><i>time units</i></u>",
-              description: `Usable with Infinity and Eternity only.
-                Turns the Autobuyer on and set it to trigger at the given interval.`
+              header: "<u><i>数字</i></u> <u><i>时间单位</i></u>",
+              description: `仅适用于无限和永恒。
+                打开自动购买器并设置为指定的时间间隔`
             },
             {
-              header: "<u><i>number</i></u> x highest",
-              description: `Usable with Infinity and Eternity only. Turns the Autobuyer on and sets it to
-                "X times highest" mode.`
+              header: "<u><i>数字</i></u> x highest",
+              description: `仅适用于无限和永恒。
+                打开自动购买器并设置为最高数量的倍数`
             },
             {
-              header: "<i><u>number</u> <u>currency</u></i>",
-              description: `Turns the Autobuyer on and sets it to trigger at a specific amount. The currency must
-                match the autobuyer type (IP, EP, or RM). This will select "Reality Machines" mode for the Reality
-                Autobuyer. Glyph Level mode cannot be changed or set via the Automator, only manually.`,
+              header: "<i><u>数字</u> <u>货币</u></i>",
+              description: `开启自动购买器并将其设置为在特定数量时触发。货币类型必须与自动购买器类型匹配（无限点数(IP)、永恒点数(EP)或现实机器(RM)）。这将为现实自动购买器选择“现实机器”模式。符文等级模式无法通过自动机更改或设置，只能手动操作。`,
             },
           ]
         }
@@ -232,7 +208,7 @@ export const automator = {
     {
       id: 7,
       isUnlocked: () => BlackHole(1).isUnlocked,
-      keyword: "BLACK HOLE",
+      keyword: "黑洞(BLACK HOLE)",
       category: 2,
       syntax: "<b>black hole</b> <u>state</u>",
       description: `Toggles the speedup effect from the Black Hole on or off. Turning the Black Hole on via the
@@ -246,7 +222,7 @@ export const automator = {
     {
       id: 8,
       isUnlocked: () => Enslaved.isUnlocked,
-      keyword: "STORE GAME TIME",
+      keyword: "储存游戏时间",
       category: 2,
       syntax: "<b>store game time</b> <u>action</u>",
       description: `Changes whether or not the Black Hole is storing time. Also allows usage of stored time.`,
@@ -278,7 +254,7 @@ export const automator = {
     {
       id: 9,
       isUnlocked: () => true,
-      keyword: "NOTIFY",
+      keyword: "通知(NOTIFY)",
       category: 3,
       syntax: "<b>notify</b> \"<u>text</u>\"",
       description: `Takes the specified text and posts it in the top-right corner as
@@ -293,7 +269,7 @@ export const automator = {
     {
       id: 10,
       isUnlocked: () => true,
-      keyword: "Adding Comments",
+      keyword: "添加注释",
       category: 3,
       syntax: "<b>#</b> text<br><b>//</b> text",
       description: `Allows you to leave a note to yourself within your script. This may be
@@ -302,10 +278,10 @@ export const automator = {
         help you keep the steps of your scripts easier to follow if desired.`,
       sections: [
         {
-          name: "NOTES",
+          name: "说明",
           items: [
             {
-              header: "<i>Inline comments</i>",
+              header: "<i>行内注释</i>",
               description: `
                 The Automator does not support comments which are placed after an already functional
                 line of code, on the same line. As an example, the single line "studies load name TDI // Load push"
@@ -314,7 +290,7 @@ export const automator = {
               `
             },
             {
-              header: "<i>Execution speed</i>",
+              header: "<i>执行速度</i>",
               description: `
                 Having comments will not slow down your script, as they are completely skipped during
                 execution and do not count as a command for the purposes of running. For example, even if you have
@@ -333,24 +309,24 @@ export const automator = {
     {
       id: 11,
       isUnlocked: () => true,
-      keyword: "WAIT",
+      keyword: "等待(WAIT)",
       category: 4,
       syntax: "<b>wait</b> <u>condition</u>",
       description: `Forces Automator to wait for some condition or event. To wait for a certain duration of time,
         use the PAUSE command instead.`,
       sections: [
         {
-          name: "POSSIBLE CONDITIONS",
+          name: "可能的条件",
           items: [
             {
-              header: "<i>comparison</i>",
+              header: "<i>比较</i>",
               description: `
                 Wait until the comparison statement is true. Check the entry for "Formatting Comparisons" for details
                 on how to properly input this option.
               `
             },
             {
-              header: "<i>prestige</i>",
+              header: "<i>重置</i>",
               description: `
                 Wait until the specified prestige (Infinity, Eternity, or Reality) has been triggered by its respective
                 Autobuyer. This must happen <i>after</i> this command is reached; if the Autobuyer triggers
@@ -358,7 +334,7 @@ export const automator = {
               `
             },
             {
-              header: "<i>black hole (state)</i>",
+              header: "<i>黑洞（状态）</i>",
               description: `
                 Wait until the Black Hole(s) are in the specified state. Valid inputs for state are
                 "off", "bh1", and "bh2", corresponding to no active Black Hole(s), at least the first Black Hole active,
@@ -379,7 +355,7 @@ export const automator = {
     {
       id: 12,
       isUnlocked: () => true,
-      keyword: "PAUSE",
+      keyword: "暂停(PAUSE)",
       category: 4,
       syntax: "<b>pause</b> <u>interval</u>",
       description: `Tells the automator to stop moving forward and executing commands for a certain amount of time.
@@ -392,38 +368,38 @@ export const automator = {
       ],
       sections: [
         {
-          name: "INTERVAL FORMATTING",
+          name: "间隔格式",
           items: [
             {
-              header: "<i>Specified Interval</i>",
+              header: "<i>确切的时间</i>",
               description: `This command accepts time units of milliseconds ("ms"), seconds ("s", "sec", or "seconds"),
                 minutes ("m", "min", or "minutes"), and hours ("h" or "hours"). You cannot provide just a number and
                 nothing else; a unit of time must be specified.`,
             },
             {
-              header: "<i>Defined Constant</i>",
+              header: "<i>定义的常量</i>",
               description: `A defined constant may be used instead, see the definition panel. The defined value will
                 be assumed to be in units of seconds.`
             },
           ]
         },
         {
-          name: "OTHER",
+          name: "其他",
           items: [
             {
-              header: "<i>Offline Side-effects</i>",
+              header: "<i>离线的边缘效应</i>",
               description: `This command may behave undesirably when it runs during offline progress due to limited
                 tick count. A 1-second pause that is usually 20-30 ticks might be only 1 game tick when processing
                 hours of offline progress, which might not be enough for the resources needed for the rest of the
                 script.`,
             },
             {
-              header: "<i>Alternatives</i>",
+              header: "<i>类似指令</i>",
               description: `Using another command like 'WAIT' will allow you to set it for a certain resource amount,
                 in order to ensure that the game has the proper state before moving onward.`
             },
             {
-              header: "<i>Manual Skip</i>",
+              header: "<i>手动跳过</i>",
               description: `You can manually force the Automator to continue execution past a PAUSE command without
                 waiting the entire specified time by stepping forward one line (to put it on the next one) and then
                 resuming execution. If you find yourself doing this regularly, consider modifying your script.`
@@ -435,7 +411,7 @@ export const automator = {
     {
       id: 13,
       isUnlocked: () => true,
-      keyword: "IF",
+      keyword: "如果(IF)",
       category: 4,
       syntax: `<b>if</b> <u>condition</u> {<br>
         <blockquote>commands</blockquote>
@@ -451,7 +427,7 @@ export const automator = {
     {
       id: 14,
       isUnlocked: () => true,
-      keyword: "UNTIL",
+      keyword: "直到(UNTIL)",
       category: 4,
       syntax: `<b>until</b> <u>comparison</u> {<br>
         <blockquote>commands</blockquote>
@@ -474,10 +450,10 @@ export const automator = {
     {
       id: 15,
       isUnlocked: () => true,
-      keyword: "WHILE",
+      keyword: "WHILE循环",
       category: 4,
-      syntax: `<b>while</b> <u>comparison</u> {<br>
-        <blockquote>commands</blockquote>
+      syntax: `<b>while</b> <u>比较</u> {<br>
+        <blockquote>指令</blockquote>
       }`,
       description: `Defines an inner block of the script where commands are repeated; the comparison is checked at the
         start and every time the loop repeats. If the condition is false when the WHILE statement is first reached, the
@@ -490,7 +466,7 @@ export const automator = {
     {
       id: 16,
       isUnlocked: () => true,
-      keyword: "STOP",
+      keyword: "停止(STOP)",
       category: 4,
       syntax: `<b>stop</b>`,
       description: `When the Automator runs this line, it will stop execution as if you clicked the
@@ -506,42 +482,42 @@ export const automator = {
     {
       id: 17,
       isUnlocked: () => true,
-      keyword: "Currency List",
+      keyword: "货币列表",
       category: 4,
       syntax: "<i>You can use these in any IF, WHILE, UNTIL, or WAIT command</i>",
       description: () => {
         const filterText = EffarigUnlock.glyphFilter.isUnlocked
-          ? `<b>filter score</b> - Glyph filter score of the Glyph which your filter will select this Reality<br>`
+          ? `<b>filter score</b> - 筛选积分，Glyph filter score of the Glyph which your filter will select this Reality<br>`
           : "";
         const stText = V.spaceTheorems > 0
-          ? `<b>space theorems</b> - Current unspent Space Theorem amount<br>
-            <b>total space theorems</b> - TOTAL Space Theorems, including ones spent on current Studies<br>`
+          ? `<b>space theorems</b> - 空间之理，Current unspent Space Theorem amount<br>
+            <b>total space theorems</b> - 总共的空间之理，TOTAL Space Theorems, including ones spent on current Studies<br>`
           : "";
         return `This is a list of "currencies" or numbers that you can use within the Automator.<br>
           Note that when used, most currencies will need to be in scientific notation.<br>
-          <b>am</b> - Current Antimatter amount  <br>
-          <b>ip</b> - Current Infinity Point amount  <br>
-          <b>ep</b> - Current Eternity Point amount  <br>
-          <b>rm</b> - Current Reality Machine amount  <br>
-          <b>infinities</b> - Current Infinity amount <br>
-          <b>banked infinities</b> - Current Banked Infinity amount <br>
-          <b>eternities</b> - Current Eternity amount <br>
-          <b>realities</b> - Current Reality amount <br>
-          <b>pending ip</b> - IP gained on Infinity (0 if not available)<br>
-          <b>pending ep</b> - EP gained on Eternity (0 if not available)<br>
-          <b>pending tp</b> - TP gained on exiting Dilation<br>
-          <b>pending rm</b> - RM gained on Reality (0 if not available)<br>
-          <b>pending glyph level</b> - Glyph Level gained on Reality (0 if not available)<br>
-          <b>dt</b> - Current Dilated Time amount <br>
-          <b>tp</b> - Current Tachyon Particle amount<br>
-          <b>rg</b> - Current Replicanti Galaxy amount (does not use scientific)<br>
-          <b>rep</b> - Current Replicanti amount <br>
-          <b>tt</b> - Current Time Theorem amount <br>
-          <b>total tt</b> - TOTAL Time Theorems, includes all forms of generated TT and any spent on Studies <br>
-          <b>spent tt</b> - Time Theorems currently spent on all Time Studies <br>
-          <b>total completions</b> - Total completions of all Eternity Challenges <br>
-          <b>pending completions</b> - Total completions of current EC at Eternity <br>
-          <b>ec<u>X</u> completions</b> - Amount of EC completions for a certain EC (eg. "ec6 completions")<br>
+          <b>am</b> - 当前反物质数量  <br>
+          <b>ip</b> - 当前无限点数数量  <br>
+          <b>ep</b> - 当前永恒点数数量  <br>
+          <b>rm</b> - 当前现实机器数量  <br>
+          <b>infinities</b> - 当前无限次数 <br>
+          <b>banked infinities</b> - 储存的无限次数 <br>
+          <b>eternities</b> - 当前永恒次数 <br>
+          <b>realities</b> - 当前现实次数 <br>
+          <b>pending ip</b> - 即将获得的无限点数（如果不能就为0）<br>
+          <b>pending ep</b> - 即将获得永恒点数（如果不能就为0）<br>
+          <b>pending tp</b> - 退出膨胀时获得的超光速粒子<br>
+          <b>pending rm</b> - 即将获得的现实机器（如果不能就为0）<br>
+          <b>pending glyph level</b> - 即将获得的符文等级（如果不能就为0）<br>
+          <b>dt</b> - 当前膨胀时间数量<br>
+          <b>tp</b> - 当前超光速粒子数量<br>
+          <b>rg</b> - 当前复制器星系数量（不要用科学记数法）<br>
+          <b>rep</b> - 当前复制器数量<br>
+          <b>tt</b> - 当前时间之理数量<br>
+          <b>total tt</b> - 总共的时间之理，包括各种形式生成的和购买研究消耗的<br>
+          <b>spent tt</b> - 购买研究花费的时间之理<br>
+          <b>total completions</b> - 永恒挑战的总完成次数<br>
+          <b>pending completions</b> - 本次永恒即将完成的永恒挑战次数<br>
+          <b>ec<u>X</u> completions</b> - 某个单一的永恒挑战的完成次数<br>
           ${filterText}
           ${stText}
         `;
@@ -550,19 +526,19 @@ export const automator = {
     {
       id: 18,
       isUnlocked: () => true,
-      keyword: "Formatting Comparisons",
+      keyword: "格式化的比较",
       category: 4,
-      syntax: "<u>resource1</u> <u>condition</u> <u>resource2</u>",
+      syntax: "<u>资源1</u> <u>条件</u> <u>资源2</u>",
       description: `
         Comparisons are used within certain commands, which allow you to control the behavior of the automator based
         on the game's current state. They have a standard format with two value inputs and a comparison operator, but
         the value inputs can be anything as long as it is formatted correctly overall.`,
       sections: [
         {
-          name: "CONDITIONS",
+          name: "条件",
           items: [
             {
-              header: "<i>resource</i>",
+              header: "<i>资源</i>",
               description: `
                 This can be any Automator Currency, a defined constant, or a number which must be formatted in
                 scientific notation (eg. 1000, 1e100, 1.8e308). Unlike more general programming languages, this must
@@ -570,7 +546,7 @@ export const automator = {
               `
             },
             {
-              header: "<i>condition</i>",
+              header: "<i>条件</i>",
               description: `
                 This must be an inequality operator (<, <=, >, >=), which takes on its typical mathematical meaning.
                 Equality operators (==, !=) are not allowed, as the nature of the game means that numbers will often
@@ -589,7 +565,7 @@ export const automator = {
     {
       id: 19,
       isUnlocked: () => true,
-      keyword: "Commands with inner blocks",
+      keyword: "内部块的指令",
       category: 4,
       syntax: `<b>header_command</b> {<br>
         <blockquote>inner_commands</blockquote>
