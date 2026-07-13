@@ -60,7 +60,7 @@ export default {
     >
       模板：{{ template.name }}
     </button>
-    由于你当前处于{{ isBlock ? "积木块" : "文本" }}编辑器，此面板将{{ pasteText }}。
+    由于你当前处于{{ isBlock ? "积木块" : "文本" }}编辑器，此面板将{{ pasteText }}
     <br>
     <br>
     <draggable

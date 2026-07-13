@@ -30,11 +30,11 @@ export default {
     },
     text() {
       if (this.currentEternityChallengeId === 4) {
-        return `${formatInt(this.currentResource)} / ${formatInt(this.maximumResource)} Infinities used`;
+        return `无限了 ${formatInt(this.currentResource)} / ${formatInt(this.maximumResource)} 次`;
       }
       // We're always either in EC4 or EC12 when displaying this text.
-      return `${TimeSpan.fromSeconds(this.currentResource.toNumber()).toString()} /
-        ${TimeSpan.fromSeconds(this.maximumResource.toNumber()).toString()} time spent`;
+      return `花费了 ${TimeSpan.fromSeconds(this.currentResource.toNumber()).toString()} /
+        ${TimeSpan.fromSeconds(this.maximumResource.toNumber()).toString()} 的时间`;
     }
   },
   methods: {

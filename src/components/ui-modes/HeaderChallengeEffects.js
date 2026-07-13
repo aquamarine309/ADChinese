@@ -84,7 +84,7 @@ export default {
       熵：{{ laitelaEntropy }}（{{ laitelaTimer }}）
     </div>
     <div v-if="isInMatterChallenge">
-      There is {{ format(matter, 2, 1) }} matter.
+      你有 {{ format(matter, 2, 1) }} 物质。
     </div>
     <div v-if="isChallengePowerVisible">
       {{ challengePower }}
