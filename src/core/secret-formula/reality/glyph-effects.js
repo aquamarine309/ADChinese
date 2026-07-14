@@ -407,7 +407,7 @@ export const glyphEffects = {
     bitmaskIndex: 19,
     isGenerated: true,
     glyphTypes: ["power"],
-    singleDesc: () => `购买 ${formatInt(10)} 个反物质维度的倍率 {value}`,
+    singleDesc: () => `购买 ${formatInt(10)} 个反物质维度的倍率 ×{value}`,
     totalDesc: () => `购买 ${formatInt(10)} 个反物质维度的倍率 ×{value}`,
     genericDesc: () => `增加购买 ${formatInt(10)} 个反物质维度的加成`,
     shortDesc: () => `购买 ${formatInt(10)} 个反物质维度的倍率 ×{value}`,
@@ -482,7 +482,7 @@ export const glyphEffects = {
     glyphTypes: ["effarig"],
     singleDesc: () => (GlyphAlteration.isAdded("effarig")
       ? `购买 ${formatInt(10)} 个维度的倍率 ^{value} [且\n维度提升倍率 ^]{value2}`
-      : `购买 ${formatInt(10)}个反物质维度的加成^{value}`),
+      : `购买 ${formatInt(10)} 个反物质维度的加成^{value}`),
     totalDesc: () => (GlyphAlteration.isAdded("effarig")
       ? `购买 ${formatInt(10)} 个维度的倍率 ^{value} 且维度提升倍率 ^{value2}`
       : `购买 ${formatInt(10)} 个反物质维度的倍率 ^{value}`),
