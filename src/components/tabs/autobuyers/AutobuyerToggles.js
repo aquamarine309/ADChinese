@@ -13,7 +13,8 @@ export default {
       autobuyersOn: false,
       showContinuum: false,
       disableContinuum: false,
-      allAutobuyersDisabled: false
+      allAutobuyersDisabled: false,
+      antimatterAutobuyersBuyMax: false
     };
   },
   watch: {
@@ -35,12 +36,20 @@ export default {
       this.showContinuum = Laitela.isUnlocked;
       this.disableContinuum = player.auto.disableContinuum;
       this.allAutobuyersDisabled = Autobuyers.unlocked.every(autobuyer => !autobuyer.isActive);
+      this.antimatterAutobuyersBuyMax = Autobuyer.antimatterDimension.zeroIndexed.every(
+        autobuyer => autobuyer.mode === AUTOBUYER_MODE.BUY_10
+      );
     },
     toggleAllAutobuyers() {
       for (const autobuyer of Autobuyers.unlocked) {
         autobuyer.isActive = this.allAutobuyersDisabled;
       }
-    }
+    },
+    toggleAntimatterSingles() {
+      for (const autobuyer of Autobuyer.antimatterDimension.zeroIndexed) {
+        autobuyer.mode = this.antimatterAutobuyersBuyMax ? AUTOBUYER_MODE.BUY_SINGLE : AUTOBUYER_MODE.BUY_10;
+      }
+    },
   },
   template: `
   <div class="c-subtab-option-container">
@@ -55,6 +64,12 @@ export default {
       @click="toggleAllAutobuyers()"
     >
       {{ allAutobuyersDisabled ? "启用" : "禁用" }}所有自动购买器
+    </PrimaryButton>
+    <PrimaryButton
+      class="o-primary-btn--subtab-option"
+      @click="toggleAntimatterSingles()"
+    >
+      将反物质维度自动购买器设为购买{{ antimatterAutobuyersBuyMax ? "单个" : "最大" }}
     </PrimaryButton>
     <span v-if="isDoomed">
       <PrimaryButton

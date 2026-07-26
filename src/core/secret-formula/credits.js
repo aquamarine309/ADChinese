@@ -4,7 +4,7 @@ export const credits = {
     1: "作者",
     2: "技术工程师",
     3: "领衔开发者",
-    4: "安卓版开发者",
+    4: "移动端开发者",
     5: "Steam 版开发者",
     6: "库开发者",
     7: "开发者",
@@ -16,6 +16,7 @@ export const credits = {
     13: "地下测试者",
     14: "网页版测试者",
     15: "安卓版测试者",
+    16: "iOS版测试者"
   },
 
   // Each person must have a name and at least one role (the index of the desired role in roles). They can also have a
@@ -532,6 +533,169 @@ export const credits = {
     }, {
       name: "Airakogi",
       roles: 15
+    }, {
+      name: "Firat Yusuf Duran",
+      roles: 16
+    }, {
+      name: "Bennie",
+      roles: 16
+    }, {
+      name: "Vorix",
+      roles: 16
+    }, {
+      name: "Scapt0z",
+      roles: 16
+    }, {
+      name: "LokiEX",
+      roles: 16
+    }, {
+      name: "Nauviax",
+      roles: 16
+    }, {
+      name: "zach",
+      roles: 16
+    }, {
+      name: "StellarAstraea",
+      roles: 16
+    }, {
+      name: "epib",
+      name2: "Ludvik Kleven",
+      roles: 16
+    }, {
+      name: "paulstelian97",
+      roles: 16
+    }, {
+      name: "DΞXTΞRITY",
+      name2: "Alexander Goemans",
+      roles: 16
+    }, {
+      name: "Constellationary",
+      roles: 16
+    }, {
+      name: "Dabud",
+      roles: 16
+    }, {
+      name: "Nolan Lynch",
+      roles: 16
+    }, {
+      name: "JQuilliy",
+      roles: 16
+    }, {
+      name: "Jonasvq",
+      roles: 16
+    }, {
+      name: "aunique",
+      roles: 16
+    }, {
+      name: "Meiths",
+      roles: 16
+    }, {
+      name: "WaywardZeppelin",
+      roles: 16
+    }, {
+      name: "Lilly and Sumi",
+      roles: 16
+    }, {
+      name: "Halfwit",
+      roles: 16
+    }, {
+      name: "Brendan M",
+      roles: 16
+    }, {
+      name: "Aaronwerito",
+      roles: 16
+    }, {
+      name: "NotDisliked",
+      roles: 16
+    }, {
+      name: "TheAsteri",
+      roles: 16
+    }, {
+      name: "Megaroid",
+      roles: 16
+    }, {
+      name: "Nuhbzz",
+      roles: 16
+    }, {
+      name: "SomeSpamCan",
+      roles: 16
+    }, {
+      name: "CatNewsPaper",
+      roles: 16
+    }, {
+      name: "Cyrus “Cyrenia” Ahangarzadeh",
+      roles: 16
+    }, {
+      name: "DarkSol",
+      roles: 16
+    }, {
+      name: "SavAri0",
+      roles: 16
+    }, {
+      name: "Chnoodle",
+      roles: 16
+    }, {
+      name: "hydrazine",
+      name2: "Jaiden Haider",
+      roles: 16
+    }, {
+      name: "William Price",
+      roles: 16
+    }, {
+      name: "JJC",
+      roles: 16
+    }, {
+      name: "Jay the Crab Man",
+      roles: 16
+    }, {
+      name: "Atocil",
+      roles: 16
+    }, {
+      name: "Goober",
+      roles: 16
+    }, {
+      name: "Kyle F",
+      roles: 16
+    }, {
+      name: "Zesty",
+      roles: 16
+    }, {
+      name: "Dr. Irene",
+      roles: 16
+    }, {
+      name: "Malpercio",
+      roles: 16
+    }, {
+      name: "Supersonic Seven",
+      name2: "Benjamin Rockholz",
+      roles: 16
+    }, {
+      name: "Poro",
+      roles: 16
+    }, {
+      name: "gamebooker",
+      roles: 16
+    }, {
+      name: "Christopher Abela",
+      roles: 16
+    }, {
+      name: "Mist Rose",
+      roles: 16
+    }, {
+      name: "Lachlan Curl",
+      roles: 16
+    }, {
+      name: "James Valdes",
+      roles: 16
+    }, {
+      name: "Isabella Echeverri",
+      roles: 16
+    }, {
+      name: "Berj Doudian",
+      roles: 16
+    }, {
+      name: "Em L.",
+      roles: 16
     }
   ]
 };
