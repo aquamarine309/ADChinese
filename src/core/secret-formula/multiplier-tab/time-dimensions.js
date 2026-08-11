@@ -186,12 +186,12 @@ export const TD = {
     icon: MultiplierTabIcons.CHALLENGE("eternity")
   },
   tickspeed: {
-    name: () => "计数频率（第 7 维）",
+    name: () => "计数频率（永恒挑战 7）",
     displayOverride: () => {
       const tickRate = Tickspeed.perSecond;
       const activeDims = MultiplierTabHelper.activeDimCount("TD");
       const dimString = MultiplierTabHelper.pluralizeDimensions(activeDims);
-      return `${format(tickRate, 2, 2)}/sec on ${formatInt(activeDims)} ${dimString}
+      return `${format(tickRate, 2, 2)}/秒 作用在 ${formatInt(activeDims)} ${dimString}
         ➜ ${formatX(tickRate.pow(activeDims), 2, 2)}`;
     },
     multValue: () => Tickspeed.perSecond.pow(MultiplierTabHelper.activeDimCount("TD")),
