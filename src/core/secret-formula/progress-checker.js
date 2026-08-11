@@ -110,7 +110,7 @@ export const progressStages = [
     id: PROGRESS_STAGE.EFFARIG,
     name: "鹿颈长（第二天神）",
     hasReached: save => save.celestials?.effarig?.quoteBits > 0,
-    suggestedResource: "显示机器和遗迹碎片",
+    suggestedResource: "现实机器和遗迹碎片",
     subProgressValue: save => Math.log10(1 + save.celestials.effarig.relicShards) / 14,
   },
   {
@@ -132,7 +132,7 @@ export const progressStages = [
     id: PROGRESS_STAGE.RA,
     name: "太阳神（第五天神）",
     hasReached: save => save.celestials?.ra?.quoteBits > 0,
-    suggestedResource: "天神碎片",
+    suggestedResource: "天神记忆",
     subProgressValue: save => Object.values(save.celestials.ra.pets).reduce((sum, pet) => sum + pet.level, 0) / 100,
   },
   {
