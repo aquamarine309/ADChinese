@@ -76,10 +76,10 @@ export default {
       return this.constantCountAfterImport - this.maxConstantCount;
     },
     presetButtonText() {
-      return this.ignorePresets ? "Will Ignore Presets" : "Will Import Presets";
+      return this.ignorePresets ? "将忽略预设" : "将导入预设";
     },
     constantButtonText() {
-      return this.ignoreConstants ? "Will Ignore Constants" : "Will Import Constants";
+      return this.ignoreConstants ? "将忽略常量" : "将导入常量";
     }
   },
   mounted() {
@@ -189,7 +189,7 @@ export default {
           class="l-has-errors"
           data-v-import-automator-data-modal
         >
-          <span v-if="willOverwriteConstant">Some of your existing constants will be overwritten!</span>
+          <span v-if="willOverwriteConstant">一些已存在的常量将会被覆盖！</span>
           <br v-if="willOverwriteConstant && extraConstants > 0">
           <span v-if="extraConstants > 0">
             因自动机的常量数量限制为 {{ formatInt(maxConstantCount) }} 个，无法导入部分常量。

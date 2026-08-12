@@ -27,7 +27,7 @@ export default {
     extraMessage() {
       if (this.glyphsDeleted === 0) return `这将不会移除任何符文。`;
       if (this.glyphsDeleted === this.glyphsTotal) return `这将移除全部符文。`;
-      return `这将移除 ${this.glyphsDeleted}/${this.glyphsTotal} 个符文。.`;
+      return `这将移除 ${this.glyphsDeleted}/${this.glyphsTotal} 个符文。`;
     },
 
     // These two don't need to be reactive since the modal force-closes itself whenever glyphs change

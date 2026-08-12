@@ -68,8 +68,7 @@ export default {
       return ALCHEMY_BASIC_GLYPH_TYPES.filter(t => !GlyphTypes.locked.map(e => e.id).includes(t));
     },
     settingTooltipText() {
-      return `Mouseover each box for more details. ✔ and ✘ symbols denote an effect
-        selected/unselected for Specified Effect mode.`;
+      return `将鼠标悬停在各框上可查看更多详情。✔ 和 ✘ 符号分别表示该词条在“指定词条模式”下被选中或未被选中。`;
     }
   },
   mounted() {

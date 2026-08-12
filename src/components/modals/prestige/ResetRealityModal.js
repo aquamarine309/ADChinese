@@ -36,10 +36,10 @@ export default {
       class="c-modal-message__text"
       data-v-reset-reality-modal
     >
-      此操作将重置本次{{ resetTerm }}，并且你不会从当前{{ resetTerm }}的进度中获得任何奖励。\n\n你确定要重置吗？
+      此操作将重置本次{{ resetTerm }}，并且你不会从当前{{ resetTerm }}的进度中获得任何奖励。
       <br>
       <br>
-      你确定要重置吗
+      你确定要重置吗？
       <div
         v-if="canReality"
         class="c-has-rewards"

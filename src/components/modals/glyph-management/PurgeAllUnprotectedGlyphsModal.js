@@ -29,7 +29,7 @@ export default {
         return `这将${this.refiningSacrificingOrDeleting}全部符文。`;
       }
       return `这将${this.refiningSacrificingOrDeleting} 
-        ${formatInt(this.glyphsDeleted)}/${formatInt(this.glyphsTotal)} 个符文`;
+        ${formatInt(this.glyphsDeleted)}/${formatInt(this.glyphsTotal)} 个符文。`;
     },
 
     // These two don't need to be reactive since the modal force-closes itself whenever glyphs change

@@ -48,7 +48,7 @@ export default {
         // Why is confirmedRefine here: refer to SacrificeGlyphModal.vue
 
         this.emitClose();
-        Modal.message.show("选中的符文改变了位置或发生了其他变化！");
+        Modal.message.show("选中的符文改变了位置或发生了其他变化。");
       }
     },
     handleYesClick() {
