@@ -51,7 +51,7 @@ export default {
     save() {
       this.hideContextMenu();
       this.preset.studies = GameCache.currentStudyTree.value.exportString;
-      const presetName = this.name ? `时间研究树以"${this.name}"的名称` : "时间研究树";
+      const presetName = this.name ? `时间研究树以“${this.name}”的名称` : "时间研究树";
       GameUI.notify.eternity(`${presetName}保存到槽位 ${this.saveslot}`);
     },
     load() {
@@ -64,7 +64,7 @@ export default {
         combinedTree.attemptBuyArray(combinedTree.parseStudyImport(this.preset.studies), true);
         TimeStudyTree.commitToGameState(combinedTree.purchasedStudies, false, combinedTree.startEC);
 
-        const presetName = this.name ? `预设时间研究树“${this.name}` : "预设时间研究树";
+        const presetName = this.name ? `预设时间研究树“${this.name}”` : "预设时间研究树";
         GameUI.notify.eternity(`已从槽位 ${presetName} 加载${presetName}`);
       } else {
         Modal.message.show("该预设时间研究树目前没有时间研究");

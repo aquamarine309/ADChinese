@@ -55,7 +55,7 @@ export default {
       if (this.isCapped) return "已被无名氏粉碎";
       if (this.isContinuumActive) return `连续统：${this.continuumString}`;
 
-      const prefix = `买到 ${formatInt(10)} 个，${this.showCostTitle(this.until10Cost) ? "价格" : ""}`;
+      const prefix = `购买 ${formatInt(10)} 个，${this.showCostTitle(this.until10Cost) ? "价格" : ""}`;
       const suffix = this.isCostsAD ? `${this.costUnit}` : "反物质";
       return `${prefix} ${format(this.until10Cost)} ${suffix}`;
     },

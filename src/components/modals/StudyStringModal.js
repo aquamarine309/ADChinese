@@ -194,7 +194,7 @@ export default {
     savePreset() {
       if (this.inputIsValid) {
         player.timestudy.presets[this.id].studies = this.input;
-        GameUI.notify.eternity(`研究树 ${this.name} 已成功导出`);
+        GameUI.notify.eternity(`研究树 ${this.name} 已成功编辑`);
         this.emitClose();
       }
     },
@@ -261,7 +261,7 @@ export default {
           />
           <StudyTreeInfo
             v-if="deleting && importedTree.hasInfo"
-            header-text="Study Preset contains:"
+            header-text="研究预设包含："
             :tree-status="importedTree"
           />
           <StudyTreeInfo

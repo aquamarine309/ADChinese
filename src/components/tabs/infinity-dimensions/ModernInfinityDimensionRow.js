@@ -60,7 +60,7 @@ export default {
       return this.costDisplay.length > 20;
     },
     capTooltip() {
-      if (this.enslavedRunning) return `Nameless prevents the purchase of more than ${format(10)} Infinity Dimensions`;
+      if (this.enslavedRunning) return `无名氏阻止你购买超过 ${format(10)} 个无限维度`;
       if (this.isCapped) return `在 ${format(this.capIP)} 无限点数时达到上限`;
       return `已购买 ${formatInt(this.purchases)} 次`;
     },

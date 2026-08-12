@@ -69,7 +69,7 @@ export default {
       };
     },
     saveLoadText() {
-      return this.$viewModel.shiftDown ? "保存x：" : "加载：";
+      return this.$viewModel.shiftDown ? "保存：" : "加载：";
     },
     shopBottomRowHeightStyle() {
       return {
