@@ -47,7 +47,7 @@ export default {
       const challengeNotEnterable = !this.isUnlocked || this.isRunning || this.name === "挑战1";
       return {
         "o-challenge-btn": true,
-        "o-challenge-btn--broken": this.overrideLabel.length > 0 && this.name !== "挑战1",
+        "o-challenge-btn--broken": this.overrideLabel.length > 0 && this.name !== "挑战10",
         "o-challenge-btn--broken-alt": this.overrideLabel.length > 0 && this.name === "挑战10",
         "o-challenge-btn--running": this.isRunning || this.inC1,
         "o-challenge-btn--completed": this.isCompleted && this.isUnlocked,

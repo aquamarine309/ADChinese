@@ -230,7 +230,7 @@ export default {
 
     <!-- Challenge with multiple completions -->
     <template v-else-if="type === 6">
-      Other challenges await...
+      下一个挑战在等着我………
       <template v-if="fullyCompleted">
         <br>
         （这个挑战已全部完成）

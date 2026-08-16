@@ -69,7 +69,7 @@ export default {
         v-if="isProtectedRowsMax()"
         class="c-glyph-inventory-option__tooltip"
       >
-        One row is permanently un-protected for new Glyphs
+        有一行格子会永久不受保护，可以放新的符文
       </div>
     </button>
     <button

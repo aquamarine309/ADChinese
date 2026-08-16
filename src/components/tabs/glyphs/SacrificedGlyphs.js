@@ -174,7 +174,7 @@ export default {
       v-else-if="isDoomed"
       class="pelle-current-glyph-effects"
     >
-      在毁灭的现实中，符文献祭提供的所有加成均被禁用，包括变异符文带来的效果变化。
+      在毁灭的现实中，符文献祭提供的所有加成均被禁用，包括异变符文带来的效果变化。
     </div>
     <div v-else>
       你还没有献祭任何符文！
