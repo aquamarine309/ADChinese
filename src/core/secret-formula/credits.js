@@ -16,7 +16,8 @@ export const credits = {
     13: "地下测试者",
     14: "网页版测试者",
     15: "安卓版测试者",
-    16: "iOS版测试者"
+    16: "iOS版测试者",
+    17: "网页版汉化者"
   },
 
   // Each person must have a name and at least one role (the index of the desired role in roles). They can also have a
@@ -696,6 +697,11 @@ export const credits = {
     }, {
       name: "Em L.",
       roles: 16
+    },
+    {
+      name: "aquamarine309",
+      name2: "海蓝酱",
+      roles: 17
     }
   ]
 };

@@ -42,13 +42,13 @@ export default {
       @keyup.esc="emitClose"
     >
     <i>
-      This can no longer be changed once the timer starts, and there is a limit of {{ formatInt(40) }} characters.
+      一旦计时器开始，名称将无法再更改，且字符数上限为 {{ formatInt(40) }} 个。
     </i>
     <div>
-      Your new name will be {{ actualName }}
+      你的新名称将是 {{ actualName }}。
     </div>
     <template #confirm-text>
-      Change Name
+      修改名称
     </template>
   </ModalWrapperChoice>
   `

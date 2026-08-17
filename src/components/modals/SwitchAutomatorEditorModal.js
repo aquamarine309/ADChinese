@@ -52,22 +52,18 @@ export default {
     @confirm="toggleAutomatorMode"
   >
     <template #header>
-      Change Automator to {{ otherMode }} editor
+      将自动机切换为{{ otherMode }}编辑器
     </template>
     <div class="c-modal-message__text">
-      This will stop your current script if it is running!
+      这将停止正在运行的自动机！
       <div v-if="errorCount">
         <br>
-        Your script has some errors which may not get converted properly to {{ otherMode }} mode. Continuing on will
-        make the Automator attempt to parse these lines anyway, although some information may get lost or not be
-        converted properly.
+        你的脚本存在一些错误，这些错误可能无法正确转换为{{ otherMode }}模式。继续操作将使自动机尝试解析这些行，但部分信息可能会丢失或转换不当。
       </div>
       <!-- Note: this can only ever appear on text-to-block -->
       <b v-if="lostBlocks">
         <br>
-        Warning: Your script also currently has some lines which cannot interpreted as particular commands. These
-        lines will end up being deleted since there is no block they can be converted into.
-        If an error occurs at the start of a loop or IF, this may end up deleting large portions of your script!
+        警告：你的脚本当前存在一些无法被解释为特定命令的行。由于没有可转换的块，这些行最终将被删除。若循环或 IF 语句开头出现错误，则可能会删除脚本的较大篇幅！
         <span
           class="l-lost-text"
           data-v-switch-automator-editor-modal

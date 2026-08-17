@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     gainText() {
-      if (this.tachyonGain.lte(0)) return `获得不到任何东西`;
+      if (this.tachyonGain.lte(0)) return `无法获得任何东西`;
       return `获得 ${format(this.tachyonGain, 2, 1)} 个超光速粒子`;
     },
     isInEC() {
