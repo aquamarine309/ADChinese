@@ -126,7 +126,7 @@ export default {
         data-v-automator-controls
       >
         <AutomatorButton
-          v-tooltip="'Rewind Automator to the first command'"
+          v-tooltip="'将自动机回退至第一条命令'"
           class="fa-fast-backward"
           @click="rewind"
           data-v-automator-controls
@@ -141,33 +141,33 @@ export default {
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Stop Automator and reset position'"
+          v-tooltip="'停止自动机并重置位置'"
           class="fa-stop"
           @click="stop"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Step forward one line'"
+          v-tooltip="'向前执行一行'"
           class="fa-step-forward"
           @click="step"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Restart script automatically when it reaches the end'"
+          v-tooltip="'脚本运行至末尾时自动重新启动'"
           class="fa-sync-alt"
           :class="{ 'c-automator__button--active' : repeatOn }"
           @click="repeat"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Automatically restart the active script when finishing or restarting a Reality'"
+          v-tooltip="'在完成或重启现实时自动重新启动当前活动脚本'"
           class="fa-reply"
           :class="{ 'c-automator__button--active' : forceRestartOn }"
           @click="restart"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Scroll Automator to follow current line'"
+          v-tooltip="'滚动自动机以跟随当前行'"
           class="fa-indent"
           :class="{ 'c-automator__button--active' : followExecution }"
           @click="follow"
@@ -187,14 +187,14 @@ export default {
         data-v-automator-controls
       >
         <AutomatorButton
-          v-tooltip="'Undo'"
+          v-tooltip="'撤销'"
           class="fa-arrow-rotate-left"
           :class="{ 'c-automator__button--inactive' : !hasUndo }"
           @click="undo"
           data-v-automator-controls
         />
         <AutomatorButton
-          v-tooltip="'Redo'"
+          v-tooltip="'重做'"
           class="fa-arrow-rotate-right"
           :class="{ 'c-automator__button--inactive' : !hasRedo }"
           @click="redo"
@@ -209,19 +209,19 @@ export default {
     >
       <span
         v-if="duplicateStatus"
-        v-tooltip="'More than one script has this name!'"
+        v-tooltip="'多个脚本具有此名称！'"
         class="fas fa-exclamation-triangle c-automator__status-text c-automator__status-text--error"
         data-v-automator-controls
       />
       <span
         v-if="editingDifferentScript"
-        v-tooltip="'The automator is running a different script than the editor is showing'"
+        v-tooltip="'自动机当前运行的脚本与编辑器显示的不是同一个'"
         class="fas fa-circle-exclamation c-automator__status-text c-automator__status-text--warning"
         data-v-automator-controls
       />
       <span
         v-if="justCompleted"
-        v-tooltip="'The automator completed running the previous script'"
+        v-tooltip="'自动机已完成上一个脚本的运行'"
         class="fas fa-circle-check c-automator__status-text"
         data-v-automator-controls
       />

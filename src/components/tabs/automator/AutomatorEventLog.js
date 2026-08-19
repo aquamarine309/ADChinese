@@ -22,7 +22,7 @@ export default {
       return this.newestFirst ? sorted.reverse() : sorted;
     },
     clearTooltip() {
-      return `Clear all entries (Max. ${this.maxEntries})`;
+      return `清除所有条目（最多 ${this.maxEntries} 条）`;
     },
     buttonClassObject() {
       return "c-automator-docs--button fas";
@@ -150,35 +150,35 @@ export default {
     <div>
       <b>时间戳风格：</b>
       <button
-        v-tooltip="'No timestamps'"
+        v-tooltip="'无时间戳'"
         :style="timestampStyle('DISABLED')"
         :class="buttonClassObject"
         class="fa-ban"
         @click="setTimestampMode('DISABLED')"
       />
       <button
-        v-tooltip="'Current time this Reality'"
+        v-tooltip="'本次现实的当前时间'"
         :style="timestampStyle('THIS_REALITY')"
         :class="buttonClassObject"
         class="fa-stopwatch"
         @click="setTimestampMode('THIS_REALITY')"
       />
       <button
-        v-tooltip="'Time elapsed since event'"
+        v-tooltip="'自事件起的耗时'"
         :style="timestampStyle('RELATIVE_NOW')"
         :class="buttonClassObject"
         class="fa-clock"
         @click="setTimestampMode('RELATIVE_NOW')"
       />
       <button
-        v-tooltip="'Time since last event'"
+        v-tooltip="距上次事件的时间''"
         :style="timestampStyle('RELATIVE_PREV')"
         :class="buttonClassObject"
         class="fa-arrow-left"
         @click="setTimestampMode('RELATIVE_PREV')"
       />
       <button
-        v-tooltip="'Date and time'"
+        v-tooltip="'日期和时间'"
         :style="timestampStyle('DATE_TIME')"
         :class="buttonClassObject"
         class="fa-user-clock"
@@ -191,7 +191,7 @@ export default {
     >
       <b>第 {{ event.line }} 行：{{ timestamp(event) }}</b>
       <button
-        v-tooltip="'Jump to line'"
+        v-tooltip="'跳转到指定行'"
         :class="buttonClassObject"
         class="fa-arrow-circle-right"
         @click="scrollToLine(event.line)"

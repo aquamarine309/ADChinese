@@ -71,7 +71,7 @@ export const eternityChallenges = [
     reward: {
       description: "推迟遥远星系的价格增长",
       effect: completions => completions * 5,
-      formatEffect: value => `${formatInt(value)} 星系后开始`
+      formatEffect: value => `推迟 ${formatInt(value)} 个星系`
     }
   },
   {
