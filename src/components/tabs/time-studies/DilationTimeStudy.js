@@ -41,7 +41,7 @@ export default {
     theoremTimeEstimate() {
       if (this.study.isBought || !this.study.cost || this.ttGen.eq(0)) return null;
       const time = Decimal.sub(this.study.cost, this.currTT).dividedBy(this.ttGen);
-      return time.gt(0) ? `Enough TT in ${TimeSpan.fromSeconds(time.toNumber()).toStringShort()}` : null;
+      return time.gt(0) ? `${TimeSpan.fromSeconds(time.toNumber()).toStringShort()} 后获得足够的时间之理` : null;
     }
   },
   methods: {
