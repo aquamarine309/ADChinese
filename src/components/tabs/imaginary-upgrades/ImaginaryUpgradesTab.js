@@ -15,8 +15,7 @@ export default {
   },
   computed: {
     upgrades: () => ImaginaryUpgrades.all,
-    lockTooltip: () => `Requirement locks only prevent manual and automated actions. Any related upgrades
-      will not be disabled and may still cause requirements to be failed.`,
+    lockTooltip: () => `需求锁定仅阻止手动和自动操作。任何相关升级不会被禁用，仍可能导致需求失败。`,
   },
   methods: {
     update() {

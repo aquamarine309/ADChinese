@@ -786,7 +786,7 @@ export default {
       class="l-corner-icon l-new-glyph"
       data-v-glyph-component
     >
-      New!
+      新！
     </div>
     <div
       v-else-if="isUnequipped"

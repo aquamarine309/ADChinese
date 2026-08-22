@@ -36,8 +36,7 @@ export default {
       return this.rift.id === 3;
     },
     infoTooltip() {
-      return `The Replicanti requirement for the 2nd Rift is based on the total amount you have ever filled, including
-        any amount drained to fill this Rift.`;
+      return `第二个裂痕的复制器要求基于你曾填充的总量，包括为填充此裂痕而消耗的任何数量。`;
     }
   },
   methods: {

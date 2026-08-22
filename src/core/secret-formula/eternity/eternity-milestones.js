@@ -35,8 +35,7 @@ export const eternityMilestones = {
       return `离线时，获得你之前最佳永恒点数/分钟的 ${formatPercents(0.25)}（${effectText}）`;
     },
     activeCondition: () => (player.options.offlineProgress
-      ? `Active as long as neither of the other offline milestones
-        (${formatInt(200)} or ${formatInt(1000)}) are also active`
+      ? `只要另外两个离线里程碑（${formatInt(200)} 或 ${formatInt(1000)}）均未激活，此效果即生效。`
       : ""),
   },
   autoIC: {
@@ -157,7 +156,7 @@ export const eternityMilestones = {
         (eternities.gt(0) ? `（当前 ${format(eternities, 2, 2)}/小时）` : "（已禁用）");
     },
     activeCondition: () => (player.options.offlineProgress
-      ? `只有不在进行任何挑战且不在时间膨胀中时，启用自动永恒并将它设置为获得 ${formatInt(0)} 永恒点数时进行永恒，离线时才能产生永恒次数。（网页汉化注：上限为 ${formatInt(33)} 毫秒永恒）`
+      ? `只有不在进行任何挑战且不在时间膨胀中时，启用自动永恒并将它设置为获得 ${formatInt(0)} 永恒点数时进行永恒，离线时才能产生永恒次数。（上限为 ${formatInt(33)} 毫秒永恒）`
       : ""),
       pelleUseless: true
   },

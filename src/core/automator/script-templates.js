@@ -72,10 +72,10 @@ export class ScriptTemplate {
       this.storedTreeStr = `studies${nowaitStr} purchase ${params.treeStudies}`;
       this.storedTreeObj = new TimeStudyTree(params.treeStudies);
     }
-    if (this.storedTreeObj.invalidStudies.length > 0) this.warnings.push("Tree contains invalid Study IDs");
+    if (this.storedTreeObj.invalidStudies.length > 0) this.warnings.push("树中包含无效的研究 ID");
     if (this.storedTreeObj.purchasedStudies.length < this.storedTreeObj.selectedStudies.length) {
-      this.warnings.push("Tree structure results in some unbought studies when imported with an empty tree");
-      if (!params.treeNowait) this.warnings.push(`Automator may possibly get stuck with "Keep buying Studies" setting`);
+      this.warnings.push("当导入到空树时，树的结构会导致部分研究未被购买。");
+      if (!params.treeNowait) this.warnings.push(`自动机可能会因“持续购买研究”设置而卡住。`);
     }
   }
 

@@ -708,7 +708,7 @@ export const normalAchievements = [
   {
     id: 104,
     name: "这不是永恒",
-    get description() { return `Eternity in under ${formatInt(30)} seconds。`; },
+    get description() { return `在 ${formatInt(30)} 秒内达到永恒。`; },
     checkRequirement: () => Time.thisEternity.totalSeconds <= 30,
     checkEvent: GAME_EVENT.ETERNITY_RESET_BEFORE,
     get reward() { return `开始永恒时拥有 ${format(5e25)} 无限点数。`; },

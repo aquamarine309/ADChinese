@@ -144,7 +144,7 @@ export default {
       return cells;
     },
     infoCol() {
-      const cells = ["Run", this.hasRealTime ? "游戏时间" : "Time in Run"];
+      const cells = ["流程", this.hasRealTime ? "游戏时间" : "本次耗时"];
       if (this.hasRealTime) cells.push("现实时间");
       cells.push(...this.resourceTitles);
       if (this.hasChallenges) cells.push("挑战");
@@ -171,7 +171,7 @@ export default {
       return `${format(run[3], 2)} ${this.plural}`;
     },
     prestigeCurrencyRate(run) {
-      if (this.hasIM && this.layer.name === "现实") return "N/A";
+      if (this.hasIM && this.layer.name === "现实") return "暂无数据";
       return this.rateText(run, run[2]);
     },
     prestigeCountRate(run) {

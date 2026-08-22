@@ -23,8 +23,8 @@ export default {
       // We have to have this edge-case due to a weird happening where you could open this modal
       // during the Reality animation, which would then show an empty modal.
       return Autobuyers.hasAutobuyersForEditModal
-        ? `Using this modal, you can edit various values inside your autobuyers.`
-        : `You currently have no autobuyers which could be shown here.`;
+        ? `通过此弹窗，你可以编辑自动购买器中的各项数值。`
+        : `你当前没有可在此显示的自动购买器。`;
     },
   },
   template: `

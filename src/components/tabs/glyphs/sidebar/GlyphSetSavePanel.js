@@ -19,8 +19,7 @@ export default {
   },
   computed: {
     questionmarkTooltip() {
-      return `Glyph Presets work like Time Study Loadouts, allowing you to equip a
-        full set of previously-saved Glyphs`;
+      return `符文预设类似于时间研究预设，允许你一次性装备整套先前保存的符文。`;
     },
     noSet() {
       return `该槽位中无符文预设`;
@@ -170,7 +169,7 @@ export default {
     },
     loadingTooltip(set) {
       return this.setLengthValid(set) && this.hasEquipped
-        ? "This set may not load properly because you already have some Glyphs equipped"
+        ? "由于你已装备了一些符文，此预设可能无法正确加载。"
         : null;
     },
     glyphSetKey(set, index) {
