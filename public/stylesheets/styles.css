@@ -105,7 +105,7 @@ html {
   --color-pelle--base: crimson;
   --color-pelle--secondary: #00bcd4;
   
-  --font-chinese: "Xia Lu Wen Kai";
+  --font-chinese: "Xia Wu Wen Kai";
 }
 
 :root .t-metro,
@@ -358,14 +358,14 @@ body {
 }
 
 @font-face {
-  font-family: "Xia Lu Wen Kai";
-  src: url("XiaLuWenKai-Light.ttf");
+  font-family: "Xia Wu Wen Kai";
+  src: url("XiaWuWenKai-Light.ttf");
   font-weight: normal;
 }
 
 @font-face {
-  font-family: "Xia Lu Wen Kai";
-  src: url("XiaLuWenKai-Medium.ttf");
+  font-family: "Xia Wu Wen Kai";
+  src: url("XiaWuWenKai-Medium.ttf");
   font-weight: bold;
 }
 

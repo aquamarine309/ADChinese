@@ -1346,7 +1346,7 @@ export const normalAchievements = [
     // We forgot to disable a singularity milestone while balancing Pelle; now it's disabled
     // and this upgrade has the same effect as it used to.
     get reward() {
-      return `可重复购买的膨胀升级购买数量的加成倍率 ${formatX(1.35, 0, 2)}。`;
+      return `可重复购买的膨胀时间倍增倍率 ${formatX(1.35, 0, 2)}。`;
     },
     effect: 1.35
   },
