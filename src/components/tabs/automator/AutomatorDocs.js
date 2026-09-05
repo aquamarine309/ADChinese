@@ -247,14 +247,14 @@ export default {
         data-v-automator-docs
       >
         <AutomatorButton
-          v-tooltip="'Automator Introduction'"
+          v-tooltip="'自动机介绍'"
           class="fa-circle-info"
           :class="activePanelClass(panelEnum.INTRO_PAGE)"
           @click="infoPaneID = panelEnum.INTRO_PAGE"
           data-v-automator-docs
         />
         <AutomatorButton
-          v-tooltip="'Scripting Information'"
+          v-tooltip="'脚本信息'"
           class="fa-list"
           :class="activePanelClass(panelEnum.COMMANDS)"
           @click="infoPaneID = panelEnum.COMMANDS"
@@ -269,28 +269,28 @@ export default {
           data-v-automator-docs
         />
         <AutomatorButton
-          v-tooltip="'Extended Data Transfer'"
+          v-tooltip="'扩展数据传输'"
           class="fa-window-restore"
           :class="activePanelClass(panelEnum.DATA_TRANSFER)"
           @click="infoPaneID = panelEnum.DATA_TRANSFER"
           data-v-automator-docs
         />
         <AutomatorButton
-          v-tooltip="'View recently executed commands'"
+          v-tooltip="'查看最近执行的指令'"
           class="fa-eye"
           :class="activePanelClass(panelEnum.EVENTS)"
           @click="infoPaneID = panelEnum.EVENTS"
           data-v-automator-docs
         />
         <AutomatorButton
-          v-tooltip="'Modify defined constants'"
+          v-tooltip="'修改定义的常量'"
           class="fa-book"
           :class="activePanelClass(panelEnum.CONSTANTS)"
           @click="infoPaneID = panelEnum.CONSTANTS"
           data-v-automator-docs
         />
         <AutomatorButton
-          v-tooltip="'Template Creator List'"
+          v-tooltip="'模板创建列表'"
           class="fa-file-code"
           :class="activePanelClass(panelEnum.TEMPLATES)"
           @click="infoPaneID = panelEnum.TEMPLATES"
@@ -298,7 +298,7 @@ export default {
         />
         <AutomatorButton
           v-if="isBlock"
-          v-tooltip="'Command menu for Block editor mode'"
+          v-tooltip="'积木块编辑器模式的指令菜单'"
           class="fa-cubes"
           :class="activePanelClass(panelEnum.BLOCKS)"
           @click="infoPaneID = panelEnum.BLOCKS"
@@ -325,7 +325,7 @@ export default {
         data-v-automator-docs
       >
         <AutomatorButton
-          v-tooltip="'Export single automator script'"
+          v-tooltip="'导出单个自动机脚本'"
           class="fa-file-export"
           @click="exportScript"
           data-v-automator-docs
@@ -363,7 +363,7 @@ export default {
               </template>
             </ExpandingControlBox>
             <AutomatorButton
-              v-tooltip="'Rename script'"
+              v-tooltip="'重命名脚本'"
               class="far fa-edit"
               @click="rename"
               data-v-automator-docs
@@ -381,7 +381,7 @@ export default {
           >
         </div>
         <AutomatorButton
-          v-tooltip="'Delete this script'"
+          v-tooltip="'删除此脚本'"
           class="fas fa-trash"
           @click="deleteScript"
           data-v-automator-docs

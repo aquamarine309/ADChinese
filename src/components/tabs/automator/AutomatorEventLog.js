@@ -113,14 +113,14 @@ export default {
       <br>
       <b>排序方式：</b>
       <button
-        v-tooltip="'Oldest results first'"
+        v-tooltip="'最早结果优先'"
         :style="sortStyle(!newestFirst)"
         :class="buttonClassObject"
         class="fa-angle-down"
         @click="newestFirst = false"
       />
       <button
-        v-tooltip="'Newest results first'"
+        v-tooltip="'最新结果优先'"
         :style="sortStyle(newestFirst)"
         :class="buttonClassObject"
         class="fa-angle-up"
@@ -133,14 +133,14 @@ export default {
         @click="clearLog"
       />
       <button
-        v-tooltip="'Clear event log every Reality'"
+        v-tooltip="'每次现实后清理事件日志'"
         :style="clearRealityStyle()"
         :class="buttonClassObject"
         class="fa-eraser"
         @click="clearOnReality = !clearOnReality"
       />
       <button
-        v-tooltip="'Clear event log on script restart'"
+        v-tooltip="'每次脚本重启后清理事件日志'"
         :style="clearRestartStyle()"
         :class="buttonClassObject"
         class="fa-backspace"
