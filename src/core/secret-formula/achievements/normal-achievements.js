@@ -496,7 +496,7 @@ export const normalAchievements = [
   },
   {
     id: 76,
-    name: "每个维度都有一个",
+    name: "一维一天",
     get description() { return `玩游戏 ${formatInt(8)} 天。`; },
     checkRequirement: () => Time.totalTimePlayed.totalDays >= 8,
     checkEvent: GAME_EVENT.GAME_TICK_AFTER,
