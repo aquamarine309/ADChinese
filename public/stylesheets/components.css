@@ -4221,6 +4221,7 @@ p[data-v-pelle-effects-modal] {
 .o-dilation-upgrade[data-v-dilation-upgrade-button] {
   width: 19rem;
   height: 9rem;
+  position: relative;
   font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;

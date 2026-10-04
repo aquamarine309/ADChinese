@@ -2,6 +2,7 @@ import DescriptionDisplay from "../../DescriptionDisplay.js";
 import EffectDisplay from "../../EffectDisplay.js";
 import HintText from "../../HintText.js";
 import TimeStudyButton from "./TimeStudyButton.js";
+import ShowFormulaButton from "../../ShowFormulaButton.js";
 
 export default {
   name: "NormalTimeStudy",
@@ -9,7 +10,8 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     HintText,
-    TimeStudyButton
+    TimeStudyButton,
+    ShowFormulaButton
   },
   props: {
     setup: {
@@ -67,6 +69,7 @@ export default {
         :config="study.config"
       />
     </span>
+    <ShowFormulaButton :config="study.config" />
   </TimeStudyButton>
   `
 };

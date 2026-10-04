@@ -108,7 +108,16 @@ export const realityUpgrades = [
     // We don't have lockEvent because the modal can never show up for this upgrade
     description: "成就提升超光速粒子的获得数量",
     effect: () => Math.sqrt(Achievements.power),
-    formatEffect: value => formatX(value, 2, 2)
+    formatEffect: value => formatX(value, 2, 2),
+    formula: {
+      text: "√x",
+      xAxis: "成就倍率",
+      x: () => Achievements.power,
+      rangeX: [1, null],
+      formatX: x => format(x, 2, 3),
+      formula: x => Math.sqrt(x),
+      logX: true
+    }
   },
   {
     name: "词域扩张",
@@ -215,7 +224,16 @@ export const realityUpgrades = [
     lockEvent: () => `购买一个永恒点数 ${formatX(5)} 升级`,
     description: () => `基于永恒点数 ${formatX(5)} 升级的数量，提升获得超光速粒子的数量。`,
     effect: () => Math.max(Math.sqrt(Decimal.log10(EternityUpgrade.epMult.effectValue)) / 9, 1),
-    formatEffect: value => formatX(value, 2, 2)
+    formatEffect: value => formatX(value, 2, 2),
+    formula: {
+      text: "max(1, √(log<sub>10</sub>(x))/9)",
+      xAxis: "永恒点数倍率",
+      x: () => EternityUpgrade.epMult.effectValue,
+      rangeX: [DC.D1, null],
+      formatX: x => format(x, 0, 2),
+      formula: x => Math.max(1, Math.sqrt(x.log10()) / 9),
+      logX: true
+    }
   },
   {
     name: "奇珍差异",
@@ -266,7 +284,19 @@ export const realityUpgrades = [
     checkEvent: GAME_EVENT.REALITY_RESET_BEFORE,
     description: "基于永恒次数加成符文等级",
     effect: () => Math.max(Math.sqrt(Currency.eternities.value.plus(1).log10()) * 0.45, 1),
-    formatCost: value => format(value, 1, 0)
+    formatCost: value => format(value, 1),
+    formula: {
+      text: "max(0.45√(log<sub>10</sub>(x+1)), 1)",
+      params: [],
+      xAxis: "永恒次数",
+      x: () => Currency.eternities.value,
+      rangeX: [DC.D1, null],
+      formatX: x => format(x),
+      formatY: value => `+${formatInt(value)}`,
+      formula: x => Math.max(Math.sqrt(x.plus(1).log10()) * 0.45, 1),
+      logX: true,
+      logY: false
+    }
   },
   {
     name: "净化赋能",

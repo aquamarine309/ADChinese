@@ -74,6 +74,8 @@ import StudyStringModal from "../components/modals/StudyStringModal.js";
 import SwitchAutomatorEditorModal from "../components/modals/SwitchAutomatorEditorModal.js";
 import UiChoiceModal from "../components/modals/UiChoiceModal.js";
 import UndoGlyphModal from "../components/modals/UndoGlyphModal.js";
+
+import FormulaGraphModal from "../components/modals/FormulaGraphModal.js";
 import UpgradeMechanicLockModal from "../components/modals/UpgradeMechanicLockModal.js";
 
 import S12GamesModal from "../components/modals/secret-themes/S12GamesModal.js";
@@ -267,6 +269,7 @@ Modal.pelleEffects = new Modal(PelleEffectsModal);
 Modal.sacrifice = new Modal(SacrificeModal, 1, GAME_EVENT.DIMBOOST_AFTER);
 Modal.breakInfinity = new Modal(BreakInfinityModal, 1, GAME_EVENT.ETERNITY_RESET_AFTER);
 Modal.respecIAP = new Modal(RespecIAPModal);
+Modal.formulaGraph = new Modal(FormulaGraphModal);
 
 Modal.s12Games = new Modal(S12GamesModal);
 

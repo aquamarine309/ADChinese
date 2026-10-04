@@ -7,6 +7,10 @@ function chargedDimInfinityMult() {
   return 1 + Math.log10(Math.max(1, Currency.infinitiesTotal.value.pLog10())) * Math.sqrt(Ra.pets.teresa.level) / 150;
 }
 
+function chargedDimInfinityMultFormula(x) {
+  return 1 + Math.log10(Math.max(1, x.pLog10())) * Math.sqrt(Ra.pets.teresa.level) / 150;
+}
+
 export const infinityUpgrades = {
   totalTimeMult: {
     id: "timeMult",
@@ -19,7 +23,23 @@ export const infinityUpgrades = {
       effect: () => 1 +
         Math.log10(Math.log10(Time.totalTimePlayed.totalMilliseconds)) *
         Math.pow(Ra.pets.teresa.level, 0.5) / 150,
-      formatEffect: value => formatPow(value, 4, 4)
+      formatEffect: value => formatPow(value, 4, 4),
+      formula: {
+        text: "1+log<sub>10</sub>(log<sub>10</sub>(x)) √T/150",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "总游戏时间（毫秒）",
+        x: () => Time.totalTimePlayed.totalMilliseconds,
+        rangeX: [10, null],
+        formatX: x => format(x, 0, 2),
+        formula: x => 1 + Math.log10(Math.log10(x)) * Math.sqrt(Ra.pets.teresa.level) / 150,
+        logX: true
+      }
     }
   },
   dim18mult: {
@@ -32,7 +52,23 @@ export const infinityUpgrades = {
     charged: {
       description: "第一和第八反物质维度获得基于无限次数和特蕾莎等级的指数加成",
       effect: () => chargedDimInfinityMult(),
-      formatEffect: value => formatPow(value, 4, 4)
+      formatEffect: value => formatPow(value, 4, 4),
+      formula: {
+        text: "1+log<sub>10</sub>(max(1, log<sub>10</sub>(x))) √T/150",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "无限次数",
+        x: () => Currency.infinitiesTotal.value,
+        rangeX: [DC.D1, null],
+        formatX: x => format(x),
+        formula: chargedDimInfinityMultFormula,
+        logX: true
+      }
     }
   },
   dim27mult: {
@@ -45,7 +81,23 @@ export const infinityUpgrades = {
     charged: {
       description: "第二和第七反物质维度获得基于无限次数和特蕾莎等级的指数加成",
       effect: () => chargedDimInfinityMult(),
-      formatEffect: value => formatPow(value, 4, 4)
+      formatEffect: value => formatPow(value, 4, 4),
+      formula: {
+        text: "1+log<sub>10</sub>(max(1, log<sub>10</sub>(x))) √T/150",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "无限次数",
+        x: () => Currency.infinitiesTotal.value,
+        rangeX: [DC.D1, null],
+        formatX: x => format(x),
+        formula: chargedDimInfinityMultFormula,
+        logX: true
+      }
     }
   },
   dim36mult: {
@@ -58,7 +110,23 @@ export const infinityUpgrades = {
     charged: {
       description: "第三和第六反物质维度获得基于无限次数和特蕾莎等级的指数加成",
       effect: () => chargedDimInfinityMult(),
-      formatEffect: value => formatPow(value, 4, 4)
+      formatEffect: value => formatPow(value, 4, 4),
+      formula: {
+        text: "1+log<sub>10</sub>(max(1, log<sub>10</sub>(x))) √T/150",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "无限次数",
+        x: () => Currency.infinitiesTotal.value,
+        rangeX: [DC.D1, null],
+        formatX: x => format(x),
+        formula: chargedDimInfinityMultFormula,
+        logX: true
+      }
     }
   },
   dim45mult: {
@@ -71,7 +139,23 @@ export const infinityUpgrades = {
     charged: {
       description: "第四和第五反物质维度获得基于无限次数和特蕾莎等级的指数加成",
       effect: () => chargedDimInfinityMult(),
-      formatEffect: value => formatPow(value, 4, 4)
+      formatEffect: value => formatPow(value, 4, 4),
+      formula: {
+        text: "1+log<sub>10</sub>(max(1, log<sub>10</sub>(x))) √T/150",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "无限次数",
+        x: () => Currency.infinitiesTotal.value,
+        rangeX: [DC.D1, null],
+        formatX: x => format(x),
+        formula: x => 1 + Math.log10(Math.max(1, x.pLog10())) * Math.sqrt(Ra.pets.teresa.level) / 150,
+        logX: true
+      }
     }
   },
   resetBoost: {
@@ -123,7 +207,23 @@ export const infinityUpgrades = {
       effect: () => 1 +
         Math.log10(Math.log10(Time.thisInfinity.totalMilliseconds + 100)) *
         Math.sqrt(Ra.pets.teresa.level) / 150,
-      formatEffect: value => formatPow(value, 4, 4)
+      formatEffect: value => formatPow(value, 4, 4),
+      formula: {
+        text: "1+log<sub>10</sub>(log<sub>10</sub>(x+100)) √T/150",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "本次无限时间（毫秒）",
+        x: () => Time.thisInfinity.totalMilliseconds,
+        rangeX: [1, null],
+        formatX: x => format(x),
+        formula: x => 1 + Math.log10(Math.log10(x + 100)) * Math.sqrt(Ra.pets.teresa.level) / 150,
+        logX: true
+      }
     }
   },
   unspentIPMult: {
@@ -136,7 +236,24 @@ export const infinityUpgrades = {
     charged: {
       description: "基于未使用的无限点数获得第一个反物质维度倍数，然后由特蕾莎等级提供指数加成",
       effect: () => Currency.infinityPoints.value.dividedBy(2).pow(Math.sqrt(Ra.pets.teresa.level) * 1.5).plus(1),
-      formatEffect: value => formatX(value, 2, 2)
+      formatEffect: value => formatX(value, 2, 2),
+      formula: {
+        text: "(x/2)<sup>1.5√T</sup>+1",
+        params: [
+          {
+            name: "T",
+            value: () => Ra.pets.teresa.level,
+            format: value => formatInt(value)
+          }
+        ],
+        xAxis: "无限点数",
+        x: () => Currency.infinityPoints.value,
+        rangeX: [DC.D1, null],
+        formatX: x => format(x, 0, 2),
+        formula: x => x.div(2).pow(Math.sqrt(Ra.pets.teresa.level) * 1.5).plus(1),
+        logX: true,
+        logY: true
+      }
     }
   },
   dimboostMult: {

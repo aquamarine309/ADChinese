@@ -3761,6 +3761,7 @@ br {
 .o-infinity-upgrade-btn {
   width: 19rem;
   height: 9rem;
+  position: relative;
   font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
@@ -4717,6 +4718,7 @@ properly on certain themes. */
 .o-eternity-upgrade {
   width: 20rem;
   height: 9rem;
+  position: relative;
   font-family: Typewriter, var(--font-chinese);
   font-size: 1rem;
   font-weight: bold;
@@ -9339,4 +9341,11 @@ input.o-automator-block-input {
   position: absolute;
   left: 2rem;
   top: 0.5rem;
+}
+
+.o-show-formula-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1rem;
 }

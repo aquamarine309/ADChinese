@@ -147,7 +147,17 @@ ${formatInt(50)} 毫秒减少到 ${formatInt(1)} 毫秒`,
     description: "维度献祭以较低的效果为其他所有反物质维度提供加成",
     effect: () => Sacrifice.totalBoost.pow(0.25).clampMin(1),
     cap: DC.E210000,
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
+    formula: {
+      text: "min(x<sup>0.25</sup>, 1e210000)",
+      xAxis:"献祭加成倍率",
+      x: () => Sacrifice.totalBoost,
+      rangeX: [DC.D1, Decimal.pow10(840000)],
+      formatX: x => format(x, 0, 2),
+      formula: x => x.pow(0.25).clamp(1, DC.E210000),
+      logX: true,
+      logY: true
+    }
   },
   {
     id: 72,
@@ -159,7 +169,17 @@ ${formatInt(50)} 毫秒减少到 ${formatInt(1)} 毫秒`,
     description: "维度献祭以极低的效果加成第四无限维度",
     effect: () => Sacrifice.totalBoost.pow(0.04).clampMin(1),
     cap: DC.E30000,
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
+    formula: {
+      text: "min(x<sup>0.04</sup>, 1e30000)",
+      xAxis:"献祭加成倍率",
+      x: () => Sacrifice.totalBoost,
+      rangeX: [DC.D1, Decimal.pow10(750000)],
+      formatX: x => format(x, 0, 2),
+      formula: x => x.pow(0.04).clamp(1, DC.E30000),
+      logX: true,
+      logY: true
+    }
   },
   {
     id: 73,
@@ -169,7 +189,17 @@ ${formatInt(50)} 毫秒减少到 ${formatInt(1)} 毫秒`,
     description: "维度献祭以极低的效果加成第三时间维度",
     effect: () => Sacrifice.totalBoost.pow(0.005).clampMin(1),
     cap: DC.E1300,
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
+    formula: {
+      text: "min(x<sup>0.005</sup>, 1e1300)",
+      xAxis:"献祭加成倍率",
+      x: () => Sacrifice.totalBoost,
+      rangeX: [DC.D1, Decimal.pow10(260000)],
+      formatX: x => format(x, 0, 2),
+      formula: x => x.pow(0.005).clamp(1, DC.E1300),
+      logX: true,
+      logY: true
+    }
   },
   {
     id: 81,
@@ -187,7 +217,16 @@ ${formatInt(50)} 毫秒减少到 ${formatInt(1)} 毫秒`,
     description: "维度提升作用于无限维度",
     effect: () => DC.D1_0000109.pow(Math.pow(DimBoost.totalBoosts, 2)),
     cap: DC.E1E7,
-    formatEffect: value => formatX(value, 2, 1)
+    formatEffect: value => formatX(value, 2, 1),
+    formula: {
+      text: "min(1.0000109<sup>x<sup>2</sup></sup>, 1e1000000)",
+      xAxis:"维度提升数量",
+      x: () => DimBoost.totalBoosts,
+      rangeX: [0, 1453436],
+      formatX: x => formatInt(x),
+      formula: x => DC.D1_0000109.pow(Math.pow(x, 2)).clampMax(DC.E1E7),
+      logY: true
+    }
   },
   {
     id: 83,
@@ -482,7 +521,21 @@ ${formatX(1.33, 0, 2)} ➜ ${formatX(1.25, 0, 2)}`,
     description: "基于时间碎片数量，星系变得更加强大",
     effect: () => Math.pow(Currency.timeShards.value.clampMin(2).log2(), 0.005),
     cap: 1.1,
-    formatEffect: value => `+${formatPercents(value - 1, 3)}`
+    formatEffect: value => `+${formatPercents(value - 1, 3)}`,
+    formula: {
+      text: "min((log<sub>2</sub>(max(x, 2)))<sup>0.005</sup>, 1.1)",
+      params: [],
+      xAxis: "时间碎片",
+      x: () => Currency.timeShards.value,
+      rangeX: [DC.D2, Decimal.pow(2, 1.1 ** 200)],
+      formatX: x => format(x, 0, 2),
+      formula: x => Math.min(
+        Math.pow(x.clampMin(2).log2(), 0.005),
+        1.1
+      ),
+      logX: true,
+      logY: false
+    }
   },
   {
     id: 213,

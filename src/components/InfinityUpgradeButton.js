@@ -1,6 +1,7 @@
 import CostDisplay from "./CostDisplay.js";
 import DescriptionDisplay from "./DescriptionDisplay.js";
 import EffectDisplay from "./EffectDisplay.js";
+import ShowFormulaButton from "./ShowFormulaButton.js";
 
 export default {
   name: "InfinityUpgradeButton",
@@ -8,6 +9,7 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     CostDisplay,
+    ShowFormulaButton
   },
   props: {
     upgrade: {
@@ -129,6 +131,7 @@ export default {
       name="无限点数"
     />
     <slot />
+    <ShowFormulaButton :config="config" />
   </button>
   `
 };

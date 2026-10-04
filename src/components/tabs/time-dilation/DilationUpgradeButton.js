@@ -3,6 +3,7 @@ import CustomizeableTooltip from "../../CustomizeableTooltip.js";
 import DescriptionDisplay from "../../DescriptionDisplay.js";
 import EffectDisplay from "../../EffectDisplay.js";
 import PrimaryToggleButton from "../../PrimaryToggleButton.js";
+import ShowFormulaButton from "../../ShowFormulaButton.js";
 
 export default {
   name: "DilationUpgradeButton",
@@ -11,7 +12,8 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     CostDisplay,
-    CustomizeableTooltip
+    CustomizeableTooltip,
+    ShowFormulaButton
   },
   props: {
     upgrade: {
@@ -141,6 +143,7 @@ export default {
         name="膨胀时间"
         data-v-dilation-upgrade-button
       />
+      <ShowFormulaButton :config="upgrade.config" />
     </button>
     <PrimaryToggleButton
       v-if="isRebuyable && isAutoUnlocked"
