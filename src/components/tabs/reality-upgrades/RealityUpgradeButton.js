@@ -3,7 +3,6 @@ import DescriptionDisplay from "../../DescriptionDisplay.js";
 import EffectDisplay from "../../EffectDisplay.js";
 import HintText from "../../HintText.js";
 import PrimaryToggleButton from "../../PrimaryToggleButton.js";
-import ShowFormulaButton from "../../ShowFormulaButton.js";
 
 export default {
   name: "RealityUpgradeButton",
@@ -12,8 +11,7 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     CostDisplay,
-    HintText,
-    ShowFormulaButton
+    HintText
   },
   props: {
     upgrade: {
@@ -124,7 +122,6 @@ export default {
           (+{{ formatInt(automatorPoints) }} 自动点数)
         </b>
       </span>
-      <ShowFormulaButton :config="config" />
     </button>
     <div
       v-if="canBeLocked"

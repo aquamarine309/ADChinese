@@ -3,7 +3,6 @@ import DescriptionDisplay from "../../DescriptionDisplay.js";
 import EffectDisplay from "../../EffectDisplay.js";
 import HintText from "../../HintText.js";
 import PrimaryToggleButton from "../../PrimaryToggleButton.js";
-import ShowFormulaButton from "../../ShowFormulaButton.js";
 
 export default {
   name: "ImaginaryUpgradeButton",
@@ -12,8 +11,7 @@ export default {
     DescriptionDisplay,
     EffectDisplay,
     CostDisplay,
-    HintText,
-    ShowFormulaButton
+    HintText
   },
   props: {
     upgrade: {
@@ -127,7 +125,6 @@ export default {
             name="虚幻机器"
           />
         </template>
-        <ShowFormulaButton :config="config" />
       </span>
     </button>
     <div

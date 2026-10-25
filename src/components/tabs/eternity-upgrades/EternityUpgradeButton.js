@@ -1,15 +1,13 @@
 import CostDisplay from "../../CostDisplay.js";
 import DescriptionDisplay from "../../DescriptionDisplay.js";
 import EffectDisplay from "../../EffectDisplay.js";
-import ShowFormulaButton from "../../ShowFormulaButton.js";
 
 export default {
   name: "EternityUpgradeButton",
   components: {
     DescriptionDisplay,
     EffectDisplay,
-    CostDisplay,
-    ShowFormulaButton
+    CostDisplay
   },
   props: {
     upgrade: {
@@ -62,7 +60,6 @@ export default {
       :config="upgrade.config"
       name="永恒点数"
     />
-    <ShowFormulaButton :config="upgrade.config" />
   </button>
   `
 };
